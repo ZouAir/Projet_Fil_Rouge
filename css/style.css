@@ -1,0 +1,70 @@
+header {
+    border-bottom: 1px solid black;
+    background-color: #2aa405;
+}
+
+header>div .logo-name {
+    display: flex;
+}
+
+header>div img {
+    width: 100px;
+    margin-left: 20px;
+}
+
+header>div span {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+header nav {
+    display: none;
+}
+
+header div.menu {
+    display: flex;
+}
+
+header button {
+    width: 40px;
+    height: 40px;
+    justify-items: end;
+}
+
+@media (min-width: 992px) {
+    header .container {
+        width: 1200px;
+        background-color: red;
+        margin: auto;
+        display: flex;
+    }
+}
+
+@media (min-width: 992px) {
+
+    header>div img {
+        width: 150px;
+        margin-left: 50px;
+    }
+
+    header>div span {
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 4rem;
+        margin: auto;
+    }
+
+    header .container {
+        width: 1000px;
+        background-color: red;
+        margin: auto;
+        display: flex;
+    }
+
+    header nav ul {
+        text-decoration: none;
+        list-style: none;
+        padding-left: 0;
+    }
+}
