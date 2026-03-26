@@ -1,0 +1,48 @@
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="claude.js" defer></script>
+    <title>Projet Claude</title>
+</head>
+
+<body>
+    <h1>Contact</h1>
+    <form action="claude.php" method="POST" id="form">
+        <span>* = Champs obligatoires</span>
+        <fieldset>
+            <div class="form-bloc">
+                <label for="name">Nom *</label>
+                <div class="group-input">
+                    <input type="text" name="name" id="name">
+                    <span class="msg-erreur"></span>
+                </div>
+            </div>
+            <div class="form-bloc">
+                <label for="email">Email *</label>
+                <div class="group-input">
+                    <input type="email" name="email" id="email">
+                    <span id="msg-erreur"></span>
+                </div>
+            </div>
+            <div class="form-bloc">
+                <div class="group-input">
+                    <label for="place">Nombre de places *</label><br>
+                    <br>
+                    <select name="places" id="place">
+                        <option value="">--Choisir</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                    <span class="msg-erreur"></span>
+                </div>
+            </div>
+            <br>
+            <button type="submit">Submit</button>
+        </fieldset>
+    </form>
+
+</body>
+
+</html>
