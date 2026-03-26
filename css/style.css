@@ -32,12 +32,23 @@ header button {
     justify-items: end;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 320px) {}
+
+@media (min-width: 480px) {}
+
+@media (min-width: 768px) {
     header .container {
-        width: 1200px;
-        background-color: red;
+        width: 718px;
         margin: auto;
         display: flex;
+    }
+
+    header nav {
+        display: block;
+    }
+
+    header button {
+        display: none;
     }
 }
 
@@ -49,15 +60,12 @@ header button {
     }
 
     header>div span {
-        text-transform: uppercase;
-        font-weight: 700;
         font-size: 4rem;
         margin: auto;
     }
 
     header .container {
         width: 1000px;
-        background-color: red;
         margin: auto;
         display: flex;
     }
@@ -68,3 +76,5 @@ header button {
         padding-left: 0;
     }
 }
+
+@media (min-width: 1200px) {}
