@@ -1,29 +1,37 @@
+<!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="claude.js" defer></script>
-    <title>Projet Claude</title>
+    <meta name="description" content="Portefolio de Zouhair REGHAI">
+    <link href="../icone/" rel="shortcut icon" type="image/x-icon">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link href="form.css" rel="stylesheet">
+    <script src="form.js" defer></script>
+    <title>ProjetFilRouge-Formulaire</title>
 </head>
 
 <body>
-    <h1>Contact</h1>
+    <h1>Réservation</h1>
     <form action="claude.php" method="POST" id="form">
         <span>* = Champs obligatoires</span>
         <fieldset>
             <div class="form-bloc">
                 <label for="name">Nom *</label>
                 <div class="group-input">
-                    <input type="text" name="name" id="name">
+                    <input type="text" name="Nom" id="name" autocomplete="given-name">
                     <span class="msg-erreur"></span>
                 </div>
             </div>
             <div class="form-bloc">
                 <label for="email">Email *</label>
                 <div class="group-input">
-                    <input type="email" name="email" id="email">
-                    <span id="msg-erreur"></span>
+                    <input type="email" name="Email" id="email" autocomplete="off">
+                    <span class="msg-erreur"></span>
                 </div>
             </div>
             <div class="form-bloc">

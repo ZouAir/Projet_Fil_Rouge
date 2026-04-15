@@ -5,6 +5,12 @@ document.getElementById("form").addEventListener("submit", (event) => {
     console.log("Submit intercepté !")
     let errors = [];
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    document.querySelectorAll(".form-bloc input, .form-bloc select").forEach((input) => {
+        input.closest(".group-input").querySelector(".msg-erreur").textContent = "";
+        input.style.border = "";
+    });
+
     document.querySelectorAll(".form-bloc input, .form-bloc select").forEach((input) => {
         if (input.value.trim().length === 0) {
             errors.push({
@@ -13,9 +19,9 @@ document.getElementById("form").addEventListener("submit", (event) => {
             });
         } else if (input.type === "email") {
             if (!regex.test(input.value)) {
-                console.log(regex.test(input.value));
+                // console.log(regex.test(input.value));
                 errors.push({
-                    message: `Le champ ${input.name} est obligatoire`,
+                    message: `Le format de l'email est incorrect`,
                     element: input
                 });
             }
