@@ -6,7 +6,7 @@ $pdo = require('bdd.php');
 $error = "";
 
 //Si déjà connecté
-if (isset($_SESSION['pseudo'])) {
+if (isset($_SESSION['email'])) {
     header('location: index.php');
     exit;
 }
@@ -14,19 +14,19 @@ if (isset($_SESSION['pseudo'])) {
 //Traitement POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $pseudo = $_POST['pseudo'] ?? '';
+    $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
-    $query = $pdo->prepare("SELECT * FROM utilisateurs WHERE pseudo = ?");
-    $query->execute([$pseudo]);
+    $query = $pdo->prepare("SELECT * FROM users WHERE email = ?");
+    $query->execute([$email]);
     $club = $query->fetch(PDO::FETCH_ASSOC);
 
     if (!$club) {
         $error = "Identifiant ou mot de passe incorrect";
     } else {
         $_SESSION['user_id'] = $club['id'];
-        $_SESSION['pseudo'] = $club['pseudo'];
-        $passwordHash = $club['mot_de_passe'];
+        $_SESSION['email'] = $club['email'];
+        $passwordHash = $club['password'];
 
         if (password_verify($password, $passwordHash)) {
             header('Location: index.php');
@@ -55,8 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endif; ?>
 
     <form method="POST" action="">
-        <label>Pseudo :</label><br>
-        <input type="text" name="pseudo"><br><br>
+        <label>Email :</label><br>
+        <input type="text" name="email"><br><br>
 
         <label>Mot de passe :</label><br>
         <input type="password" name="password"><br><br>
