@@ -1,17 +1,43 @@
 <?php
-// Démarre la session
-// Inclut bdd.php
-// Vérifie si le formulaire est soumis en POST
-// Récupère les variables depuis $_POST
-// Vérifie que les 2 mots de passe correspondent
-// Hashe le mot de passe
-// Insère l'utilisateur en BDD
-// Redirige vers login.php
+// // Démarre la session 
+// // Inclut bdd.php
+// // Vérifie si le formulaire est soumis en POST
+// // Récupère les variables depuis $_POST
+// // Vérifie que les 2 mots de passe correspondent
+// // Hashe le mot de passe
+// // Insère l'utilisateur en BDD
+// // Redirige vers login.php
 session_start();
+$pdo = require_once('bdd.php');
 
+$error = null;
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = htmlspecialchars($_POST['name']) ?? '';
+    $firstName = htmlspecialchars($_POST['firstname']) ?? '';
+    $email = htmlspecialchars($_POST['email']) ?? '';
+    $phone = htmlspecialchars($_POST['phone']) ?? '';
+
+    if ($_POST['password'] !== $_POST['pwd-confirm']) {
+        $error = "Les mots de passe ne correspondent pas";
+    }
+
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    if (empty($error)) {
+        try {
+            $query = $pdo->prepare("INSERT INTO users (name, firstname, email, password, phone) VALUES (?, ?, ?, ?, ?)");
+            $query->execute([$name, $firstName, $email, $password, $phone]);
+            header('Location: login.php');
+            exit;
+        } catch (PDOException $e) {
+            die("Erreur : " . $e->getMessage());
+        }
+    }
+}
 
 ?>
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -32,9 +58,9 @@ session_start();
             <form action="inscription.php" method="post" id="id-form" class="form">
                 <div> * champs obligatoires</div>
                 <div class="form-group">
-                    <label for="lastname">Name *</label>
+                    <label for="name">Name *</label>
                     <div>
-                        <input type="text" id="lastname" name="lastname" required>
+                        <input type="text" id="name" name="name" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -50,20 +76,20 @@ session_start();
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="pwd">Mot de passe *</label>
+                    <label for="password">Mot de passe *</label>
                     <div class="input-with-button">
-                        <input type="password" id="pwd" name="pwd" required>
-                        <button type="button" id="pwd-show">
+                        <input type="password" id="password" name="password" required>
+                        <button type="button" id="password-show">
                             <i class="bx bx-eye" aria-label="Afficher le mot de passe"></i>
                             <i class="bx bx-eye-slash" aria-label="Masquer le mot de passe"></i>
                         </button>
                         <div>
                             <p>Le mot de passe doit respecter les règles suivantes</p>
                             <ul>
-                                <li id="pwd-criteria-length">8 caractères minimum</li>
-                                <li id="pwd-criteria-special">1 caractère spécial mini [#@!?$%&]</li>
-                                <li id="pwd-criteria-uppercase">1 majuscule mini</li>
-                                <li id="pwd-criteria-numeric">1 numérique mini</li>
+                                <li id="password-criteria-length">8 caractères minimum</li>
+                                <li id="password-criteria-special">1 caractère spécial mini [#@!?$%&]</li>
+                                <li id="password-criteria-uppercase">1 majuscule mini</li>
+                                <li id="password-criteria-numeric">1 numérique mini</li>
                             </ul>
                         </div>
                     </div>
@@ -88,6 +114,11 @@ session_start();
                     <input type="submit" id="sub-btn" value="Valider">
                 </div>
             </form>
+            <?php if (!empty($error)): ?>
+                <p style="color:red"><?= $error ?></p>
+            <?php endif; ?>
         </section>
     </main>
 </body>
+
+</html>
