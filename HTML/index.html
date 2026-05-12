@@ -1,0 +1,118 @@
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+    <script src="js/script.js" defer></script>
+    <title>MNS Football Club</title>
+</head>
+
+<body>
+    <main>
+        <section class="container">
+            <h1>Inscription</h1>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam ab optio eaque, corporis laborum aut
+                libero molestiae harum eius voluptate atque odit, perferendis incidunt in ea illum quod cumque
+                cupiditate.</p>
+
+            <form action="traitement.php" method="post" id="test-form" class="form">
+                <!-- Dans le cas où nous avons plusieurs formulaires et que nous voulons leur donner le même style on crée une classe="form" même si nous avons un id plus puissant -->
+                <div> * champs obligatoires</div>
+                <div class="form-group">
+                    <label for="lastname">Name *</label>
+                    <div>
+                        <input type="text" id="lastname" name="lastname" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="firstname">Firstname <sup>*</sup></label>
+                    <div>
+                        <input type="text" id="firstname" name="firstname" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="mail">Email *</label>
+                    <div>
+                        <input type="email" id="mail" name="mail" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Mot de passe *</label>
+                    <div class="input-with-button">
+                        <input type="password" id="pwd" name="pwd" required>
+                        <button type="button" id="pwd-show">
+                            <i class="bx bx-eye" aria-label="Afficher le mot de passe"></i>
+                            <i class="bx bx-eye-slash" aria-label="Masquer le mot de passe"></i>
+                        </button>
+                        <!-- <div>
+                            <p>Le mot de passe doit respecter les règles suivantes</p>
+                            <ul>
+                                <li id="pwd-criteria-length">8 caractères minimum</li>
+                                <li id="pwd-criteria-special">1 caractère spécial mini [#@!?$%&]</li>
+                                <li id="pwd-criteria-uppercase">1 majuscule mini</li>
+                                <li id="pwd-criteria-numeric">1 numérique mini</li>
+                            </ul>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telephone *</label>
+                    <div>
+                        <input type="text" id="phone" name="phone" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="birthday">Date de naissance *</label>
+                    <div>
+                        <input type="date" id="birthday" name="birthday" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="adress">Adresse *</label>
+                    <div>
+                        <input type="text" id="adress" name="adress" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="postal">Code postal *</label>
+                    <div>
+                        <input type="text" id="postal" name="postal" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="city">Ville *</label>
+                    <div>
+                        <input type="text" id="city" name="city" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="profil">Profil *</label>
+                    <div>
+                        <input type="text" id="profil" name="profil" value="user">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="profil">Profil *</label>
+                    <div>
+                        <input type="text" id="profil" name="profil" value="user">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="pwd-confirm">Confirmation*</label>
+                    <div class="input-with-button">
+                        <input type="password" id="pwd-confirm" name="pwd-confirm" required>
+                        <button type="button" id="pwd-confirm-show">
+                            <i class="bx bx-eye" aria-label="Afficher le mot de passe"></i>
+                            <i class="bx bx-eye-slash" aria-label="Masquer le mot de passe"></i>
+                        </button>
+                    </div>
+                </div>
+                <input type="submit" value="Valider">
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>
