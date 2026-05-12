@@ -1,0 +1,198 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.dash { display: flex; min-height: 600px; font-family: var(--font-sans); font-size: 14px; }
+
+/* Sidebar */
+.sidebar { width: 200px; background: #1A1A1A; border-radius: 12px 0 0 12px; padding: 20px 0; display: flex; flex-direction: column; gap: 4px; flex-shrink: 0; }
+.sidebar-logo { padding: 0 16px 20px; display: flex; align-items: center; gap: 8px; border-bottom: 0.5px solid rgba(255,255,255,0.1); margin-bottom: 8px; }
+.sidebar-logo-icon { width: 28px; height: 28px; background: #2B8C4A; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.sidebar-logo-text { font-size: 14px; font-weight: 500; color: #fff; }
+.nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 16px; cursor: pointer; color: rgba(255,255,255,0.5); border-radius: 0; transition: none; font-size: 13px; }
+.nav-item.active { color: #fff; background: rgba(255,255,255,0.07); border-left: 3px solid #2B8C4A; padding-left: 13px; }
+.nav-item:not(.active):hover { color: rgba(255,255,255,0.8); }
+.nav-icon { font-size: 14px; width: 16px; text-align: center; }
+.sidebar-sep { border: none; border-top: 0.5px solid rgba(255,255,255,0.08); margin: 8px 16px; }
+.sidebar-footer { margin-top: auto; padding: 16px; }
+.avatar { width: 32px; height: 32px; border-radius: 50%; background: #2B8C4A; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; color: #fff; }
+
+/* Main */
+.main { flex: 1; background: #F5F5F5; border-radius: 0 12px 12px 0; padding: 24px; overflow: hidden; }
+.topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+.page-title { font-size: 18px; font-weight: 500; color: #1A1A1A; }
+.topbar-right { display: flex; align-items: center; gap: 10px; }
+.notif-btn { background: #fff; border: 0.5px solid #ddd; border-radius: 8px; padding: 7px 10px; cursor: pointer; font-size: 13px; color: #555; }
+.admin-pill { background: #1A1A1A; color: #fff; border-radius: 99px; padding: 6px 12px; font-size: 12px; display: flex; align-items: center; gap: 6px; }
+
+/* Stats grid */
+.stats-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; margin-bottom: 20px; }
+.stat-card { background: #fff; border-radius: 10px; padding: 14px 16px; border: 0.5px solid #e5e5e5; border-left: 4px solid var(--accent); }
+.stat-val { font-size: 26px; font-weight: 500; color: var(--accent); line-height: 1.1; }
+.stat-lbl { font-size: 12px; color: #888; margin-top: 4px; }
+.stat-delta { font-size: 11px; margin-top: 6px; color: #2B8C4A; }
+
+/* Bottom grid */
+.bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card { background: #fff; border-radius: 10px; border: 0.5px solid #e5e5e5; padding: 16px; }
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.card-title { font-size: 13px; font-weight: 500; color: #1A1A1A; }
+.card-link { font-size: 12px; color: #2B8C4A; cursor: pointer; }
+
+/* Matchs */
+.match-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid #f0f0f0; }
+.match-item:last-child { border-bottom: none; }
+.match-date { font-size: 11px; color: #999; width: 52px; flex-shrink: 0; }
+.match-teams { flex: 1; font-size: 13px; color: #1A1A1A; }
+.match-vs { color: #bbb; font-size: 11px; margin: 0 4px; }
+.match-badge { font-size: 11px; padding: 3px 8px; border-radius: 99px; background: #D6F0DE; color: #1A5C2E; flex-shrink: 0; }
+.match-badge.away { background: #D0EAF6; color: #0C4A6E; }
+
+/* Inscriptions */
+.insc-item { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 0.5px solid #f0f0f0; }
+.insc-item:last-child { border-bottom: none; }
+.insc-avatar { width: 30px; height: 30px; border-radius: 50%; background: #D6F0DE; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; color: #1A5C2E; flex-shrink: 0; }
+.insc-name { flex: 1; font-size: 13px; color: #1A1A1A; }
+.insc-date { font-size: 11px; color: #bbb; }
+.insc-status { font-size: 11px; padding: 3px 8px; border-radius: 99px; background: #D6F0DE; color: #1A5C2E; }
+
+/* Actus */
+.actu-item { display: flex; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid #f0f0f0; align-items: flex-start; }
+.actu-item:last-child { border-bottom: none; }
+.actu-dot { width: 8px; height: 8px; border-radius: 50%; background: #2B8C4A; margin-top: 5px; flex-shrink: 0; }
+.actu-text { flex: 1; font-size: 13px; color: #333; line-height: 1.4; }
+.actu-time { font-size: 11px; color: #bbb; flex-shrink: 0; margin-top: 2px; }
+</style>
+
+<div class="dash">
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">⚽</div>
+      <span class="sidebar-logo-text">Club ACA</span>
+    </div>
+    <div class="nav-item active"><span class="nav-icon">▪</span> Dashboard</div>
+    <div class="nav-item"><span class="nav-icon">▪</span> Joueurs</div>
+    <div class="nav-item"><span class="nav-icon">▪</span> Matchs</div>
+    <div class="nav-item"><span class="nav-icon">▪</span> Entraîneurs</div>
+    <hr class="sidebar-sep">
+    <div class="nav-item"><span class="nav-icon">▪</span> Licences</div>
+    <div class="nav-item"><span class="nav-icon">▪</span> Paramètres</div>
+    <div class="sidebar-footer">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="avatar">ZR</div>
+        <div>
+          <div style="font-size:12px;color:#fff;font-weight:500;">Zouhair R.</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.4);">Admin</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="page-title">Tableau de bord</div>
+      <div class="topbar-right">
+        <button class="notif-btn">🔔 3</button>
+        <div class="admin-pill">
+          <div style="width:6px;height:6px;border-radius:50%;background:#5DC882;"></div>
+          Saison 2024/25
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card" style="--accent:#2B8C4A;">
+        <div class="stat-val">34</div>
+        <div class="stat-lbl">Joueurs inscrits</div>
+        <div class="stat-delta">+4 ce mois</div>
+      </div>
+      <div class="stat-card" style="--accent:#1A6B8A;">
+        <div class="stat-val">12</div>
+        <div class="stat-lbl">Matchs programmés</div>
+        <div class="stat-delta">3 à venir</div>
+      </div>
+      <div class="stat-card" style="--accent:#5B8C2B;">
+        <div class="stat-val">5</div>
+        <div class="stat-lbl">Entraîneurs</div>
+        <div class="stat-delta">2 équipes</div>
+      </div>
+      <div class="stat-card" style="--accent:#1A1A1A;">
+        <div class="stat-val">28</div>
+        <div class="stat-lbl">Licences valides</div>
+        <div class="stat-delta" style="color:#E24B4A;">6 à renouveler</div>
+      </div>
+    </div>
+
+    <div class="bottom-grid">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Prochains matchs</span>
+          <span class="card-link">Voir tout →</span>
+        </div>
+        <div class="match-item">
+          <span class="match-date">19 avr.</span>
+          <span class="match-teams">ACA <span class="match-vs">vs</span> FC Metz B</span>
+          <span class="match-badge">Domicile</span>
+        </div>
+        <div class="match-item">
+          <span class="match-date">26 avr.</span>
+          <span class="match-teams">AS Nancy <span class="match-vs">vs</span> ACA</span>
+          <span class="match-badge away">Extérieur</span>
+        </div>
+        <div class="match-item">
+          <span class="match-date">3 mai</span>
+          <span class="match-teams">ACA <span class="match-vs">vs</span> SC Thionville</span>
+          <span class="match-badge">Domicile</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Dernières inscriptions</span>
+          <span class="card-link">Voir tout →</span>
+        </div>
+        <div class="insc-item">
+          <div class="insc-avatar">KD</div>
+          <span class="insc-name">Karim Daoud</span>
+          <span class="insc-date">Aujourd'hui</span>
+          <span class="insc-status">Validé</span>
+        </div>
+        <div class="insc-item">
+          <div class="insc-avatar">LM</div>
+          <span class="insc-name">Lucas Martin</span>
+          <span class="insc-date">Hier</span>
+          <span class="insc-status">Validé</span>
+        </div>
+        <div class="insc-item">
+          <div class="insc-avatar">SR</div>
+          <span class="insc-name">Sofia Renard</span>
+          <span class="insc-date">14 avr.</span>
+          <span class="insc-status">Validé</span>
+        </div>
+      </div>
+
+      <div class="card" style="grid-column: 1 / -1;">
+        <div class="card-header">
+          <span class="card-title">Actualités du club</span>
+          <span class="card-link">Gérer →</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;">
+          <div class="actu-item">
+            <div class="actu-dot"></div>
+            <div class="actu-text">Séance d'entraînement annulée samedi prochain — terrain en maintenance.</div>
+            <div class="actu-time">Auj.</div>
+          </div>
+          <div class="actu-item" style="padding-left:16px;">
+            <div class="actu-dot" style="background:#A8D8EA;"></div>
+            <div class="actu-text">Renouvellement des licences FFF ouvert jusqu'au 30 avril.</div>
+            <div class="actu-time">15 avr.</div>
+          </div>
+          <div class="actu-item" style="padding-left:16px;">
+            <div class="actu-dot" style="background:#1A1A1A;"></div>
+            <div class="actu-text">Réunion des parents d'équipe U13 le 22 avril à 19h au club.</div>
+            <div class="actu-time">12 avr.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
