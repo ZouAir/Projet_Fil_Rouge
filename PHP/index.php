@@ -4,11 +4,10 @@
 // // Inclure bdd.php
 // // Récupérer les events à venir depuis la table events
 // // Récupérer les réservations du user connecté depuis la table orders
-
-//  Structure de base HTML
-//  Header avec nav + bouton déconnexion
-//  Section "Events à venir" → boucle foreach sur les events
-//  Section "Mes réservations" → boucle foreach sur les orders
+// // Structure de base HTML
+//  Require Header avec nav + bouton déconnexion
+// // Section "Events à venir" → boucle foreach sur les events
+// Require Footer
 
 session_start();
 $pdo = require_once('bdd.php');
@@ -21,21 +20,10 @@ if (!isset($_SESSION['user_id'])) {
     //Si déjà connecté
     $query = $pdo->prepare("SELECT * FROM events WHERE date >= now() 
     Order BY date DESC");
-    $query->execute([$_SESSION['user_id']]);
+    $query->execute();
     $events = $query->fetchALL(PDO::FETCH_ASSOC);
-
-    $query2 = $pdo->prepare("SELECT * FROM orders WHERE id_user = ?");
-    $query2->execute([$_SESSION['user_id']]);
-    $orders = $query2->fetchALL(PDO::FETCH_ASSOC);
-
-    $query3 = $pdo->prepare("SELECT * FROM events WHERE id = ? INNER JOIN categories ON events.categories_id = categories.id");
-    $query3->execute([$_SESSION['user_id']]);
-    $title = $query3->fetch(PDO::FETCH_ASSOC);
-
-    $capacity = null;
-    $orders = [];
-    $seats_taken = $events['total_seats']; //tkharbi9a tzerbi9a.
-    $seats_free = $capacity - $seats_taken;
+    // $seats_taken = /*Logique métier : requette SQL total places reservées*/ ;
+    // $category = /*Logique métier : requette SQL nom de catégorie de event*/;
 }
 ?>
 
@@ -48,37 +36,40 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 
 <body>
-    <h1>Bienvenue <?= $_SESSION['name'] ?> !</h1>
+    <header><!--ici le header --></header>
+    <span>Bonjour <?= $_SESSION['email'] ?> !</span>
+    <h1>Bienvenue au MNS Football Club</h1>
+    <p>Réservez vos places pour les événements sportifs et sociaux de votre club en quelques clics</p>
+    <div class="cta">
+        <button>Voir les événements</button>
+        <button>Nous rejoindre</button>
+    </div>
     <!-- Events à venir -->
     <section>
-        <div class="card">
-            <p><?= $title ?></p>
-            <?php
-            foreach ($events as $row) {
-                echo "name: " . $row['name'] . "<br>";
-                echo "description: " . $row['description'] . "<br>";
-                echo "date: " . $row['date'] . "<br>";
-                echo "price: " . $row['price'] . "<br>";
-                echo "capacity: " . $row['capacity'] . "<br>";
-                echo "status: " . $row['status'] . "<br>";
-            }
-            ?>
-        </div>
+        <?php
+        foreach ($events as $row) { ?>
+            <div class="card">
+                <div class="card-head">
+                    <!--<p>echo la categorie de l'event</p> -->
+                    <p><?= $row['date'] ?></p>
+                </div>
+                <div class="card-body">
+                    <p><?= htmlspecialchars($row['name']) ?></p>
+                    <p><?= htmlspecialchars(substr($row['description'], 0, 50)) ?></p>
+                    <p><?= $row['capacity'] ?> places disponibles</p>
+                    <p><?= $row['status'] ?></p>
+                </div>
+                <div>
+                    <button>Réserver</button>
+                </div>
+            </div>
+        <?php } ?>
     </section>
     <!-- Mes réservations -->
     <section>
-        <div class="card">
-            <p><?= $title ?></p>
-            <?php
-            foreach ($orders as $row) {
-                echo "Event: " . $row['events_id'] . "<br>";
-                echo "Date: " . $row['date'] . "<br>";
-                echo "Status: " . $row['status'] . "<br>";
-                echo "Number of seats: " . $row['date'] . "<br>";
-            }
-            ?>
-        </div>
+        <!--ici le footer -->
     </section>
+    <footer><!--ici le footer --></footer>
 
 </body>
 
