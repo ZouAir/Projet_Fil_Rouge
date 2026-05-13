@@ -60,7 +60,9 @@ if (!isset($_SESSION['user_id'])) {
                     <p><?= $row['status'] ?></p>
                 </div>
                 <div>
-                    <button>Réserver</button>
+                    <a href="reservation.php?id=<?= $row['id'] ?>">
+                        <button>Réserver</button>
+                    </a>
                 </div>
             </div>
         <?php } ?>
