@@ -19,20 +19,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $query = $pdo->prepare("SELECT * FROM users WHERE email = ?");
     $query->execute([$email]);
-    $club = $query->fetch(PDO::FETCH_ASSOC);
+    $count = $query->fetch(PDO::FETCH_ASSOC);
 
-    if (!$club) {
+    if (!$count) {
         $error = "Identifiant ou mot de passe incorrect";
     } else {
-        $_SESSION['user_id'] = $club['id'];
-        $_SESSION['email'] = $club['email'];
-        $passwordHash = $club['password'];
+        $_SESSION['user_id'] = $count['id'];
+        $_SESSION['email'] = $count['email'];
+        $_SESSION['profil'] = $count['profil'];
+        $passwordHash = $count['password'];
 
         if (password_verify($password, $passwordHash)) {
             header('Location: index.php');
             exit;
         } else {
-            $error = "Identifiant ou mot de passe incorrect.";
+            $error = "Identifiant ou mot de passe incorrects.";
         }
     }
 }
