@@ -26,27 +26,29 @@ $error = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
-        $name = htmlentities($_POST['name']);
-        $date = htmlentities($_POST['date']);
-        $hour = htmlentities($_POST['hour']);
-        $price = (int)htmlentities($_POST['price']);
-        $description = htmlentities($_POST['description']);
-        $capacity = (int)htmlentities($_POST['capacity']);
+        $name = $_POST['name'];
+        $date = $_POST['date'];
+        $hour = $_POST['hour'];
+        $price = (int)$_POST['price'];
+        $description = $_POST['description'];
+        $capacity = (int)$_POST['capacity'];
         $status = $_POST['status'];
         $categories = $_POST['categories'];
 
         $query = $pdo->prepare("INSERT INTO events (name, date, hour, price, description, capacity, status, categories_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $query->execute([$name, $date, $hour, $price, $description, $capacity, $status]);
+        $query->execute([$name, $date, $hour, $price, $description, $capacity, $status, $categories]);
 
         header('Location: admin-events.php');
         exit;
     } catch (PDOException $e) {
         $error = "Erreur : " . $e->getMessage();
-        die("Ereur : " . $e->getMessage());
     }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $stmt = $pdo->prepare("SELECT * FROM categories");
+    $stmt->execute();
+    $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
 
@@ -81,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             <div class="form-group">
                 <label for="hour">Heure *</label>
                 <div>
-                    <input type="datetime" id="hour" name="hour" required>
+                    <input type="time" id="hour" name="hour" required>
                 </div>
             </div>
             <div class="form-group">
@@ -119,10 +121,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 <div>
                     <select name="categories" id="categories">
                         <option value="">Choisir</option>
-                        <option value="match">Match</option>
-                        <option value="tournoi">Tournoi</option>
-                        <option value="fete">Fête</option>
-                        <option value="gala">Gala</option>
+                        <?php foreach ($categories as $category): ?>
+                            <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+                            <!-- On stock dans value $category['id'] et pas ['name'] => C'est une clé étrangère (int) dans la table qu'on insert pas une string. -->
+                        <?php endforeach; ?>
                     </select>
                 </div>
             </div>
