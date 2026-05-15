@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="submit" id="sub-btn" value="Valider">
+                    <button type="submit" id="sub-btn">Valider</button>
                 </div>
             </form>
             <?php if (!empty($error)): ?>
