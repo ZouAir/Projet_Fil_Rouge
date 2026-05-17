@@ -37,6 +37,10 @@ $events = $query->fetchAll(PDO::FETCH_ASSOC);
     <main>
         <span>Bonjour <?= $_SESSION['email'] ?> !</span>
         <h1>Mon tableau de bord évènements</h1>
+        <?php if (isset($_SESSION['error'])): ?>
+            <p style="color : red"><?= $_SESSION['error'] ?></p>
+            <?php unset($_SESSION['error']); ?>
+        <?php endif; ?>
         <table border="1">
             <caption>
                 <p>Les évènements à venir</p>

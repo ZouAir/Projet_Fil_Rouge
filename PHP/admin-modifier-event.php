@@ -28,15 +28,18 @@
             header('Location: admin-events.php');
             exit;
         }
+        $id = $_GET['id'];
+        $stmt = $pdo->prepare("SELECT * FROM events WHERE id = ?");
+        $stmt->execute([$id]);
+        $currentEvent = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $status = $_GET['status'];
-        $categories = $_GET['categories_id'];
-        $stmt = $pdo->prepare("SELECT * FROM categories");
-        $stmt->execute();
-        $categories = $stmt->fecthAll(PDO::FETCH_ASSOC);
+        $query = $pdo->prepare("SELECT * FROM categories");
+        $query->execute();
+        $categories = $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id = $_POST['id'];
         $name = $_POST['name'];
         $date = $_POST['date'];
         $hour = $_POST['hour'];
@@ -47,8 +50,29 @@
         $categories = $_POST['categories_id'];
 
         try {
-            $query = $pdo->prepare("INSERT INTO events ('name, date, hour, price, description, capacity, status, categories_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            $query->execute([$name, $date, $hour, $price, $description, $capacity, $status, $categories]);
+            $query = $pdo->prepare(
+                "UPDATE events SET 
+                name = :name, 
+                date = :date, 
+                hour = :hour, 
+                price = :price, 
+                description = :description, 
+                capacity = :capacity, 
+                status = :status, 
+                categories_id = :categories_id
+                WHERE id = :id"
+            );
+            $query->execute([
+                ':name' => $name,
+                ':date' => $date,
+                ':hour' => $hour,
+                ':price' => $price,
+                ':description' => $description,
+                ':capacity' => $capacity,
+                ':status' => $status,
+                ':categories_id' => $categories,
+                ':id' => $id
+            ]);
 
             header('Location:admin-events.php');
             exit;
@@ -75,40 +99,41 @@
          <h2>Modifier un évènement</h2>
          <form action="admin-modifier-event.php" method="post"
              id="id-form" class="form">
+             <input type="hidden" name="id" value="<?= $currentEvent['id'] ?>">
              <div class="form-group">
                  <label for="name">Name</label>
                  <div>
-                     <input type="text" id="name" name="name" value="<?= htmlspecialchars($_GET['name']) ?>">
+                     <input type="text" id="name" name="name" value="<?= htmlspecialchars($currentEvent['name']) ?>">
                  </div>
              </div>
              <div class="form-group">
                  <label for="date">Date</label>
                  <div>
-                     <input type="date" id="date" name="date" value="<?= htmlspecialchars($_GET['date']) ?>">
+                     <input type="date" id="date" name="date" value="<?= htmlspecialchars($currentEvent['date']) ?>">
                  </div>
              </div>
              <div class="form-group">
                  <label for="hour">Heure</label>
                  <div>
-                     <input type="time" id="hour" name="hour" value="<?= htmlspecialchars($_GET['hour']) ?>">
+                     <input type="time" id="hour" name="hour" value="<?= htmlspecialchars($currentEvent['hour']) ?>">
                  </div>
              </div>
              <div class="form-group">
                  <label for="price">Tarif</label>
                  <div>
-                     <input type="number" id="price" name="price" value="<?= htmlspecialchars($_GET['price']) ?>">
+                     <input type="number" id="price" name="price" value="<?= htmlspecialchars($currentEvent['price']) ?>">
                  </div>
              </div>
              <div class="form-group">
                  <label for="description">Description</label>
                  <div>
-                     <input type="text" id="description" name="description" value="<?= htmlspecialchars($_GET['description']) ?>">
+                     <input type="text" id="description" name="description" value="<?= htmlspecialchars($currentEvent['description']) ?>">
                  </div>
              </div>
              <div class="form-group">
                  <label for="capacity">capacité</label>
                  <div>
-                     <input type="number" id="capacity" name="capacity" value="<?= htmlspecialchars($_GET['capacity']) ?>">
+                     <input type="number" id="capacity" name="capacity" value="<?= htmlspecialchars($currentEvent['capacity']) ?>">
                  </div>
              </div>
              <div class="form-group">
@@ -116,21 +141,21 @@
                  <div>
                      <select name="status" id="status">
                          <option value="">Choisir</option>
-                         <option value="a_venir" <?= $status === 'a_venir' ? 'selected' : '' ?>>A venir</option>
-                         <option value="confirme" <?= $status === 'confirme' ? 'selected' : '' ?>>Confirmé</option>
-                         <option value="reporte" <?= $status === 'reporte' ? 'selected' : '' ?>>Reporté</option>
-                         <option value="annule" <?= $status === 'annule' ? 'selected' : '' ?>>Annulé</option>
+                         <option value="a_venir" <?= $currentEvent['status'] === 'a_venir' ? 'selected' : '' ?>>A venir</option>
+                         <option value="confirme" <?= $currentEvent['status'] === 'confirme' ? 'selected' : '' ?>>Confirmé</option>
+                         <option value="reporte" <?= $currentEvent['status'] === 'reporte' ? 'selected' : '' ?>>Reporté</option>
+                         <option value="annule" <?= $currentEvent['status'] === 'annule' ? 'selected' : '' ?>>Annulé</option>
                      </select>
                  </div>
              </div>
              <div class="form-group">
                  <label for="categories">Catégorie</label>
                  <div>
-                     <select name="categories" id="categories">
+                     <select name="categories_id" id="categories">
                          <option value="">Choisir</option>
                          <?php foreach ($categories as $category): ?>
                              <option value="<?= $category['id'] ?>"
-                                 <?= $category['id'] ? 'selected' : '' ?>>
+                                 <?= ($currentEvent['categories_id'] === $category['id']) ? 'selected' : '' ?>>
                                  <?= $category['name'] ?>
                              </option>
                          <?php endforeach; ?>
@@ -138,7 +163,7 @@
                  </div>
              </div>
              <div class="form-group">
-                 <button type="submit" id="sub-btn">Créer l'événement</button>
+                 <button type="submit" id="sub-btn">Modifier l'événement</button>
              </div>
          </form>
          <?php if ($error): ?>
