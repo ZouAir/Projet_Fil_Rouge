@@ -24,3 +24,17 @@
  Récupérer $_GET['id']
  DELETE FROM events WHERE id = ?
  Rediriger vers admin-events.php
+
+ HEADER :
+ ////////
+ Tu veux un logo/titre du club en haut à gauche ?
+ Une navigation (menu) ? Si oui, avec quels liens ? (Home, Events, Mon compte, Logout ?)
+ L'info de l'utilisateur connecté (prénom, email) ?
+ Un bouton logout ?
+
+ FOOTER :
+ /////////
+ Infos du club (adresse, contact) ?
+ Copyright ?
+ Liens utiles (mentions légales, RGPD, etc) ?
+ Réseaux sociaux ?
