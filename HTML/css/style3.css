@@ -1,0 +1,156 @@
+html {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #ffffff;
+}
+
+.form {
+    border: 1px solid #bebebe;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin: 50px auto;
+    padding: 50px;
+    box-sizing: border-box;
+}
+
+.form .form-group {
+    margin-bottom: 20px;
+}
+
+.form .form-group input,
+.form .form-group select,
+.form .form-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgb(50, 50, 50);
+    border-radius: 5px;
+    height: 25px;
+}
+
+.form .form-group textarea {
+    height: 200px;
+}
+
+
+.form .form-group.error input,
+.form .form-group.error select,
+.form .form-group.error textarea {
+    border-color: red;
+    box-shadow: 0 0 10px rgba(255, 0, 0, .5);
+}
+
+.form .form-group.error label {
+    color: red;
+}
+
+.form .form-group.error .error-message {
+    color: red;
+}
+
+.form .form-group li.success {
+    color: green;
+}
+
+.form .form-group.error li.error {
+    color: red;
+}
+
+.form .form-errors {
+    color: red;
+    border: 2px solid red;
+    border-radius: 15px;
+    background-color: rgba(255, 0, 0, .1);
+    padding: 10px;
+    margin-bottom: 50px;
+}
+
+.form #pwd-show:not(.pwd-visible) .bx.bx-eye-slash {
+    display: none;
+}
+
+.form #pwd-show.pwd-visible .bx.bx-eye {
+    display: none;
+}
+
+.form #pwd-confirm-show:not(.pwd-visible) .bx.bx-eye-slash {
+    display: none;
+}
+
+.form #pwd-confirm-show.pwd-visible .bx.bx-eye {
+    display: none;
+}
+
+.form .form-group.success input,
+.form .form-group.success select,
+.form .form-group.success textarea {
+    border-color: green;
+    box-shadow: 0 0 10px rgba(0, 255, 0, .25);
+}
+
+.form .form-group .input-with-button {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form .form-group .input-with-button button {
+    width: 40px;
+    box-sizing: border-box;
+    border: 1px solid rgb(50, 50, 50);
+    border-radius: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    height: 25px;
+    border-left-width: 0;
+    cursor: pointer;
+}
+
+.form .form-group .input-with-button input,
+.form .form-group .input-with-button select,
+.form .form-group .input-with-button textarea {
+    width: calc(100% - 40px);
+    box-sizing: border-box;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.form .form-group .input-with-button div {
+    width: 100%;
+}
+
+@media (min-width:768px) {
+    main .container {
+        margin: auto;
+        max-width: 718px;
+    }
+
+    .form {
+        width: 80%;
+    }
+
+    .form .form-group {
+        display: flex;
+    }
+
+    .form .form-group label {
+        text-align: right;
+        padding-right: 5px;
+        width: 20%;
+        box-sizing: border-box;
+        /*Afin de limiter les effets de bord à cause des insertions JS */
+    }
+
+    .form .form-group label+div {
+        width: 80%;
+    }
+
+    /*La div qui suit le label qui est dans le formgroup qui est dans le form */
+
+    .form input[type=submit] {
+        margin-left: 20%;
+    }
+}
+
+@media (min-width:991px) {
+    main .container {
+        margin: auto;
+        max-width: 941px;
+    }
+}

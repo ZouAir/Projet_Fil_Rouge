@@ -3,41 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/variables.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
     <script src="../JS/burger-menu/script.js" defer></script>
-    <title>Club MNS</title>
+    <title>MNS Football Club</title>
 </head>
 
 <body>
     <header>
-        <div class="logo-name">
+        <div class="header">
             <img src="image/logo_blanc.png" alt="logo">
+            <div class="title">
+                <h1>MNS Football Club</h1>
+            </div>
         </div>
-        <div>
-            <span>Club MNS</span>
-        </div>
-        <div class="menu container">
-            <nav id="nav">
+        <div class="container">
+            <nav>
                 <ul>
-                    <li><a href="#">Accueil</a></li>
-                    <li><a href="#">Events</a></li>
-                    <li><a href="#">Réservations</a></li>
-                    <li> <a href="#">Mon compte</a></li>
+                    <li><a href="#">Évènements</a></li>
+                    <li><a href="#">Partenaires</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
-            <div class="burger">
-                <button id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
-                    <i class="bx bx-menu"></i>
-                </button>
+            <div class="header-btn">
+                <div class="burger">
+                    <button id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+                        <i class="bx bx-menu"></i>
+                    </button>
+                </div>
+                <div class="header-cta">
+                    <button id="login" class="btn-primary">Connexion</button>
+                </div>
             </div>
         </div>
     </header>
     <main>
-
+        <section class="container">
+            <span>Saison 2025-2026</span>
+            <p>Bienvenue au MNS Football Club</p>
+            <p>Réservez vos places pour Évènements sportifs et sociaux de votre clubs en quelques clics</p>
+            <button>Découvrir nos activités</button>
+            <button>Nous rejoindre</button>
+        </section>
+        <section class="hero">
+            <h2>Évènements à venir</h2>
+            <p>Réservez vos places avant qu'il n'y en a plus.</p>
+            <div class="card">
+                <div class="card-head">
+                    <span>PHP Catégorie</span>
+                    <span>PHP Date</span>
+                </div>
+                <div class="card-body">
+                    <p>PHP Nom Évènements</p>
+                    <p>PHP Description Évènements</p>
+                    <p class="place">PHP PHP Nombre de places disponibles</p>
+                    <button id="btn-2">Réserver</button>
+                </div>
+            </div>
+        </section>
     </main>
     <footer>
-
+        <div class="footer">
+            <div class="logo">
+                <a href="index2.html">
+                    <img src="image/logo_noir.png" alt="logo"></a>
+            </div>
+            <div class="mentions container">
+                <p>© 2026. MNS Football Club - Tous droits réservés - <a target="_blank"
+                        href="mentionslegales.html">Mentions Légales</a></p>
+            </div>
+            <div class="reseaux">
+                <a target="_blank" href="https://www.facebook.com/">
+                    <img src="image/icones/facebookNB.png" alt="logo facebook">
+                </a>
+                <a target="_blank" href="https://www.instagram.com/">
+                    <img src="image/icones/instagramNB.png" alt="logo instagram">
+                </a>
+            </div>
+        </div>
     </footer>
 
 </body>

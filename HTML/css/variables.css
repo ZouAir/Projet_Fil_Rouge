@@ -1,0 +1,26 @@
+:root {
+    /* Les couleurs */
+    --color-primary: #1a1a2e;
+    --color-secondary: #ff6b35;
+    --color-dark: #6b7280;
+    --color-light: #ffffff;
+
+    /* Les textes */
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+
+    /* Les borders */
+    --border-radius-one: 25px;
+    --border-radius-two: 20px;
+    --border-radius-three: 10px;
+
+    /* Les padding */
+    --padding-s: 10px;
+    --padding-m: 20px;
+    --padding-l: 30px;
+
+    /* Les margins */
+    --margin-s: 10px;
+    --margin-m: 20px;
+    --margin-l: 30px;
+}
