@@ -82,7 +82,6 @@ button {
     font-weight: bold;
     border: 2px solid var(--color-secondary);
     border-radius: var(--border-radius-one);
-    /* margin: var(--margin-s); */
 }
 
 button:hover {
@@ -149,7 +148,6 @@ footer .mentions {
 
 footer .mentions p {
     margin: auto;
-
 }
 
 footer .reseaux {
