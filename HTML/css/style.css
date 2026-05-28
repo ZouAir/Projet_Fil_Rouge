@@ -5,35 +5,51 @@ body {
 }
 
 header {
-    border-top: 4px solid var(--color-secondary);
+    border-top: 5px solid var(--color-secondary);
     border-bottom: 1px solid var(--color-secondary);
     border-radius: 5px 5px 0 0;
     background-color: var(--color-primary);
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 200px;
 }
+
+/* header .box {
+    width: 90%;
+    margin: auto;
+} */
 
 header .header {
     display: flex;
     width: 100%;
+    justify-content: space-between;
 }
 
 header>div img {
     width: 100px;
-    margin: 0 20px 0 0;
 }
 
 header .header .title {
     display: flex;
+    width: 60%;
+    margin: auto;
+    justify-content: center;
 }
 
 header h1 {
     text-transform: uppercase;
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: bold;
     color: var(--color-secondary);
-    margin: auto;
+    /* margin: auto; */
+}
+
+header .container {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    position: relative;
 }
 
 header nav {
@@ -51,7 +67,7 @@ header nav ul li {
 header nav ul li a,
 a:visited,
 a:active {
-    color: var(--color-dark);
+    color: var(--color-gray);
     text-decoration: none;
     padding: var(--padding-s);
     margin-right: var(--margin-s);
@@ -61,22 +77,24 @@ a:active {
 header a:hover {
     color: var(--color-light);
     background-color: var(--color-dark);
+    border: 1px solid var(--color-gray);
     border-radius: var(--border-radius-three);
 }
 
-header .header .header-btn {
+header .container .header-btn {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+
 }
 
-header .burger button {
-    width: 40px;
-    border-radius: var(--border-radius-three);
-    margin: var(--margin-s);
+header .container .burger,
+.cta {
+    /* display: inline-block; */
+    align-items: center;
 }
 
 button {
-    width: 100px;
     height: 40px;
     background-color: var(--color-light);
     color: var(--color-secondary);
@@ -85,12 +103,25 @@ button {
     border-radius: var(--border-radius-one);
 }
 
+header .container .burger button {
+    width: 40px;
+    border-radius: var(--border-radius-three);
+    position: absolute;
+    top: 5px;
+    left: 0;
+}
+
+header .container .cta button {
+    margin: 5px 5px 5px 0;
+}
+
 button:hover {
     background-color: var(--color-secondary);
     color: var(--color-light);
 }
 
 /* MAIN */
+/********/
 main .hero .card-body button {
     border-radius: var(--border-radius-two);
     width: 80%;
@@ -98,7 +129,7 @@ main .hero .card-body button {
 }
 
 .container {
-    width: 80%;
+    width: 90%;
     max-width: 1000px;
     margin: auto;
     /* display: flex; */
@@ -115,43 +146,54 @@ main .card .card-head {
 }
 
 main .hero3 {
-    background-color: var(--color-gray);
-    height: 50px;
+    background-color: var(--color-primary);
+    display: flex;
+    margin-top: var(--margin-s);
 }
 
 main .hero3 .sponsor {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* margin-bottom: var(--margin-s); */
+    width: 90%;
+    margin: auto;
+
 }
 
 main .hero3 .sponsor .spon-left,
 .spon-right {
     display: flex;
-    width: 50%;
+    /* width: 50%; */
 }
 
-main .hero3 .sponsor .spon-left h3 {
+main .hero3 .sponsor .spon-left h4 {
+    color: var(--color-gray);
     padding: var(--padding-s);
-    margin: auto;
+    text-transform: uppercase;
+    margin-left: var(--margin-m);
 }
 
 main .hero3 .sponsor .spon-right span {
+    color: var(--color-gray);
+    background-color: var(--color-dark);
+    border: 1px solid var(--color-gray);
+    border-radius: var(--border-radius-three);
     font-size: 0.8rem;
     padding: var(--padding-s);
-    margin: auto;
-    background-color: red;
-
+    margin: 0 var(--margin-s);
 }
 
 
 /* FOOTER */
-footer .footer {
+/**********/
+footer {
     background-color: var(--color-primary);
     color: var(--color-gray);
     border-top: 5px solid var(--color-secondary);
     border-radius: 0 0 var(--border-radius-three) var(--border-radius-three);
+}
+
+footer .footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -201,31 +243,59 @@ footer .reseaux a img:hover {
 
 
 /* Format mini-tablette */
-@media (max-width: 576px) {}
+@media screen and (max-width:576px) {}
+
 
 /* Format tablette */
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
+    header {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+
+    header .container {
+        width: 100%;
+        display: flex;
+    }
+
+    header h1 {
+        text-transform: uppercase;
+        font-size: 3rem;
+    }
+
     header .container {
         width: 718px;
         margin: auto;
         display: flex;
+        justify-content: end;
+        align-items: center;
     }
 
-    header nav {
+    header .container nav {
         display: block;
+        margin: 0 5px 5px 0;
     }
 
-    header #login {
-        display: block;
-    }
-
-    header button {
+    header .container .burger button {
         display: none;
+    }
+
+    header .container .cta button {
+        margin: 0 15px 5px 15px;
+    }
+
+    footer {
+        background-color: var(--color-primary);
+    }
+
+    footer .footer {
+        margin: 0 var(--margin-l);
     }
 }
 
 /* Format desktop */
-@media (992px < width <=1200px) {
+@media screen and (min-width: 992px) and (max-width: 1200px) {
 
     header>div img {
         width: 150px;
@@ -244,4 +314,4 @@ footer .reseaux a img:hover {
 }
 
 /* Format TV */
-@media (min-width: 1200px) {}
+@media screen and (min-width: 1200px) {}

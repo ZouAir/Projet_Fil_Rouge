@@ -21,7 +21,8 @@
     --padding-l: 30px;
 
     /* Les margins */
-    --margin-s: 10px;
-    --margin-m: 20px;
-    --margin-l: 30px;
+
+    --margin-s: 5px;
+    --margin-m: 10px;
+    --margin-l: 20px;
 }
