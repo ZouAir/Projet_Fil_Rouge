@@ -2,9 +2,10 @@
     /* Les couleurs */
     --color-primary: #1a1a2e;
     --color-secondary: #ff6b35;
-    --color-dark: #6b7280;
-    --color-light: #ffffff;
-
+    --color-white: #ffffff;
+    --color-light: #f8f9fa;
+    --color-gray: #6b7280;
+    --color-dark: #2d2d44;
     /* Les textes */
     --font-heading: 'Montserrat', sans-serif;
     --font-body: 'Roboto', sans-serif;
