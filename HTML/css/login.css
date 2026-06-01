@@ -114,7 +114,7 @@ main .container {
     justify-content: center;
     flex-direction: column;
     margin: var(--margin-m) auto;
-    padding: var(--margin-s) 0;
+    padding: var(--margin-m) 0;
 }
 
 main .container .connection {
@@ -126,27 +126,26 @@ main .container .connection {
     justify-content: center;
     align-items: center;
     padding: var(--border-radius-s);
-    margin: 20px auto;
+    margin: var(--margin-l) auto 0;
 }
 
 main .container .connection p {
     color: var(--color-secondary);
     font-weight: bold;
     text-transform: capitalize;
-
 }
 
 main .container .field {
     background-color: #fff;
     border-radius: var(--border-radius-m);
     width: 90%;
-    margin: var(--margin-s) auto var(--margin-l);
+    margin: var(--margin-xl) auto var(--margin-l);
     padding: var(--padding-l) 0;
 }
 
-main .container .field .field-one,
-.field-two,
-.field-three {
+main .container .field .field-two,
+.field-three,
+form {
     display: flex;
     flex-direction: column;
 }
@@ -155,11 +154,28 @@ main .container .field input {
     width: 90%;
     border-radius: var(--border-radius-s);
     height: 30px;
-    color: #fff;
+    color: var(--color-light);
 }
 
 main .container .field input::placeholder {
     text-align: center;
+}
+
+main .container .field .rules {
+    width: 90%;
+    border-radius: var(--border-radius-s);
+    color: var(--color-light);
+    background-color: var(--color-gray);
+    margin: var(--border-radius-m) auto 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main .container .field .rules p,
+ul {
+    padding: var(--padding-s);
+    margin: auto;
 }
 
 main .container .field button {
@@ -174,19 +190,16 @@ main .container .field button {
     margin: 50px auto 0;
 }
 
+#name,
+#firstname,
+#phone,
 #email,
-#password {
+#password,
+#password-confirm {
     color: var(--color-light);
     background-color: var(--color-primary);
     margin: var(--margin-m) auto 0;
 }
-
-/* main .container .field-one button {
-    color: var(--color-light);
-    background-color: var(--color-secondary);
-    width: 90%;
-    margin: 50px auto 0;
-} */
 
 #password-forgot {
     color: var(--color-light);

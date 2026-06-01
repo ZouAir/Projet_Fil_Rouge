@@ -1,42 +1,3 @@
-<?php
-// // Démarre la session 
-// // Inclut bdd.php
-// // Vérifie si le formulaire est soumis en POST
-// // Récupère les variables depuis $_POST
-// // Vérifie que les 2 mots de passe correspondent
-// // Hashe le mot de passe
-// // Insère l'utilisateur en BDD
-// // Redirige vers login.php
-session_start();
-$pdo = require_once('bdd.php');
-
-$error = null;
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = htmlspecialchars($_POST['name']) ?? '';
-    $firstName = htmlspecialchars($_POST['firstname']) ?? '';
-    $email = htmlspecialchars($_POST['email']) ?? '';
-    $phone = htmlspecialchars($_POST['phone']) ?? '';
-
-    if ($_POST['password'] !== $_POST['pwd-confirm']) {
-        $error = "Les mots de passe ne correspondent pas";
-    }
-
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
-    if (empty($error)) {
-        try {
-            $query = $pdo->prepare("INSERT INTO users (name, firstname, email, password, phone) VALUES (?, ?, ?, ?, ?)");
-            $query->execute([$name, $firstName, $email, $password, $phone]);
-            header('Location: login.php');
-            exit;
-        } catch (PDOException $e) {
-            die("Erreur : " . $e->getMessage());
-        }
-    }
-}
-
-?>
 <html>
 
 <head>
@@ -116,7 +77,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </form>
             <?php if (!empty($error)): ?>
-                <p style="color:red"><?= $error ?></p>
+            <p style="color:red">
+                <?= $error ?>
+            </p>
             <?php endif; ?>
         </section>
     </main>

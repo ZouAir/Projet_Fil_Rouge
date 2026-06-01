@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p>connexion</p>
             </div>
             <div class="field">
-                <form method="POST" action="login.php" class="field-one">
+                <form method="POST" action="login.php" class="form">
                     <input type="email" name="email" id="email" placeholder="Email">
                     <input type="password" id="password" name="password" placeholder="Mot de passe">
                     <button type="submit">se connecter</button>
@@ -68,6 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php endif; ?>
                 <div class="field-two">
                     <a id="password-forgot" href="#" target="_blank">Mot de passe oublié ?</a>
+                    <!-- lien vers password forgort -->
                 </div>
                 <div class="field-three">
                     <a id="subscribe" href="inscription.php" target="_blank">inscription</a>
