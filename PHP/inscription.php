@@ -18,20 +18,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = htmlspecialchars($_POST['email']) ?? '';
     $phone = htmlspecialchars($_POST['phone']) ?? '';
 
-    if ($_POST['password'] !== $_POST['pwd-confirm']) {
+    if ($_POST['password'] !== $_POST['password-confirm']) {
         $error = "Les mots de passe ne correspondent pas";
-    }
+    } else {
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
-    if (empty($error)) {
-        try {
-            $query = $pdo->prepare("INSERT INTO users (name, firstname, email, password, phone) VALUES (?, ?, ?, ?, ?)");
-            $query->execute([$name, $firstName, $email, $password, $phone]);
-            header('Location: login.php');
-            exit;
-        } catch (PDOException $e) {
-            die("Erreur : " . $e->getMessage());
+        if (empty($error)) {
+            try {
+                $query = $pdo->prepare("INSERT INTO users (name, firstname, email, password, phone) VALUES (?, ?, ?, ?, ?)");
+                $query->execute([$name, $firstName, $email, $password, $phone]);
+                header('Location: login.php');
+                exit;
+            } catch (PDOException $e) {
+                die("Erreur : " . $e->getMessage());
+            }
         }
     }
 }
@@ -52,73 +52,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <?php include_once('header-login.php') ?>
     <main>
-        <section class="container">
-            <h1>Inscription</h1>
-            <p>Veuillez renseigner les informations suivantes afin de créer votre profil abonné du MNS Football Club.
-            </p>
-            <form action="inscription.php" method="POST" id="id-form" class="form">
-                <div> * champs obligatoires</div>
-                <div class="form-group">
-                    <label for="name">Name *</label>
-                    <div>
-                        <input type="text" id="name" name="name" required>
+        <div class="container">
+            <div class="connection">
+                <p>inscription</p>
+            </div>
+            <div class="field">
+                <form method="POST" action="inscription.php" class="form">
+                    <div class="rules">* champs obligatoires</div>
+                    <input type="text" id="name" name="name" placeholder="Nom *">
+                    <input type="text" id="firstname" name="firstname" placeholder="Prénom *">
+                    <input type="email" id="email" name="email" placeholder="Email *">
+                    <input type="text" id="phone" name="phone" placeholder="Téléphone *">
+                    <input type="password" name="password" id="password" placeholder="Mot de passe">
+                    <div class="rules">
+                        <p>Le mot de passe doit respecter les règles suivantes</p>
+                        <ul>
+                            <li id="password-criteria-length">8 caractères minimum</li>
+                            <li id="password-criteria-special">1 caractère spécial minimum [#@!?$%&]</li>
+                            <li id="password-criteria-uppercase">1 majuscule minimum</li>
+                            <li id="password-criteria-numeric">1 numérique minimum</li>
+                        </ul>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="firstname">Firstname <sup>*</sup></label>
-                    <div>
-                        <input type="text" id="firstname" name="firstname" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email *</label>
-                    <div>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password">Mot de passe *</label>
-                    <div class="input-with-button">
-                        <input type="password" id="password" name="password" required>
-                        <button type="button" id="password-show">
-                            <i class="bx bx-eye" aria-label="Afficher le mot de passe"></i>
-                            <i class="bx bx-eye-slash" aria-label="Masquer le mot de passe"></i>
-                        </button>
-                        <div>
-                            <p>Le mot de passe doit respecter les règles suivantes</p>
-                            <ul>
-                                <li id="password-criteria-length">8 caractères minimum</li>
-                                <li id="password-criteria-special">1 caractère spécial mini [#@!?$%&]</li>
-                                <li id="password-criteria-uppercase">1 majuscule mini</li>
-                                <li id="password-criteria-numeric">1 numérique mini</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="pwd-confirm">Confirmation*</label>
-                    <div class="input-with-button">
-                        <input type="password" id="pwd-confirm" name="pwd-confirm" required>
-                        <button type="button" id="pwd-confirm-show">
-                            <i class="bx bx-eye" aria-label="Afficher le mot de passe"></i>
-                            <i class="bx bx-eye-slash" aria-label="Masquer le mot de passe"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Telephone *</label>
-                    <div>
-                        <input type="text" id="phone" name="phone" required>
-                    </div>
-                </div>
-                <div class="form-group">
+                    <input type="password" name="password-confirm" id="password-confirm"
+                        placeholder="Confirmation mot de passe">
                     <button type="submit" id="sub-btn">Valider</button>
-                </div>
-            </form>
-            <?php if (!empty($error)): ?>
-                <p style="color:red"><?= $error ?></p>
+                </form>
+            </div>
+            <?php if ($error): ?>
+                <p class="error"><?= htmlspecialchars($error) ?></p>
             <?php endif; ?>
-        </section>
+        </div>
     </main>
     <?php include_once('footer.php') ?>
 </body>

@@ -26,23 +26,24 @@
                 <p>inscription</p>
             </div>
             <div class="field">
-                <form class="form">
+                <form method="POST" action="inscription.php" class="form">
                     <div class="rules">* champs obligatoires</div>
                     <input type="text" id="name" name="name" placeholder="Nom *">
                     <input type="text" id="firstname" name="firstname" placeholder="Prénom *">
                     <input type="email" id="email" name="email" placeholder="Email *">
                     <input type="text" id="phone" name="phone" placeholder="Téléphone *">
-                    <input type="password" id="password" placeholder="Mot de passe">
+                    <input type="password" name="password" id="password" placeholder="Mot de passe">
                     <div class="rules">
                         <p>Le mot de passe doit respecter les règles suivantes</p>
                         <ul>
                             <li id="password-criteria-length">8 caractères minimum</li>
-                            <li id="password-criteria-special">1 caractère spécial mini [#@!?$%&]</li>
-                            <li id="password-criteria-uppercase">1 majuscule mini</li>
-                            <li id="password-criteria-numeric">1 numérique mini</li>
+                            <li id="password-criteria-special">1 caractère spécial minimum [#@!?$%&]</li>
+                            <li id="password-criteria-uppercase">1 majuscule minimum</li>
+                            <li id="password-criteria-numeric">1 numérique minimum</li>
                         </ul>
                     </div>
-                    <input type="password" id="password-confirm" placeholder="Confirmation mot de passe">
+                    <input type="password" name="password-confirm" id="password-confirm"
+                        placeholder="Confirmation mot de passe">
                     <button type="submit" id="sub-btn">Valider</button>
                 </form>
             </div>
