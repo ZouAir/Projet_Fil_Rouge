@@ -5,20 +5,13 @@ body {
 }
 
 header {
-    border-top: 5px solid var(--color-secondary);
-    border-bottom: 1px solid var(--color-secondary);
-    border-radius: 5px 5px 0 0;
     background-color: var(--color-primary);
+    border-bottom: 5px solid var(--color-secondary);
+    border-radius: 5px 5px 0 0;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
-
-/* header .box {
-    width: 90%;
-    margin: auto;
-} */
 
 header .header {
     display: flex;
@@ -26,8 +19,9 @@ header .header {
     justify-content: space-between;
 }
 
-header>div img {
-    width: 100px;
+header .header img {
+    width: 60px;
+    height: 100%;
 }
 
 header .header .title {
@@ -39,7 +33,7 @@ header .header .title {
 
 header h1 {
     text-transform: uppercase;
-    font-size: 1.6rem;
+    font-size: 1rem;
     font-weight: bold;
     color: var(--color-secondary);
     /* margin: auto; */
@@ -78,7 +72,7 @@ header a:hover {
     color: var(--color-light);
     background-color: var(--color-dark);
     border: 1px solid var(--color-gray);
-    border-radius: var(--border-radius-three);
+    border-radius: var(--border-radius-l);
 }
 
 header .container .header-btn {
@@ -94,18 +88,9 @@ header .container .burger,
     align-items: center;
 }
 
-button {
-    height: 40px;
-    background-color: var(--color-light);
-    color: var(--color-secondary);
-    font-weight: bold;
-    border: 2px solid var(--color-secondary);
-    border-radius: var(--border-radius-one);
-}
-
 header .container .burger button {
     width: 40px;
-    border-radius: var(--border-radius-three);
+    border-radius: var(--border-radius-l);
     position: absolute;
     top: 5px;
     left: 0;
@@ -122,67 +107,113 @@ button:hover {
 
 /* MAIN */
 /********/
-main .hero .card-body button {
-    border-radius: var(--border-radius-two);
+main .container {
+    background-color: var(--color-gray);
+    border-radius: var(--border-radius-m);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: var(--margin-m) auto;
+    padding: var(--margin-s) 0;
+}
+
+main .container .connection {
     width: 80%;
-    height: 30px;
-}
-
-.container {
-    width: 90%;
-    max-width: 1000px;
-    margin: auto;
-    /* display: flex; */
-}
-
-main .card {
-    background-color: #f8f9fa;
-    border: 0.5px solid var(--color-dark);
-    border-radius: var(--border-radius-one);
-}
-
-main .card .card-head {
+    height: 40px;
     background-color: var(--color-primary);
-}
-
-main .hero3 {
-    background-color: var(--color-primary);
+    border-radius: var(--border-radius-m);
     display: flex;
-    margin-top: var(--margin-s);
-}
-
-main .hero3 .sponsor {
-    display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    padding: var(--border-radius-s);
+    margin: 20px auto;
+}
+
+main .container .connection p {
+    color: var(--color-secondary);
+    font-weight: bold;
+    text-transform: capitalize;
+
+}
+
+main .container .field {
+    background-color: #fff;
+    border-radius: var(--border-radius-m);
     width: 90%;
-    margin: auto;
-
+    margin: var(--margin-s) auto var(--margin-l);
+    padding: var(--padding-l) 0;
 }
 
-main .hero3 .sponsor .spon-left,
-.spon-right {
+main .container .field .field-one,
+.field-two,
+.field-three {
     display: flex;
-    /* width: 50%; */
+    flex-direction: column;
 }
 
-main .hero3 .sponsor .spon-left h4 {
-    color: var(--color-gray);
-    padding: var(--padding-s);
-    text-transform: uppercase;
-    margin-left: var(--margin-m);
+main .container .field input {
+    width: 90%;
+    border-radius: var(--border-radius-s);
+    height: 30px;
+    color: #fff;
 }
 
-main .hero3 .sponsor .spon-right span {
-    color: var(--color-gray);
-    background-color: var(--color-dark);
-    border: 1px solid var(--color-gray);
-    border-radius: var(--border-radius-three);
-    font-size: 0.8rem;
-    padding: var(--padding-s);
-    margin: 0 var(--margin-s);
+main .container .field input::placeholder {
+    text-align: center;
 }
 
+main .container .field button {
+    width: 90%;
+    height: 30px;
+    color: var(--color-light);
+    background-color: var(--color-secondary);
+    border: none;
+    border-radius: var(--border-radius-xl);
+    text-transform: capitalize;
+    font-weight: bold;
+    margin: 50px auto 0;
+}
+
+#email,
+#password {
+    color: var(--color-light);
+    background-color: var(--color-primary);
+    margin: var(--margin-m) auto 0;
+}
+
+/* main .container .field-one button {
+    color: var(--color-light);
+    background-color: var(--color-secondary);
+    width: 90%;
+    margin: 50px auto 0;
+} */
+
+#password-forgot {
+    color: var(--color-light);
+    background-color: var(--color-gray);
+    border-radius: var(--border-radius-xl);
+    border: 0;
+    width: 90%;
+    height: 30px;
+    text-align: center;
+    align-content: center;
+    text-decoration: none;
+    margin: 0 auto;
+}
+
+#subscribe {
+    color: var(--color-secondary);
+    background-color: var(--color-primary);
+    border: 0;
+    width: 90%;
+    height: 30px;
+    border-radius: var(--border-radius-xl);
+    text-align: center;
+    align-content: center;
+    text-decoration: none;
+    text-transform: capitalize;
+    margin: 50px auto 10;
+}
 
 /* FOOTER */
 /**********/
@@ -191,7 +222,6 @@ footer {
     color: var(--color-gray);
     border-top: 5px solid var(--color-secondary);
     border-radius: 0 0 var(--border-radius-l) var(--border-radius-l);
-
 }
 
 footer .footer {
@@ -225,6 +255,7 @@ footer .footer .mentions-desktop {
 
 footer .reseaux {
     display: flex;
+    margin-right: var(--border-radius-m);
 }
 
 footer .reseaux a img {
@@ -252,17 +283,11 @@ footer .reseaux a img:hover {
         flex-direction: row;
     }
 
-    header .container {
-        width: 100%;
-        display: flex;
-    }
-
     header h1 {
-        text-transform: uppercase;
         font-size: 3rem;
     }
 
-    header .container {
+    .container {
         width: 718px;
         margin: auto;
         display: flex;
@@ -283,25 +308,28 @@ footer .reseaux a img:hover {
         margin: 0 15px 5px 15px;
     }
 
-    footer {
-        background-color: var(--color-primary);
-    }
-
     footer .footer {
         margin: 0 var(--margin-l);
+    }
+
+    footer .footer .mentions-desktop {
+        display: flex;
+    }
+
+    footer .footer .mentions-responsive {
+        display: none;
+    }
+
+    footer .mentions p {
+        margin: auto;
     }
 }
 
 /* Format desktop */
 @media screen and (min-width: 992px) and (max-width: 1200px) {
 
-    header>div img {
-        width: 150px;
-    }
-
-    header>div span {
-        font-size: 4rem;
-        margin: auto;
+    .container {
+        max-width: 1000px;
     }
 
     header .container {
@@ -309,7 +337,26 @@ footer .reseaux a img:hover {
         margin: auto;
         display: flex;
     }
+
+    footer {
+        display: flex;
+        justify-content: center;
+        background-color: yellow;
+    }
+
+    .footer {
+        display: flex;
+        justify-content: space-between;
+        background-color: red;
+    }
 }
 
 /* Format TV */
-@media screen and (min-width: 1200px) {}
+@media screen and (min-width: 1200px) {
+    /* .header,
+    .container,
+    .footer {
+        max-width: 1200px;
+        margin: auto;
+    } */
+}

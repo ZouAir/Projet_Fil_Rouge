@@ -11,18 +11,20 @@
     --font-body: 'Roboto', sans-serif;
 
     /* Les borders */
-    --border-radius-one: 25px;
-    --border-radius-two: 20px;
-    --border-radius-three: 10px;
+    --border-radius-s: 5px;
+    --border-radius-m: 10px;
+    --border-radius-l: 15px;
+    --border-radius-xl: 25px;
 
     /* Les padding */
-    --padding-s: 10px;
-    --padding-m: 20px;
-    --padding-l: 30px;
+    --padding-s: 5px;
+    --padding-m: 10px;
+    --padding-l: 20px;
+    --padding-xl: 30px;
 
     /* Les margins */
-
     --margin-s: 5px;
     --margin-m: 10px;
     --margin-l: 20px;
+    --margin-xl: 30px;
 }

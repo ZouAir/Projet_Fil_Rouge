@@ -49,21 +49,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <h1>Connexion</h1>
-
-    <?php if ($error !== ''): ?>
-        <p style="color: red;"><?= $error ?></p>
-    <?php endif; ?>
-
-    <form method="POST" action="">
-        <label>Email :</label><br>
-        <input type="text" name="email"><br><br>
-
-        <label>Mot de passe :</label><br>
-        <input type="password" name="password"><br><br>
-
-        <button type="submit">Se connecter</button>
-    </form>
+    <header>
+        <?php include_once('header-login.php') ?>
+    </header>
+    <main>
+        <div class="container">
+            <div class="connection">
+                <p>connexion</p>
+            </div>
+            <div class="field">
+                <form method="POST" action="login.php" class="field-one">
+                    <input type="email" name="email" id="email" placeholder="Email">
+                    <input type="password" id="password" name="password" placeholder="Mot de passe">
+                    <button type="submit">se connecter</button>
+                </form>
+                <?php if ($error): ?>
+                    <p class="error"><?= htmlspecialchars($error) ?></p>
+                <?php endif; ?>
+                <div class="field-two">
+                    <a id="password-forgot" href="#" target="_blank">Mot de passe oublié ?</a>
+                </div>
+                <div class="field-three">
+                    <a id="subscribe" href="inscription.php" target="_blank">inscription</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <?php include_once('footer.php') ?>
+    </footer>
 </body>
 
 </html>

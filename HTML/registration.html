@@ -1,0 +1,60 @@
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+    <script src="js/script.js" defer></script>
+    <title>MNS Football Club</title>
+</head>
+
+<body>
+    <?php include_one('header-login.php') ?>
+    <main>
+        <div class="container">
+            <div class="connection">
+                <p>connexion</p>
+            </div>
+            <div class="field">
+                <form class="field-one">
+                    <input type="email" id="email" placeholder="Email">
+                    <input type="password" id="password" placeholder="Mot de passe">
+                    <button type="submit">se connecter</button>
+                </form>
+                <div class="field-two">
+                    <a id="password-forgot" href="#" target="_blank">Mot de passe oublié ?</a>
+                </div>
+                <div class="field-three">
+                    <a id="subscribe" href="inscription.php" target="_blank">inscription</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer">
+            <div class="logo">
+                <a href="index.php" id="footer-logo">
+                    <img src="image/logo_noir.png" alt="logo"></a>
+                <!-- <a href="index.php" id="footer-link">Accueil</a> -->
+            </div>
+            <div class="mentions-desktop">
+                <p>© 2026. MNS Football Club - Tous droits réservés - <a target="_blank"
+                        href="mentionslegales.html">Mentions Légales</a></p>
+            </div>
+            <div class="mentions-responsive">
+                <a target="_blank" href="mentionslegales.html">Mentions Légales</a>
+            </div>
+            <div class="reseaux">
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener">
+                    <img src="image/icones/facebookNB.png" alt="logo facebook"></a>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener">
+                    <img src="image/icones/instagramNB.png" alt="logo instagram">
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
