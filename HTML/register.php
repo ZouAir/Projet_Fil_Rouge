@@ -29,7 +29,7 @@ session_start();
             <h1>Inscription</h1>
             <p>Veuillez renseigner les informations suivantes afin de créer votre profil abonné du MNS Football Club.
             </p>
-            <form action="register.php" method="post" id="id-form" class="form">
+            <form action="inscription.php" method="post" id="id-form" class="form">
                 <div> * champs obligatoires</div>
                 <div class="form-group">
                     <label for="lastname">Name *</label>
