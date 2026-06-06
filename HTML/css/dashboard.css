@@ -4,6 +4,7 @@ body {
     box-sizing: border-box;
 }
 
+/* 
 header {
     background-color: var(--color-primary);
     border-bottom: 5px solid var(--color-secondary);
@@ -95,7 +96,7 @@ header .container .burger button {
 
 header .container .cta button {
     margin: 5px 5px 5px 0;
-}
+} */
 
 /* MAIN */
 /********/
@@ -139,6 +140,7 @@ main .container .dashboard .dash-sidebar ul {
     width: 100%;
     list-style: none;
     padding-left: 0;
+    margin-bottom: 250px;
 }
 
 main .container .dashboard .dash-sidebar ul li {
@@ -154,11 +156,12 @@ main .container .dashboard .dash-sidebar a {
     text-decoration: none;
     width: 100%;
     padding: var(--padding-m);
-    margin: 0 var(--margin-m);
 }
 
-main .container .dashboard .dash-sidebar a:hover {
+main .container .dashboard .dash-sidebar a:hover,
+a:active {
     background-color: var(--color-secondary);
+    border-radius: var(--border-radius-m);
 }
 
 main .container .dashboard .dash-content {
@@ -173,6 +176,7 @@ main .container .dashboard .dash-content {
 main .container .dashboard .dash-content .dash-head {
     width: 100%;
     display: flex;
+    justify-content: center;
     flex-direction: column;
 }
 
@@ -216,6 +220,7 @@ main .container .dashboard .dash-content .dash-head div:last-child {
     width: 70%;
     padding: var(--padding-m);
     margin: var(--margin-m) auto;
+
 }
 
 main .container .dashboard .dash-content .kpi {
@@ -232,7 +237,7 @@ main .container .dashboard .dash-content .kpi div {
     flex-direction: column;
     min-height: 60px;
     padding: var(--padding-s) var(--padding-xl);
-    margin: var(--border-radius-m) 50px;
+    margin: var(--border-radius-s) 50px;
 }
 
 main .container .dashboard .dash-content .kpi div p,
@@ -258,44 +263,45 @@ main .container .dashboard .dash-content .title {
 
 main .container .dashboard .dash-content .event {
     color: var(--color-light);
-    background-color: var(--color-primary);
-    border-radius: var(--border-radius-m);
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 0.6rem;
-    margin: var(--border-radius-m);
+    height: auto;
+    margin: var(--border-radius-l) var(--border-radius-m);
 }
 
-main .container .dashboard .dash-content .event div:first-child {
+main .container .dashboard .dash-content .event div {
+    background-color: var(--color-primary);
+    border-radius: var(--border-radius-m) 0 0 var(--border-radius-m);
     width: 75%;
+    height: 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 0 var(--padding-s);
 }
 
-main .container .dashboard .dash-content .event div:first-child {
-    padding: 0 var(--padding-m);
-}
-
-main .container .dashboard .dash-content .event p:last-child {
+main .container .dashboard .dash-content .event div p:last-child {
     color: var(--color-gray);
 }
 
 main .container .dashboard .dash-content .event span {
     display: flex;
     justify-content: center;
+    align-items: center;
     color: var(--color-light);
     background-color: var(--color-secondary);
     border-radius: 0 var(--border-radius-m) var(--border-radius-m) 0;
     width: 25%;
-    padding: var(--padding-xl) 0;
+    height: 80px;
+    /* padding: var(--padding-xl) 0; */
 }
 
 /* FOOTER */
 /**********/
-footer {
+/* footer {
     background-color: var(--color-primary);
     color: var(--color-gray);
     border-top: 5px solid var(--color-secondary);
@@ -365,14 +371,6 @@ footer .reseaux a img:hover {
         font-size: 3rem;
     }
 
-    .container {
-        width: 718px;
-        margin: auto;
-        display: flex;
-        justify-content: end;
-        align-items: center;
-    }
-
     header .container nav {
         display: block;
         margin: 0 5px 5px 0;
@@ -384,6 +382,69 @@ footer .reseaux a img:hover {
 
     header .container .cta button {
         margin: 0 15px 5px 15px;
+    }
+
+    .container {
+        min-width: 718px;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    main .container .dashboard {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        padding: var(--padding-xl);
+        margin: 0 var(--margin-m);
+    }
+
+    main .container .dashboard .dash-content {
+        padding: var(--border-radius-l);
+    }
+
+    main .container .dashboard .dash-content .dash-head {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+        margin: auto;
+    }
+
+    main .container .dashboard .dash-content .dash-head div:first-child {
+        width: 30%;
+        margin-right: 0;
+    }
+
+    main .container .dashboard .dash-content .dash-head div:last-child {
+        width: 30%;
+        margin-left: 0px;
+    }
+
+    main .container .dashboard .dash-content .kpi {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+    }
+
+    main .container .dashboard .dash-content .kpi div {
+        width: 20%;
+        padding: var(--padding-s) var(--padding-m);
+        margin: var(--border-radius-m);
+    }
+
+    main .container .dashboard .dash-content .title {
+        display: flex;
+        width: 30%;
+        padding: var(--padding-m);
+        margin-left: var(--margin-xl);
+        margin-bottom: var(--margin-l);
+    }
+
+    main .container .dashboard .dash-content .event {
+        font-size: 0.8rem;
+        margin: var(--margin-l);
     }
 
     footer .footer {

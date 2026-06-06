@@ -21,11 +21,13 @@
     --padding-m: 10px;
     --padding-l: 20px;
     --padding-xl: 30px;
+    --padding-xxl: 50px;
 
     /* Les margins */
     --margin-s: 5px;
     --margin-m: 10px;
     --margin-l: 20px;
     --margin-xl: 30px;
-    
+    --margin-xxl: 50px;
+
 }
