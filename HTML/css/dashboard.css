@@ -151,7 +151,7 @@ main .container .dashboard .dash-sidebar li:hover {
     background-color: var(--color-secondary);
 }
 
-main .container .dashboard .dash-sidebar a {
+main .container .dashboard a {
     color: var(--color-light);
     text-decoration: none;
     width: 100%;
@@ -313,6 +313,19 @@ main .container .dashboard .dash-content .event span {
     width: 25%;
     height: 80px;
     /* padding: var(--padding-xl) 0; */
+}
+
+main .container .dashboard .dash-content .cta {
+    display: flex;
+    
+}
+
+main .container .dashboard .dash-content a {
+    background-color: blueviolet;
+}
+
+button {
+    margin: auto;
 }
 
 /* FOOTER */
