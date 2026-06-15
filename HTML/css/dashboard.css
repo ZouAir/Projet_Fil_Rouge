@@ -277,21 +277,19 @@ main .container .dashboard .dash-content .title {
     margin: var(--margin-m) auto;
 }
 
-main .container .dashboard .dash-content .event {
+main .container .dashboard .dash-content .card {
     color: var(--color-light);
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 0.6rem;
-    height: auto;
-    margin: var(--border-radius-l) var(--border-radius-m);
+    margin: var(--margin-l) var(--margin-m);
 }
 
-main .container .dashboard .dash-content .event div {
+main .container .dashboard .dash-content .card div:first-child {
     background-color: var(--color-primary);
     border-radius: var(--border-radius-m) 0 0 var(--border-radius-m);
     width: 75%;
-    height: 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -299,33 +297,50 @@ main .container .dashboard .dash-content .event div {
     padding: 0 var(--padding-s);
 }
 
-main .container .dashboard .dash-content .event div p:last-child {
+main .container .dashboard .dash-content .card div:last-child {
     color: var(--color-gray);
+    flex: 1;
 }
 
-main .container .dashboard .dash-content .event span {
+main .container .dashboard .dash-content .card div:last-child div:first-child {
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-dark);
+    border-radius: 0 var(--border-radius-m) 0 0;
+    font-size: 0.8rem;
+    width: 100%;
+    padding: var(--padding-s) 0;
+}
+
+main .container .dashboard .dash-content .card div:last-child div:first-child a {
+    width: 100%;
+}
+
+main .container .dashboard .dash-content .card div:last-child div:last-child {
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-red);
+    border-radius: 0 0 var(--border-radius-m) 0;
+    font-size: 0.8rem;
+    width: 100%;
+    padding: var(--padding-s) 0;
+}
+
+.cta {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--color-light);
+    margin: var(--margin-xl) auto;
+}
+
+.cta button {
+    color: var(--color-white);
     background-color: var(--color-secondary);
-    border-radius: 0 var(--border-radius-m) var(--border-radius-m) 0;
-    width: 25%;
-    height: 80px;
-    /* padding: var(--padding-xl) 0; */
-}
-
-main .container .dashboard .dash-content .cta {
-    display: flex;
-    
-}
-
-main .container .dashboard .dash-content a {
-    background-color: blueviolet;
-}
-
-button {
-    margin: auto;
+    font-weight: bold;
+    border: 0;
+    border-radius: var(--border-radius-xl);
+    width: 200px;
+    height: 35px;
 }
 
 /* FOOTER */
@@ -471,7 +486,7 @@ footer .reseaux a img:hover {
         margin-bottom: var(--margin-l);
     }
 
-    main .container .dashboard .dash-content .event {
+    main .container .dashboard .dash-content .card {
         font-size: 0.8rem;
         margin: var(--margin-l);
     }
