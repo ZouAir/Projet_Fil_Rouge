@@ -38,3 +38,22 @@
  Copyright ?
  Liens utiles (mentions légales, RGPD, etc) ?
  Réseaux sociaux ?
+
+
+ Redirection après login
+ // login.php — après vérification du password
+ if(password_verify($_POST['password'], $user['password'])) {
+ $_SESSION['user_id'] = $user['id'];
+ $_SESSION['email'] = $user['email'];
+ $_SESSION['profil'] = $user['profil']; // 'abonne', 'administrateur', 'service_reservation'
+
+ // Redirection selon profil
+ if($user['profil'] == 'administrateur') {
+ header("Location: dashboard-direction.php");
+ } elseif($user['profil'] == 'service_reservation') {
+ header("Location: dashboard-service.php");
+ } else {
+ header("Location: dashboard-user.php");
+ }
+ exit;
+ }

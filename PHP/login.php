@@ -30,7 +30,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $passwordHash = $count['password'];
 
         if (password_verify($password, $passwordHash)) {
-            header('Location: index.php');
+            // Redirection selon profil
+            if ($count['profil'] == 'administrateur') {
+                header("Location: dashboard-admin.php");
+                //vérifier le header vers le bon fichier
+            } elseif ($count['profil'] == 'service_reservation') {
+                header("Location: dashboard-service.php");
+                //vérifier le header vers le bon fichier
+            } else {
+                header("Location: dashboard-user.php");
+                //vérifier le header vers le bon fichier
+            }
             exit;
         } else {
             $error = "Identifiant ou mot de passe incorrects.";

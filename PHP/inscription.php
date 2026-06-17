@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (empty($error)) {
             try {
-                $query = $pdo->prepare("INSERT INTO users (name, firstname, email, password, phone, birthday, adress, postal, city, profil, is_actif) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $query = $pdo->prepare("INSERT INTO users (name, firstname, email, password, phone, birthday, adress, postal, city) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
                 $query->execute([$name, $firstName, $email, $password, $phone, '2000-01-01', 'adresse à modifier', '57000', 'Metz']);
                 header('Location: login.php');
                 exit;

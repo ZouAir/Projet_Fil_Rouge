@@ -16,7 +16,7 @@ $pdo = require_once('includes/bdd.php');
 
 //Si pas connecté
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: includes/login.php');
     exit;
 } else {
     //Si déjà connecté
@@ -48,8 +48,9 @@ if (!isset($_SESSION['user_id'])) {
     <h1>Bienvenue au MNS Football Club</h1>
     <p>Réservez vos places pour les événements sportifs et sociaux de votre club en quelques clics</p>
     <div class="cta">
-        <button>Voir les événements</button>
-        <button>Nous rejoindre</button>
+        <button><a href="">Voir les événements</a></button>
+        <button><a href="">Nous rejoindre</a></button>
+        <button><a href="">Déconnexion</a></button>
     </div>
     <!-- Events à venir -->
     <section>
