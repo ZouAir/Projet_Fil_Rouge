@@ -1,6 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
 // // Démarrer la session
 // // Vérifier que l'utilisateur est connecté
 // // Inclure bdd.php
@@ -16,7 +14,7 @@ $pdo = require_once('includes/bdd.php');
 
 //Si pas connecté
 if (!isset($_SESSION['user_id'])) {
-    header('Location: includes/login.php');
+    header('Location: login.php');
     exit;
 } else {
     //Si déjà connecté
@@ -43,7 +41,9 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 
 <body>
-    <header><!--ici le header --></header>
+    <header>
+        <?php include_once('includes/header.php') ?>
+    </header>
     <span>Bonjour <?= $_SESSION['email'] ?> !</span>
     <h1>Bienvenue au MNS Football Club</h1>
     <p>Réservez vos places pour les événements sportifs et sociaux de votre club en quelques clics</p>
@@ -76,10 +76,9 @@ if (!isset($_SESSION['user_id'])) {
         <?php } ?>
     </section>
     <!-- Mes réservations -->
-    <section>
-        <!--ici le footer -->
-    </section>
-    <footer><!--ici le footer --></footer>
+    <footer>
+        <?php include_once('includes/footer.php') ?>
+    </footer>
 
 </body>
 
