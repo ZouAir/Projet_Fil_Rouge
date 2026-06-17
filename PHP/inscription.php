@@ -8,7 +8,7 @@
 // // Insère l'utilisateur en BDD
 // // Redirige vers login.php
 session_start();
-$pdo = require_once('bdd.php');
+$pdo = require_once('includes/bdd.php');
 
 $error = null;
 
@@ -25,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (empty($error)) {
             try {
-                $query = $pdo->prepare("INSERT INTO users (name, firstname, email, password, phone) VALUES (?, ?, ?, ?, ?)");
-                $query->execute([$name, $firstName, $email, $password, $phone]);
+                $query = $pdo->prepare("INSERT INTO users (name, firstname, email, password, phone, birthday, adress, postal, city, profil, is_actif) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $query->execute([$name, $firstName, $email, $password, $phone, '2000-01-01', 'adresse à modifier', '57000', 'Metz']);
                 header('Location: login.php');
                 exit;
             } catch (PDOException $e) {
@@ -42,15 +42,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/login.css">
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
-    <script src="js/script.js" defer></script>
-    <title>MNS Football Club</title>
+    <script src="assets/js/script.js" defer></script>
+    <title>Login</title>
 </head>
+
 <!-- Ceci est un commentaire -->
 
 <body>
-    <?php include_once('header-login.php') ?>
+    <?php include_once('includes/header-login.php') ?>
     <main>
         <div class="container">
             <div class="connection">
@@ -83,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endif; ?>
         </div>
     </main>
-    <?php include_once('footer.php') ?>
+    <?php include_once('includes/footer.php') ?>
 </body>
 
 </html>

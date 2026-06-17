@@ -9,17 +9,16 @@
 // Redirige vers login.php
 session_start();
 
-
-
 ?>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/login.css">
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
-    <script src="js/script.js" defer></script>
-    <title>MNS Football Club</title>
+    <script src="assets/js/script.js" defer></script>
+    <title>Login</title>
 </head>
 <!-- Ceci est un commentaire -->
 
@@ -29,7 +28,7 @@ session_start();
             <h1>Inscription</h1>
             <p>Veuillez renseigner les informations suivantes afin de créer votre profil abonné du MNS Football Club.
             </p>
-            <form action="inscription.php" method="post" id="id-form" class="form">
+            <form action="./inscription.php" method="post" id="id-form" class="form">
                 <div> * champs obligatoires</div>
                 <div class="form-group">
                     <label for="lastname">Name *</label>

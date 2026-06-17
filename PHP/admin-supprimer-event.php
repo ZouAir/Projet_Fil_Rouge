@@ -16,7 +16,7 @@ if ($_SESSION['profil'] !== 'administrateur') {
     exit;
 }
 
-$pdo = require_once('bdd.php');
+$pdo = require_once('includes/bdd.php');
 $error = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {

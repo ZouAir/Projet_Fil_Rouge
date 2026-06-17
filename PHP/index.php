@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 // // Démarrer la session
 // // Vérifier que l'utilisateur est connecté
 // // Inclure bdd.php
@@ -10,7 +12,7 @@
 // Require Footer
 
 session_start();
-$pdo = require_once('bdd.php');
+$pdo = require_once('includes/bdd.php');
 
 //Si pas connecté
 if (!isset($_SESSION['user_id'])) {
@@ -32,7 +34,12 @@ if (!isset($_SESSION['user_id'])) {
 
 <head>
     <meta charset="UTF-8">
-    <title>MNS Football Club</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/login.css">
+    <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+    <script src="assets/js/script.js" defer></script>
+    <title>Login</title>
 </head>
 
 <body>

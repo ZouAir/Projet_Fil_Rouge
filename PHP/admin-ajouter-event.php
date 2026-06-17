@@ -21,7 +21,7 @@ if ($_SESSION['profil'] !== 'administrateur') {
     exit;
 }
 
-$pdo = require_once('bdd.php');
+$pdo = require_once('includes/bdd.php');
 $error = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -57,7 +57,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 <head>
     <meta charset="UTF-8">
-    <title>MNS Football Club</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/login.css">
+    <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+    <script src="assets/js/script.js" defer></script>
+    <title>Login</title>
 </head>
 
 <body>

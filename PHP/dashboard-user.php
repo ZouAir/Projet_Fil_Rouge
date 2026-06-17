@@ -1,6 +1,6 @@
 <?php
 session_start();
-$pdo = require_once('bdd.php');
+$pdo = require_once('../includes/bdd.php');
 
 $id = $_SESSION['id'];
 $name = $_SESSION['name'];
@@ -21,17 +21,16 @@ $events = $query->fetchAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/login.css">
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
-    <script src="js/script.js" defer></script>
-    <title>MNS Football Club</title>
+    <script src="assets/js/script.js" defer></script>
+    <title>Login</title>
 </head>
 
 <body>
+    <?php include_once('../includes/header.php') ?>
     <main>
-        <!-- Sidebar -->
-        <header></header>
         <section>
             <h2>Mon tableau de bord</h2>
             <div>
@@ -60,7 +59,7 @@ $events = $query->fetchAll();
             ?>
         </section>
     </main>
-    <?php include_once('footer.php') ?>
+    <?php include_once('../includes/footer.php') ?>
 
 </body>
 

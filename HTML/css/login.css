@@ -185,7 +185,7 @@ main .container .field button {
     border-radius: var(--border-radius-xl);
     text-transform: capitalize;
     font-weight: bold;
-    margin: 50px auto 0;
+    margin: 50px auto 5px;
 }
 
 #name,
@@ -209,7 +209,7 @@ main .container .field button {
     text-align: center;
     align-content: center;
     text-decoration: none;
-    margin: 0 auto;
+    margin: 5px auto;
 }
 
 #subscribe {

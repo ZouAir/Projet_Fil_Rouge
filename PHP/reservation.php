@@ -13,11 +13,11 @@
 // // Formulaire avec select "Nombre de places" (1 ou 2)
 // // Bouton "Confirmer la réservation"
 session_start();
-$pdo = require_once('bdd.php');
+$pdo = require_once('../includes/bdd.php');
 
 //Si pas connecté
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: ./login.php');
     exit;
 } else {
     //Si connecté
@@ -39,7 +39,7 @@ if (!isset($_SESSION['user_id'])) {
             if ($seats) {
                 $query = $pdo->prepare("INSERT INTO orders (date, status, number_of_seats, events_id, user_id) VALUES (?, ?, ?, ?, ?)");
                 $query->execute([date('Y-m-d'), 'en attente', $seats, $id, $_SESSION['user_id']]);
-                header('Location: index.php');
+                header('Location: ../public/index.php');
                 exit;
             }
         } catch (PDOException $e) {
@@ -54,20 +54,22 @@ if (!isset($_SESSION['user_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/login.css">
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
-    <script src="js/script.js" defer></script>
-    <title>MNS Football Club</title>
+    <script src="assets/js/script.js" defer></script>
+    <title>Login</title>
+
 </head>
 <!-- Ceci est un commentaire -->
 
 <body>
     <header>
-        <?php include_once('header.php')
+        <?php include_once('../includes/header.php')
         ?>
     </header>
     <main>
-        <form action="reservation.php" method="POST">
+        <form action="./reservation.php" method="POST">
             <h2>Mon tableau de bord</h2>
             <h3>Réservation évènement</h3>
             <p>Veuillez choisir le nombre de places que vous souhaitez réserver</p>
@@ -136,7 +138,7 @@ if (!isset($_SESSION['user_id'])) {
         <?php endif; ?>
     </main>
     <footer>
-        <?php //require_once(footer.php)
+        <?php //require_once('../includes/footer.php')
         ?>
     </footer>
 </body>

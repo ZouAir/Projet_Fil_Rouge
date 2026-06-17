@@ -2,7 +2,7 @@
      <div class="footer">
          <div class="logo">
              <a href="index.php" id="footer-logo">
-                 <img src="image/logo_noir.png" alt="logo"></a>
+                 <img src="assets/images/logo_noir.png" alt="logo"></a>
              <!-- <a href="index.php" id="footer-link">Accueil</a> -->
          </div>
          <div class="mentions-desktop">
@@ -14,9 +14,9 @@
          </div>
          <div class="reseaux">
              <a href="https://www.facebook.com/" target="_blank" rel="noopener">
-                 <img src="image/icones/facebookNB.png" alt="logo facebook"></a>
+                 <img src="assets/images/icones/facebookNB.png" alt="logo facebook"></a>
              <a href="https://www.instagram.com/" target="_blank" rel="noopener">
-                 <img src="image/icones/instagramNB.png" alt="logo instagram">
+                 <img src="assets/images/icones/instagramNB.png" alt="logo instagram">
              </a>
          </div>
      </div>
