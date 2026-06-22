@@ -4,96 +4,6 @@ body {
     box-sizing: border-box;
 }
 
-header {
-    border-top: 5px solid var(--color-secondary);
-    border-bottom: 1px solid var(--color-secondary);
-    border-radius: 5px 5px 0 0;
-    background-color: var(--color-primary);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* header .box {
-    width: 90%;
-    margin: auto;
-} */
-
-header .header {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-}
-
-header>div img {
-    width: 100px;
-}
-
-header .header .title {
-    display: flex;
-    width: 60%;
-    margin: auto;
-    justify-content: center;
-}
-
-header h1 {
-    text-transform: uppercase;
-    font-size: 1.6rem;
-    font-weight: bold;
-    color: var(--color-secondary);
-    /* margin: auto; */
-}
-
-header .container {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    position: relative;
-}
-
-header nav {
-    display: none;
-}
-
-header nav ul {
-    display: flex;
-}
-
-header nav ul li {
-    display: inline-block;
-}
-
-header nav ul li a,
-a:visited,
-a:active {
-    color: var(--color-gray);
-    text-decoration: none;
-    padding: var(--padding-s);
-    margin-right: var(--margin-s);
-    font-weight: bold;
-}
-
-header a:hover {
-    color: var(--color-light);
-    background-color: var(--color-dark);
-    border: 1px solid var(--color-gray);
-    border-radius: var(--border-radius-three);
-}
-
-header .container .header-btn {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-}
-
-header .container .burger,
-.cta {
-    /* display: inline-block; */
-    align-items: center;
-}
-
 button {
     height: 40px;
     background-color: var(--color-light);
@@ -101,18 +11,6 @@ button {
     font-weight: bold;
     border: 2px solid var(--color-secondary);
     border-radius: var(--border-radius-one);
-}
-
-header .container .burger button {
-    width: 40px;
-    border-radius: var(--border-radius-three);
-    position: absolute;
-    top: 5px;
-    left: 0;
-}
-
-header .container .cta button {
-    margin: 5px 5px 5px 0;
 }
 
 button:hover {
