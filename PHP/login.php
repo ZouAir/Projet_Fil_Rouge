@@ -31,10 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (password_verify($password, $passwordHash)) {
             // Redirection selon profil
-            if ($count['profil'] == 'administrateur') {
+            if ($count['profil'] === 'administrateur') {
                 header("Location: dashboard-admin.php");
                 //vérifier le header vers le bon fichier
-            } elseif ($count['profil'] == 'service_reservation') {
+            } elseif ($count['profil'] === 'service') {
                 header("Location: dashboard-service.php");
                 //vérifier le header vers le bon fichier
             } else {
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="assets/css/variables.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/login.css">
-    <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet"> -->
     <script src="assets/js/script.js" defer></script>
     <title>Login</title>
 </head>
