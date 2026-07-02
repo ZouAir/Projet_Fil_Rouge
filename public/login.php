@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <p class="error"><?= htmlspecialchars($error) ?></p>
                 <?php endif; ?>
                 <div class="field-two">
-                    <a id="password-forgot" href="#" target="_blank">Mot de passe oublié ?</a>
+                    <a id="password-forgot" href="password-oublie.php" target="_blank">Mot de passe oublié ?</a>
                     <!-- lien vers password forgort -->
                 </div>
                 <div class="field-three">
