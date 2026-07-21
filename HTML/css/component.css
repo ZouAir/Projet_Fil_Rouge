@@ -1,0 +1,19 @@
+.error {
+    color: var(--color-red);
+}
+
+
+/* Format mini-tablette */
+@media screen and (max-width:576px) {}
+
+
+/* Format tablette */
+@media screen and (min-width: 768px) {}
+
+
+/* Format desktop */
+@media screen and (min-width: 992px) and (max-width: 1200px) {}
+
+
+/* Format TV */
+@media screen and (min-width: 1200px) {}
