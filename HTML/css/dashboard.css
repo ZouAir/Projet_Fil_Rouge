@@ -135,13 +135,15 @@ main .container .dashboard .dash-content .dash-head div:last-child {
     margin: var(--margin-m) auto;
 }
 
-main .container .dashboard .dash-content .kpi {
+main .container .dashboard .dash-content .kpi,
+main .container .dashboard .dash-content .friend {
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
 
-main .container .dashboard .dash-content .kpi div {
+main .container .dashboard .dash-content .kpi div,
+main .container .dashboard .dash-content .friend div {
     color: var(--color-light);
     background-color: var(--color-primary);
     border-radius: var(--border-radius-m);
@@ -155,7 +157,8 @@ main .container .dashboard .dash-content .kpi div {
     margin: var(--margin-m) auto 0;
 }
 
-main .container .dashboard .dash-content .kpi div span {
+main .container .dashboard .dash-content .kpi div span,
+main .container .dashboard .dash-content .friend div span {
     text-align: center;
     font-size: 0.7rem;
     padding: 0 var(--padding-m);
@@ -534,6 +537,45 @@ main .container .dashboard .dash-content .user .user-status {
     width: 25%;
     font-size: 0.7rem;
     padding: var(--border-radius-m);
+}
+
+/* USER-AMIS */
+/* ******** */
+main .container .dashboard .dash-content .friend .friend-request span:first-child {
+    padding-top: var(--padding-m);
+}
+
+main .container .dashboard .dash-content .friend .friend-request span:nth-child(2) {
+    color: var(--color-gray);
+    padding-bottom: var(--padding-m);
+}
+
+main .container .dashboard .dash-content .friend div button {
+    background-color: var(--color-secondary);
+    border-radius: var(--border-radius-m);
+    width: 60%;
+    max-height: 30px;
+    margin: var(--margin-s) auto;
+}
+
+main .container .dashboard .dash-content .friend .friend-research,
+main .container .dashboard .dash-content .friend .friend-research form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main .container .dashboard .dash-content .friend .friend-research input {
+    border: 1px solid transparent;
+    border-radius: var(--border-radius-s);
+    text-align: center;
+    height: 30px;
+    margin: var(--margin-s) auto;
+}
+
+main .container .dashboard .dash-content .friend .friend-research button {
+    margin: var(--margin-m) auto 0;
 }
 
 /* **************** */
