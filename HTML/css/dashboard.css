@@ -75,9 +75,10 @@ main .container .dashboard .dash-content {
     background-color: var(--color-gray);
     border: 0.5px solid var(--color-secondary);
     border-radius: 0 var(--border-radius-m) var(--border-radius-m) 0;
-    width: 65%;
+    flex: 1;
     font-size: 0.8rem;
     font-weight: bold;
+    padding-bottom: var(--border-radius-l);
 }
 
 main .container .dashboard .dash-content .dash-head {
@@ -109,7 +110,7 @@ main .container .dashboard .dash-content .dash-head div:first-child span:first-c
 }
 
 main .container .dashboard .dash-content .dash-head div:first-child span:last-child {
-    width: 80%;
+    flex: 1;
     background-color: var(--color-grey);
     border-radius: 0 var(--border-radius-m) var(--border-radius-m) 0;
     display: flex;
@@ -130,7 +131,7 @@ main .container .dashboard .dash-content .dash-head div:last-child {
     border-radius: var(--border-radius-m);
     font-size: 0.8rem;
     width: 70%;
-    padding: var(--border-radius-m);
+    padding: var(--padding-m);
     margin: var(--margin-m) auto;
 }
 
@@ -149,7 +150,7 @@ main .container .dashboard .dash-content .kpi div {
     justify-content: center;
     flex-direction: column;
     width: 70%;
-    min-height: 60px;
+    min-height: 50px;
     padding: var(--padding-s) var(--padding-l);
     margin: var(--margin-m) auto 0;
 }
@@ -173,12 +174,12 @@ main .container .dashboard .dash-content .title {
     display: flex;
     justify-content: center;
     color: var(--color-light);
-    font-size: 1rem;
+    font-size: 0.8rem;
     background-color: var(--color-grey);
     border-radius: var(--border-radius-m);
     width: 70%;
     padding: var(--padding-m);
-    margin: var(--margin-m) auto;
+    margin: var(--margin-l) auto var(--margin-l);
 }
 
 main .container .dashboard .dash-content .card {
@@ -254,7 +255,7 @@ main .container .dashboard .dash-content .user {
     display: flex;
     justify-content: center;
     flex-direction: row;
-    width: 80%;
+    width: 90%;
     margin: var(--margin-m) auto 0;
 }
 
@@ -283,6 +284,7 @@ main .container .dashboard .dash-content .user .user-modify {
     display: flex;
     flex-direction: column;
     border-radius: 0 var(--border-radius-m);
+    flex: 1;
 }
 
 main .container .dashboard .dash-content .user .user-change {
@@ -302,7 +304,7 @@ main .container .dashboard .dash-content .user .user-delete {
 }
 
 /* EVENEMENTS & RESERVATIONS */
-/* ************************* */
+/* ************************ */
 main .container .dashboard .dash-content .event {
     display: flex;
     justify-content: center;
@@ -465,7 +467,6 @@ main .container .dashboard .dash-content .public .public-data {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
     width: 100%;
     padding: var(--border-radius-m);
 }
@@ -478,7 +479,6 @@ main .container .dashboard .dash-content .public .public-attendance {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
     width: 100%;
     padding: var(--border-radius-m);
 }
@@ -501,6 +501,39 @@ main .container .dashboard .dash-content .modal-qr input {
     text-align: center;
     margin-bottom: var(--margin-l);
     display: none;
+}
+
+/* USER EVENEMENTS */
+/* **************** */
+main .container .dashboard .dash-content .user .user-modify .user-statut {
+    display: flex;
+    text-align: center;
+    background-color: var(--color-dark);
+    border-radius: 0 var(--border-radius-m) 0 0;
+}
+
+main .container .dashboard .dash-content .user .user-book {
+    display: flex;
+    text-align: center;
+    background-color: var(--color-secondary);
+    flex: 1;
+    border-radius: 0 0 var(--border-radius-m) 0;
+}
+
+/* USER RESERVATIONS */
+/* **************** */
+
+main .container .dashboard .dash-content .user .user-status {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-light);
+    background-color: var(--color-secondary);
+    border-radius: 0 var(--border-radius-m) var(--border-radius-m) 0;
+    width: 25%;
+    font-size: 0.7rem;
+    padding: var(--border-radius-m);
 }
 
 /* **************** */
@@ -623,7 +656,7 @@ main .container .dashboard .dash-content .modal-qr input {
 
 /* *************** */
 /* Format desktop */
-@media screen and (min-width: 992px) and (max-width: 1200px) {
+@media screen and (min-width: 992px) {
 
     body {
         font-size: 1rem;
@@ -642,6 +675,10 @@ main .container .dashboard .dash-content .modal-qr input {
 
     main .container .dashboard .dash-content .dash-head div:first-child span:last-child {
         font-size: 0.8rem;
+    }
+
+    main .container .dashboard .dash-content .dash-head div:last-child {
+        margin-left: 0;
     }
 
     footer {
