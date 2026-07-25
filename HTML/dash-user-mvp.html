@@ -38,26 +38,31 @@
                         </div>
                         <div>Mon tableau de bord</div>
                     </div>
-                    <div class="title">Invitations (1)</div>
-                    <div class="match">
-
+                    <div class="title">Note du match</div>
+                    <div class="friend match">
                         <span>Note du match</span>
-                        <span>10 sept 2025</span>
-
-                        <button>Ignorer</button>
-
+                        <div class="star">
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                            <span>☆</span>
+                        </div>
+                        <button>Enregistrer</button>
                     </div>
                     <div class="title">
-                        Chercher des amis
-                    </div>
+                        Vote du MVP </div>
                     <div class="friend">
-                        <div class="friend-research">
-                            <form action="dash-user-amis.php" method="get">
-                                <input type="text" id="name" name="Nom" placeholder="Nom">
-                                <input type="text" id="firstName" name="firstName" placeholder="Prénom">
-                                <button type="submit" id="">Inviter</button>
-                            </form>
-                        </div>
+                        <span>MVP</span>
+                        <form action="dash-user-amis.php" method="get">
+                            <select name="" id="" aria-label="sélection mvp">
+                                <option value="">Sélectionner mon mvp</option>
+                                <option value="">Joueur 1</option>
+                                <option value="">Joueur 2</option>
+                                <option value="">Joueur 3</option>
+                            </select>
+                            <button type="submit" id="">Voter</button>
+                        </form>
                     </div>
                 </div>
             </div>

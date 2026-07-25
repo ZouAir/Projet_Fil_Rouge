@@ -557,8 +557,8 @@ main .container .dashboard .dash-content .friend {
     border-radius: var(--border-radius-m);
     font-size: 0.8rem;
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
     width: 70%;
     padding: var(--border-radius-l);
     margin: var(--margin-m) auto 0;
@@ -566,7 +566,6 @@ main .container .dashboard .dash-content .friend {
 
 main .container .dashboard .dash-content .friend span {
     text-align: center;
-    font-size: 0.7rem;
 }
 
 main .container .dashboard .dash-content .friend span:nth-child(2) {
@@ -594,13 +593,18 @@ main .container .dashboard .dash-content .friend form {
     align-items: center;
 }
 
-main .container .dashboard .dash-content .friend form input {
+main .container .dashboard .dash-content .friend form input,
+main .container .dashboard .dash-content .friend form select {
     border: 1px solid transparent;
     border-radius: var(--border-radius-s);
     text-align: center;
     width: 90%;
     height: 30px;
     margin: var(--margin-s) auto;
+}
+
+main .container .dashboard .dash-content .friend form select {
+    margin: var(--margin-m) auto;
 }
 
 main .container .dashboard .dash-content .friend form div {
@@ -611,6 +615,18 @@ main .container .dashboard .dash-content .friend form div {
 
 /* USER-MVP */
 /* ******** */
+main .container .dashboard .dash-content .match .star {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+main .container .dashboard .dash-content .match .star span {
+    color: var(--color-secondary);
+    font-size: 2rem;
+    padding: var(--padding-s) 0;
+    margin: 0 auto var(--margin-m);
+}
+
 
 /* **************** */
 /* Format tablette */
