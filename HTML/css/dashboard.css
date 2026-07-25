@@ -73,7 +73,7 @@ main .container .dashboard .dash-sidebar a:active {
 
 main .container .dashboard .dash-content {
     background-color: var(--color-gray);
-    border: 0.5px solid var(--color-secondary);
+    /* border: 0.5px solid var(--color-primary); */
     border-radius: 0 var(--border-radius-m) var(--border-radius-m) 0;
     flex: 1;
     font-size: 0.8rem;
@@ -136,14 +136,11 @@ main .container .dashboard .dash-content .dash-head div:last-child {
 }
 
 main .container .dashboard .dash-content .kpi,
-main .container .dashboard .dash-content .friend {
+main .container .dashboard .dash-content .friend,
+main .container .dashboard .dash-content .match {
     display: flex;
     justify-content: center;
     flex-direction: column;
-}
-
-main .container .dashboard .dash-content .kpi div,
-main .container .dashboard .dash-content .friend div {
     color: var(--color-light);
     background-color: var(--color-primary);
     border-radius: var(--border-radius-m);
@@ -157,8 +154,21 @@ main .container .dashboard .dash-content .friend div {
     margin: var(--margin-m) auto 0;
 }
 
-main .container .dashboard .dash-content .kpi div span,
-main .container .dashboard .dash-content .friend div span {
+main .container .dashboard .dash-content .kpi div {
+    color: var(--color-light);
+    background-color: var(--color-primary);
+    border-radius: var(--border-radius-m);
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 70%;
+    min-height: 50px;
+    padding: var(--padding-s) var(--padding-l);
+    margin: var(--margin-m) auto 0;
+}
+
+main .container .dashboard .dash-content .kpi div span {
     text-align: center;
     font-size: 0.7rem;
     padding: 0 var(--padding-m);
@@ -541,16 +551,30 @@ main .container .dashboard .dash-content .user .user-status {
 
 /* USER-AMIS */
 /* ******** */
-main .container .dashboard .dash-content .friend .friend-request span:first-child {
-    padding-top: var(--padding-m);
+main .container .dashboard .dash-content .friend {
+    color: var(--color-light);
+    background-color: var(--color-primary);
+    border-radius: var(--border-radius-m);
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 70%;
+    padding: var(--border-radius-l);
+    margin: var(--margin-m) auto 0;
 }
 
-main .container .dashboard .dash-content .friend .friend-request span:nth-child(2) {
+main .container .dashboard .dash-content .friend span {
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+main .container .dashboard .dash-content .friend span:nth-child(2) {
     color: var(--color-gray);
-    padding-bottom: var(--padding-m);
+    padding: var(--padding-s);
 }
 
-main .container .dashboard .dash-content .friend div button {
+main .container .dashboard .dash-content .friend button {
     background-color: var(--color-secondary);
     border-radius: var(--border-radius-m);
     width: 60%;
@@ -558,25 +582,35 @@ main .container .dashboard .dash-content .friend div button {
     margin: var(--margin-s) auto;
 }
 
-main .container .dashboard .dash-content .friend .friend-research,
-main .container .dashboard .dash-content .friend .friend-research form{
+main .container .dashboard .dash-content .friend button:hover {
+    color: var(--color-secondary);
+    background-color: var(--color-light);
+}
+
+main .container .dashboard .dash-content .friend form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-main .container .dashboard .dash-content .friend .friend-research input {
+main .container .dashboard .dash-content .friend form input {
     border: 1px solid transparent;
     border-radius: var(--border-radius-s);
     text-align: center;
+    width: 90%;
     height: 30px;
     margin: var(--margin-s) auto;
 }
 
-main .container .dashboard .dash-content .friend .friend-research button {
-    margin: var(--margin-m) auto 0;
+main .container .dashboard .dash-content .friend form div {
+    color: var(--color-red);
+    margin: var(--margin-m);
+    /* display: none; */
 }
+
+/* USER-MVP */
+/* ******** */
 
 /* **************** */
 /* Format tablette */
