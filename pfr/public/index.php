@@ -10,7 +10,7 @@
 // Require Footer
 
 session_start();
-$pdo = require_once('includes/bdd.php');
+$pdo = require_once('../includes/bdd.php');
 
 //Si pas connecté
 if (!isset($_SESSION['user_id'])) {
@@ -42,7 +42,7 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
     <header>
-        <?php include_once('includes/header.php') ?>
+        <?php include_once('../includes/header.php') ?>
     </header>
     <span>Bonjour <?= $_SESSION['email'] ?> !</span>
     <h1>Bienvenue au MNS Football Club</h1>
@@ -77,7 +77,7 @@ if (!isset($_SESSION['user_id'])) {
     </section>
     <!-- Mes réservations -->
     <footer>
-        <?php include_once('includes/footer.php') ?>
+        <?php include_once('../includes/footer.php') ?>
     </footer>
 
 </body>

@@ -5,8 +5,12 @@
     --color-white: #f8f9fa;
     --color-light: #ebebeb;
     --color-red: #c80000;
+    --color-green: #609f08;
     --color-gray: #6b7280;
-    --color-dark: #2d2d44;
+    --color-grey: #5d5d5d;
+    --color-dark: #373737;
+    --color-marine: #2d2d44;
+
     /* Les textes */
     --font-heading: 'Montserrat', sans-serif;
     --font-body: 'Roboto', sans-serif;

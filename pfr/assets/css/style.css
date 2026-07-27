@@ -1,25 +1,30 @@
+/* COMPONENT */
+/********/
+button {
+    color: var(--color-white);
+    background-color: var(--color-secondary);
+    border: 0;
+    border-radius: var(--border-radius-xl);
+    font-weight: bold;
+    width: 90%;
+    height: 40px;
+    margin: 20px auto 0;
+}
+
+button:hover {
+    color: var(--color-secondary);
+    background-color: var(--color-white);
+    border: 2px solid var(--color-secondary);
+}
+
+/* MAIN */
+/********/
 body {
     font-family: var(--font-heading);
     text-align: justify;
     box-sizing: border-box;
 }
 
-button {
-    height: 40px;
-    background-color: var(--color-light);
-    color: var(--color-secondary);
-    font-weight: bold;
-    border: 2px solid var(--color-secondary);
-    border-radius: var(--border-radius-one);
-}
-
-button:hover {
-    background-color: var(--color-secondary);
-    color: var(--color-light);
-}
-
-/* MAIN */
-/********/
 main .hero .card-body button {
     border-radius: var(--border-radius-two);
     width: 80%;
@@ -99,8 +104,8 @@ footer .footer {
 }
 
 footer a,
-a:visited,
-a:active {
+footer a:visited,
+footer a:active {
     color: inherit;
     text-decoration: none;
     font-weight: bold;

@@ -1,0 +1,814 @@
+body {
+    font-family: var(--font-heading);
+    text-align: justify;
+    box-sizing: border-box;
+
+}
+
+/* MAIN */
+main .container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin: auto;
+    min-width: 95vw;
+    min-height: 95vh;
+}
+
+main .container .dashboard {
+    background-color: var(--color-white);
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: var(--border-radius-m);
+    margin: 0 var(--margin-m);
+}
+
+main .container .dashboard .dash-sidebar {
+    color: var(--color-light);
+    background-color: var(--color-primary);
+    border-radius: var(--border-radius-m) 0 0 var(--border-radius-m);
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    width: 35%;
+    max-width: 300px;
+    position: relative;
+}
+
+main .container .dashboard .dash-sidebar div {
+    color: var(--color-gray);
+    width: 100%;
+    border-bottom: 1px solid var(--color-gray);
+    font-size: 0.8rem;
+    padding: var(--padding-m);
+}
+
+main .container .dashboard .dash-sidebar ul {
+    width: 100%;
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 250px;
+}
+
+main .container .dashboard .dash-sidebar ul li {
+    padding: var(--padding-m) 0;
+}
+
+main .container .dashboard .dash-sidebar li:hover {
+    background-color: var(--color-secondary);
+}
+
+main .container .dashboard a {
+    color: var(--color-light);
+    text-decoration: none;
+    width: 100%;
+    padding: var(--padding-m);
+}
+
+main .container .dashboard .dash-sidebar a:hover,
+main .container .dashboard .dash-sidebar a:active {
+    background-color: var(--color-secondary);
+}
+
+main .container .dashboard .dash-sidebar div:last-child {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0px;
+}
+
+main .container .dashboard .dash-content {
+    background-color: var(--color-gray);
+    /* border: 0.5px solid var(--color-primary); */
+    border-radius: 0 var(--border-radius-m) var(--border-radius-m) 0;
+    flex: 1;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding-bottom: var(--border-radius-l);
+    position: relative;
+}
+
+main .container .dashboard .dash-content .dash-head {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: var(--margin-m) 0 0;
+}
+
+main .container .dashboard .dash-content .dash-head div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-light);
+    width: 70%;
+    margin: var(--margin-m) auto;
+}
+
+main .container .dashboard .dash-content .dash-head div:first-child span:first-child {
+    width: 20%;
+    background-color: var(--color-secondary);
+    border-radius: var(--border-radius-m) 0 0 var(--border-radius-m);
+    min-height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--padding-s);
+}
+
+main .container .dashboard .dash-content .dash-head div:first-child span:last-child {
+    flex: 1;
+    background-color: var(--color-grey);
+    border-radius: 0 var(--border-radius-m) var(--border-radius-m) 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 0.8rem;
+    min-height: 30px;
+    padding: var(--padding-s);
+}
+
+main .container .dashboard .dash-content .dash-head div:last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-light);
+    background-color: var(--color-grey);
+    border-radius: var(--border-radius-m);
+    font-size: 0.8rem;
+    width: 70%;
+    padding: var(--padding-m);
+    margin: var(--margin-m) auto;
+}
+
+main .container .dashboard .dash-content .kpi,
+main .container .dashboard .dash-content .friend,
+main .container .dashboard .dash-content .match {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--color-light);
+    background-color: var(--color-primary);
+    border-radius: var(--border-radius-m);
+    font-size: 0.8rem;
+    width: 70%;
+    min-height: 50px;
+    padding: var(--padding-s) var(--padding-l);
+    margin: var(--margin-m) auto 0;
+}
+
+main .container .dashboard .dash-content .kpi div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--color-light);
+    background-color: var(--color-primary);
+    border-radius: var(--border-radius-m);
+    font-size: 0.8rem;
+    width: 70%;
+    min-height: 50px;
+    padding: var(--padding-s) var(--padding-l);
+    margin: var(--margin-m) auto 0;
+}
+
+main .container .dashboard .dash-content .kpi div span {
+    text-align: center;
+    font-size: 0.7rem;
+    padding: 0 var(--padding-m);
+}
+
+main .container .dashboard .dash-content .kpi div span:first-child {
+    color: var(--color-secondary);
+    font-size: 0.8rem;
+}
+
+main .container .dashboard .dash-content .kpi div span:nth-child(2) {
+    color: var(--color-gray);
+}
+
+main .container .dashboard .dash-content .title {
+    display: flex;
+    justify-content: center;
+    color: var(--color-light);
+    font-size: 0.8rem;
+    background-color: var(--color-grey);
+    border-radius: var(--border-radius-m);
+    width: 70%;
+    padding: var(--padding-m);
+    margin: var(--margin-l) auto var(--margin-l);
+}
+
+main .container .dashboard .dash-content .card {
+    color: var(--color-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.6rem;
+    margin: var(--margin-l) var(--margin-m);
+}
+
+main .container .dashboard .dash-content .card div:first-child {
+    background-color: var(--color-primary);
+    border-radius: var(--border-radius-m) 0 0 var(--border-radius-m);
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 var(--padding-s);
+}
+
+main .container .dashboard .dash-content .card div:last-child {
+    color: var(--color-gray);
+    flex: 1;
+}
+
+main .container .dashboard .dash-content .card div:last-child div:first-child {
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-dark);
+    border-radius: 0 var(--border-radius-m) 0 0;
+    font-size: 0.8rem;
+    width: 100%;
+    padding: var(--padding-s) 0;
+}
+
+main .container .dashboard .dash-content .card div:last-child div:first-child a {
+    width: 100%;
+}
+
+main .container .dashboard .dash-content .card div:last-child div:last-child {
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-red);
+    border-radius: 0 0 var(--border-radius-m) 0;
+    font-size: 0.8rem;
+    width: 100%;
+    padding: var(--padding-s) 0;
+}
+
+/* COMPTE */
+/* ****** */
+main .container .dashboard .dash-content form .form-item {
+    display: flex;
+    width: 90%;
+    margin: 10px auto;
+}
+
+main .container .dashboard .dash-content form .form-item input,
+main .container .dashboard .dash-content form .form-item select {
+    color: var(--color-primary);
+    border: 0.5px solid var(--color-gray);
+    border-radius: var(--border-radius-s);
+    text-align: center;
+    width: 100%;
+    height: 30px;
+    margin: 0 auto;
+}
+
+main .container .dashboard .dash-content form .city {
+    display: flex;
+    justify-content: space-between;
+    gap:30px
+}
+
+main .container .dashboard .dash-content form .city input {
+    width: 45%;
+}
+
+/* ABONNES */
+/* ******* */
+main .container .dashboard .dash-content .user {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 90%;
+    margin: var(--margin-m) auto 0;
+}
+
+main .container .dashboard .dash-content .user .user-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--color-light);
+    background-color: var(--color-primary);
+    border-radius: var(--border-radius-m) 0 0 var(--border-radius-m);
+    width: 70%;
+    padding: var(--border-radius-m);
+}
+
+main .container .dashboard .dash-content .user .user-data span:first-child {
+    color: var(--color-secondary);
+}
+
+main .container .dashboard .dash-content .user .user-data span:last-child {
+    color: var(--color-gray);
+}
+
+main .container .dashboard .dash-content .user .user-modify {
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 var(--border-radius-m);
+    flex: 1;
+}
+
+main .container .dashboard .dash-content .user .user-change {
+    display: flex;
+    text-align: center;
+    background-color: var(--color-dark);
+    height: 50%;
+    border-radius: 0 var(--border-radius-m) 0 0;
+}
+
+main .container .dashboard .dash-content .user .user-delete {
+    display: flex;
+    text-align: center;
+    background-color: var(--color-red);
+    flex: 1;
+    border-radius: 0 0 var(--border-radius-m) 0;
+}
+
+/* EVENEMENTS & RESERVATIONS */
+/* ************************ */
+main .container .dashboard .dash-content .event {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--color-light);
+    width: 80%;
+    margin: var(--margin-l) auto 0;
+}
+
+main .container .dashboard .dash-content .event .event-status {
+    background-color: var(--color-green);
+    border-radius: var(--border-radius-l) var(--border-radius-l) 0 0;
+}
+
+main .container .dashboard .dash-content .event .event-status span {
+    display: flex;
+    justify-content: center;
+    font-size: 0.7rem;
+    padding: var(--padding-s);
+}
+
+main .container .dashboard .dash-content .event .event-data {
+    background-color: var(--color-primary);
+    font-size: 0.7rem;
+}
+
+main .container .dashboard .dash-content .event .event-data span:first-child {
+    display: flex;
+    justify-content: center;
+    padding: var(--padding-s);
+}
+
+main .container .dashboard .dash-content .event .event-data span:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    color: var(--color-gray);
+}
+
+main .container .dashboard .dash-content .event .event-data span:last-child {
+    display: flex;
+    justify-content: center;
+    padding: var(--padding-s);
+}
+
+main .container .dashboard .dash-content .event .event-modify {
+    display: flex;
+    font-size: 0.7rem;
+}
+
+main .container .dashboard .dash-content .event .event-change {
+    background-color: var(--color-dark);
+    width: 50%;
+    border-radius: 0 0 0 var(--border-radius-l);
+    display: flex;
+    text-align: center;
+}
+
+main .container .dashboard .dash-content .event .event-delete {
+    background-color: var(--color-red);
+    width: 50%;
+    border-radius: 0 0 var(--border-radius-l) 0;
+    display: flex;
+    text-align: center;
+}
+
+main .container .dashboard .dash-content .cta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    margin: var(--margin-l) auto;
+}
+
+main .container .dashboard .dash-content .cta a {
+    text-align: center;
+    color: var(--color-light);
+    background-color: var(--color-secondary);
+    border: 2px solid transparent;
+    border-radius: var(--border-radius-xl);
+    font-size: 0.9rem;
+    min-height: 20px;
+}
+
+main .container .dashboard .dash-content .cta a:hover {
+    color: var(--color-secondary);
+    background-color: var(--color-light);
+    border: 2px solid var(--color-secondary);
+}
+
+main .container .dashboard .dash-content .cta .cta-change,
+main .container .dashboard .dash-content .cta .cta-delete {
+    display: block;
+    text-align: center;
+    color: var(--color-light);
+    background-color: var(--color-dark);
+    border: 2px solid transparent;
+    font-size: 0.8rem;
+    border-radius: var(--border-radius-xl);
+    width: 75%;
+    height: 20px;
+    position: absolute;
+    bottom: 80px;
+}
+
+main .container .dashboard .dash-content .cta .cta-change:hover {
+    color: var(--color-dark);
+    background-color: var(--color-light);
+    border: 2px solid var(--color-dark);
+}
+
+
+main .container .dashboard .dash-content .cta .cta-delete {
+    background-color: var(--color-red);
+    position: absolute;
+    bottom: 20px;
+}
+
+main .container .dashboard .dash-content .cta .cta-delete:hover {
+    color: var(--color-red);
+    background-color: var(--color-light);
+    border: 2px solid var(--color-red);
+}
+
+/* PRESENCES */
+/* ********* */
+
+main .container .dashboard .dash-content .event-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: var(--border-radius-m);
+}
+
+main .container .dashboard .dash-content .event-form select {
+    color: var(--color-light);
+    background-color: var(--color-grey);
+    border-radius: var(--border-radius-m);
+    font-size: 0.9rem;
+    width: 100%;
+    padding: var(--padding-m);
+}
+
+main .container .dashboard .dash-content .public {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    padding: var(--border-radius-m);
+    margin: var(--border-radius-m) auto;
+}
+
+main .container .dashboard .dash-content .public .public-data {
+    background-color: var(--color-light);
+    border-radius: var(--border-radius-m) var(--border-radius-m) 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: var(--border-radius-m);
+}
+
+main .container .dashboard .dash-content .public .public-attendance {
+    color: var(--color-light);
+    background-color: var(--color-primary);
+    border-bottom: 5px solid var(--color-light);
+    border-radius: 0 0 var(--border-radius-m) var(--border-radius-m);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: var(--border-radius-m);
+}
+
+main .container .dashboard .dash-content .qr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main .container .dashboard .dash-content .modal-qr {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+main .container .dashboard .dash-content .modal-qr input {
+    height: 100px;
+    border-radius: var(--border-radius-l);
+    text-align: center;
+    margin-bottom: var(--margin-l);
+    display: none;
+}
+
+/* USER EVENEMENTS */
+/* **************** */
+main .container .dashboard .dash-content .user .user-modify .user-statut {
+    display: flex;
+    text-align: center;
+    background-color: var(--color-dark);
+    border-radius: 0 var(--border-radius-m) 0 0;
+}
+
+main .container .dashboard .dash-content .user .user-book {
+    display: flex;
+    text-align: center;
+    background-color: var(--color-secondary);
+    flex: 1;
+    border-radius: 0 0 var(--border-radius-m) 0;
+}
+
+/* USER RESERVATIONS */
+/* **************** */
+
+main .container .dashboard .dash-content .user .user-status {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-light);
+    background-color: var(--color-secondary);
+    border-radius: 0 var(--border-radius-m) var(--border-radius-m) 0;
+    width: 25%;
+    font-size: 0.7rem;
+    padding: var(--border-radius-m);
+}
+
+/* USER-AMIS */
+/* ******** */
+main .container .dashboard .dash-content .friend {
+    color: var(--color-light);
+    background-color: var(--color-primary);
+    border-radius: var(--border-radius-m);
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+    padding: var(--border-radius-l);
+    margin: var(--margin-m) auto 0;
+}
+
+main .container .dashboard .dash-content .friend span {
+    text-align: center;
+}
+
+main .container .dashboard .dash-content .friend span:nth-child(2) {
+    color: var(--color-gray);
+    padding: var(--padding-s);
+}
+
+main .container .dashboard .dash-content .friend button {
+    background-color: var(--color-secondary);
+    border-radius: var(--border-radius-m);
+    width: 60%;
+    max-height: 30px;
+    margin: var(--margin-s) auto;
+}
+
+main .container .dashboard .dash-content .friend button:hover {
+    color: var(--color-secondary);
+    background-color: var(--color-light);
+}
+
+main .container .dashboard .dash-content .friend form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main .container .dashboard .dash-content .friend form input,
+main .container .dashboard .dash-content .friend form select {
+    border: 1px solid transparent;
+    border-radius: var(--border-radius-s);
+    text-align: center;
+    width: 90%;
+    height: 30px;
+    margin: var(--margin-s) auto;
+}
+
+main .container .dashboard .dash-content .friend form select {
+    margin: var(--margin-m) auto;
+}
+
+main .container .dashboard .dash-content .friend form div {
+    color: var(--color-red);
+    margin: var(--margin-m);
+    /* display: none; */
+}
+
+/* USER-MVP */
+/* ******** */
+main .container .dashboard .dash-content .match .star {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+main .container .dashboard .dash-content .match .star span {
+    color: var(--color-secondary);
+    font-size: 2rem;
+    padding: var(--padding-s) 0;
+    margin: 0 auto var(--margin-m);
+}
+
+
+/* **************** */
+/* Format tablette */
+@media screen and (min-width: 768px) {
+    header {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+
+    header h1 {
+        font-size: 3rem;
+    }
+
+    header .container nav {
+        display: block;
+        margin: 0 5px 5px 0;
+    }
+
+    header .container .burger button {
+        display: none;
+    }
+
+    header .container .cta button {
+        margin: 0 15px 5px 15px;
+    }
+
+    main .container {
+        min-width: 718px;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    main .container .dashboard {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        padding: var(--padding-xl);
+        margin: 0 var(--margin-m);
+    }
+
+    main .container .dashboard .dash-content {
+        background-color: #d4c5a1;
+        border: 0.5px solid var(--color-primary);
+        padding: var(--border-radius-l);
+    }
+
+    main .container .dashboard .dash-content .dash-head {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+        margin: auto;
+    }
+
+    main .container .dashboard .dash-content .dash-head div:first-child {
+        width: 30%;
+        margin-right: 0;
+    }
+
+    main .container .dashboard .dash-content .dash-head div:last-child {
+        width: 50%;
+    }
+
+    main .container .dashboard .dash-content .kpi {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+    }
+
+    main .container .dashboard .dash-content .kpi div {
+        width: 20%;
+        padding: var(--padding-s) var(--padding-m);
+        margin: var(--border-radius-m);
+    }
+
+    main .container .dashboard .dash-content .title {
+        display: flex;
+        width: 30%;
+        padding: var(--padding-m);
+        margin-left: var(--margin-xl);
+        margin-bottom: var(--margin-l);
+    }
+
+    main .container .dashboard .dash-content .card {
+        font-size: 0.8rem;
+        margin: var(--margin-l);
+    }
+
+    main .container .dashboard .dash-content .event-form select {
+        width: 50%;
+    }
+
+    main .container .dashboard .dash-content .public .public-data {
+        background-color: var(--color-secondary);
+    }
+
+    main .container .dashboard .dash-content .cta {
+        width: 300px;
+    }
+
+    footer .footer {
+        margin: 0 var(--margin-l);
+    }
+
+    footer .footer .mentions-desktop {
+        display: flex;
+    }
+
+    footer .footer .mentions-responsive {
+        display: none;
+    }
+
+    footer .mentions p {
+        margin: auto;
+    }
+}
+
+/* *************** */
+/* Format desktop */
+@media screen and (min-width: 992px) {
+
+    body {
+        font-size: 1rem;
+    }
+
+    main .container {
+        width: 90vw;
+        height: 90vh;
+    }
+
+    header .container {
+        max-width: 1000px;
+        margin: auto;
+        display: flex;
+    }
+
+    main .container .dashboard .dash-content .dash-head div:first-child span:last-child {
+        font-size: 0.8rem;
+    }
+
+    main .container .dashboard .dash-content .dash-head div:last-child {
+        margin-left: 0;
+    }
+
+    footer {
+        display: flex;
+        justify-content: center;
+    }
+
+    .footer {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+/* ********** */
+/* Format TV */
+@media screen and (min-width: 1200px) {
+    /* .header,
+    .container,
+    .footer {
+        max-width: 1200px;
+        margin: auto;
+    } */
+
+    main .container .dashboard .dash-content .dash-head div:first-child span:last-child {
+        font-size: 0.8rem;
+    }
+}
