@@ -8,7 +8,7 @@
 // // Insère l'utilisateur en BDD
 // // Redirige vers login.php
 session_start();
-$pdo = require_once('includes/bdd.php');
+$pdo = require_once('../includes/bdd.php');
 
 $error = null;
 
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!-- Ceci est un commentaire -->
 
 <body>
-    <?php include_once('includes/header-login.php') ?>
+    <?php include_once('../includes/header-login.php') ?>
     <main>
         <div class="container">
             <div class="connection">
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endif; ?>
         </div>
     </main>
-    <?php include_once('includes/footer.php') ?>
+    <?php include_once('../includes/footer.php') ?>
 </body>
 
 </html>

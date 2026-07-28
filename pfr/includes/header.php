@@ -8,9 +8,9 @@
     <div class="container">
         <nav>
             <ul>
-                <li><a href="events.php"><?php header('location: events.php') ?>Évènements</a></li>
+                <li><a href="../events.php">Évènements</a></li>
                 <li><a href="#">Partenaires</a></li>
-                <li><a href="contact.php"><?php header('location: events.php') ?>Contact</a></li>
+                <li><a href="contact.php">Contact</a></li>
             </ul>
         </nav>
         <div class="header-btn">

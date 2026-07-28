@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$pdo = require('includes/bdd.php');
+$pdo = require('../includes/bdd.php');
 
 $error = "";
 
@@ -56,9 +56,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/variables.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/login.css">
+    <link rel="stylesheet" href="../assets/css/variables.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/login.css">
     <!-- <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet"> -->
     <script src="assets/js/script.js" defer></script>
     <title>Login</title>
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
     <header>
-        <?php include_once('includes/header-login.php') ?>
+        <?php include_once('../includes/header-login.php') ?>
     </header>
     <main>
         <div class="container">
@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </main>
     <footer>
-        <?php include_once('includes/footer.php') ?>
+        <?php include_once('../includes/footer.php') ?>
     </footer>
 </body>
 

@@ -138,7 +138,7 @@ if (!isset($_SESSION['user_id'])) {
         <?php endif; ?>
     </main>
     <footer>
-        <?php //require_once('../includes/footer.php')
+        <?php require_once('../includes/footer.php')
         ?>
     </footer>
 </body>

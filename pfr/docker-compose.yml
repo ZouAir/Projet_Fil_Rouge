@@ -1,32 +1,5 @@
-# services:
-#   php:
-#     build: .
-
-#     container_name: php_82
-#     ports:
-#       - 8000:8000
-#     volumes:
-#       - ./:/var/www/html
-#   db:
-#     image: mysql:8.0
-#     container_name: mysql_8
-#     environment:
-#       MYSQL_ROOT_PASSWORD: rootpassword
-#       MYSQL_DATABASE: sql_dw2025_zouhair2_stagiairesmns_fr
-#       MYSQL_USER: sql_dw2025_zouhair2_stagiairesmns_fr
-#       MYSQL_PASSWORD: 7a7eb856234b7
-#     ports:
-#       - "3307:3306"
-#   phpmyadmin:
-#     image: phpmyadmin/phpmyadmin
-#     container_name: phpmyadmin
-#     environment:
-#       PMA_HOST: db
-#       MYSQL_ROOT_PASSWORD: rootpassword
-#     ports:
-#       - "8080:80"
 services:
-  # ─── PHP natif (votre projet racine) ───────────────────────────
+  # ─── PHP natif (projet racine) ───────────────────────────
   php:
     build: .
     container_name: php_82
@@ -34,28 +7,8 @@ services:
       - 8000:80
     volumes:
       - ./:/var/www/html
-
-  # ─── PHP-FPM pour Symfony ──────────────────────────────────────
-  php_symfony:
-    image: php:8.2-fpm
-    container_name: php_symfony
-    volumes:
-      - ./mns-symfony:/var/www/symfony
-    working_dir: /var/www/symfony
-    # Extensions nécessaires pour Symfony + Doctrine MySQL
-    command: >
-      sh -c "docker-php-ext-install pdo pdo_mysql && php-fpm"
-  # ─── Nginx pour Symfony ────────────────────────────────────────
-  nginx:
-    image: nginx:alpine
-    container_name: nginx_symfony
-    ports:
-      - "8001:80" # Symfony accessible sur http://localhost:8001
-    volumes:
-      - ./mns-symfony:/var/www/symfony # Code source
-      - ./nginx/symfony.conf:/etc/nginx/conf.d/default.conf # Config Nginx
     depends_on:
-      - php_symfony
+      - db
 
   # ─── Base de données MySQL ─────────────────────────────────────
   db:
@@ -66,6 +19,8 @@ services:
       MYSQL_DATABASE: ACA
       MYSQL_USER: zou
       MYSQL_PASSWORD: aca2026
+    volumes:
+      - mysql_data:/var/lib/mysql
     ports:
       - "3307:3306"
   # ─── phpMyAdmin ────────────────────────────────────────────────
@@ -74,6 +29,12 @@ services:
     container_name: phpmyadmin
     environment:
       PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: rootpassword
+      PMA_USER: zou
+      MYSQL_ROOT_PASSWORD: aca2026
     ports:
       - "8080:80"
+    depends_on:
+      - db
+
+volumes:
+  mysql_data:
