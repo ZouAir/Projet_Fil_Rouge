@@ -1,18 +1,13 @@
 header {
+    background-color: var(--color-primary);
     border-top: 5px solid var(--color-secondary);
     border-bottom: 1px solid var(--color-secondary);
     border-radius: 5px 5px 0 0;
-    background-color: var(--color-primary);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
-
-/* header .box {
-    width: 90%;
-    margin: auto;
-} */
 
 header .header {
     display: flex;
@@ -72,7 +67,7 @@ header a:hover {
     color: var(--color-light);
     background-color: var(--color-dark);
     border: 1px solid var(--color-gray);
-    border-radius: var(--border-radius-three);
+    border-radius: var(--border-radius-l);
 }
 
 header .container .header-btn {
@@ -92,7 +87,7 @@ header .container .burger,
 
 header .container .burger button {
     width: 40px;
-    border-radius: var(--border-radius-three);
+    border-radius: var(--border-radius-l);
     position: absolute;
     top: 5px;
     left: 0;

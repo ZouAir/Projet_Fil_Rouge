@@ -198,7 +198,7 @@ main .container .dashboard .dash-content .title {
     border-radius: var(--border-radius-m);
     width: 70%;
     padding: var(--padding-m);
-    margin: var(--margin-l) auto var(--margin-l);
+    margin: var(--margin-l) auto;
 }
 
 main .container .dashboard .dash-content .card {

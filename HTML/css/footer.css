@@ -1,13 +1,14 @@
 /* FOOTER */
-footer .footer {
-    background-color: var(--color-primary);
+footer {
     color: var(--color-gray);
+    background-color: var(--color-primary);
     border-top: 5px solid var(--color-secondary);
-    border-radius: 0 0 var(--border-radius-three) var(--border-radius-three);
+    border-radius: 0 0 var(--border-radius-l) var(--border-radius-l);
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 110px;
+    padding: 0 var(--padding-s);
 }
 
 footer a,
@@ -29,6 +30,7 @@ footer .logo a img {
 
 footer .mentions {
     display: flex;
+    text-align: center;
 }
 
 footer .mentions p {
@@ -49,4 +51,15 @@ footer .reseaux a img {
 
 footer .reseaux a img:hover {
     background-color: var(--color-secondary);
+}
+
+/* Format desktop */
+@media screen and (min-width: 992px) {
+    footer {
+        padding: 0 var(--padding-l);
+    }
+
+    footer .reseaux a img {
+        width: 30px;
+    }
 }

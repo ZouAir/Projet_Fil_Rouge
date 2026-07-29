@@ -30,7 +30,7 @@ services:
     environment:
       PMA_HOST: db
       PMA_USER: zou
-      MYSQL_ROOT_PASSWORD: aca2026
+      PMA_PASSWORD: aca2026
     ports:
       - "8080:80"
     depends_on:

@@ -14,7 +14,7 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : 'Invité';
 
 // Récupérer les events à venir depuis la table events
 $query = $pdo->prepare("SELECT * FROM events WHERE date >= now() 
-Order BY date DESC");
+Order BY date ASC");
 $query->execute();
 $events = $query->fetchALL(PDO::FETCH_ASSOC);
 // $seats_taken = /*Logique métier : requette SQL total places reservées*/ ;
@@ -31,8 +31,8 @@ $events = $query->fetchALL(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../assets/css/variables.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <!-- <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet"> -->
-    <script src="assets/js/script.js" defer></script>
-    <title>Login</title>
+    <script src="../assets/js/script.js" defer></script>
+    <title>GEST CLUB - PFR</title>
 </head>
 
 <body>
