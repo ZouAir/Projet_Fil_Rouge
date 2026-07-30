@@ -1,7 +1,7 @@
 <?php
 try {
     $pdo = new PDO(
-        "mysql:host=db:3306;dbname=ACA;charset=utf8",
+        "mysql:host=db;port=3306;dbname=ACA;charset=utf8",
         "zou",
         "aca2026"
     );
