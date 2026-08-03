@@ -37,23 +37,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 ?>
-<html>
+
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/variables.css">
-    <link rel="stylesheet" href="assets/css/login.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <!-- <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet"> -->
+    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/footer.css" rel="stylesheet">
+    <link href="../assets/css/variables.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/login.css" rel="stylesheet">
+    <!-- <link href="../assets/css/dashboard.css" rel="stylesheet"> -->
+    <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
     <script src="assets/js/script.js" defer></script>
-    <title>Login</title>
+    <title>Inscription</title>
 </head>
 
 <!-- Ceci est un commentaire -->
 
 <body>
-    <?php include_once('../includes/header-login.php') ?>
+    <?php include_once('../includes/header.php') ?>
     <main>
         <div class="container">
             <div class="connection">

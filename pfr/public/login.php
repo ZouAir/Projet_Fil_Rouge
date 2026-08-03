@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$pdo = require('../includes/bdd.php');
+$pdo = require_once('../includes/bdd.php');
 
 $error = "";
 
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             exit;
         } else {
-            $error = "Identifiant ou mot de passe incorrects.";
+            $error = "Identifiant ou mot de passe incorrect.";
         }
     }
 }
@@ -62,7 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="../assets/css/style.css" rel="stylesheet">
     <link href="../assets/css/login.css" rel="stylesheet">
     <!-- <link href="../assets/css/dashboard.css" rel="stylesheet"> -->
-    <link rel="stylesheet" href="../assets/css/login.css">
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
     <script src="assets/js/script.js" defer></script>
     <title>Login</title>
@@ -72,24 +71,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php include_once('../includes/header.php') ?>
     <main>
         <div class="container">
-            <!-- <div class="connection">
-                <p>connexion</p>
-            </div> -->
-            <div class="field">
-                <form method="POST" action="login.php" class="form">
-                    <input type="email" name="email" id="email" placeholder="Email">
-                    <input type="password" id="password" name="password" placeholder="Mot de passe">
-                    <button type="submit">se connecter</button>
-                </form>
-                <?php if ($error): ?>
-                    <p class="error"><?= htmlspecialchars($error) ?></p>
-                <?php endif; ?>
-                <div class="field-two">
-                    <a id="password-forgot" href="password-oublie.php" target="_blank">Mot de passe oublié ?</a>
-                    <!-- lien vers password forgort -->
+            <div class="login-left">
+                <img src="./images/stade.jpg" alt="">
+            </div>
+            <div class="login-right">
+                <div class="login-title">
+                    <p>connexion</p>
                 </div>
-                <div class="field-three">
-                    <a id="subscribe" href="inscription.php" target="_blank">inscription</a>
+                <div class="login">
+                    <form action="login.php" method="POST">
+                        <input type="email" name="email" id="email" placeholder="Email">
+                        <input type="password" name="password" id="password" placeholder="Mot de passe">
+                        <button type="submit">se connecter</button>
+                    </form>
+                    <?php if ($error): ?>
+                        <div class="error"><?= htmlspecialchars($error) ?></div>
+                    <?php endif; ?>
+                    <div class="login-pwd">
+                        <a id="pwd-forgot" href="password-oublie.php" target="_blank">Mot de passe oublié ?</a>
+                    </div>
+                    <div class="login-link">
+                        <a id="subscribe" href="inscription.php" target="_blank">inscription</a>
+                    </div>
                 </div>
             </div>
         </div>

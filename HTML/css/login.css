@@ -4,10 +4,6 @@ body {
     box-sizing: border-box;
 }
 
-header {
-    height: 20%;
-}
-
 /* MAIN */
 /********/
 
@@ -40,21 +36,23 @@ main .container .login-right {
     margin: 0 auto;
 }
 
-main .container .login-right p {
+main .container .login-right .login-title {
     color: var(--color-secondary);
     background-color: var(--color-primary);
     border-radius: var(--border-radius-l);
     font-weight: bold;
     text-transform: capitalize;
-    padding: var(--padding-l);
+    padding: var(--padding-s);
+    margin: var(--margin-l) auto 0;
 }
 
 main .container .login {
     background-color: var(--color-light);
     border-radius: var(--border-radius-m);
     width: 100%;
-    margin: var(--margin-xl) auto var(--margin-l);
     padding: var(--padding-l) 0;
+    margin: var(--margin-l) auto;
+
 }
 
 main .container .login-right .login form,
@@ -64,7 +62,6 @@ main .container .login-right .login .login-link {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* margin: var(--margin-m); */
 }
 
 main input {
@@ -74,6 +71,10 @@ main input {
     width: 90%;
     height: 40px;
     box-shadow: unset;
+}
+
+main .container form input::placeholder {
+    color: var(--color-light);
 }
 
 main .container .login form input::placeholder {
@@ -123,65 +124,34 @@ main .container .login .login-link a {
     margin-top: var(--margin-l);
 }
 
-/* main .container .field .rules {
-    width: 90%;
-    border-radius: var(--border-radius-s);
+main .container .login .info {
     color: var(--color-light);
-    background-color: var(--color-gray);
-    margin: var(--border-radius-m) auto 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    background-color: var(--color-grey);
+    border-radius: var(--border-radius-s);
+    text-align: center;
     font-size: 0.8rem;
-} */
-
-main .container .field .rules p,
-ul {
+    width: 90%;
     padding: var(--padding-s);
-    margin: auto;
+    margin: var(--margin-m) auto;
+}
+
+main .container .login form .rules {
+    width: 80%;
 }
 
 #name,
 #firstname,
 #phone,
 #email,
-#password,
-#password-confirm {
+#pwd,
+#pwd-confirm {
     color: var(--color-light);
     background-color: var(--color-primary);
     margin: var(--margin-m) auto 0;
 }
 
-
-
-/* #subscribe {
-    color: var(--color-secondary);
-    background-color: var(--color-primary);
-    border: 0;
-    width: 90%;
-    height: 30px;
-    border-radius: var(--border-radius-xl);
-    text-align: center;
-    align-content: center;
-    text-decoration: none;
-    text-transform: capitalize;
-    margin: 50px auto 10;
-} */
-
-footer {
-    height: 20%;
-}
-
 /* Format tablette */
 @media screen and (min-width: 768px) {
-
-    /* .container {
-        width: 80%;
-        margin: auto;
-        display: flex;
-        justify-content: end;
-        align-items: center;
-    } */
 
     main .container .login-left {
         display: none;
@@ -224,7 +194,13 @@ footer {
         border-radius: var(--border-radius-m);
     }
 
+    main .container .login .info {
+        width: 40%;
+    }
 
+    main .container .login form .rules {
+        width: 100%;
+    }
 }
 
 /* Format TV */
