@@ -54,10 +54,10 @@ $events = $query->fetchAll(PDO::FETCH_ASSOC);
                 <tr>
                     <th scope="col">Nom</th>
                     <th scope="col">Date</th>
-                    <th scope="col">Heure</th>
                     <th scope="col">Prix</th>
                     <th scope="col">Description</th>
                     <th scope="col">Capacité</th>
+                    <th scope="col">Image</th>
                     <th scope="col">Status</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -68,10 +68,10 @@ $events = $query->fetchAll(PDO::FETCH_ASSOC);
                         <tr>
                             <td><?= htmlspecialchars($event['name']) ?></td>
                             <td><?= htmlspecialchars($event['date']) ?></td>
-                            <td><?= htmlspecialchars($event['hour']) ?></td>
                             <td><?= htmlspecialchars($event['price']) ?></td>
                             <td><?= htmlspecialchars($event['description']) ?></td>
                             <td><?= htmlspecialchars($event['capacity']) ?></td>
+                            <td><?= htmlspecialchars($event['image']) ?></td>
                             <td><?= htmlspecialchars($event['status']) ?></td>
                             <td>
                                 <a href="admin-modifier-event.php?id=<?= htmlspecialchars($event['id']) ?>">Modifier</a>

@@ -13,7 +13,7 @@ $pdo = require_once('../includes/bdd.php');
 $email = isset($_SESSION['email']) ? $_SESSION['email'] : 'Invité';
 
 // Récupérer les events à venir depuis la table events
-$query = $pdo->prepare("SELECT e.date, e.name AS evenement, e.description, e.capacity, e.price, e.status, c.id, c.name AS categorie 
+$query = $pdo->prepare("SELECT e.date, e.name AS evenement, e.description, e.image, e.capacity, e.price, e.status, c.id, c.name AS categorie 
 FROM events e  
 INNER JOIN categories c ON e.categories_id = c.id   
 WHERE date >= now()   
@@ -36,8 +36,9 @@ $events = $query->fetchALL(PDO::FETCH_ASSOC);
     <link href="../assets/css/footer.css" rel="stylesheet">
     <link href="../assets/css/variables.css" rel="stylesheet">
     <link href="../assets/css/style.css" rel="stylesheet">
-    <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+    <!-- <link href="../assets/css/login.css" rel="stylesheet"> -->
     <!-- <link href="../assets/css/dashboard.css" rel="stylesheet"> -->
+    <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
     <title>MNS Football Club</title>
 </head>
 
@@ -61,7 +62,7 @@ $events = $query->fetchALL(PDO::FETCH_ASSOC);
                         <li>
                             <div class="card">
                                 <p><?= $row['date'] . " - " . $row['categorie'] ?></p>
-                                <img src="../assets/images/stade.jpg" alt="">
+                                <img src="<?= $row['image'] ?>" alt="">
                                 <p><?= htmlspecialchars($row['evenement']) ?></p>
                                 <p><?= htmlspecialchars(substr($row['description'], 0, 50)) ?></p>
                                 <p><?= $row['capacity'] ?> places disponibles - <?= $row['price'] ?> euros</p>

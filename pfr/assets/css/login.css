@@ -5,160 +5,125 @@ body {
 }
 
 header {
-    background-color: var(--color-primary);
-    border-bottom: 5px solid var(--color-secondary);
-    border-radius: 5px 5px 0 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header .header {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-}
-
-header .header img {
-    width: 60px;
-    height: 100%;
-}
-
-header .header .title {
-    display: flex;
-    width: 60%;
-    margin: auto;
-    justify-content: center;
-}
-
-header h1 {
-    text-transform: uppercase;
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--color-secondary);
-}
-
-header .container {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    position: relative;
-}
-
-header nav {
-    display: none;
-}
-
-header nav ul {
-    display: flex;
-}
-
-header nav ul li {
-    display: inline-block;
-}
-
-header nav ul li a,
-a:visited,
-a:active {
-    color: var(--color-gray);
-    text-decoration: none;
-    padding: var(--padding-s);
-    margin-right: var(--margin-s);
-    font-weight: bold;
-}
-
-header a:hover {
-    color: var(--color-light);
-    background-color: var(--color-dark);
-    border: 1px solid var(--color-gray);
-    border-radius: var(--border-radius-l);
-}
-
-header .container .header-btn {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header .container .burger,
-.cta {
-    align-items: center;
-}
-
-header .container .burger button {
-    width: 40px;
-    border-radius: var(--border-radius-l);
-    position: absolute;
-    top: 5px;
-    left: 0;
-}
-
-header .container .cta button {
-    margin: 5px 5px 5px 0;
+    height: 20%;
 }
 
 /* MAIN */
 /********/
+
+main {
+    background-color: var(--color-light);
+    padding: var(--padding-m);
+}
+
 main .container {
     background-color: var(--color-gray);
     border-radius: var(--border-radius-m);
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    margin: var(--margin-m) auto;
-    padding: var(--margin-m) 0;
+    justify-content: center;
+    height: 55%;
+    padding: var(--padding-s);
+    gap: 20px;
 }
 
-main .container div:first-child {
+main .container .login-left {
     display: none;
 }
 
-main .container .connection {
-    width: 80%;
-    height: 40px;
-    background-color: var(--color-primary);
+main .container .login-right {
     border-radius: var(--border-radius-m);
+    width: 95%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    padding: var(--border-radius-s);
-    margin: var(--margin-l) auto 0;
+    margin: 0 auto;
 }
 
-main .container .connection p {
+main .container .login-right p {
     color: var(--color-secondary);
+    background-color: var(--color-primary);
+    border-radius: var(--border-radius-l);
     font-weight: bold;
     text-transform: capitalize;
+    padding: var(--padding-l);
 }
 
-main .container .field {
-    background-color: #fff;
+main .container .login {
+    background-color: var(--color-light);
     border-radius: var(--border-radius-m);
-    width: 90%;
+    width: 100%;
     margin: var(--margin-xl) auto var(--margin-l);
     padding: var(--padding-l) 0;
 }
 
-main .container .field .field-two,
-.field-three,
-form {
+main .container .login-right .login form,
+main .container .login-right .login .login-pwd,
+main .container .login-right .login .login-link {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* margin: var(--margin-m); */
 }
 
 main input {
-    width: 90%;
-    border-radius: var(--border-radius-s);
-    height: 30px;
     color: var(--color-light);
+    border-radius: var(--border-radius-m);
+    font-size: 1rem;
+    width: 90%;
+    height: 40px;
     box-shadow: unset;
 }
 
-main .container .field input::placeholder {
+main .container .login form input::placeholder {
     text-align: center;
 }
 
-main .container .field .rules {
+main .container .login form button,
+main .container .login .login-pwd a,
+main .container .login .login-link a {
+    color: var(--color-light);
+    background-color: var(--color-secondary);
+    border: 2px solid transparent;
+    border-radius: var(--border-radius-xl);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: capitalize;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    box-sizing: border-box;
+    width: 90%;
+    height: 40px;
+    margin-top: var(--margin-xxl);
+}
+
+main .container .login button:hover,
+main .container .login .login-link a:hover {
+    color: var(--color-secondary);
+    background-color: var(--color-light);
+    border: 2px solid var(--color-secondary);
+}
+
+main .container .login .login-pwd a {
+    color: var(--color-light);
+    background-color: var(--color-gray);
+    margin-top: var(--margin-xl);
+}
+
+main .container .login .login-pwd a:hover {
+    color: var(--color-gray);
+    background-color: var(--color-light);
+    border: 2px solid var(--color-gray);
+}
+
+main .container .login .login-link a {
+    margin-top: var(--margin-l);
+}
+
+/* main .container .field .rules {
     width: 90%;
     border-radius: var(--border-radius-s);
     color: var(--color-light);
@@ -168,24 +133,12 @@ main .container .field .rules {
     flex-direction: column;
     justify-content: center;
     font-size: 0.8rem;
-}
+} */
 
 main .container .field .rules p,
 ul {
     padding: var(--padding-s);
     margin: auto;
-}
-
-main .container .field button {
-    width: 90%;
-    height: 30px;
-    color: var(--color-light);
-    background-color: var(--color-secondary);
-    border: none;
-    border-radius: var(--border-radius-xl);
-    text-transform: capitalize;
-    font-weight: bold;
-    margin: 50px auto 5px;
 }
 
 #name,
@@ -199,20 +152,9 @@ main .container .field button {
     margin: var(--margin-m) auto 0;
 }
 
-#password-forgot {
-    color: var(--color-light);
-    background-color: var(--color-gray);
-    border-radius: var(--border-radius-xl);
-    border: 0;
-    width: 90%;
-    height: 30px;
-    text-align: center;
-    align-content: center;
-    text-decoration: none;
-    margin: 5px auto;
-}
 
-#subscribe {
+
+/* #subscribe {
     color: var(--color-secondary);
     background-color: var(--color-primary);
     border: 0;
@@ -224,161 +166,75 @@ main .container .field button {
     text-decoration: none;
     text-transform: capitalize;
     margin: 50px auto 10;
-}
+} */
 
-/* FOOTER */
-/**********/
 footer {
-    background-color: var(--color-primary);
-    color: var(--color-gray);
-    border-top: 5px solid var(--color-secondary);
-    border-radius: 0 0 var(--border-radius-l) var(--border-radius-l);
+    height: 20%;
 }
-
-footer .footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-footer a,
-a:visited,
-a:active {
-    color: inherit;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-footer a:hover {
-    color: var(--color-secondary);
-}
-
-footer .logo a img {
-    width: 60px;
-    height: 100%;
-    min-width: 50px;
-    border-radius: 0 0 0 var(--border-radius-m);
-}
-
-footer .footer .mentions-desktop {
-    display: none;
-}
-
-footer .reseaux {
-    display: flex;
-    margin-right: var(--border-radius-m);
-}
-
-footer .reseaux a img {
-    width: 20px;
-    padding: var(--padding-s);
-    margin: 5px;
-    background-color: var(--color-gray);
-    border-radius: 5px;
-}
-
-footer .reseaux a img:hover {
-    background-color: var(--color-secondary);
-}
-
-
-/* Format mini-tablette */
-@media screen and (max-width:576px) {}
-
 
 /* Format tablette */
 @media screen and (min-width: 768px) {
-    header {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-    }
 
-    header h1 {
-        font-size: 3rem;
-    }
-
-    .container {
-        width: 718px;
+    /* .container {
+        width: 80%;
         margin: auto;
         display: flex;
         justify-content: end;
         align-items: center;
-    }
+    } */
 
-    header .container nav {
-        display: block;
-        margin: 0 5px 5px 0;
-    }
-
-    header .container .burger button {
+    main .container .login-left {
         display: none;
     }
 
-    header .container .cta button {
-        margin: 0 15px 5px 15px;
-    }
-
-    footer .footer {
-        margin: 0 var(--margin-l);
-    }
-
-    footer .footer .mentions-desktop {
-        display: flex;
-    }
-
-    footer .footer .mentions-responsive {
-        display: none;
-    }
-
-    footer .mentions p {
-        margin: auto;
-    }
 }
 
 /* Format desktop */
-@media screen and (min-width: 992px) and (max-width: 1200px) {
+@media screen and (min-width: 992px) {
 
-    header .container {
-        width: 1000px;
+    body {
+        width: 90vw;
         margin: auto;
-        display: flex;
-    }
-
-    .container {
-        max-width: 1100px;
     }
 
     main .container {
         display: flex;
         flex-direction: row;
-    }
-
-    main .container div:first-child {
-        display: block;
-    }
-
-    footer {
-        display: flex;
-        justify-content: center;
-    }
-
-    .footer {
-        display: flex;
+        align-items: center;
         justify-content: space-between;
+        width: 90%;
+        gap: 40px;
+        padding: 0 var(--padding-xl);
+        margin: auto;
     }
+
+    main .container .login-right {
+        width: 50%;
+    }
+
+    main .container .login-left {
+        display: block;
+        flex: 1;
+    }
+
+    main .container .login-left img {
+        height: 90%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: var(--border-radius-m);
+    }
+
+
 }
 
 /* Format TV */
 @media screen and (min-width: 1200px) {
 
-    /* .header,
-    .container,
-    .footer {
-        max-width: 1200px;
-        margin: auto;
-    } */
     main .container div:first-child {
         display: block;
     }
 }
+
+/***************/
+/* A CORRIGER */
+/*************/

@@ -56,23 +56,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/variables.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/footer.css" rel="stylesheet">
+    <link href="../assets/css/variables.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/login.css" rel="stylesheet">
+    <!-- <link href="../assets/css/dashboard.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="../assets/css/login.css">
-    <!-- <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet"> -->
+    <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
     <script src="assets/js/script.js" defer></script>
     <title>Login</title>
 </head>
 
 <body>
-    <header>
-        <?php include_once('../includes/header-login.php') ?>
-    </header>
+    <?php include_once('../includes/header.php') ?>
     <main>
         <div class="container">
-            <div class="connection">
+            <!-- <div class="connection">
                 <p>connexion</p>
-            </div>
+            </div> -->
             <div class="field">
                 <form method="POST" action="login.php" class="form">
                     <input type="email" name="email" id="email" placeholder="Email">
@@ -92,9 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
     </main>
-    <footer>
-        <?php include_once('../includes/footer.php') ?>
-    </footer>
+    <?php include_once('../includes/footer.php') ?>
 </body>
 
 </html>

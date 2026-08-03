@@ -31,12 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $hour = $_POST['hour'];
         $price = (int)$_POST['price'];
         $description = $_POST['description'];
+        $image = $_POST['image'];
         $capacity = (int)$_POST['capacity'];
         $status = $_POST['status'];
         $categories = $_POST['categories'];
 
-        $query = $pdo->prepare("INSERT INTO events (name, date, hour, price, description, capacity, status, categories_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $query->execute([$name, $date, $hour, $price, $description, $capacity, $status, $categories]);
+        $query = $pdo->prepare("INSERT INTO events (name, date, hour, price, description, image, capacity, status, categories_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $query->execute([$name, $date, $hour, $price, $description, $image, $capacity, $status, $categories]);
 
         header('Location: admin-events.php');
         exit;
@@ -66,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 </head>
 
 <body>
-    <header><!--ici le header --></header>
+    <?php require_once('header.php') ?>
     <main>
         <h1>Tableau de bord "Administrateur"</h1>
         <h2>Ajouter un nouvel évènement</h2>
@@ -110,11 +111,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 </div>
             </div>
             <div class="form-group">
+                <label for="image">Image</label>
+                <div>
+                    <input type="text" id="image" name="image">
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="status">Statut</label>
                 <div>
                     <select name="status" id="status">
                         <option value="">Choisir</option>
-                        <option value="a_venir">A venir</option>
+                        <option value="a_venir">À venir</option>
                         <option value="confirme">Confirmé</option>
                         <option value="reporte">Reporté</option>
                         <option value="annule">Annulé</option>
@@ -141,10 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             <p style="color:red"><?= $error ?></p>
         <?php endif; ?>
     </main>
-    <footer>
-        <?php //require_once(footer.php)
-        ?>
-    </footer>
+    <?php require_once('footer.php') ?>
 </body>
 
 </html>

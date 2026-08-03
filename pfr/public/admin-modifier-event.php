@@ -42,10 +42,10 @@
         $id = $_POST['id'];
         $name = $_POST['name'];
         $date = $_POST['date'];
-        $hour = $_POST['hour'];
         $price = (int)$_POST['price'];
         $description = $_POST['description'];
         $capacity = (int)$_POST['capacity'];
+        $image = $_POST['image'];
         $status = $_POST['status'];
         $categories = $_POST['categories_id'];
 
@@ -58,6 +58,7 @@
                 price = :price, 
                 description = :description, 
                 capacity = :capacity, 
+                image = :image,
                 status = :status, 
                 categories_id = :categories_id
                 WHERE id = :id"
@@ -65,10 +66,10 @@
             $query->execute([
                 ':name' => $name,
                 ':date' => $date,
-                ':hour' => $hour,
                 ':price' => $price,
                 ':description' => $description,
                 ':capacity' => $capacity,
+                ':image' => $image,
                 ':status' => $status,
                 ':categories_id' => $categories,
                 ':id' => $id
@@ -98,7 +99,7 @@
  </head>
 
  <body>
-     <header><!--ici le header --></header>
+     <?php require_once('header.php') ?>
      <main>
          <h1>Tableau de bord "Administrateur"</h1>
          <h2>Modifier un évènement</h2>
@@ -136,9 +137,15 @@
                  </div>
              </div>
              <div class="form-group">
-                 <label for="capacity">capacité</label>
+                 <label for="capacity">Capacité</label>
                  <div>
                      <input type="number" id="capacity" name="capacity" value="<?= htmlspecialchars($currentEvent['capacity']) ?>">
+                 </div>
+             </div>
+             <div class="form-group">
+                 <label for="image">Image</label>
+                 <div>
+                     <input type="text" id="image" name="image" value="<?= htmlspecialchars($currentEvent['image']) ?>">
                  </div>
              </div>
              <div class="form-group">
@@ -175,10 +182,7 @@
              <p style="color:red"><?= $error ?></p>
          <?php endif; ?>
      </main>
-     <footer>
-         <?php //require_once(footer.php)
-            ?>
-     </footer>
+     <?php require_once('footer.php') ?>
  </body>
 
  </html>
