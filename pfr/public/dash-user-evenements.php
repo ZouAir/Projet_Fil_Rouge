@@ -1,6 +1,6 @@
 <?php
 session_start();
-$pdo = require_once('./includes/bdd.php');
+$pdo = require_once('../includes/bdd.php');
 
 $id = $_SESSION['id'];
 $name = $_SESSION['name'];
@@ -18,7 +18,9 @@ $events = $query->fetchAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./assets/css/variables.css" rel="stylesheet">
+    <link href="../assets/css/variables.css" rel="stylesheet">
+    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/footer.css" rel="stylesheet">
     <!-- <link href="../assets/css/style.css" rel="stylesheet"> -->
     <link href="../assets/css/dashboard.css" rel="stylesheet">
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
@@ -35,13 +37,13 @@ $events = $query->fetchAll();
                     <div>Navigation</div>
                     <ul>
                         <li><a href="index.php">Accueil</a></li>
-                        <li><a href="dash-user-evenements.html">Évènements</a></li>
-                        <li><a href="dash-user-reservations.html">Réservations</a></li>
-                        <li><a href="dash-user-amis.html">Mes amis</a></li>
-                        <li><a href="dash-user-mvp.html">Mon mvp</a></li>
+                        <li><a href="dash-user-evenements.php">Évènements</a></li>
+                        <li><a href="dash-user-reservations.php">Réservations</a></li>
+                        <li><a href="dash-user-amis.php">Mes amis</a></li>
+                        <li><a href="dash-user-mvp.php">Mon mvp</a></li>
                     </ul>
                     <div>Compte</div>
-                    <a href="dash-user-compte.html">Mon compte</a>
+                    <a href="dash-user-compte.php">Mon compte</a>
                     <a href="logout.php">Déconnexion</a>
                 </div>
                 <div class="dash-content">
@@ -73,7 +75,6 @@ $events = $query->fetchAll();
                     foreach ($events as $event) {
                     ?>
                         <div class="user">
-
                             <div class="user-data">
                                 <span><?= htmlspecialchars($event['name']); ?></span>
                                 <span><?= htmlspecialchars($event['date']); ?></span>
@@ -81,7 +82,7 @@ $events = $query->fetchAll();
                             </div>
                             <div class="user-modify">
                                 <div class="user-change">
-                                    <a href="#"><?= htmlspecialchars($event['status']); ?></a>
+                                    <p href="#"><?= htmlspecialchars($event['status']); ?></p>
                                 </div>
                                 <div class="user-book">
                                     <a href="reservations.php">Réserver</a>

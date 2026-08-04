@@ -49,10 +49,15 @@ $events = $query->fetchALL(PDO::FETCH_ASSOC);
         <div class="container">
             <section class="hero">
                 <img src="../assets/images/stade.jpg" alt="">
-                <p>Bienvenue <?= $first_name . " " . $name ?> au MNS Football Club <br>
+                <p>Bienvenue <strong><?= $first_name . " " . $name ?></strong> au MNS Football Club <br>
                     Réservez vos places en quelques clics pour les évènements sportifs et sociaux de votre clubs
                 </p>
-                <a href="inscription.php">Nous rejoindre</a>
+                <?php
+                if (!isset($_SESSION['email'])) { ?>
+                    <a href="inscription.php">Nous rejoindre</a>
+                <?php } else { ?>
+                    <a href="dash-user-evenements.php">mon dashboard</a>
+                <?php } ?>
             </section>
             <section class="hero2">
                 <h3 class="title">Évènements à venir</h3>
@@ -65,7 +70,7 @@ $events = $query->fetchALL(PDO::FETCH_ASSOC);
                                 <p><?= $row['date'] . " - " . $row['categorie'] ?></p>
                                 <img src="<?= $row['image'] ?>" alt="">
                                 <p><?= htmlspecialchars($row['evenement']) ?></p>
-                                <p><?= htmlspecialchars(substr($row['description'], 0, 50)) ?></p>
+                                <p><?= htmlspecialchars(substr($row['description'], 0, 50) . "...") ?></p>
                                 <p><?= $row['capacity'] ?> places disponibles - <?= $row['price'] ?> euros</p>
                                 <a href="reservations.php">Réserver</a>
                                 <p><?= $row['status'] ?></p>

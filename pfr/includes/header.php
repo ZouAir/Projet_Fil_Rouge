@@ -19,9 +19,21 @@
                     <i class="bx bx-menu"></i>
                 </button>
             </div>
-            <div class="cta">
-                <a href="login.php" id="login-btn">Connexion</a>
-            </div>
+            <?php
+            if (!isset($_SESSION['email'])) {
+            ?>
+                <div class="cta">
+                    <a href="login.php" id="login-btn">Connexion</a>
+                </div>
+            <?php
+            } else {
+            ?>
+                <div class="cta">
+                    <a href="logout.php" id="logout-btn">Déconnexion</a>
+                </div>
+            <?php
+            }
+            ?>
         </div>
     </div>
 </header>

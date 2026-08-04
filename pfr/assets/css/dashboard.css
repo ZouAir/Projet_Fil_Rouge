@@ -2,7 +2,6 @@ body {
     font-family: var(--font-heading);
     text-align: justify;
     box-sizing: border-box;
-
 }
 
 /* MAIN */
@@ -284,8 +283,8 @@ main .container .dashboard .dash-content form .city input {
 /* ******* */
 main .container .dashboard .dash-content .user {
     display: flex;
-    justify-content: center;
     flex-direction: row;
+    justify-content: center;
     width: 90%;
     margin: var(--margin-m) auto 0;
 }
@@ -294,21 +293,23 @@ main .container .dashboard .dash-content .user .user-data {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    font-size: 0.7rem;
     color: var(--color-light);
     background-color: var(--color-primary);
     border-radius: var(--border-radius-m) 0 0 var(--border-radius-m);
+    text-align: center;
+    font-size: 0.7rem;
     width: 70%;
-    padding: var(--border-radius-m);
+    padding: var(--padding-m);
 }
 
 main .container .dashboard .dash-content .user .user-data span:first-child {
     color: var(--color-secondary);
+    padding-bottom: var(--padding-s);
 }
 
 main .container .dashboard .dash-content .user .user-data span:last-child {
     color: var(--color-gray);
+    padding-top: var(--padding-s);
 }
 
 main .container .dashboard .dash-content .user .user-modify {
@@ -320,18 +321,18 @@ main .container .dashboard .dash-content .user .user-modify {
 
 main .container .dashboard .dash-content .user .user-change {
     display: flex;
-    text-align: center;
+    /* text-align: center; */
     background-color: var(--color-dark);
-    height: 50%;
     border-radius: 0 var(--border-radius-m) 0 0;
+    height: 50%;
 }
 
 main .container .dashboard .dash-content .user .user-delete {
     display: flex;
     text-align: center;
     background-color: var(--color-red);
-    flex: 1;
     border-radius: 0 0 var(--border-radius-m) 0;
+    flex: 1;
 }
 
 /* EVENEMENTS & RESERVATIONS */
@@ -532,18 +533,22 @@ main .container .dashboard .dash-content .modal-qr input {
 
 /* USER EVENEMENTS */
 /* **************** */
-main .container .dashboard .dash-content .user .user-modify .user-statut {
-    display: flex;
-    text-align: center;
+main .container .dashboard .dash-content .user .user-modify .user-change {
+    height: 50%;
     background-color: var(--color-dark);
     border-radius: 0 var(--border-radius-m) 0 0;
+}
+
+main .container .dashboard .dash-content .user .user-modify .user-change p {
+    color: var(--color-light);
+    margin: auto;
 }
 
 main .container .dashboard .dash-content .user .user-book {
     display: flex;
     text-align: center;
     background-color: var(--color-secondary);
-    flex: 1;
+    /* flex: 1; */
     border-radius: 0 0 var(--border-radius-m) 0;
 }
 
@@ -685,7 +690,6 @@ main .container .dashboard .dash-content .match .star span {
     }
 
     main .container .dashboard .dash-content {
-        background-color: #d4c5a1;
         border: 0.5px solid var(--color-primary);
         padding: var(--border-radius-l);
     }
@@ -744,7 +748,7 @@ main .container .dashboard .dash-content .match .star span {
         width: 300px;
     }
 
-    footer .footer {
+    /* footer .footer {
         margin: 0 var(--margin-l);
     }
 
@@ -758,7 +762,7 @@ main .container .dashboard .dash-content .match .star span {
 
     footer .mentions p {
         margin: auto;
-    }
+    } */
 }
 
 /* *************** */
@@ -786,16 +790,6 @@ main .container .dashboard .dash-content .match .star span {
 
     main .container .dashboard .dash-content .dash-head div:last-child {
         margin-left: 0;
-    }
-
-    footer {
-        display: flex;
-        justify-content: center;
-    }
-
-    .footer {
-        display: flex;
-        justify-content: space-between;
     }
 }
 

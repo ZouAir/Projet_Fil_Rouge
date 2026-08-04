@@ -56,6 +56,7 @@ footer .reseaux a img:hover {
 /* Format desktop */
 @media screen and (min-width: 992px) {
     footer {
+        /* display: flex;*/
         padding: 0 var(--padding-l);
     }
 
