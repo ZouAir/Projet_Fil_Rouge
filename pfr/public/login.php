@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header("Location: dashboard-service.php");
                 //vérifier le header vers le bon fichier
             } else {
-                header("Location: dashboard-user.php");
+                header("Location: index.php");
                 //vérifier le header vers le bon fichier
             }
             exit;
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <main>
         <div class="container">
             <div class="login-left">
-                <img src="./images/stade.jpg" alt="">
+                <img src="../assets/images/stade.jpg" alt="">
             </div>
             <div class="login-right">
                 <div class="login-title">
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="login">
                     <form action="login.php" method="POST">
                         <input type="email" name="email" id="email" placeholder="Email">
-                        <input type="password" name="password" id="password" placeholder="Mot de passe">
+                        <input type="password" name="password" id="pwd" placeholder="Mot de passe">
                         <button type="submit">se connecter</button>
                     </form>
                     <?php if ($error): ?>

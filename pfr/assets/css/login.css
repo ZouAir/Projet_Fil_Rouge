@@ -42,7 +42,7 @@ main .container .login-right .login-title {
     border-radius: var(--border-radius-l);
     font-weight: bold;
     text-transform: capitalize;
-    padding: var(--padding-s);
+    padding: var(--padding-s) var(--padding-l);
     margin: var(--margin-l) auto 0;
 }
 
@@ -124,19 +124,32 @@ main .container .login .login-link a {
     margin-top: var(--margin-l);
 }
 
-main .container .login .info {
+main .container .login .info,
+main .container .login form .rules div {
     color: var(--color-light);
     background-color: var(--color-grey);
     border-radius: var(--border-radius-s);
     text-align: center;
     font-size: 0.8rem;
-    width: 90%;
+    width: 70%;
     padding: var(--padding-s);
     margin: var(--margin-m) auto;
 }
 
-main .container .login form .rules {
-    width: 80%;
+main .container .login .rules {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: var(--margin-m) auto 0;
+}
+
+main .container .login form .rules div {
+    width: 100%;
+}
+
+main .container .login form .rules ul {
+    list-style: none;
 }
 
 #name,
@@ -149,6 +162,16 @@ main .container .login form .rules {
     background-color: var(--color-primary);
     margin: var(--margin-m) auto 0;
 }
+
+/* .error {
+    color: var(--color-light);
+    background-color: var(--color-red);
+    border-radius: var(--border-radius-m);
+    text-align: center;
+    width: 70%;
+    padding: var(--padding-m);
+    margin: var(--margin-xl) auto 0;
+} */
 
 /* Format tablette */
 @media screen and (min-width: 768px) {

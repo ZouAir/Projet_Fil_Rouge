@@ -17,12 +17,23 @@ button:hover {
     border: 2px solid var(--color-secondary);
 }
 
+.error {
+    color: var(--color-light);
+    background-color: var(--color-red);
+    border-radius: var(--border-radius-m);
+    text-align: center;
+    width: 70%;
+    padding: var(--padding-m);
+    margin: var(--margin-xl) auto 0;
+}
+
 /* MAIN */
 /********/
 body {
     font-family: var(--font-heading);
     text-align: justify;
     box-sizing: border-box;
+    background-color: var(--color-primary);
 }
 
 main .hero .card-body button {

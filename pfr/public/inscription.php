@@ -1,4 +1,6 @@
 <?php
+session_start();
+$pdo = require_once('../includes/bdd.php');
 // // Démarre la session 
 // // Inclut bdd.php
 // // Vérifie si le formulaire est soumis en POST
@@ -7,14 +9,12 @@
 // // Hashe le mot de passe
 // // Insère l'utilisateur en BDD
 // // Redirige vers login.php
-session_start();
-$pdo = require_once('../includes/bdd.php');
 
 $error = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = htmlspecialchars($_POST['name']) ?? '';
-    $firstName = htmlspecialchars($_POST['firstname']) ?? '';
+    $first_name = htmlspecialchars($_POST['first_name']) ?? '';
     $email = htmlspecialchars($_POST['email']) ?? '';
     $phone = htmlspecialchars($_POST['phone']) ?? '';
 
@@ -25,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (empty($error)) {
             try {
-                $query = $pdo->prepare("INSERT INTO users (name, firstname, email, password, phone, birthday, adress, postal, city) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                $query->execute([$name, $firstName, $email, $password, $phone, '2000-01-01', 'adresse à modifier', '57000', 'Metz']);
+                $query = $pdo->prepare("INSERT INTO users (name, first_name, email, password, phone, birthday, adress, postal, city) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $query->execute([$name, $first_name, $email, $password, $phone, '2000-01-01', 'adresse à modifier', '57000', 'Metz']);
                 header('Location: login.php');
                 exit;
             } catch (PDOException $e) {
@@ -61,30 +61,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php include_once('../includes/header.php') ?>
     <main>
         <div class="container">
-            <div class="connection">
-                <p>inscription</p>
+            <div class="login-left">
+                <img src="../assets/images/stade.jpg" alt="">
             </div>
-            <div class="field">
-                <form method="POST" action="inscription.php" class="form">
-                    <div class="rules">* champs obligatoires</div>
-                    <input type="text" id="name" name="name" placeholder="Nom *">
-                    <input type="text" id="firstname" name="firstname" placeholder="Prénom *">
-                    <input type="email" id="email" name="email" placeholder="Email *">
-                    <input type="text" id="phone" name="phone" placeholder="Téléphone *">
-                    <input type="password" name="password" id="password" placeholder="Mot de passe">
-                    <div class="rules">
-                        <p>Le mot de passe doit respecter les règles suivantes</p>
-                        <ul>
-                            <li id="password-criteria-length">8 caractères minimum</li>
-                            <li id="password-criteria-special">1 caractère spécial minimum [#@!?$%&]</li>
-                            <li id="password-criteria-uppercase">1 majuscule minimum</li>
-                            <li id="password-criteria-numeric">1 numérique minimum</li>
-                        </ul>
-                    </div>
-                    <input type="password" name="password-confirm" id="password-confirm"
-                        placeholder="Confirmation mot de passe">
-                    <button type="submit" id="sub-btn">Valider</button>
-                </form>
+            <div class="login-right">
+                <div class="login-title">
+                    <p>inscription</p>
+                </div>
+                <div class="login">
+                    <form action="inscription.php" method="POST">
+                        <div class="info">* champs obligatoires</div>
+                        <input type="text" id="name" name="name" placeholder="Nom *">
+                        <input type="text" id="firstname" name="first_name" placeholder="Prénom *">
+                        <input type="email" id="email" name="email" placeholder="Email *">
+                        <input type="text" id="phone" name="phone" placeholder="Téléphone *">
+                        <input type="pwd" name="password" id="pwd" placeholder="Mot de passe *">
+                        <div class="rules">
+                            <div>Le mot de passe doit respecter les règles suivantes :</div>
+                            <ul>
+                                <li id="pwd-criteria-length">8 caractères minimum</li>
+                                <li id="pwd-criteria-special">1 caractère spécial minimum [#@!?$%&]</li>
+                                <li id="pwd-criteria-uppercase">1 majuscule minimum</li>
+                                <li id="pwd-criteria-numeric">1 numérique minimum</li>
+                            </ul>
+                        </div>
+                        <input type="password" name="password-confirm" id="pwd-confirm"
+                            placeholder="Confirmation mot de passe *">
+                        <button type="submit" id="sub-btn">Valider</button>
+                    </form>
+                </div>
             </div>
             <?php if ($error): ?>
                 <p class="error"><?= htmlspecialchars($error) ?></p>

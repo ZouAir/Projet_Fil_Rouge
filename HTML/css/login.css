@@ -150,6 +150,8 @@ main .container .login form .rules {
     margin: var(--margin-m) auto 0;
 }
 
+
+
 /* Format tablette */
 @media screen and (min-width: 768px) {
 
