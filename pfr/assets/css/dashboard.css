@@ -148,29 +148,30 @@ main .container .dashboard .dash-content .kpi,
 main .container .dashboard .dash-content .friend,
 main .container .dashboard .dash-content .match {
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color: var(--color-light);
-    background-color: var(--color-primary);
     border-radius: var(--border-radius-m);
     font-size: 0.8rem;
-    width: 70%;
+    width: 80%;
     min-height: 50px;
-    padding: var(--padding-s) var(--padding-l);
+    padding: var(--padding-m);
     margin: var(--margin-m) auto 0;
 }
 
 main .container .dashboard .dash-content .kpi div {
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color: var(--color-light);
     background-color: var(--color-primary);
     border-radius: var(--border-radius-m);
     font-size: 0.8rem;
-    width: 70%;
+    width: 90%;
     min-height: 50px;
-    padding: var(--padding-s) var(--padding-l);
+    padding: var(--padding-s) var(--padding-m);
     margin: var(--margin-m) auto 0;
 }
 
@@ -272,7 +273,7 @@ main .container .dashboard .dash-content form .form-item select {
 main .container .dashboard .dash-content form .city {
     display: flex;
     justify-content: space-between;
-    gap:30px
+    gap: 30px
 }
 
 main .container .dashboard .dash-content form .city input {

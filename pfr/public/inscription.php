@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="text" id="firstname" name="first_name" placeholder="Prénom *">
                         <input type="email" id="email" name="email" placeholder="Email *">
                         <input type="text" id="phone" name="phone" placeholder="Téléphone *">
-                        <input type="pwd" name="password" id="pwd" placeholder="Mot de passe *">
+                        <input type="password" name="password" id="pwd" placeholder="Mot de passe *">
                         <div class="rules">
                             <div>Le mot de passe doit respecter les règles suivantes :</div>
                             <ul>

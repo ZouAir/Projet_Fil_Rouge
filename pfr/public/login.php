@@ -24,7 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$count) {
         $error = "Identifiant ou mot de passe incorrect";
     } else {
-        $_SESSION['user_id'] = $count['id'];
+        $_SESSION['id'] = $count['id'];
+        $_SESSION['name'] = $count['name'];
+        $_SESSION['first_name'] = $count['first_name'];
         $_SESSION['email'] = $count['email'];
         $_SESSION['profil'] = $count['profil'];
         $passwordHash = $count['password'];
@@ -32,10 +34,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (password_verify($password, $passwordHash)) {
             // Redirection selon profil
             if ($count['profil'] === 'administrateur') {
-                header("Location: dashboard-admin.php");
+                header("Location: dash-admin-evenements.php");
                 //vérifier le header vers le bon fichier
             } elseif ($count['profil'] === 'service') {
-                header("Location: dashboard-service.php");
+                header("Location: dash-service-evenements.php");
+                //vérifier le header vers le bon fichier
+            } elseif ($count['profil'] === 'user') {
+                header("Location: dash-user-evenements.php");
                 //vérifier le header vers le bon fichier
             } else {
                 header("Location: index.php");

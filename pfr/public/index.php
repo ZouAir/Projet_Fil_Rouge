@@ -10,7 +10,8 @@ $pdo = require_once('../includes/bdd.php');
 // Section "Events à venir" → boucle foreach sur les events
 // Require Footer
 // Vérifier si connecté
-$email = isset($_SESSION['email']) ? $_SESSION['email'] : 'Invité';
+$name = isset($_SESSION['name']) ? $_SESSION['name'] : '';
+$first_name = isset($_SESSION['first_name']) ? $_SESSION['first_name'] : 'Invité';
 
 // Récupérer les events à venir depuis la table events
 $query = $pdo->prepare("SELECT e.date, e.name AS evenement, e.description, e.image, e.capacity, e.price, e.status, c.id, c.name AS categorie 
@@ -48,7 +49,7 @@ $events = $query->fetchALL(PDO::FETCH_ASSOC);
         <div class="container">
             <section class="hero">
                 <img src="../assets/images/stade.jpg" alt="">
-                <p>Bienvenue <?= isset($_SESSION['email']) ? $_SESSION['email'] : '' ?>au MNS Football Club <br>
+                <p>Bienvenue <?= $first_name . " " . $name ?> au MNS Football Club <br>
                     Réservez vos places en quelques clics pour les évènements sportifs et sociaux de votre clubs
                 </p>
                 <a href="inscription.php">Nous rejoindre</a>
@@ -66,7 +67,7 @@ $events = $query->fetchALL(PDO::FETCH_ASSOC);
                                 <p><?= htmlspecialchars($row['evenement']) ?></p>
                                 <p><?= htmlspecialchars(substr($row['description'], 0, 50)) ?></p>
                                 <p><?= $row['capacity'] ?> places disponibles - <?= $row['price'] ?> euros</p>
-                                <a href="reservation.php">Réserver</a>
+                                <a href="reservations.php">Réserver</a>
                                 <p><?= $row['status'] ?></p>
                             </div>
                         </li>

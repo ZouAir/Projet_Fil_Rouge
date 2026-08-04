@@ -15,12 +15,12 @@
         </nav>
         <div class="btn">
             <div class="burger">
-                <button id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+                <button id="burger-btn" aria-label="Ouvrir le menu" aria-expanded="false">
                     <i class="bx bx-menu"></i>
                 </button>
             </div>
             <div class="cta">
-                <a href="login.php" id="login">Connexion</a>
+                <a href="login.php" id="login-btn">Connexion</a>
             </div>
         </div>
     </div>
