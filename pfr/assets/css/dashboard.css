@@ -7,20 +7,20 @@ body {
 /* MAIN */
 main .container {
     display: flex;
-    justify-content: center;
     flex-direction: row;
-    margin: auto;
-    min-width: 95vw;
+    justify-content: center;
+    width: 95vw;
     min-height: 95vh;
+    margin: auto;
 }
 
 main .container .dashboard {
     background-color: var(--color-white);
-    width: 90%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    padding: var(--border-radius-m);
+    padding: var(--padding-m);
     margin: 0 var(--margin-m);
 }
 
@@ -748,62 +748,46 @@ main .container .dashboard .dash-content .match .star span {
         width: 300px;
     }
 
-    /* footer .footer {
-        margin: 0 var(--margin-l);
+    /* *************** */
+    /* Format desktop */
+    @media screen and (min-width: 992px) {
+
+        body {
+            font-size: 1rem;
+            width: 80vw;
+            margin: 0 auto;
+        }
+
+        main .container {
+            width: 100%;
+        }
+
+        header .container {
+            max-width: 1000px;
+            margin: auto;
+            display: flex;
+        }
+
+        main .container .dashboard .dash-content .dash-head div:first-child span:last-child {
+            font-size: 0.8rem;
+        }
+
+        main .container .dashboard .dash-content .dash-head div:last-child {
+            margin-left: 0;
+        }
     }
 
-    footer .footer .mentions-desktop {
-        display: flex;
-    }
-
-    footer .footer .mentions-responsive {
-        display: none;
-    }
-
-    footer .mentions p {
-        margin: auto;
-    } */
-}
-
-/* *************** */
-/* Format desktop */
-@media screen and (min-width: 992px) {
-
-    body {
-        font-size: 1rem;
-    }
-
-    main .container {
-        width: 90vw;
-        height: 90vh;
-    }
-
-    header .container {
-        max-width: 1000px;
-        margin: auto;
-        display: flex;
-    }
-
-    main .container .dashboard .dash-content .dash-head div:first-child span:last-child {
-        font-size: 0.8rem;
-    }
-
-    main .container .dashboard .dash-content .dash-head div:last-child {
-        margin-left: 0;
-    }
-}
-
-/* ********** */
-/* Format TV */
-@media screen and (min-width: 1200px) {
-    /* .header,
+    /* ********** */
+    /* Format TV */
+    @media screen and (min-width: 1200px) {
+        /* .header,
     .container,
     .footer {
         max-width: 1200px;
         margin: auto;
     } */
 
-    main .container .dashboard .dash-content .dash-head div:first-child span:last-child {
-        font-size: 0.8rem;
+        main .container .dashboard .dash-content .dash-head div:first-child span:last-child {
+            font-size: 0.8rem;
+        }
     }
-}

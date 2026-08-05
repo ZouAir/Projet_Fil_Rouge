@@ -174,7 +174,7 @@ main .hero3 .spon-right span {
 
     body {
         width: 80vw;
-        height: 100vh;
+        /* height: 100vh; */
         margin: 0 auto;
     }
 

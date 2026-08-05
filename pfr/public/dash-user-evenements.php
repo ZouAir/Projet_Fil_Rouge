@@ -50,7 +50,7 @@ $events = $query->fetchAll();
                     <div class="dash-head">
                         <div>
                             <span><?= $initials ?></span>
-                            <span><?= $first_name . " " . $name ?></span>
+                            <span><?= strtoupper(substr($first_name, 0, 1)) . substr($first_name, 1,) . " " . strtoupper($name) ?></span>
                         </div>
                         <div>Mon tableau de bord</div>
                     </div>
