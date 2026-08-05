@@ -273,7 +273,7 @@ main .container .dashboard .dash-content form .form-item select {
 main .container .dashboard .dash-content form .city {
     display: flex;
     justify-content: space-between;
-    gap:30px
+    gap: 30px
 }
 
 main .container .dashboard .dash-content form .city input {
@@ -685,7 +685,6 @@ main .container .dashboard .dash-content .match .star span {
     }
 
     main .container .dashboard .dash-content {
-        background-color: #d4c5a1;
         border: 0.5px solid var(--color-primary);
         padding: var(--border-radius-l);
     }

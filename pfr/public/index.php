@@ -50,7 +50,7 @@ $events = $query->fetchALL(PDO::FETCH_ASSOC);
             <section class="hero">
                 <img src="../assets/images/stade.jpg" alt="">
                 <p>Bienvenue <strong><?= strtoupper(substr($first_name, 0, 1)) . substr($first_name, 1,) . " " . strtoupper($name) ?></strong> au MNS Football Club <br>
-                    Réservez vos places en quelques clics pour les évènements sportifs et sociaux de votre clubs
+                    Réservez vos places en quelques clics pour les évènements sportifs et sociaux de votre club.
                 </p>
                 <?php
                 if (!isset($_SESSION['email'])) { ?>
