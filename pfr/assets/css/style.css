@@ -169,12 +169,12 @@ main .hero3 .spon-right span {
     }
 }
 
+/* *************** */
 /* Format desktop */
 @media screen and (min-width: 992px) {
 
     body {
         width: 80vw;
-        /* height: 100vh; */
         margin: 0 auto;
     }
 
@@ -202,10 +202,12 @@ main .hero3 .spon-right span {
         padding: var(--padding-l);
         margin: var(--margin-l);
     }
-
-    /* Format TV */
-    @media screen and (min-width: 1200px) {}
 }
+
+/* ********** */
+/* Format TV */
+@media screen and (min-width: 1200px) {}
+
 
 /* *********** */
 /* A vérifier */

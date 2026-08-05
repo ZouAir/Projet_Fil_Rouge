@@ -650,29 +650,6 @@ main .container .dashboard .dash-content .match .star span {
 /* **************** */
 /* Format tablette */
 @media screen and (min-width: 768px) {
-    header {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-    }
-
-    header h1 {
-        font-size: 3rem;
-    }
-
-    header .container nav {
-        display: block;
-        margin: 0 5px 5px 0;
-    }
-
-    header .container .burger button {
-        display: none;
-    }
-
-    header .container .cta button {
-        margin: 0 15px 5px 15px;
-    }
-
     main .container {
         min-width: 718px;
         margin: auto;
@@ -748,46 +725,40 @@ main .container .dashboard .dash-content .match .star span {
         width: 300px;
     }
 
-    /* *************** */
-    /* Format desktop */
-    @media screen and (min-width: 992px) {
+}
 
-        body {
-            font-size: 1rem;
-            width: 80vw;
-            margin: 0 auto;
-        }
+/* *************** */
+/* Format desktop */
+@media screen and (min-width: 992px) {
 
-        main .container {
-            width: 100%;
-        }
-
-        header .container {
-            max-width: 1000px;
-            margin: auto;
-            display: flex;
-        }
-
-        main .container .dashboard .dash-content .dash-head div:first-child span:last-child {
-            font-size: 0.8rem;
-        }
-
-        main .container .dashboard .dash-content .dash-head div:last-child {
-            margin-left: 0;
-        }
+    body {
+        width: 80vw;
+        margin: 0 auto;
     }
 
-    /* ********** */
-    /* Format TV */
-    @media screen and (min-width: 1200px) {
-        /* .header,
-    .container,
-    .footer {
-        max-width: 1200px;
+    main .container {
+        width: 100%;
+    }
+
+    header .container {
+        max-width: 1000px;
         margin: auto;
-    } */
-
-        main .container .dashboard .dash-content .dash-head div:first-child span:last-child {
-            font-size: 0.8rem;
-        }
+        display: flex;
     }
+
+    main .container .dashboard .dash-content .dash-head div:first-child span:last-child {
+        font-size: 0.8rem;
+    }
+
+    main .container .dashboard .dash-content .dash-head div:last-child {
+        margin-left: 0;
+    }
+}
+
+/* ********** */
+/* Format TV */
+@media screen and (min-width: 1200px) {
+    /* main .container .dashboard .dash-content .dash-head div:first-child span:last-child {
+        font-size: 0.8rem;
+    } */
+}

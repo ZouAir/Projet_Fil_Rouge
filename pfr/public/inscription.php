@@ -13,10 +13,10 @@ $pdo = require_once('../includes/bdd.php');
 $error = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = htmlspecialchars($_POST['name']) ?? '';
-    $first_name = htmlspecialchars($_POST['first_name']) ?? '';
-    $email = htmlspecialchars($_POST['email']) ?? '';
-    $phone = htmlspecialchars($_POST['phone']) ?? '';
+    $name = htmlspecialchars(trim($_POST['name'])) ?? '';
+    $first_name = htmlspecialchars(trim($_POST['first_name'])) ?? '';
+    $email = htmlspecialchars(trim($_POST['email'])) ?? '';
+    $phone = htmlspecialchars(trim($_POST['phone'])) ?? '';
 
     if ($_POST['password'] !== $_POST['password-confirm']) {
         $error = "Les mots de passe ne correspondent pas";

@@ -65,8 +65,7 @@ header .bottom .btn .cta a {
     border-radius: var(--border-radius-m);
     text-decoration: none;
     font-weight: bold;
-    padding: var(--padding-m);
-    margin-right: var(--margin-s);
+    padding: var(--padding-m) var(--padding-s);
 }
 
 header .bottom nav ul li a:hover,
@@ -108,6 +107,7 @@ header .bottom .btn .burger button:hover {
 header .bottom .btn .cta a {
     color: var(--color-light);
     background-color: var(--color-secondary);
+    margin-right: var(--margin-s);
 }
 
 header .bottom .btn .cta a:hover {
@@ -119,22 +119,21 @@ header .bottom .btn .cta a:hover {
 @media screen and (min-width: 768px) {
     header h1 {
         text-transform: uppercase;
-        font-size: 3rem;
-    }
-
-    header>div span {
         font-size: 2rem;
-        margin: auto;
     }
 
     header .bottom {
-        width: 718px;
-        justify-content: center;
+        width: 50%;
+        justify-content: start;
     }
 
     header .bottom nav {
         display: block;
         margin: 0 5px 5px 0;
+    }
+
+    header .bottom a {
+        font-size: 1rem;
     }
 
     header .bottom .burger button {
@@ -149,12 +148,21 @@ header .bottom .btn .cta a:hover {
         flex-direction: row;
     }
 
-    header .bottom {
-        max-width: 40%;
+    header .top {
+        width: 50%;
     }
 
-    header>div span {
-        font-size: 3rem;
-        margin: auto;
+    header .top .title h1 {
+        font-size: 1.8rem;
+    }
+
+    header .bottom {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+    }
+
+    header .bottom nav {
+        padding: 0;
     }
 }
