@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } elseif ($count['profil'] === 'service') {
                 header("Location: dash-service-evenements.php");
                 //vérifier le header vers le bon fichier
-            } elseif ($count['profil'] === 'user') {
+            } elseif ($count['profil'] === 'abonne') {
                 header("Location: dash-user-evenements.php");
                 //vérifier le header vers le bon fichier
             } else {

@@ -1,26 +1,15 @@
 <?php
 session_start();
 $pdo = require_once('../includes/bdd.php');
-// Démarrer la session
-// Inclure bdd.php
-// Récupérer $id, $name, $first_name, $initials depuis $_SESSION
-// Écrire la requête : JOIN orders + events, WHERE users_id = user connecté AND date future
-// Exécuter avec paramètre :id
-// Structure de base HTML (déjà en place)
-// Boucle foreach sur les résultats → dupliquer la div "event" pour chaque réservation
-// Adapter les champs affichés (statut, nom event, date, tribune/scene, nombre de places, actions modifier/supprimer)
 
 $id = $_SESSION['id'];
 $name = $_SESSION['name'];
 $first_name = $_SESSION['first_name'];
-$initials = strtoupper(substr($first_name, 0, 1) . ' ' . substr($name, 0, 1));
+$initials = strtoupper(substr($first_name, 0, 1) . '.' . substr($name, 0, 1));
 
-$query = $pdo->prepare("SELECT o.id, o.status, o.number_of_seats AS o.seats e.date, 
-FROM orders o
-WHERE date > NOW() 
-AND o.users_id = ?");
+$query = $pdo->prepare("SELECT * FROM events WHERE date > NOW() LIMIT 10");
 $query->execute();
-$orders = $query->fetchAll(PDO::FETCH_ASSOC);
+$events = $query->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +52,7 @@ $orders = $query->fetchAll(PDO::FETCH_ASSOC);
                             <span><?= $initials ?></span>
                             <span><?= strtoupper(substr($first_name, 0, 1)) . substr($first_name, 1,) . " " . strtoupper($name) ?></span>
                         </div>
-                        <div>Mon tableau de bord</div>
+                        <div>Tableau de bord : Administrateur</div>
                     </div>
                     <div class="kpi">
                         <div>
@@ -80,33 +69,36 @@ $orders = $query->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                     </div>
                     <div class="title">
-                        Mes réservations
+                        Prochains évènements
                     </div>
-
-                    <div class="event">
-                        <div class="event-status">
-                            <span>confirmé</span>
-                        </div>
-                        <div class="event-data">
-                            <span>Edward Norton</span>
-                            <span>05 juin 2026</span>
-                            <span>Tribune Ouest - 2 places</span>
-                        </div>
-                        <div class="event-modify">
-                            <div class="event-change">
-                                <a href="events.php">Modifier</a>
+                    <?php
+                    foreach ($events as $event) {
+                    ?>
+                        <div class="user">
+                            <div class="user-data">
+                                <span><?= htmlspecialchars($event['name']); ?></span>
+                                <span><?= htmlspecialchars($event['date']); ?></span>
+                                <span><?= htmlspecialchars($event['scene']) . " - " . htmlspecialchars($event['capacity']); ?> places</span>
                             </div>
-                            <div class="event-delete">
-                                <a href="events.php">Supprimer</a>
+                            <div class="user-modify">
+                                <div class="user-change">
+                                    <p href="#"><?= htmlspecialchars($event['status']); ?></p>
+                                </div>
+                                <div class="user-book">
+                                    <a href="reservations.php">Réserver</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>
     </main>
+
     <?php include_once('../includes/footer.php') ?>
+
 </body>
 
 </html>

@@ -6,16 +6,19 @@ body {
 
 /* MAIN */
 main .container {
+    background-color: var(--color-gray);
     display: flex;
     flex-direction: row;
     justify-content: center;
     width: 95vw;
-    min-height: 95vh;
+    height: 100%;
+    padding: var(--padding-m) 0;
     margin: auto;
 }
 
 main .container .dashboard {
     background-color: var(--color-white);
+    border-radius: var(--border-radius-m);
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -651,7 +654,6 @@ main .container .dashboard .dash-content .match .star span {
 /* Format tablette */
 @media screen and (min-width: 768px) {
     main .container {
-        min-width: 718px;
         margin: auto;
         display: flex;
         justify-content: center;
@@ -738,12 +740,6 @@ main .container .dashboard .dash-content .match .star span {
 
     main .container {
         width: 100%;
-    }
-
-    header .container {
-        max-width: 1000px;
-        margin: auto;
-        display: flex;
     }
 
     main .container .dashboard .dash-content .dash-head div:first-child span:last-child {

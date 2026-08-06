@@ -3,17 +3,16 @@ session_start();
 $pdo = require_once('../includes/bdd.php');
 // Démarrer la session
 // Inclure bdd.php
-
 // Récupérer les réservations du user connecté depuis la table orders
+// Récupérer les events à venir depuis la table events
 // Structure de base HTML
 // Require Header avec nav + bouton déconnexion
 // Section "Events à venir" → boucle foreach sur les events
 // Require Footer
 // Vérifier si connecté
-$name = isset($_SESSION['name']) ? $_SESSION['name'] : '';
+    $name = isset($_SESSION['name']) ? $_SESSION['name'] : '';
 $first_name = isset($_SESSION['first_name']) ? $_SESSION['first_name'] : 'Invité';
 
-// Récupérer les events à venir depuis la table events
 $query = $pdo->prepare("SELECT e.date, e.name AS evenement, e.description, e.image, e.capacity, e.price, e.status, c.id, c.name AS categorie 
 FROM events e  
 INNER JOIN categories c ON e.categories_id = c.id   
@@ -23,9 +22,7 @@ $query->execute();
 $events = $query->fetchALL(PDO::FETCH_ASSOC);
 // $seats_taken = /*Logique métier : requette SQL total places reservées*/ ;
 // $category = /*Logique métier : requette SQL nom de catégorie de event*/;
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">

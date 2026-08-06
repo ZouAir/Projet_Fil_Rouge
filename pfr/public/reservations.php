@@ -16,7 +16,7 @@ session_start();
 $pdo = require_once('../includes/bdd.php');
 
 //Si pas connecté
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['id'])) {
     header('Location: ./login.php');
     exit;
 } else {
@@ -35,10 +35,10 @@ if (!isset($_SESSION['user_id'])) {
 
     if ($_SERVER['REQUEST_METHOD'] === "POST") {
         try {
-            $seats = $_POST['number_of_seats'] ?? '';
+            $seats = $_POST['seats'] ?? '';
             if ($seats) {
-                $query = $pdo->prepare("INSERT INTO orders (date, status, number_of_seats, events_id, user_id) VALUES (?, ?, ?, ?, ?)");
-                $query->execute([date('Y-m-d'), 'en attente', $seats, $id, $_SESSION['user_id']]);
+                $query = $pdo->prepare("INSERT INTO orders (date, status, seats, events_id, users_id) VALUES (?, ?, ?, ?, ?)");
+                $query->execute([date('d-m-Y'), 'en attente', $seats, $id, $_SESSION['users_id']]);
                 header('Location: ../public/index.php');
                 exit;
             }
@@ -98,12 +98,12 @@ if (!isset($_SESSION['user_id'])) {
                     <input value="<?= $event['date'] ?>">
                 </div>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="hour">Heure :</label>
                 <div>
                     <input value="<?= $event['hour'] ?>">
                 </div>
-            </div>
+            </div> -->
             <div class="form-group">
                 <label for="price">Tarif :</label>
                 <div>
@@ -120,9 +120,9 @@ if (!isset($_SESSION['user_id'])) {
                 <p>Places disponibles : <?= $seats_free ?></p>
             </div>
             <div class="form-group">
-                <label for="number_of_seats">Nombre de places :</label>
+                <label for="seats">Nombre de places :</label>
                 <div>
-                    <select name="number_of_seats" id="number_of_seats">
+                    <select name="seats" id="seats">
                         <option value="">-</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
