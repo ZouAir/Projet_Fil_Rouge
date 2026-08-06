@@ -8,9 +8,9 @@
     <div class="bottom">
         <nav>
             <ul>
-                <li><a href="event.php">Évènements</a></li>
+                <li><a href="#">Évènements</a></li>
                 <li><a href="#">Partenaires</a></li>
-                <li><a href="contact.php">Contact</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </nav>
         <div class="btn">
