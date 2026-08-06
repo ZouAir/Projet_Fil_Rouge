@@ -5,7 +5,21 @@ $pdo = require_once('../includes/bdd.php');
 $id = $_SESSION['id'];
 $name = $_SESSION['name'];
 $first_name = $_SESSION['first_name'];
-$initials = strtoupper(substr($first_name, 0, 1) . ' ' . substr($name, 0, 1));
+$initials = strtoupper(substr($first_name, 0, 1) . '.' . substr($name, 0, 1));
+
+$query =  $pdo->prepare("SELECT COUNT(*) 
+FROM orders o
+WHERE o.users_id = ?");
+$query->execute([$id]);
+$totalOrders = $query->fetchColumn();
+
+$query =  $pdo->prepare("SELECT COUNT(*) 
+FROM orders o
+INNER JOIN events e ON e.id = o.events_id
+WHERE o.users_id = ?
+AND e.date > NOW()");
+$query->execute([$id]);
+$nextOrders = $query->fetchColumn();
 
 $query = $pdo->prepare("SELECT * FROM events WHERE date > NOW() LIMIT 10");
 $query->execute();
@@ -57,11 +71,11 @@ $events = $query->fetchAll();
                     <div class="kpi">
                         <div>
                             <span>Réservations</span>
-                            <span>10</span>
+                            <span><?= $totalOrders ?></span>
                         </div>
                         <div>
                             <span>Réservations à venir</span>
-                            <span>9</span>
+                            <span><?= $nextOrders ?></span>
                         </div>
                         <div>
                             <span>Amis</span>
@@ -82,7 +96,7 @@ $events = $query->fetchAll();
                             </div>
                             <div class="user-modify">
                                 <div class="user-change">
-                                    <p href="#"><?= htmlspecialchars($event['status']); ?></p>
+                                    <p><?= htmlspecialchars($event['status']); ?></p>
                                 </div>
                                 <div class="user-book">
                                     <a href="reservations.php">Réserver</a>

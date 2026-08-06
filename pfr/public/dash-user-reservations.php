@@ -1,9 +1,9 @@
 <?php
 session_start();
 $pdo = require_once('../includes/bdd.php');
-// Démarrer la session
-// Inclure bdd.php
-// Récupérer $id, $name, $first_name, $initials depuis $_SESSION
+//// Démarrer la session
+//// Inclure bdd.php
+//// Récupérer $id, $name, $first_name depuis $_SESSION
 // Écrire la requête : JOIN orders + events, WHERE users_id = user connecté AND date future
 // Exécuter avec paramètre :id
 // Structure de base HTML (déjà en place)
@@ -13,13 +13,28 @@ $pdo = require_once('../includes/bdd.php');
 $id = $_SESSION['id'];
 $name = $_SESSION['name'];
 $first_name = $_SESSION['first_name'];
-$initials = strtoupper(substr($first_name, 0, 1) . ' ' . substr($name, 0, 1));
+$initials = strtoupper(substr($first_name, 0, 1) . '.' . substr($name, 0, 1));
 
-$query = $pdo->prepare("SELECT o.id, o.status, o.number_of_seats AS o.seats e.date, 
+$query =  $pdo->prepare("SELECT COUNT(*) 
 FROM orders o
-WHERE date > NOW() 
+WHERE o.users_id = ?");
+$query->execute([$id]);
+$totalOrders = $query->fetchColumn();
+
+$query =  $pdo->prepare("SELECT COUNT(*) 
+FROM orders o
+INNER JOIN events e ON e.id = o.events_id
+WHERE o.users_id = ?
+AND e.date > NOW()");
+$query->execute([$id]);
+$nextOrders = $query->fetchColumn();
+
+$query = $pdo->prepare("SELECT o.id, o.status, o.seats, o.users_id, o.events_id, e.name, e.date, e.scene  
+FROM orders o
+INNER JOIN events e ON e.id = o.events_id
+WHERE e.date > NOW() 
 AND o.users_id = ?");
-$query->execute();
+$query->execute([$id]);
 $orders = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
@@ -68,11 +83,11 @@ $orders = $query->fetchAll(PDO::FETCH_ASSOC);
                     <div class="kpi">
                         <div>
                             <span>Réservations</span>
-                            <span>10</span>
+                            <span><?= $totalOrders ?></span>
                         </div>
                         <div>
                             <span>Réservations à venir</span>
-                            <span>9</span>
+                            <span><?= $nextOrders ?></span>
                         </div>
                         <div>
                             <span>Amis</span>
@@ -82,26 +97,33 @@ $orders = $query->fetchAll(PDO::FETCH_ASSOC);
                     <div class="title">
                         Mes réservations
                     </div>
-
-                    <div class="event">
-                        <div class="event-status">
-                            <span>confirmé</span>
-                        </div>
-                        <div class="event-data">
-                            <span>Edward Norton</span>
-                            <span>05 juin 2026</span>
-                            <span>Tribune Ouest - 2 places</span>
-                        </div>
-                        <div class="event-modify">
-                            <div class="event-change">
-                                <a href="events.php">Modifier</a>
+                    <?php
+                    foreach ($orders as $order) {
+                    ?>
+                        <div class="event">
+                            <div class="event-status">
+                                <span><?= htmlspecialchars($order['status']) ?></span>
                             </div>
-                            <div class="event-delete">
-                                <a href="events.php">Supprimer</a>
+                            <div class="event-data">
+                                <span><?= htmlspecialchars($order['name']) ?></span>
+                                <span><?= htmlspecialchars($order['date']) ?></span>
+                                <span><?= htmlspecialchars($order['scene']) . " - " . htmlspecialchars($order['seats']) . " place";
+                                        if ((int)($order['seats']) > 1) {
+                                            echo "s";
+                                        } ?></span>
+                            </div>
+                            <div class="event-modify">
+                                <div class="event-change">
+                                    <a href="events.php">Modifier</a>
+                                </div>
+                                <div class="event-delete">
+                                    <a href="events.php">Supprimer</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>
