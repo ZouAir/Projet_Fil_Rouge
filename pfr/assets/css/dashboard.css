@@ -5,7 +5,7 @@ body {
 }
 
 /* MAIN */
-
+/* **** */
 main .container {
     background-color: var(--color-gray);
     display: flex;
@@ -277,6 +277,16 @@ main .container .dashboard .dash-content form .city input {
     width: 45%;
 }
 
+main .container .dashboard .dash-content form button {}
+
+main .container .dashboard .dash-content .cta .count-change {
+    background-color: var(--color-dark);
+}
+
+main .container .dashboard .dash-content .cta .count-delete {
+    background-color: var(--color-red);
+}
+
 /* ABONNES */
 /* ******* */
 main .container .dashboard .dash-content .user {
@@ -319,7 +329,6 @@ main .container .dashboard .dash-content .user .user-modify {
 
 main .container .dashboard .dash-content .user .user-change {
     display: flex;
-    /* text-align: center; */
     background-color: var(--color-dark);
     border-radius: 0 var(--border-radius-m) 0 0;
     height: 50%;
@@ -408,7 +417,8 @@ main .container .dashboard .dash-content .cta {
     margin: var(--margin-l) auto;
 }
 
-main .container .dashboard .dash-content .cta a {
+main .container .dashboard .dash-content .cta a,
+main .container .dashboard .dash-content form button {
     text-align: center;
     color: var(--color-light);
     background-color: var(--color-secondary);

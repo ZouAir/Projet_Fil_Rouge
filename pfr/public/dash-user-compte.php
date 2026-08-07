@@ -80,10 +80,10 @@
                         </form>
                     </div>
                     <div class="cta">
-                        <a href="changer-password.php" class="cta-change">Changer mon mdp</a>
+                        <a href="#" class="count-change">Changer mon mdp</a>
                     </div>
                     <div class="cta">
-                        <a href="dash-user-compte.php" class="cta-delete">Supprimer mon compte</a>
+                        <a href="#" class="count-delete">Supprimer mon compte</a>
                     </div>
                 </div>
             </div>
