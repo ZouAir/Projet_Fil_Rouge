@@ -4,17 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/variables.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/dashboard.css" rel="stylesheet">
-    <title>MNS Football Club</title>
+    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/footer.css" rel="stylesheet">
+    <link href="../assets/css/variables.css" rel="stylesheet">
+    <!-- <link href="../assets/css/style.css" rel="stylesheet"> -->
+    <!-- <link href="../assets/css/login.css" rel="stylesheet"> -->
+    <link href="../assets/css/dashboard.css" rel="stylesheet">
+    <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+    <title>MNS Football Club - Dashboard</title>
 </head>
 
 <body>
-    <!-- <?php include_once('header-login.php') ?> -->
-    <!-- <header>
-        
-    </header> -->
+    <?php include_once('../includes/header.php') ?>
     <main>
         <div class="container">
             <div class="dashboard">
@@ -22,16 +23,14 @@
                     <div>Navigation</div>
                     <ul>
                         <li><a href="index.php">Accueil</a></li>
-                        <li><a href="dash-user-evenements.html">Évènements</a></li>
-                        <li><a href="dash-user-reservations.html">Réservations</a></li>
-                        <li><a href="dash-user-amis.html">Mes amis</a></li>
-                        <li><a href="dash-user-mvp.html">Mon mvp</a></li>
+                        <li><a href="dash-user-evenements.php">Évènements</a></li>
+                        <li><a href="dash-user-reservations.php">Réservations</a></li>
+                        <li><a href="#">Mes amis</a></li>
+                        <li><a href="#">Mon mvp</a></li>
                     </ul>
-                    <div>
-                        <div>Compte</div>
-                        <a href="dash-user-compte.php">Mon compte</a>
-                        <a href="logout.php">Déconnexion</a>
-                    </div>
+                    <div>Compte</div>
+                    <a href="dash-user-compte.php">Mon compte</a>
+                    <a href="logout.php">Déconnexion</a>
                 </div>
                 <div class="dash-content">
                     <div class="dash-head">
@@ -39,7 +38,6 @@
                             <span>ZR</span>
                             <span>Zouhair REGHAI</span>
                         </div>
-                        <div>Mon tableau de bord</div>
                     </div>
                     <div>
                         <form action="compte.php" method="POST">
@@ -82,19 +80,16 @@
                         </form>
                     </div>
                     <div class="cta">
-                        <a href="changer-password.php" class="cta-change">changer mon mdp</a>
+                        <a href="changer-password.php" class="cta-change">Changer mon mdp</a>
                     </div>
                     <div class="cta">
-                        <a href="dash-user-compte.php" class="cta-delete">supprimer compte</a>
+                        <a href="dash-user-compte.php" class="cta-delete">Supprimer mon compte</a>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-    <!-- <?php include_once('footer.php') ?> -->
-    <!-- <footer>
-    
-    </footer> -->
+    <?php include_once('../includes/footer.php') ?>
 </body>
 
 </html>

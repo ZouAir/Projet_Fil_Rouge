@@ -73,16 +73,12 @@ main .container .dashboard .dash-sidebar a:active {
     background-color: var(--color-secondary);
 }
 
-main .container .dashboard .dash-sidebar div:last-child {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    bottom: 0px;
+main .container .dashboard .dash-sidebar a:last-child:hover {
+    border-radius: 0 0 0 var(--border-radius-m);
 }
 
 main .container .dashboard .dash-content {
     background-color: var(--color-gray);
-    /* border: 0.5px solid var(--color-primary); */
     border-radius: 0 var(--border-radius-m) var(--border-radius-m) 0;
     flex: 1;
     font-size: 0.8rem;
@@ -121,7 +117,7 @@ main .container .dashboard .dash-content .dash-head div:first-child span:first-c
 
 main .container .dashboard .dash-content .dash-head div:first-child span:last-child {
     flex: 1;
-    background-color: var(--color-grey);
+    background-color: var(--color-primary);
     border-radius: 0 var(--border-radius-m) var(--border-radius-m) 0;
     display: flex;
     justify-content: center;

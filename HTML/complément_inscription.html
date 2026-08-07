@@ -1,67 +1,83 @@
+<!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link href="./css/header.css" rel="stylesheet">
+    <link href="./css/footer.css" rel="stylesheet">
+    <link href="./css/variables.css" rel="stylesheet">
+    <!-- <link href="./css/style.css" rel="stylesheet"> -->
+    <link href="./css/login.css" rel="stylesheet">
+    <!-- <link href="../assets/css/dashboard.css" rel="stylesheet"> -->
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
-    <script src="js/script.js" defer></script>
-    <title>MNS Football Club</title>
+    <script src="assets/js/script.js" defer></script>
+    <title>Complément informations</title>
 </head>
 
+<!-- Ceci est un commentaire-->
+
 <body>
+    <header></header>
     <main>
         <section class="container">
-            <h1>Complément informations personnelles</h1>
-            <p>Merci de compléter vos informations personnelles afin de valider votre inscription.</p>
-
-            <form action="traitement.php" method="post" id="test-form" class="form">
-                <!-- Ceci est un commentaire-->
-                <div> * champs obligatoires</div>
-                <div class="form-group">
-                    <label for="mail">Email *</label>
-                    <div>
-                        <input type="email" id="mail" name="mail" required>
-                    </div>
+            <div class="login-left">
+                <img src="./images/stade.jpg" alt="">
+            </div>
+            <div class="login-right">
+                <div class="login-title">Complément informations personnelles
                 </div>
-                <div class="form-group">
-                    <label for="birthday">Date de naissance *</label>
-                    <div>
-                        <input type="date" id="birthday" name="birthday" required>
+                <p>Merci de compléter vos informations personnelles afin de valider votre compte.</p>
+                <form action="complement.php" method="POST" id="">
+                    <div> * champs obligatoires</div>
+                    <div class="form-group">
+                        <label for="name">Nom</label>
+                        <div>
+                            <input type="text" id="name" name="name" placeholder="">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="adress">Adresse *</label>
-                    <div>
-                        <input type="text" id="adress" name="adress" required>
+                    <div class="form-group">
+                        <label for="first_name">Prénom</label>
+                        <div>
+                            <input type="text" id="first_name" name="first_name" placeholder="">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="postal">Code postal *</label>
-                    <div>
-                        <input type="text" id="postal" name="postal" required>
+                    <div class="form-group">
+                        <label for="mail">Email</label>
+                        <div>
+                            <input type="email" id="mail" name="mail" required>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="city">Ville *</label>
-                    <div>
-                        <input type="text" id="city" name="city" required>
+                    <div class="form-group">
+                        <label for="birthday">Date de naissance *</label>
+                        <div>
+                            <input type="date" id="birthday" name="birthday" required>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="pwd-confirm">Confirmation*</label>
-                    <div class="input-with-button">
-                        <input type="password" id="pwd-confirm" name="pwd-confirm" required>
-                        <button type="button" id="pwd-confirm-show">
-                            <i class="bx bx-eye" aria-label="Afficher le mot de passe"></i>
-                            <i class="bx bx-eye-slash" aria-label="Masquer le mot de passe"></i>
-                        </button>
+                    <div class="form-group">
+                        <label for="adress">Adresse *</label>
+                        <div>
+                            <input type="text" id="adress" name="adress" required>
+                        </div>
                     </div>
-                </div>
-                <input type="submit" value="Valider">
-            </form>
+                    <div class="form-group">
+                        <label for="postal">Code postal *</label>
+                        <div>
+                            <input type="text" id="postal" name="postal" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">Ville *</label>
+                        <div>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                    </div>
+                    <input type="submit" value="Valider">
+                </form>
+            </div>
         </section>
     </main>
+    <footer></footer>
 </body>
 
 </html>

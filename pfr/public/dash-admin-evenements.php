@@ -25,7 +25,7 @@ $events = $query->fetchAll();
     <link href="../assets/css/dashboard.css" rel="stylesheet">
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
     <script src="../assets/js/script.js" defer></script>
-    <title>MNS Football Club</title>
+    <title>MNS Football Club - Dashboard</title>
 </head>
 
 <body>
@@ -39,8 +39,8 @@ $events = $query->fetchAll();
                         <li><a href="index.php">Accueil</a></li>
                         <li><a href="dash-user-evenements.php">Évènements</a></li>
                         <li><a href="dash-user-reservations.php">Réservations</a></li>
-                        <li><a href="dash-user-amis.php">Mes amis</a></li>
-                        <li><a href="dash-user-mvp.php">Mon mvp</a></li>
+                        <li><a href="#">Mes amis</a></li>
+                        <li><a href="#">Mon mvp</a></li>
                     </ul>
                     <div>Compte</div>
                     <a href="dash-user-compte.php">Mon compte</a>
