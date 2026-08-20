@@ -248,45 +248,6 @@ main .container .dashboard .dash-content .card div:last-child div:last-child {
     padding: var(--padding-s) 0;
 }
 
-/* COMPTE */
-/* ****** */
-main .container .dashboard .dash-content form .form-item {
-    display: flex;
-    width: 90%;
-    margin: 10px auto;
-}
-
-main .container .dashboard .dash-content form .form-item input,
-main .container .dashboard .dash-content form .form-item select {
-    color: var(--color-primary);
-    border: 0.5px solid var(--color-gray);
-    border-radius: var(--border-radius-s);
-    text-align: center;
-    width: 100%;
-    height: 30px;
-    margin: 0 auto;
-}
-
-main .container .dashboard .dash-content form .city {
-    display: flex;
-    justify-content: space-between;
-    gap: 30px
-}
-
-main .container .dashboard .dash-content form .city input {
-    width: 45%;
-}
-
-main .container .dashboard .dash-content form button {}
-
-main .container .dashboard .dash-content .cta .count-change {
-    background-color: var(--color-dark);
-}
-
-main .container .dashboard .dash-content .cta .count-delete {
-    background-color: var(--color-red);
-}
-
 /* ABONNES */
 /* ******* */
 main .container .dashboard .dash-content .user {
@@ -409,7 +370,8 @@ main .container .dashboard .dash-content .event .event-delete {
     text-align: center;
 }
 
-main .container .dashboard .dash-content .cta {
+main .container .dashboard .dash-content .cta,
+main .container .dashboard .dash-content form .submit {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -418,7 +380,7 @@ main .container .dashboard .dash-content .cta {
 }
 
 main .container .dashboard .dash-content .cta a,
-main .container .dashboard .dash-content form button {
+main .container .dashboard .dash-content form .form-item button {
     text-align: center;
     color: var(--color-light);
     background-color: var(--color-secondary);
@@ -428,7 +390,8 @@ main .container .dashboard .dash-content form button {
     min-height: 20px;
 }
 
-main .container .dashboard .dash-content .cta a:hover {
+main .container .dashboard .dash-content .cta a:hover,
+main .container .dashboard .dash-content form .form-item .submit:hover {
     color: var(--color-secondary);
     background-color: var(--color-light);
     border: 2px solid var(--color-secondary);
@@ -454,7 +417,6 @@ main .container .dashboard .dash-content .cta .cta-change:hover {
     background-color: var(--color-light);
     border: 2px solid var(--color-dark);
 }
-
 
 main .container .dashboard .dash-content .cta .cta-delete {
     background-color: var(--color-red);
@@ -537,6 +499,61 @@ main .container .dashboard .dash-content .modal-qr input {
     text-align: center;
     margin-bottom: var(--margin-l);
     display: none;
+}
+
+/* COMPTE */
+/* ****** */
+main .container .dashboard .dash-content form .form-item {
+    display: flex;
+    width: 90%;
+    margin: 10px auto;
+}
+
+main .container .dashboard .dash-content form .form-item input,
+main .container .dashboard .dash-content form .form-item select {
+    color: var(--color-primary);
+    border: 0.5px solid var(--color-gray);
+    border-radius: var(--border-radius-s);
+    text-align: center;
+    width: 100%;
+    height: 30px;
+    margin: 0 auto;
+}
+
+main .container .dashboard .dash-content form .city {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px
+}
+
+main .container .dashboard .dash-content form .city input {
+    width: 45%;
+}
+
+main .container .dashboard .dash-content form .form-item .submit {
+    font-weight: bold;
+    padding: var(--padding-m);
+    margin-bottom: 0;
+}
+
+main .container .dashboard .dash-content .cta .count-change {
+    background-color: var(--color-dark);
+}
+
+main .container .dashboard .dash-content .cta .count-change:hover {
+    color: var(--color-dark);
+    background-color: var(--color-light);
+    border: 2px solid var(--color-dark);
+}
+
+main .container .dashboard .dash-content .cta .count-delete {
+    background-color: var(--color-red);
+}
+
+main .container .dashboard .dash-content .cta .count-delete:hover {
+    color: var(--color-red);
+    background-color: var(--color-light);
+    border: 2px solid var(--color-red);
 }
 
 /* USER EVENEMENTS */
@@ -653,7 +670,6 @@ main .container .dashboard .dash-content .match .star span {
     padding: var(--padding-s) 0;
     margin: 0 auto var(--margin-m);
 }
-
 
 /* **************** */
 /* Format tablette */

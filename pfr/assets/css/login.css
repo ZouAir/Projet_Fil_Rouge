@@ -110,14 +110,14 @@ main .container .login .login-link a:hover {
 
 main .container .login .login-pwd a {
     color: var(--color-light);
-    background-color: var(--color-gray);
+    background-color: var(--color-grey);
     margin-top: var(--margin-xl);
 }
 
 main .container .login .login-pwd a:hover {
-    color: var(--color-gray);
+    color: var(--color-grey);
     background-color: var(--color-light);
-    border: 2px solid var(--color-gray);
+    border: 2px solid var(--color-grey);
 }
 
 main .container .login .login-link a {

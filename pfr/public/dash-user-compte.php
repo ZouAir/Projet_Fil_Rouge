@@ -6,14 +6,14 @@ $error = null;
 $id = $_SESSION['id'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = htmlspecialchars(trim($_POST['name'])) ?? '';
-    $first_name = htmlspecialchars(trim($_POST['first_name'])) ?? '';
-    $email = htmlspecialchars(trim($_POST['email'])) ?? '';
+    $name = htmlspecialchars(trim(strtolower($_POST['name']))) ?? '';
+    $first_name = htmlspecialchars(trim(strtolower($_POST['first_name']))) ?? '';
+    $email = htmlspecialchars(trim(strtolower($_POST['email']))) ?? '';
     $phone = htmlspecialchars(trim($_POST['phone'])) ?? '';
     $birthday = htmlspecialchars(trim($_POST['birthday'])) ?? '';
-    $adress = htmlspecialchars(trim($_POST['adress'])) ?? '';
+    $adress = htmlspecialchars(trim(strtolower($_POST['adress']))) ?? '';
     $postal = htmlspecialchars(trim($_POST['postal'])) ?? '';
-    $city = htmlspecialchars(trim($_POST['city'])) ?? '';
+    $city = htmlspecialchars(trim(strtolower($_POST['city']))) ?? '';
     $status = htmlspecialchars(trim($_POST['status'])) ?? '';
 
     if (empty($error)) {
@@ -90,10 +90,10 @@ $user = $query->fetch(PDO::FETCH_ASSOC);
                     <div>
                         <form action="dash-user-compte.php" method="POST">
                             <div class="form-item">
-                                <input type="text" id="name" name="name" value="<?= htmlspecialchars($user['name']) ?>" required>
+                                <input type="text" id="name" name="name" value="<?= strtoupper(htmlspecialchars($user['name'])) ?>" required>
                             </div>
                             <div class="form-item">
-                                <input type="text" id="first_name" name="first_name" value="<?= htmlspecialchars($user['first_name']) ?>" required>
+                                <input type="text" id="first_name" name="first_name" value="<?= ucfirst(htmlspecialchars($user['first_name'])) ?>" required>
                             </div>
                             <div class="form-item">
                                 <input type="email" id="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" required>
@@ -109,7 +109,7 @@ $user = $query->fetch(PDO::FETCH_ASSOC);
                             </div>
                             <div class="form-item city">
                                 <input type="text" id="postal" name="postal" value="<?= htmlspecialchars($user['postal']) ?>" required>
-                                <input type="text" id="city" name="city" value="<?= htmlspecialchars($user['city']) ?>" required>
+                                <input type="text" id="city" name="city" value="<?= ucfirst(htmlspecialchars($user['city'])) ?>" required>
                             </div>
                             <div class="form-item">
                                 <select name="status" id="status" aria-label="Statut du compte">

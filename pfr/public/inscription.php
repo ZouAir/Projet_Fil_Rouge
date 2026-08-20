@@ -13,8 +13,8 @@ $pdo = require_once('../includes/bdd.php');
 $error = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = htmlspecialchars(trim($_POST['name'])) ?? '';
-    $first_name = htmlspecialchars(trim($_POST['first_name'])) ?? '';
+    $name = htmlspecialchars(trim(strtolower($_POST['name']))) ?? '';
+    $first_name = htmlspecialchars(trim(strtolower($_POST['first_name']))) ?? '';
     $email = htmlspecialchars(trim($_POST['email'])) ?? '';
     $phone = htmlspecialchars(trim($_POST['phone'])) ?? '';
 
