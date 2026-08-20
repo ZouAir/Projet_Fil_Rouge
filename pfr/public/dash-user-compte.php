@@ -2,7 +2,44 @@
 session_start();
 $pdo = require_once('../includes/bdd.php');
 
+$error = null;
 $id = $_SESSION['id'];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = htmlspecialchars(trim($_POST['name'])) ?? '';
+    $first_name = htmlspecialchars(trim($_POST['first_name'])) ?? '';
+    $email = htmlspecialchars(trim($_POST['email'])) ?? '';
+    $phone = htmlspecialchars(trim($_POST['phone'])) ?? '';
+    $birthday = htmlspecialchars(trim($_POST['birthday'])) ?? '';
+    $adress = htmlspecialchars(trim($_POST['adress'])) ?? '';
+    $postal = htmlspecialchars(trim($_POST['postal'])) ?? '';
+    $city = htmlspecialchars(trim($_POST['city'])) ?? '';
+    $status = htmlspecialchars(trim($_POST['status'])) ?? '';
+
+    if (empty($error)) {
+        try {
+            $query = $pdo->prepare("UPDATE users 
+            SET name = :name, first_name = :first_name , email = :email, phone = :phone, birthday = :birthday, adress = :adress, postal = :postal, city = :city, status = :status
+            WHERE id = :id");
+            $query->execute([
+                ':id' => $id,
+                ':name' => $name,
+                ':first_name' => $first_name,
+                ':email' => $email,
+                ':phone' => $phone,
+                ':birthday' => $birthday,
+                ':adress' => $adress,
+                ':postal' => $postal,
+                ':city' => $city,
+                ':status' => $status
+            ]);
+            header('Location: dash-user-compte.php');
+            exit;
+        } catch (PDOException $e) {
+            die("Erreur : " . $e->getMessage());
+        }
+    }
+}
 
 $query = $pdo->prepare("SELECT * FROM users WHERE id = ?");
 $query->execute([$id]);
@@ -51,7 +88,7 @@ $user = $query->fetch(PDO::FETCH_ASSOC);
                         </div>
                     </div>
                     <div>
-                        <form action="compte.php" method="POST">
+                        <form action="dash-user-compte.php" method="POST">
                             <div class="form-item">
                                 <input type="text" id="name" name="name" value="<?= htmlspecialchars($user['name']) ?>" required>
                             </div>
