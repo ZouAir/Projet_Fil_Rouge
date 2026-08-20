@@ -11,10 +11,7 @@
 </head>
 
 <body>
-    <!-- <?php include_once('header-login.php') ?> -->
-    <!-- <header>
-        
-    </header> -->
+    <!-- <?php include_once('../includes/header.php') ?> -->
     <main>
         <div class="container">
             <div class="dashboard">
@@ -44,29 +41,26 @@
                     <div>
                         <form action="compte.php" method="POST">
                             <div class="form-item">
-                                <input type="text" id="" name="" placeholder="Nom" required>
+                                <input type="text" id="name" name="name" value="" required>
                             </div>
                             <div class="form-item">
-                                <input type="text" id="" name="" placeholder="Prénom" required>
+                                <input type="text" id="first_name" name="first_name" value="" required>
                             </div>
                             <div class="form-item">
-                                <input type="email" id="" name="" placeholder="Email" required>
+                                <input type="email" id="email" name="email" value="" required>
                             </div>
                             <div class="form-item">
-                                <input type="password" id="" name="" placeholder="Mot de passe" required>
+                                <input type="tel" id="phone" name="phone" value="" required>
                             </div>
                             <div class="form-item">
-                                <input type="tel" id="" name="" placeholder="Téléphone" required>
+                                <input type="date" id="birthday" name="" value="" required>
                             </div>
                             <div class="form-item">
-                                <input type="date" id="" name="" placeholder="Date de naissance" required>
-                            </div>
-                            <div class="form-item">
-                                <input type="text" id="" name="" placeholder="Adresse" required>
+                                <input type="text" id="adress" name="adress" value="" required>
                             </div>
                             <div class="form-item city">
-                                <input type="text" id="" name="" placeholder="CP" required>
-                                <input type="text" id="" name="" placeholder="Ville" required>
+                                <input type="text" id="postal" name="postal" value="" required>
+                                <input type="text" id="city" name="city" value="" required>
                             </div>
                             <div class="form-item">
                                 <select name="statut" id="statut" aria-label="Statut du compte">
@@ -77,7 +71,7 @@
                                 </select>
                             </div>
                             <div class="form-item">
-                                <button class="submit" type="button">Enregistrer</button>
+                                <button class="submit" type="submit">Enregistrer</button>
                             </div>
                         </form>
                     </div>
@@ -91,10 +85,7 @@
             </div>
         </div>
     </main>
-    <!-- <?php include_once('footer.php') ?> -->
-    <!-- <footer>
-    
-    </footer> -->
+    <!-- <?php include_once('../includes/footer.php') ?> -->
 </body>
 
 </html>

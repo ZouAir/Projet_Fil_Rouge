@@ -10,7 +10,7 @@ $pdo = require_once('../includes/bdd.php');
 // Section "Events à venir" → boucle foreach sur les events
 // Require Footer
 // Vérifier si connecté
-    $name = isset($_SESSION['name']) ? $_SESSION['name'] : '';
+$name = isset($_SESSION['name']) ? $_SESSION['name'] : '';
 $first_name = isset($_SESSION['first_name']) ? $_SESSION['first_name'] : 'Invité';
 
 $query = $pdo->prepare("SELECT e.date, e.name AS evenement, e.description, e.image, e.capacity, e.price, e.status, c.id, c.name AS categorie 

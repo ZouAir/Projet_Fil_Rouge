@@ -1,3 +1,14 @@
+<?php
+session_start();
+$pdo = require_once('../includes/bdd.php');
+
+$id = $_SESSION['id'];
+
+$query = $pdo->prepare("SELECT * FROM users WHERE id = ?");
+$query->execute([$id]);
+$user = $query->fetch(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -42,40 +53,37 @@
                     <div>
                         <form action="compte.php" method="POST">
                             <div class="form-item">
-                                <input type="text" id="" name="" placeholder="Nom" required>
+                                <input type="text" id="name" name="name" value="<?= htmlspecialchars($user['name']) ?>" required>
                             </div>
                             <div class="form-item">
-                                <input type="text" id="" name="" placeholder="Prénom" required>
+                                <input type="text" id="first_name" name="first_name" value="<?= htmlspecialchars($user['first_name']) ?>" required>
                             </div>
                             <div class="form-item">
-                                <input type="email" id="" name="" placeholder="Email" required>
+                                <input type="email" id="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" required>
                             </div>
                             <div class="form-item">
-                                <input type="password" id="" name="" placeholder="Mot de passe" required>
+                                <input type="tel" id="phone" name="phone" value="<?= htmlspecialchars($user['phone']) ?>" required>
                             </div>
                             <div class="form-item">
-                                <input type="tel" id="" name="" placeholder="Téléphone" required>
+                                <input type="date" id="birthday" name="birthday" value="<?= htmlspecialchars($user['birthday']) ?>" required>
                             </div>
                             <div class="form-item">
-                                <input type="date" id="" name="" placeholder="Date de naissance" required>
-                            </div>
-                            <div class="form-item">
-                                <input type="text" id="" name="" placeholder="Adresse" required>
+                                <input type="text" id="adress" name="adress" value="<?= htmlspecialchars($user['adress']) ?>" required>
                             </div>
                             <div class="form-item city">
-                                <input type="text" id="" name="" placeholder="CP" required>
-                                <input type="text" id="" name="" placeholder="Ville" required>
+                                <input type="text" id="postal" name="postal" value="<?= htmlspecialchars($user['postal']) ?>" required>
+                                <input type="text" id="city" name="city" value="<?= htmlspecialchars($user['city']) ?>" required>
                             </div>
                             <div class="form-item">
-                                <select name="statut" id="statut" aria-label="Statut du compte">
-                                    <option value="">Mon status</option>
-                                    <option value="ferme">Fermé</option>
-                                    <option value="prive">Privé</option>
-                                    <option value="public">Public</option>
+                                <select name="status" id="status" aria-label="Statut du compte">
+                                    <option value="<?= htmlspecialchars($user['status']) ?>"><?= htmlspecialchars($user['status']) ?></option>
+                                    <option value="Fermé">Fermé</option>
+                                    <option value="Privé">Privé</option>
+                                    <option value="Public">Public</option>
                                 </select>
                             </div>
                             <div class="form-item">
-                                <button class="submit" type="button">Enregistrer</button>
+                                <button class="submit" type="submit">Enregistrer</button>
                             </div>
                         </form>
                     </div>
