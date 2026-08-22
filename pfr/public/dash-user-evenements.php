@@ -99,7 +99,7 @@ $events = $query->fetchAll();
                                     <p><?= htmlspecialchars($event['status']); ?></p>
                                 </div>
                                 <div class="user-book">
-                                    <a href="reservations.php">Réserver</a>
+                                    <a href="reservation.php?id=<?= $event['id'] ?>">Réserver</a>
                                 </div>
                             </div>
                         </div>

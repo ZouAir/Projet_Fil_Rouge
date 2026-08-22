@@ -1,0 +1,137 @@
+<?php
+// // Session start
+// // Vérifier connexion → sinon login.php
+// // Inclure bdd.php
+// // Récupérer $id de l'event depuis $_GET
+// // Vérifier que $id existe et est valide
+// // Récupérer les infos de l'event depuis la BDD
+// // Vérifier que l'event existe
+// // Si POST → insérer la réservation dans orders
+// // Si POST → rediriger vers index.php
+// HTML en bas :
+// // Afficher le nom et la date de l'event
+// // Formulaire avec select "Nombre de places" (1 ou 2)
+// // Bouton "Confirmer la réservation"
+session_start();
+$pdo = require_once('../includes/bdd.php');
+
+//Si pas connecté
+if (!isset($_SESSION['id'])) {
+    header('Location: ./login.php');
+    exit;
+} else {
+    //Si connecté
+    $error = null;
+    $seats_taken = null; //Traitement à faire sur la page reservations.php
+    $id = $_GET['id'] ? (int)$_GET['id'] : null;
+    $query = $pdo->prepare("SELECT * FROM events WHERE id = ?");
+    $query->execute([$id]);
+    $event = $query->fetch(PDO::FETCH_ASSOC);
+    if (!$event) {
+        die("Erreur : Évènement introuvable");
+    }
+
+    $seats_free = $event['capacity'] - $seats_taken;
+
+    if ($_SERVER['REQUEST_METHOD'] === "POST") {
+        try {
+            $seats = $_POST['seats'] ?? '';
+            if ($seats) {
+                $query = $pdo->prepare("INSERT INTO orders (date, status, seats, events_id, users_id) VALUES (?, ?, ?, ?, ?)");
+                $query->execute([date('d-m-Y'), 'en attente', $seats, $id, $_SESSION['id']]);
+                header('Location: ../public/index.php');
+                exit;
+            }
+        } catch (PDOException $e) {
+            $error = "Erreur : " . $e->getMessage();
+            die("Erreur : " . $e->getMessage());
+        }
+    }
+}
+$date = new DateTime($event['date']);
+?>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/footer.css" rel="stylesheet">
+    <link href="../assets/css/variables.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <!-- <link href="../assets/css/login.css" rel="stylesheet">
+    <link href="../assets/css/dashboard.css" rel="stylesheet"> -->
+    <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+    <title>MNS Football Club</title>
+</head>
+<!-- Ceci est un commentaire -->
+
+<body>
+    <?php include_once('../includes/header.php') ?>
+    <main class="event-wrap">
+        <div class="event">
+            <h3> Réservation évènement</h3>
+            <p>Veuillez choisir le nombre de places que vous souhaitez réserver</p>
+            <div class="event-item">
+                <p>Catégorie :<?php //requete SQL avec jointure pour avoir la catégorie de l'event.
+                                ?>.</p>
+            </div>
+            <div class="event-item">
+                <p>Évènement : <?= htmlspecialchars($event['name']) ?>.</p>
+            </div>
+            <div class="event-item">
+                <p>Description : <?= htmlspecialchars(substr($event['description'], 0, 100)) ?></p>
+            </div>
+            <div class="event-item">
+                <p>Date : <?= $date->format('d-m-Y') ?>.</p>
+            </div>
+            <div class="event-item">
+                <p>Tarif : <?= htmlspecialchars($event['price']) ?> euros.</p>
+            </div>
+            <div class="event-item">
+                <p>Statut : <?= htmlspecialchars($event['status']) ?>.</p>
+            </div>
+            <div class="event-item">
+                <p>Places disponibles : <?= $seats_free ?>.</p>
+            </div>
+            <?php
+            if ($seats_free >= 1) {
+            ?>
+                <form action="./reservation.php" method="POST">
+                    <div class="event-item">
+                        <label for="seats">Nombre de places :</label>
+                        <div>
+                            <select name="seats" id="seats">
+                                <option value="">-</option>
+                                <option value="1">1</option>
+                                <?php
+                                if ($seats_free >= 2) {
+                                ?>
+                                    <option value="2">2</option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="event-item">
+                        <button type="submit" id="sub-btn" value="Réserver">Réserver</button>
+                    </div>
+                </form>
+            <?php
+            } else {
+            ?>
+                <p class="error">Désolé, plus aucune place disponible !</p>
+            <?php
+            }
+            ?>
+            <?php if (!empty($error)): ?>
+                <p class="error"><?= $error ?></p>
+            <?php endif; ?>
+        </div>
+    </main>
+    <?php require_once('../includes/footer.php') ?>
+</body>
+
+</html>

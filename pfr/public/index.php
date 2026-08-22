@@ -69,7 +69,7 @@ $events = $query->fetchALL(PDO::FETCH_ASSOC);
                                 <p><?= htmlspecialchars($row['evenement']) ?></p>
                                 <p><?= htmlspecialchars(substr($row['description'], 0, 50) . "...") ?></p>
                                 <p><?= $row['capacity'] ?> places disponibles - <?= $row['price'] ?> euros</p>
-                                <a href="reservations.php">Réserver</a>
+                                <a href="reservation.php?id=<?= $row['id'] ?>">Réserver</a>
                                 <p><?= $row['status'] ?></p>
                             </div>
                         </li>
