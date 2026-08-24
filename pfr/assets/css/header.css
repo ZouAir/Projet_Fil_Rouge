@@ -101,7 +101,7 @@ header .bottom .btn .burger button {
 
 header .bottom .btn .burger button:hover {
     color: var(--color-secondary);
-    background-color: var(--color-white);
+    background-color: var(--color-light);
 }
 
 header .bottom .btn .cta a {

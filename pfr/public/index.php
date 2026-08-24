@@ -13,7 +13,7 @@ $pdo = require_once('../includes/bdd.php');
 $name = isset($_SESSION['name']) ? $_SESSION['name'] : '';
 $first_name = isset($_SESSION['first_name']) ? $_SESSION['first_name'] : 'Invité';
 
-$query = $pdo->prepare("SELECT e.date, e.name AS evenement, e.description, e.image, e.capacity, e.price, e.status, c.id, c.name AS categorie 
+$query = $pdo->prepare("SELECT e.id AS id, e.date, e.name AS evenement, e.description, e.image, e.capacity, e.price, e.status, c.name AS categorie 
 FROM events e  
 INNER JOIN categories c ON e.categories_id = c.id   
 WHERE date >= now()   
@@ -61,16 +61,24 @@ $events = $query->fetchALL(PDO::FETCH_ASSOC);
                 <span>Réservez vos places avant qu'il n'y en ait plus.</span>
                 <ul>
                     <?php
-                    foreach ($events as $row) { ?>
+                    foreach ($events as $event) {
+                        $query = $pdo->prepare("SELECT SUM(seats) FROM orders WHERE events_id = ? AND status NOT IN ('annulé')");
+                        $query->execute([$event['id']]);
+                        $seats_taken = $query->fetchColumn();
+                        if ($seats_taken === null) {
+                            $seats_taken = 0;
+                        }
+                        $seats_free = $event['capacity'] - $seats_taken;
+                    ?>
                         <li>
                             <div class="card">
-                                <p><?= $row['date'] . " - " . $row['categorie'] ?></p>
-                                <img src="<?= $row['image'] ?>" alt="">
-                                <p><?= htmlspecialchars($row['evenement']) ?></p>
-                                <p><?= htmlspecialchars(substr($row['description'], 0, 50) . "...") ?></p>
-                                <p><?= $row['capacity'] ?> places disponibles - <?= $row['price'] ?> euros</p>
-                                <a href="reservation.php?id=<?= $row['id'] ?>">Réserver</a>
-                                <p><?= $row['status'] ?></p>
+                                <p><?= $event['date'] . " - " . $event['categorie'] ?></p>
+                                <img src="<?= $event['image'] ?>" alt="">
+                                <p><?= htmlspecialchars($event['evenement']) ?></p>
+                                <p><?= htmlspecialchars(substr($event['description'], 0, 50) . "...") ?></p>
+                                <p><?= $seats_free ?> places disponibles - <?= $event['price'] ?> euros</p>
+                                <a href="reservation.php?id=<?= $event['id'] ?>">Réserver</a>
+                                <p><?= $event['status'] ?></p>
                             </div>
                         </li>
                     <?php } ?>

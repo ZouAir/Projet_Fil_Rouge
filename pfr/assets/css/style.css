@@ -1,7 +1,7 @@
 /* COMPONENT */
 /********/
 button {
-    color: var(--color-white);
+    color: var(--color-light);
     background-color: var(--color-secondary);
     border: 0;
     border-radius: var(--border-radius-xl);
@@ -13,7 +13,7 @@ button {
 
 button:hover {
     color: var(--color-secondary);
-    background-color: var(--color-white);
+    background-color: var(--color-light);
     border: 2px solid var(--color-secondary);
 }
 

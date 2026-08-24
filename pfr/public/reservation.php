@@ -22,8 +22,8 @@ if (!isset($_SESSION['id'])) {
 } else {
     //Si connecté
     $error = null;
-    $seats_taken = null; //Traitement à faire sur la page reservations.php
     $id = $_GET['id'] ? (int)$_GET['id'] : null;
+    
     $query = $pdo->prepare("SELECT * FROM events WHERE id = ?");
     $query->execute([$id]);
     $event = $query->fetch(PDO::FETCH_ASSOC);
@@ -31,6 +31,17 @@ if (!isset($_SESSION['id'])) {
         die("Erreur : Évènement introuvable");
     }
 
+    $query = $pdo->prepare("SELECT SUM(seats) 
+    FROM orders
+    WHERE events_id = ?
+    AND status NOT IN ('Annulé')
+    ");
+    $query->execute([$id]);
+    $seats_taken = $query->fetchColumn();
+
+    if ($seats_taken === null) {
+        $seats_taken = 0;
+    }
     $seats_free = $event['capacity'] - $seats_taken;
 
     if ($_SERVER['REQUEST_METHOD'] === "POST") {
@@ -38,7 +49,7 @@ if (!isset($_SESSION['id'])) {
             $seats = $_POST['seats'] ?? '';
             if ($seats) {
                 $query = $pdo->prepare("INSERT INTO orders (date, status, seats, events_id, users_id) VALUES (?, ?, ?, ?, ?)");
-                $query->execute([date('d-m-Y'), 'en attente', $seats, $id, $_SESSION['id']]);
+                $query->execute([date('d-m-Y'), 'En attente', $seats, $_POST['id'], $_SESSION['id']]);
                 header('Location: ../public/index.php');
                 exit;
             }
@@ -115,6 +126,7 @@ $date = new DateTime($event['date']);
                             </select>
                         </div>
                     </div>
+                    <input type="hidden" name="id" value="<?= $id ?>">
                     <div class="event-item">
                         <button type="submit" id="sub-btn" value="Réserver">Réserver</button>
                     </div>
