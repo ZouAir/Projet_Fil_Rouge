@@ -114,10 +114,10 @@ $orders = $query->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                             <div class="event-modify">
                                 <div class="event-change">
-                                    <a href="events.php">Modifier</a>
+                                    <a href="user-modifier-reservation.php">Modifier</a>
                                 </div>
                                 <div class="event-delete">
-                                    <a href="events.php">Supprimer</a>
+                                    <a href="user-supprimer-reservation.php?id=<?= $order['id'] ?>">Supprimer</a>
                                 </div>
                             </div>
                         </div>

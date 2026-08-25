@@ -21,9 +21,14 @@ if (!isset($_SESSION['id'])) {
     exit;
 } else {
     //Si connecté
+    if ($_SERVER['REQUEST_METHOD'] === "GET") {
+        $id = $_GET['id'] ? (int)$_GET['id'] : null;
+    } else {
+        $id = $_POST['id'] ? (int)$_POST['id'] : null;
+    }
+
     $error = null;
-    $id = $_GET['id'] ? (int)$_GET['id'] : null;
-    
+
     $query = $pdo->prepare("SELECT * FROM events WHERE id = ?");
     $query->execute([$id]);
     $event = $query->fetch(PDO::FETCH_ASSOC);
@@ -49,7 +54,7 @@ if (!isset($_SESSION['id'])) {
             $seats = $_POST['seats'] ?? '';
             if ($seats) {
                 $query = $pdo->prepare("INSERT INTO orders (date, status, seats, events_id, users_id) VALUES (?, ?, ?, ?, ?)");
-                $query->execute([date('d-m-Y'), 'En attente', $seats, $_POST['id'], $_SESSION['id']]);
+                $query->execute([date('Y-m-d'), 'En attente', $seats, $id, $_SESSION['id']]);
                 header('Location: ../public/index.php');
                 exit;
             }
