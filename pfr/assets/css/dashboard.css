@@ -690,7 +690,7 @@ main .container .dashboard .dash-content .match .star span {
     }
 
     main .container .dashboard .dash-content {
-        border: 0.5px solid var(--color-primary);
+        background-color: var(--color-beige);
         padding: var(--border-radius-l);
     }
 
