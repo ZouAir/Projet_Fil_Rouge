@@ -1,4 +1,4 @@
- <?php
++ <?php
     ////  Vérifications session + profil admin
     ////  Inclusion de bdd.php
     ////  Récupérer l'ID de l'event via $_GET['id']
