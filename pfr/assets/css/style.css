@@ -182,6 +182,21 @@ main .event {
 main .event .event-item {
     display: flex;
     width: 90%;
+    padding: var(--padding-s);
+    margin: var(--margin-s);
+}
+
+main .event .event-item label {
+    width: 30%;
+}
+
+main .event .event-item div {
+    flex: 1;
+}
+
+main .event .event-item div input {
+    width: 100%;
+    height: 100%;
 }
 
 main .event .event-item:last-child {
