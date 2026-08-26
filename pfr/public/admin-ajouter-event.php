@@ -1,45 +1,43 @@
 <?php
-////  Vérifications session + profil admin
-////  Inclusion de bdd.php
-//  Structure if/else sur REQUEST_METHOD
-//  Si POST : INSERT INTO events + redirection
-//  Si GET : afficher formulaire + récupérer catégories
-
-//// Vérifications de session
-//// Inclusion de bdd.php
+session_start();
+// Vérifications session + profil admin
+// Inclusion de bdd.php
+// Structure if/else sur REQUEST_METHOD
+// Si POST : INSERT INTO events + redirection
+// Si GET : afficher formulaire + récupérer catégories
+// Vérifications de session
+// Inclusion de bdd.php
 // Structure if/else sur REQUEST_METHOD
 // À l'intérieur du else : la requête SELECT pour récupérer les catégories
-session_start();
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['id'])) {
     header('Location: login.php');
     exit;
 }
 
-if ($_SESSION['profil'] !== 'administrateur') {
+if ($_SESSION['profil'] === 'abonne') {
     header('Location: index.php');
     exit;
 }
 
-$pdo = require_once('includes/bdd.php');
+$pdo = require_once('../includes/bdd.php');
 $error = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $name = $_POST['name'];
         $date = $_POST['date'];
-        $hour = $_POST['hour'];
         $price = (int)$_POST['price'];
         $description = $_POST['description'];
-        $image = $_POST['image'];
         $capacity = (int)$_POST['capacity'];
+        $scene = $_POST['scene'];
+        $image = $_POST['image'];
         $status = $_POST['status'];
         $categories = $_POST['categories'];
 
-        $query = $pdo->prepare("INSERT INTO events (name, date, hour, price, description, image, capacity, status, categories_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $query->execute([$name, $date, $hour, $price, $description, $image, $capacity, $status, $categories]);
-
-        header('Location: admin-events.php');
+        $query = $pdo->prepare("INSERT INTO events (name, date, price, description, capacity, scene, image, status, categories_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $query->execute([$name, $date, $price, $description, $capacity, $scene, $image, $status, $categories]);
+        header('Location: dash-admin-evenements.php');
         exit;
     } catch (PDOException $e) {
         $error = "Erreur : " . $e->getMessage();
@@ -47,9 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $stmt = $pdo->prepare("SELECT * FROM categories");
-    $stmt->execute();
-    $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $query = $pdo->prepare("SELECT * FROM categories");
+    $query->execute();
+    $categories = $query->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
 
@@ -59,96 +57,107 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/variables.css">
-    <link rel="stylesheet" href="assets/css/login.css">
+    <link href="../assets/css/header.css" rel="stylesheet">
+    <link href="../assets/css/footer.css" rel="stylesheet">
+    <link href="../assets/css/variables.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <!-- <link href="../assets/css/login.css" rel="stylesheet"> -->
+    <!-- <link href="../assets/css/dashboard.css" rel="stylesheet"> -->
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
-    <script src="assets/js/script.js" defer></script>
-    <title>Login</title>
+    <title>MNS Football Club - Évènement</title>
 </head>
 
 <body>
-    <?php require_once('header.php') ?>
-    <main>
-        <h1>Tableau de bord "Administrateur"</h1>
-        <h2>Ajouter un nouvel évènement</h2>
-        <p> * = champs obligatoires</p>
-        <form action="admin-ajouter-event.php" method="post"
-            id="id-form" class="form">
-            <div class="form-group">
-                <label for="name">Name *</label>
-                <div>
-                    <input type="text" id="name" name="name" required>
+    <?php require_once('../includes/header.php') ?>
+    <main class="event-wrap">
+        <div class="event">
+            <h3>Créer un évènement</h3>
+            <p> * = champs obligatoires</p>
+            <form action="admin-ajouter-event.php" method="post"
+                id="id-form" class="form">
+                <div class="event-item">
+                    <label for="name">Name *</label>
+                    <div>
+                        <input type="text" id="name" name="name" required>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="date">Date * <sup>*</sup></label>
-                <div>
-                    <input type="date" id="date" name="date" required>
+                <div class="event-item">
+                    <label for="date">Date * <sup>*</sup></label>
+                    <div>
+                        <input type="date" id="date" name="date" required>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="hour">Heure *</label>
-                <div>
-                    <input type="time" id="hour" name="hour" required>
+                <div class="event-item">
+                    <label for="price">Tarif *</label>
+                    <div>
+                        <input type="number" id="price" name="price" required>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="price">Tarif *</label>
-                <div>
-                    <input type="number" id="price" name="price" required>
+                <div class="event-item">
+                    <label for="description">Description *</label>
+                    <div>
+                        <input type="text" id="description" name="description" required>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="description">Description *</label>
-                <div>
-                    <input type="text" id="description" name="description" required>
+                <div class="event-item">
+                    <label for="capacity">capacité *</label>
+                    <div>
+                        <input type="number" id="capacity" name="capacity" required>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="capacity">capacité *</label>
-                <div>
-                    <input type="number" id="capacity" name="capacity" required>
+                <div class="event-item">
+                    <label for="image">Image</label>
+                    <div>
+                        <input type="text" id="image" name="image">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="image">Image</label>
-                <div>
-                    <input type="text" id="image" name="image">
+                <div class="event-item">
+                    <label for="scene">Scène</label>
+                    <div>
+                        <select name="scene" id="scene">
+                            <option value="">Choisir</option>
+                            <option value="Tribune Nord">Tribune Nord</option>
+                            <option value="Tribune Sud">Tribune Sud</option>
+                            <option value="Tribune Est">Tribune Est</option>
+                            <option value="Tribune Ouest">Tribune Ouest</option>
+                            <option value="Club House">Club House</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="status">Statut</label>
-                <div>
-                    <select name="status" id="status">
-                        <option value="">Choisir</option>
-                        <option value="a_venir">À venir</option>
-                        <option value="confirme">Confirmé</option>
-                        <option value="reporte">Reporté</option>
-                        <option value="annule">Annulé</option>
-                    </select>
+                <div class="event-item">
+                    <label for="status">Statut</label>
+                    <div>
+                        <select name="status" id="status">
+                            <option value="">Choisir</option>
+                            <option value="À venir">À venir</option>
+                            <option value="Confirmé">Confirmé</option>
+                            <option value="Reporté">Reporté</option>
+                            <option value="Annulé">Annulé</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="categories">Catégorie</label>
-                <div>
-                    <select name="categories" id="categories">
-                        <option value="">Choisir</option>
-                        <?php foreach ($categories as $category): ?>
-                            <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
-                            <!-- On stock dans value $category['id'] et pas ['name'] => C'est une clé étrangère (int) dans la table qu'on insert pas une string. -->
-                        <?php endforeach; ?>
-                    </select>
+                <div class="event-item">
+                    <label for="categories">Catégorie</label>
+                    <div>
+                        <select name="categories" id="categories">
+                            <option value="">Choisir</option>
+                            <?php foreach ($categories as $category) { ?>
+                                <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+                                <!-- On stock dans value $category['id'] et pas ['name'] => C'est une clé étrangère (int) dans la table qu'on insert pas une string. -->
+                            <?php } ?>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <button type="submit" id="sub-btn">Créer l'événement</button>
-            </div>
-        </form>
-        <?php if ($error): ?>
-            <p style="color:red"><?= $error ?></p>
-        <?php endif; ?>
+                <div class="event-item">
+                    <button type="submit" id="sub-btn">Créer l'événement</button>
+                </div>
+            </form>
+            <?php if ($error): ?>
+                <p style="color:red"><?= $error ?></p>
+            <?php endif; ?>
+        </div>
     </main>
-    <?php require_once('footer.php') ?>
+    <?php require_once('../includes/footer.php') ?>
 </body>
 
 </html>
