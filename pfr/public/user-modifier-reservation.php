@@ -109,7 +109,7 @@ $date = new DateTime($currentOrder['date']);
     <?php include_once('../includes/header.php') ?>
     <main class="event-wrap">
         <div class="event">
-            <h3> Modification réservation</h3>
+            <h3> Modifier une réservation</h3>
             <p>Veuillez modifier le nombre de places que vous souhaitez réserver</p>
             <div class="event-item">
                 <p>Évènement : <?= htmlspecialchars($event['name']) ?>.</p>

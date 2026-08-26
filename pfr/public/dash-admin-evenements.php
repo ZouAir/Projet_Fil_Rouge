@@ -6,10 +6,36 @@ $id = $_SESSION['id'];
 $name = $_SESSION['name'];
 $first_name = $_SESSION['first_name'];
 $initials = strtoupper(substr($first_name, 0, 1) . '.' . substr($name, 0, 1));
+$profil = $_SESSION['profil'];
 
 $query = $pdo->prepare("SELECT * FROM events WHERE date > NOW() LIMIT 10");
 $query->execute();
 $events = $query->fetchAll();
+
+$query = $pdo->prepare("SELECT * FROM events 
+WHERE date > NOW() 
+ORDER BY date ASC 
+LIMIT 1");
+$query->execute();
+$event = $query->fetch(PDO::FETCH_ASSOC);
+
+$query = $pdo->prepare("SELECT SUM(seats) 
+    FROM orders
+    WHERE events_id = ?
+    AND status NOT IN ('Annulé')
+    ");
+$query->execute([$event['id']]);
+$seats = $query->fetchColumn();
+
+$query = $pdo->prepare("SELECT count(*) FROM users");
+$query->execute([]);
+$abonnes = $query->fetchColumn();
+
+if ($seats === null) {
+    $seats = 0;
+}
+$seats_free = $event['capacity'] - $seats;
+$date = new DateTime($event['date']);
 ?>
 
 <!DOCTYPE html>
@@ -36,67 +62,89 @@ $events = $query->fetchAll();
                 <div class="dash-sidebar">
                     <div>Navigation</div>
                     <ul>
-                        <li><a href="index.php">Accueil</a></li>
-                        <li><a href="dash-user-evenements.php">Évènements</a></li>
-                        <li><a href="dash-user-reservations.php">Réservations</a></li>
-                        <li><a href="#">Mes amis</a></li>
-                        <li><a href="#">Mon mvp</a></li>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="dash-admin-abonnes.html">Utilisateurs</a></li>
+                        <li><a href="dash-admin-evenements.html">Évènements</a></li>
+                        <li><a href="dash-admin-reservations.html">Réservations</a></li>
+                        <li><a href="dash-admin-presences.html">Présences</a></li>
                     </ul>
                     <div>Compte</div>
-                    <a href="dash-user-compte.php">Mon compte</a>
+                    <a href="#">Mon compte</a>
                     <a href="logout.php">Déconnexion</a>
                 </div>
                 <div class="dash-content">
                     <div class="dash-head">
                         <div>
-                            <span><?= $initials ?></span>
+                            <span><?= htmlspecialchars($initials) ?></span>
                             <span><?= strtoupper(substr($first_name, 0, 1)) . substr($first_name, 1,) . " " . strtoupper($name) ?></span>
                         </div>
-                        <div>Tableau de bord : Administrateur</div>
+                        <div>Tableau de bord : <?= htmlspecialchars($profil) ?></div>
                     </div>
                     <div class="kpi">
                         <div>
+                            <span>Prochain évènement</span>
+                            <span><?= $date->format('d-m-Y') ?></span>
+                            <span><?= htmlspecialchars($event['name']) ?></span>
+                        </div>
+                        <div>
                             <span>Réservations</span>
-                            <span>10</span>
+                            <span><?= htmlspecialchars($seats) ?> réservations</span>
+                            <span>Places libres : <?= $seats_free ?></span>
                         </div>
                         <div>
-                            <span>Réservations à venir</span>
-                            <span>9</span>
-                        </div>
-                        <div>
-                            <span>Amis</span>
-                            <span>81</span>
+                            <span>Abonnés</span>
+                            <span>Total abonnés: <?= htmlspecialchars($abonnes) ?></span>
+                            <!-- <span>Nouveaux abonnés (<?= date('m') ?>):</span> -->
                         </div>
                     </div>
                     <div class="title">
-                        Prochains évènements
+                        Les évènements
                     </div>
                     <?php
-                    foreach ($events as $event) {
+                    foreach ($events as $row) {
+                        $query = $pdo->prepare("SELECT SUM(seats) 
+                        FROM orders
+                        WHERE events_id = ?
+                        AND status NOT IN ('Annulé')
+                    ");
+                        $query->execute([$row['id']]);
+                        $seats = $query->fetchColumn();
+                        if ($seats === null) {
+                            $seats = 0;
+                        }
+                        $free_seats = $row['capacity'] - $seats;
                     ?>
-                        <div class="user">
-                            <div class="user-data">
-                                <span><?= htmlspecialchars($event['name']); ?></span>
-                                <span><?= htmlspecialchars($event['date']); ?></span>
-                                <span><?= htmlspecialchars($event['scene']) . " - " . htmlspecialchars($event['capacity']); ?> places</span>
+                        <div class="event">
+                            <div class="event-status">
+                                <span><?= htmlspecialchars($row['status']) ?></span>
                             </div>
-                            <div class="user-modify">
-                                <div class="user-change">
-                                    <p href="#"><?= htmlspecialchars($event['status']); ?></p>
+                            <div class="event-data">
+                                <span><?= htmlspecialchars($row['name']) ?></span>
+                                <span><?= $row['date'] ?></span>
+                                <span><?= htmlspecialchars($row['scene']) . " - Places libres : " . htmlspecialchars($free_seats) . " place";
+                                        if ((int)($free_seats) > 1) {
+                                            echo "s";
+                                        } ?></span>
+                            </div>
+                            <div class="event-modify">
+                                <div class="event-change">
+                                    <a href="admin-modifier-event.php?id=<?= $row['id'] ?>">Modifier</a>
                                 </div>
-                                <div class="user-book">
-                                    <a href="reservations.php">Réserver</a>
+                                <div class="event-delete">
+                                    <a href="admin-supprimer-event.php?id=<?= $row['id'] ?>">Supprimer</a>
                                 </div>
                             </div>
                         </div>
                     <?php
                     }
                     ?>
+                    <div class="cta">
+                        <a href="admin-ajouter-event.php">Ajouter un évènement</a>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
-
     <?php include_once('../includes/footer.php') ?>
 
 </body>
