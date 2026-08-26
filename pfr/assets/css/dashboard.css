@@ -290,6 +290,8 @@ main .container .dashboard .dash-content .user .user-modify {
 
 main .container .dashboard .dash-content .user .user-change {
     display: flex;
+    align-items: center;
+    text-align: center;
     background-color: var(--color-dark);
     border-radius: 0 var(--border-radius-m) 0 0;
     height: 50%;
@@ -297,6 +299,7 @@ main .container .dashboard .dash-content .user .user-change {
 
 main .container .dashboard .dash-content .user .user-delete {
     display: flex;
+    align-items: center;
     text-align: center;
     background-color: var(--color-red);
     border-radius: 0 0 var(--border-radius-m) 0;

@@ -2,6 +2,11 @@
 session_start();
 $pdo = require_once('../includes/bdd.php');
 
+if ($_SESSION['profil'] !== 'administrateur') {
+    header('Location: index.php');
+    exit;
+}
+
 $id = $_SESSION['id'];
 $name = $_SESSION['name'];
 $first_name = $_SESSION['first_name'];
@@ -27,13 +32,19 @@ $query = $pdo->prepare("SELECT SUM(seats)
 $query->execute([$event['id']]);
 $seats = $query->fetchColumn();
 
+$query = $pdo->prepare("SELECT * FROM users");
+$query->execute([]);
+$abonnes = $query->fetchAll();
+
+
 $query = $pdo->prepare("SELECT count(*) FROM users");
 $query->execute([]);
-$abonnes = $query->fetchColumn();
+$nbre_abonnes = $query->fetchColumn();
 
 if ($seats === null) {
     $seats = 0;
 }
+
 $seats_free = $event['capacity'] - $seats;
 $date = new DateTime($event['date']);
 ?>
@@ -76,7 +87,7 @@ $date = new DateTime($event['date']);
                     <div class="dash-head">
                         <div>
                             <span><?= htmlspecialchars($initials) ?></span>
-                            <span><?= strtoupper(substr($first_name, 0, 1)) . substr($first_name, 1,) . " " . strtoupper($name) ?></span>
+                            <span><?= ucfirst($first_name) . " " . strtoupper($name) ?></span>
                         </div>
                         <div>Tableau de bord : <?= htmlspecialchars($profil) ?></div>
                     </div>
@@ -93,45 +104,33 @@ $date = new DateTime($event['date']);
                         </div>
                         <div>
                             <span>Abonnés</span>
-                            <span>Total abonnés: <?= htmlspecialchars($abonnes) ?></span>
+                            <span>Total abonnés: <?= htmlspecialchars($nbre_abonnes) ?></span>
                             <!-- <span>Nouveaux abonnés (<?= date('m') ?>):</span> -->
                         </div>
                     </div>
                     <div class="title">
-                        Les évènements
+                        Les abonnés
                     </div>
                     <?php
-                    foreach ($events as $row) {
-                        $query = $pdo->prepare("SELECT SUM(seats) 
-                        FROM orders
-                        WHERE events_id = ?
-                        AND status NOT IN ('Annulé')
-                    ");
-                        $query->execute([$row['id']]);
-                        $seats = $query->fetchColumn();
-                        if ($seats === null) {
-                            $seats = 0;
+                    foreach ($abonnes as $abonne) {
+                        if ($abonne['is_actif'] == 1) {
+                            $actif = "Actif";
+                        } else {
+                            $actif = "Inactif";
                         }
-                        $free_seats = $row['capacity'] - $seats;
                     ?>
-                        <div class="event">
-                            <div class="event-status">
-                                <span><?= htmlspecialchars($row['status']) ?></span>
+                        <div class="user">
+                            <div class="user-data">
+                                <span><?= ucfirst(htmlspecialchars($abonne['first_name'])) . " " . strtoupper(htmlspecialchars($abonne['name'])) ?></span>
+                                <span><?= htmlspecialchars($abonne['email']) . " - " . htmlspecialchars($abonne['phone']) ?></span>
+                                <span><?= htmlspecialchars($abonne['birthday']) . " - " . htmlspecialchars($abonne['profil']) . " - " . htmlspecialchars($actif) ?></span>
                             </div>
-                            <div class="event-data">
-                                <span><?= htmlspecialchars($row['name']) ?></span>
-                                <span><?= $row['date'] ?></span>
-                                <span><?= htmlspecialchars($row['scene']) . " - Places libres : " . htmlspecialchars($free_seats) . " place";
-                                        if ((int)($free_seats) > 1) {
-                                            echo "s";
-                                        } ?></span>
-                            </div>
-                            <div class="event-modify">
-                                <div class="event-change">
-                                    <a href="admin-modifier-event.php?id=<?= $row['id'] ?>">Modifier</a>
+                            <div class="user-modify">
+                                <div class="user-change">
+                                    <a href="admin-modify-user.php?id=<?= $abonne['id'] ?>">Modifier</a>
                                 </div>
-                                <div class="event-delete">
-                                    <a href="admin-supprimer-event.php?id=<?= $row['id'] ?>">Supprimer</a>
+                                <div class="user-delete">
+                                    <a href="admin-delete-user.php?id=<?= $abonne['id'] ?>">Supprimer</a>
                                 </div>
                             </div>
                         </div>
@@ -139,14 +138,13 @@ $date = new DateTime($event['date']);
                     }
                     ?>
                     <div class="cta">
-                        <a href="admin-ajouter-event.php">Ajouter un évènement</a>
+                        <a href="admin-add-user.php">Ajouter un abonné</a>
                     </div>
                 </div>
             </div>
         </div>
     </main>
     <?php include_once('../includes/footer.php') ?>
-
 </body>
 
 </html>
