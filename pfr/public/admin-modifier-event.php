@@ -146,7 +146,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="event-item">
                     <label for="scene">Scène</label>
                     <div>
-                        <input type="text" id="scene" name="scene" value="<?= htmlspecialchars($currentEvent['scene']) ?>">
+                        <select name="scene" id="scene">
+                            <option value="">Choisir</option>
+                            <option value="Tribune Nord" <?= htmlspecialchars($currentEvent['scene']) === 'Tribune Nord' ? 'selected' : '' ?>>Tribune Nord</option>
+                            <option value="Tribune Sud" <?= htmlspecialchars($currentEvent['scene']) === 'Tribune Sud' ? 'selected' : '' ?>>Tribune Sud</option>
+                            <option value="Tribune Est" <?= htmlspecialchars($currentEvent['scene']) === 'Tribune Est' ? 'selected' : '' ?>>Tribune Est</option>
+                            <option value="Tribune Ouest" <?= htmlspecialchars($currentEvent['scene']) === 'Tribune Ouest' ? 'selected' : '' ?>>Tribune Ouest</option>
+                            <option value="Club House" <?= htmlspecialchars($currentEvent['scene']) === 'Club House' ? 'selected' : '' ?>>Club House</option>
+                        </select>
                     </div>
                 </div>
                 <div class="event-item">
@@ -160,10 +167,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div>
                         <select name="status" id="status">
                             <option value="">Choisir</option>
-                            <option value="a_venir" <?= $currentEvent['status'] === 'a_venir' ? 'selected' : '' ?>>A venir</option>
-                            <option value="confirme" <?= $currentEvent['status'] === 'confirme' ? 'selected' : '' ?>>Confirmé</option>
-                            <option value="reporte" <?= $currentEvent['status'] === 'reporte' ? 'selected' : '' ?>>Reporté</option>
-                            <option value="annule" <?= $currentEvent['status'] === 'annule' ? 'selected' : '' ?>>Annulé</option>
+                            <option value="À venir" <?= htmlspecialchars($currentEvent['status']) == 'À venir' ? 'selected' : '' ?>>À venir</option>
+                            <option value="Confirmé" <?= htmlspecialchars($currentEvent['status']) == 'Confirmé' ? 'selected' : '' ?>>Confirmé</option>
+                            <option value="Reporté" <?= htmlspecialchars($currentEvent['status']) == 'Reporté' ? 'selected' : '' ?>>Reporté</option>
+                            <option value="Annulé" <?= htmlspecialchars($currentEvent['status']) == 'Annulé' ? 'selected' : '' ?>>Annulé</option>
                         </select>
                     </div>
                 </div>
@@ -172,12 +179,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div>
                         <select name="categories_id" id="categories">
                             <option value="">Choisir</option>
-                            <?php foreach ($categories as $category): ?>
+                            <?php foreach ($categories as $category) { ?>
                                 <option value="<?= $category['id'] ?>"
-                                    <?= ($currentEvent['categories_id'] === $category['id']) ? 'selected' : '' ?>>
+                                    <?= ($currentEvent['categories_id'] == $category['id']) ? 'selected' : '' ?>>
                                     <?= $category['name'] ?>
                                 </option>
-                            <?php endforeach; ?>
+                            <?php }; ?>
                         </select>
                     </div>
                 </div>
