@@ -6,15 +6,15 @@ $error = null;
 $id = $_SESSION['id'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = htmlspecialchars(trim(strtolower($_POST['name']))) ?? '';
-    $first_name = htmlspecialchars(trim(strtolower($_POST['first_name']))) ?? '';
-    $email = htmlspecialchars(trim(strtolower($_POST['email']))) ?? '';
-    $phone = htmlspecialchars(trim($_POST['phone'])) ?? '';
-    $birthday = htmlspecialchars(trim($_POST['birthday'])) ?? '';
-    $adress = htmlspecialchars(trim(strtolower($_POST['adress']))) ?? '';
-    $postal = htmlspecialchars(trim($_POST['postal'])) ?? '';
-    $city = htmlspecialchars(trim(strtolower($_POST['city']))) ?? '';
-    $status = htmlspecialchars(trim($_POST['status'])) ?? '';
+    $name = trim(mb_strtolower($_POST['name'] ?? ''));
+    $first_name = trim(mb_strtolower($_POST['first_name'] ?? ''));
+    $email = trim(mb_strtolower($_POST['email'] ?? ''));
+    $phone = trim($_POST['phone'] ?? '');
+    $birthday = trim($_POST['birthday'] ?? '');
+    $adress = trim(mb_strtolower($_POST['adress'] ?? ''));
+    $postal = trim($_POST['postal'] ?? '');
+    $city = trim(mb_strtolower($_POST['city'] ?? ''));
+    $status = $_POST['status'] ?? '';
 
     if (empty($error)) {
         try {
@@ -33,10 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ':city' => $city,
                 ':status' => $status
             ]);
-            header('Location: dash-user-compte.php');
+            header('Location: dash-user-account.php');
             exit;
         } catch (PDOException $e) {
-            die("Erreur : " . $e->getMessage());
+            die("Erreur : ");
         }
     }
 }
@@ -71,13 +71,13 @@ $user = $query->fetch(PDO::FETCH_ASSOC);
                     <div>Navigation</div>
                     <ul>
                         <li><a href="index.php">Accueil</a></li>
-                        <li><a href="dash-user-evenements.php">Évènements</a></li>
+                        <li><a href="dash-user-events.php">Évènements</a></li>
                         <li><a href="dash-user-reservations.php">Réservations</a></li>
                         <li><a href="#">Mes amis</a></li>
                         <li><a href="#">Mon mvp</a></li>
                     </ul>
                     <div>Compte</div>
-                    <a href="dash-user-compte.php">Mon compte</a>
+                    <a href="dash-user-account.php">Mon compte</a>
                     <a href="logout.php">Déconnexion</a>
                 </div>
                 <div class="dash-content">
@@ -88,7 +88,7 @@ $user = $query->fetch(PDO::FETCH_ASSOC);
                         </div>
                     </div>
                     <div>
-                        <form action="dash-user-compte.php" method="POST">
+                        <form action="dash-user-account.php" method="POST">
                             <div class="form-item">
                                 <input type="text" id="name" name="name" value="<?= strtoupper(htmlspecialchars($user['name'])) ?>" required>
                             </div>

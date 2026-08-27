@@ -126,7 +126,7 @@ $date = new DateTime($currentOrder['date']);
             <?php
             if ($seats_free >= 1) {
             ?>
-                <form action="./user-modifier-reservation.php" method="POST">
+                <form action="user-modify-reservation.php" method="POST">
                     <div class="event-item">
                         <label for="seats">Nombre de places :</label>
                         <div>

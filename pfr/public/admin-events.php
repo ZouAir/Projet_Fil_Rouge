@@ -21,7 +21,6 @@ $pdo = require_once('includes/bdd.php');
 $query = $pdo->prepare("SELECT * FROM events ORDER BY date ASC");
 $query->execute();
 $events = $query->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 
 <!DOCTYPE html>
@@ -74,8 +73,8 @@ $events = $query->fetchAll(PDO::FETCH_ASSOC);
                             <td><?= htmlspecialchars($event['image']) ?></td>
                             <td><?= htmlspecialchars($event['status']) ?></td>
                             <td>
-                                <a href="admin-modifier-event.php?id=<?= htmlspecialchars($event['id']) ?>">Modifier</a>
-                                <a href="admin-supprimer-event.php?id=<?= htmlspecialchars($event['id']) ?>">Supprimer</a>
+                                <a href="admin-modify-event.php?id=<?= htmlspecialchars($event['id']) ?>">Modifier</a>
+                                <a href="admin-delete-event.php?id=<?= htmlspecialchars($event['id']) ?>">Supprimer</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

@@ -29,7 +29,7 @@ if ($_SESSION['profil'] !== 'administrateur') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (!isset($_GET['id'])) {
-        header('Location: dash-admin-abonnes.php');
+        header('Location: dash-admin-users.php');
         exit;
     }
     $query = $pdo->prepare("SELECT * FROM users WHERE id = ?");
@@ -38,14 +38,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = trim(strtolower($_POST['name']));
-    $first_name = trim(strtolower($_POST['first_name']));
-    $email = trim(strtolower($_POST['email']));
-    $phone = (int)trim(strtolower($_POST['phone']));
+    $name = trim(mb_strtolower($_POST['name']));
+    $first_name = trim(mb_strtolower($_POST['first_name']));
+    $email = trim(mb_strtolower($_POST['email']));
+    $phone = trim($_POST['phone']);
     $birthday = $_POST['birthday'];
-    $adress = trim(strtolower($_POST['adress']));
-    $postal = trim(strtolower($_POST['postal']));
-    $city = trim(strtolower($_POST['city']));
+    $adress = trim(mb_strtolower($_POST['adress']));
+    $postal = trim($_POST['postal']);
+    $city = trim(mb_strtolower($_POST['city']));
     $profil = $_POST['profil'];
     $is_actif = $_POST['is_actif'];
 
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':is_actif' => $is_actif,
             ':id' => $id
         ]);
-        header('Location: dash-admin-abonnes.php');
+        header('Location: dash-admin-users.php');
         exit;
     } catch (PDOException $e) {
         $error = "Erreur : " . $e->getMessage();

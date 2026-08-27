@@ -1,11 +1,14 @@
 <?php
 session_start();
 $pdo = require_once('../includes/bdd.php');
-
-if ($_SESSION['profil'] !== 'administrateur') {
-    header('Location: index.php');
-    exit;
-}
+//// Démarrer la session
+//// Inclure bdd.php
+//// Récupérer $id, $name, $first_name depuis $_SESSION
+// Écrire la requête : JOIN orders + events, WHERE users_id = user connecté AND date future
+// Exécuter avec paramètre :id
+// Structure de base HTML (déjà en place)
+// Boucle foreach sur les résultats → dupliquer la div "event" pour chaque réservation
+// Adapter les champs affichés (statut, nom event, date, tribune/scene, nombre de places, actions modifier/supprimer)
 
 $id = $_SESSION['id'];
 $name = $_SESSION['name'];
@@ -13,16 +16,22 @@ $first_name = $_SESSION['first_name'];
 $initials = strtoupper(substr($first_name, 0, 1) . '.' . substr($name, 0, 1));
 $profil = $_SESSION['profil'];
 
-$query = $pdo->prepare("SELECT * FROM events WHERE date > NOW() LIMIT 10");
-$query->execute();
-$events = $query->fetchAll();
-
 $query = $pdo->prepare("SELECT * FROM events 
 WHERE date > NOW() 
 ORDER BY date ASC 
 LIMIT 1");
 $query->execute();
 $event = $query->fetch(PDO::FETCH_ASSOC);
+
+$query = $pdo->prepare("SELECT o.id, o.status, o.seats, o.users_id, o.events_id, e.name AS event_name, e.date AS event_date, u.name AS user_name, u.first_name   
+FROM orders o
+INNER JOIN events e ON e.id = o.events_id
+INNER JOIN users u ON u.id = o.users_id 
+WHERE e.date > NOW()
+ORDER BY e.date ASC
+");
+$query->execute();
+$orders = $query->fetchAll(PDO::FETCH_ASSOC);
 
 $query = $pdo->prepare("SELECT SUM(seats) 
     FROM orders
@@ -32,21 +41,15 @@ $query = $pdo->prepare("SELECT SUM(seats)
 $query->execute([$event['id']]);
 $seats = $query->fetchColumn();
 
-$query = $pdo->prepare("SELECT * FROM users");
-$query->execute([]);
-$abonnes = $query->fetchAll();
-
-
-$query = $pdo->prepare("SELECT count(*) FROM users");
-$query->execute([]);
-$nbre_abonnes = $query->fetchColumn();
-
 if ($seats === null) {
     $seats = 0;
 }
-
 $seats_free = $event['capacity'] - $seats;
 $date = new DateTime($event['date']);
+
+$query = $pdo->prepare("SELECT count(*) FROM users");
+$query->execute([]);
+$abonnes = $query->fetchColumn();
 ?>
 
 <!DOCTYPE html>
@@ -74,13 +77,13 @@ $date = new DateTime($event['date']);
                     <div>Navigation</div>
                     <ul>
                         <li><a href="index.php">Accueil</a></li>
-                        <li><a href="dash-admin-abonnes.php">Utilisateurs</a></li>
-                        <li><a href="dash-admin-evenements.php">Évènements</a></li>
+                        <li><a href="dash-admin-users.php">Utilisateurs</a></li>
+                        <li><a href="dash-admin-events.php">Évènements</a></li>
                         <li><a href="dash-admin-reservations.php">Réservations</a></li>
                         <li><a href="dash-admin-presences.php">Présences</a></li>
                     </ul>
                     <div>Compte</div>
-                    <a href="dash-admin-compte.php">Mon compte</a>
+                    <a href="dash-admin-account.php">Mon compte</a>
                     <a href="logout.php">Déconnexion</a>
                 </div>
                 <div class="dash-content">
@@ -104,43 +107,41 @@ $date = new DateTime($event['date']);
                         </div>
                         <div>
                             <span>Abonnés</span>
-                            <span>Total abonnés: <?= htmlspecialchars($nbre_abonnes) ?></span>
+                            <span>Total abonnés: <?= htmlspecialchars($abonnes) ?></span>
                             <!-- <span>Nouveaux abonnés (<?= date('m') ?>):</span> -->
                         </div>
                     </div>
                     <div class="title">
-                        Les abonnés
+                        Les réservations
                     </div>
                     <?php
-                    foreach ($abonnes as $abonne) {
-                        $birthday = new DateTime($abonne['birthday']);
-                        if ($abonne['is_actif'] == 1) {
-                            $actif = "Actif";
-                        } else {
-                            $actif = "Inactif";
-                        }
+                    foreach ($orders as $order) {
+                        $date2 = new DateTime($order['event_date']);
                     ?>
-                        <div class="user">
-                            <div class="user-data">
-                                <span><?= ucfirst(htmlspecialchars($abonne['first_name'])) . " " . strtoupper(htmlspecialchars($abonne['name'])) ?></span>
-                                <span><?= htmlspecialchars($abonne['email']) . " - " . htmlspecialchars($abonne['phone']) ?></span>
-                                <span><?= $birthday->format('d-m-Y') . " - " . htmlspecialchars($abonne['profil']) . " - " . htmlspecialchars($actif) ?></span>
+                        <div class="event">
+                            <div class="event-status">
+                                <span><?= htmlspecialchars($order['status']) ?></span>
                             </div>
-                            <div class="user-modify">
-                                <div class="user-change">
-                                    <a href="admin-modify-user.php?id=<?= $abonne['id'] ?>">Modifier</a>
+                            <div class="event-data">
+                                <span><?= ucfirst(htmlspecialchars($order['first_name'])) . " " . strtoupper(htmlspecialchars($order['user_name'])) ?></span>
+                                <span><?= $date2->format('d-m-Y') ?></span>
+                                <span><?= htmlspecialchars($order['event_name']) . " - " . htmlspecialchars($order['seats']) . " place";
+                                        if ((int)($order['seats']) > 1) {
+                                            echo "s";
+                                        } ?></span>
+                            </div>
+                            <div class="event-modify">
+                                <div class="event-change">
+                                    <a href="admin-modify-reservation.php?id=<?= $order['id'] ?>">Modifier</a>
                                 </div>
-                                <div class="user-delete">
-                                    <a href="admin-delete-user.php?id=<?= $abonne['id'] ?>">Supprimer</a>
+                                <div class=" event-delete">
+                                    <a href="admin-delete-reservation.php?id=<?= $order['id'] ?>">Supprimer</a>
                                 </div>
                             </div>
                         </div>
                     <?php
                     }
                     ?>
-                    <div class="cta">
-                        <a href="admin-add-user.php">Ajouter un abonné</a>
-                    </div>
                 </div>
             </div>
         </div>

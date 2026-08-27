@@ -19,9 +19,9 @@ $pdo = require_once('../includes/bdd.php');
 $error = null;
 
 if ($_SESSION['profil'] === 'administrateur') {
-    $header = 'Location: dash-admin-evenements.php';
+    $header = 'Location: dash-admin-events.php';
 } elseif ($_SESSION['profil'] === 'service') {
-    $header = 'Location: dash-service-evenements.php';
+    $header = 'Location: dash-service-events.php';
 } else {
     $header = 'Location: index.php';
 };

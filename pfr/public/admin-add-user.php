@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $query = $pdo->prepare("INSERT INTO users (name, first_name, email, password, phone, birthday, adress, postal, city, profil) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $query->execute([$name, $first_name, $email, $password, $phone, $birthday, $adress, $postal, $city, $profil]);
-        header('Location: dash-admin-abonnes.php');
+        header('Location: dash-admin-users.php');
         exit;
     } catch (PDOException $e) {
         $error = "Erreur lors de l'inscription ";

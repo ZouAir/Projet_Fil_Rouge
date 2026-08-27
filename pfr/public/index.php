@@ -54,11 +54,11 @@ $events = $query->fetchALL(PDO::FETCH_ASSOC);
                     <a href="inscription.php">Nous rejoindre</a>
                     <?php } else {
                     if ($_SESSION['profil'] === 'administrateur') { ?>
-                        <a href="dash-admin-evenements.php">mon dashboard</a>
+                        <a href="dash-admin-events.php">mon dashboard</a>
                     <?php } elseif ($_SESSION['profil'] === 'service') { ?>
-                        <a href="dash-service-evenements.php">mon dashboard</a>
+                        <a href="dash-service-events.php">mon dashboard</a>
                     <?php } elseif ($_SESSION['profil'] === 'abonne') { ?>
-                        <a href="dash-user-evenements.php">mon dashboard</a>
+                        <a href="dash-user-events.php">mon dashboard</a>
                     <?php } else {
                         header("Location: login.php");
                         exit;

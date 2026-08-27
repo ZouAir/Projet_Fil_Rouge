@@ -43,13 +43,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = trim(strtolower($_POST['name']));
+    $name = trim(mb_strtolower($_POST['name']));
     $date = $_POST['date'];
-    $price = (int)$_POST['price'];
-    $description = trim(strtolower($_POST['description']));
-    $capacity = (int)trim(strtolower($_POST['capacity']));
-    $scene = trim(strtolower($_POST['scene']));
-    $image = trim(strtolower($_POST['image']));
+    $price = (int)trim($_POST['price']);
+    $description = trim(mb_strtolower($_POST['description']));
+    $capacity = (int)trim($_POST['capacity']);
+    $scene = $_POST['scene'];
+    $image = trim(mb_strtolower($_POST['image']));
     $status = $_POST['status'];
     $categories = $_POST['categories_id'];
 
@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':id' => $id
         ]);
 
-        header('Location: dash-admin-evenements.php');
+        header('Location: dash-admin-events.php');
         exit;
     } catch (PDOException $e) {
         $error = "Erreur : " . $e->getMessage();
@@ -110,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="event">
             <h3>Modifier un évènement</h3>
             <p>Veuillez modifier les informations de l'évènement</p>
-            <form action="admin-modifier-event.php" method="post"
+            <form action="admin-modify-event.php" method="post"
                 id="id-form" class="form">
                 <input type="hidden" name="id" value="<?= $currentEvent['id'] ?>">
                 <div class="event-item">

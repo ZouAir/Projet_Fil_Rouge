@@ -51,20 +51,20 @@ $events = $query->fetchAll();
                     <div>Navigation</div>
                     <ul>
                         <li><a href="index.php">Accueil</a></li>
-                        <li><a href="dash-user-evenements.php">Évènements</a></li>
+                        <li><a href="dash-user-events.php">Évènements</a></li>
                         <li><a href="dash-user-reservations.php">Réservations</a></li>
                         <li><a href="#">Mes amis</a></li>
                         <li><a href="#">Mon mvp</a></li>
                     </ul>
                     <div>Compte</div>
-                    <a href="dash-user-compte.php">Mon compte</a>
+                    <a href="dash-user-account.php">Mon compte</a>
                     <a href="logout.php">Déconnexion</a>
                 </div>
                 <div class="dash-content">
                     <div class="dash-head">
                         <div>
                             <span><?= $initials ?></span>
-                            <span><?= strtoupper(substr($first_name, 0, 1)) . substr($first_name, 1,) . " " . strtoupper($name) ?></span>
+                            <span><?= ucfirst($first_name) . " " . strtoupper($name) ?></span>
                         </div>
                         <div>Mon tableau de bord</div>
                     </div>

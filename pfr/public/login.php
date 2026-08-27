@@ -34,13 +34,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (password_verify($password, $passwordHash)) {
             // Redirection selon profil
             if ($count['profil'] === 'administrateur') {
-                header("Location: dash-admin-evenements.php");
+                header("Location: dash-admin-events.php");
                 //vérifier le header vers le bon fichier
             } elseif ($count['profil'] === 'service') {
-                header("Location: dash-service-evenements.php");
+                header("Location: dash-service-events.php");
                 //vérifier le header vers le bon fichier
             } elseif ($count['profil'] === 'abonne') {
-                header("Location: dash-user-evenements.php");
+                header("Location: dash-user-events.php");
                 //vérifier le header vers le bon fichier
             } else {
                 header("Location: index.php");
@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="error"><?= htmlspecialchars($error) ?></div>
                     <?php endif; ?>
                     <div class="login-pwd">
-                        <a id="pwd-forgot" href="password-oublie.php" target="_blank">Mot de passe oublié ?</a>
+                        <a id="pwd-forgot" href="forgot-password.php" target="_blank">Mot de passe oublié ?</a>
                     </div>
                     <div class="login-link">
                         <a id="subscribe" href="inscription.php" target="_blank">inscription</a>

@@ -25,19 +25,19 @@ $error = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
-        $name = $_POST['name'];
+        $name = trim(mb_strtolower($_POST['name']));
         $date = $_POST['date'];
-        $price = (int)$_POST['price'];
-        $description = $_POST['description'];
-        $capacity = (int)$_POST['capacity'];
+        $price = (int)trim($_POST['price']);
+        $description = trim(mb_strtolower($_POST['description']));
+        $capacity = (int)trim($_POST['capacity']);
         $scene = $_POST['scene'];
-        $image = $_POST['image'];
+        $image = trim(mb_strtolower($_POST['image']));
         $status = $_POST['status'];
         $categories = $_POST['categories'];
 
         $query = $pdo->prepare("INSERT INTO events (name, date, price, description, capacity, scene, image, status, categories_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $query->execute([$name, $date, $price, $description, $capacity, $scene, $image, $status, $categories]);
-        header('Location: dash-admin-evenements.php');
+        header('Location: dash-admin-events.php');
         exit;
     } catch (PDOException $e) {
         $error = "Erreur : " . $e->getMessage();
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         <div class="event">
             <h3>Créer un évènement</h3>
             <p> * = champs obligatoires</p>
-            <form action="admin-ajouter-event.php" method="post"
+            <form action="admin-add-event.php" method="post"
                 id="id-form" class="form">
                 <div class="event-item">
                     <label for="name">Name *</label>
@@ -143,7 +143,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                             <option value="">Choisir</option>
                             <?php foreach ($categories as $category) { ?>
                                 <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
-                                <!-- On stock dans value $category['id'] et pas ['name'] => C'est une clé étrangère (int) dans la table qu'on insert pas une string. -->
                             <?php } ?>
                         </select>
                     </div>
