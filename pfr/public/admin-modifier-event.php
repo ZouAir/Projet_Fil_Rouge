@@ -43,13 +43,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'];
+    $name = trim(strtolower($_POST['name']));
     $date = $_POST['date'];
     $price = (int)$_POST['price'];
-    $description = $_POST['description'];
-    $capacity = (int)$_POST['capacity'];
-    $scene = $_POST['scene'];
-    $image = $_POST['image'];
+    $description = trim(strtolower($_POST['description']));
+    $capacity = (int)trim(strtolower($_POST['capacity']));
+    $scene = trim(strtolower($_POST['scene']));
+    $image = trim(strtolower($_POST['image']));
     $status = $_POST['status'];
     $categories = $_POST['categories_id'];
 

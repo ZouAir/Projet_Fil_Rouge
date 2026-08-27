@@ -38,14 +38,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'];
-    $first_name = $_POST['first_name'];
-    $email = $_POST['email'];
-    $phone = (int)$_POST['phone'];
+    $name = trim(strtolower($_POST['name']));
+    $first_name = trim(strtolower($_POST['first_name']));
+    $email = trim(strtolower($_POST['email']));
+    $phone = (int)trim(strtolower($_POST['phone']));
     $birthday = $_POST['birthday'];
-    $adress = $_POST['adress'];
-    $postal = $_POST['postal'];
-    $city = $_POST['city'];
+    $adress = trim(strtolower($_POST['adress']));
+    $postal = trim(strtolower($_POST['postal']));
+    $city = trim(strtolower($_POST['city']));
     $profil = $_POST['profil'];
     $is_actif = $_POST['is_actif'];
 

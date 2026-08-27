@@ -113,6 +113,7 @@ $date = new DateTime($event['date']);
                     </div>
                     <?php
                     foreach ($abonnes as $abonne) {
+                        $birthday = new DateTime($abonne['birthday']);
                         if ($abonne['is_actif'] == 1) {
                             $actif = "Actif";
                         } else {
@@ -123,7 +124,7 @@ $date = new DateTime($event['date']);
                             <div class="user-data">
                                 <span><?= ucfirst(htmlspecialchars($abonne['first_name'])) . " " . strtoupper(htmlspecialchars($abonne['name'])) ?></span>
                                 <span><?= htmlspecialchars($abonne['email']) . " - " . htmlspecialchars($abonne['phone']) ?></span>
-                                <span><?= htmlspecialchars($abonne['birthday']) . " - " . htmlspecialchars($abonne['profil']) . " - " . htmlspecialchars($actif) ?></span>
+                                <span><?= $birthday->format('d-m-Y') . " - " . htmlspecialchars($abonne['profil']) . " - " . htmlspecialchars($actif) ?></span>
                             </div>
                             <div class="user-modify">
                                 <div class="user-change">
