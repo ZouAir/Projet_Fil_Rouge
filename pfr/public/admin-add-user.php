@@ -18,24 +18,25 @@ $pdo = require_once('../includes/bdd.php');
 $error = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = trim(strtolower($_POST['name']));
-    $first_name = trim(strtolower($_POST['first_name']));
-    $email = trim(strtolower($_POST['email']));
-    $phone = (int)trim(strtolower($_POST['phone']));
-    $birthday = $_POST['birthday'];
-    $adress = trim(strtolower($_POST['adress']));
-    $postal = trim(strtolower($_POST['postal']));
-    $city = trim(strtolower($_POST['city']));
-    $profil = $_POST['profil'];
-    $is_actif = $_POST['is_actif'];
+    $name = trim(mb_strtolower($_POST['name'] ?? ''));
+    $first_name = trim(mb_strtolower($_POST['first_name'] ?? ''));
+    $email = trim(mb_strtolower($_POST['email'] ?? ''));
+    $raw_password = $_POST['password'];
+    $password = password_hash($raw_password, PASSWORD_DEFAULT);
+    $phone = trim($_POST['phone'] ?? '');
+    $birthday = $_POST['birthday'] ?? '2000-01-01';
+    $adress = trim(mb_strtolower($_POST['adress'] ?? 'Adresse à compléter'));
+    $postal = trim($_POST['postal'] ?? '11111');
+    $city = trim(mb_strtolower($_POST['city'] ?? 'Ville'));
+    $profil = $_POST['profil'] ?? 'abonne';
 
     try {
-        $query = $pdo->prepare("INSERT INTO users (name, first_name, email, phone, birthday, adress, postal, city, profil) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $query->execute([$name, $first_name, $email, $phone, $birthday, $adress, $postal, $city, $profil]);
+        $query = $pdo->prepare("INSERT INTO users (name, first_name, email, password, phone, birthday, adress, postal, city, profil) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $query->execute([$name, $first_name, $email, $password, $phone, $birthday, $adress, $postal, $city, $profil]);
         header('Location: dash-admin-abonnes.php');
         exit;
     } catch (PDOException $e) {
-        $error = "Erreur : " . $e->getMessage();
+        $error = "Erreur lors de l'inscription ";
     }
 }
 ?>
@@ -64,27 +65,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p> * = champs obligatoires</p>
             <form action="admin-add-user.php" method="post"
                 id="id-form" class="form">
-                <input type="hidden" name="id">
                 <div class="event-item">
-                    <label for="name">Nom</label>
+                    <label for="name">Nom *</label>
                     <div>
-                        <input type="text" id="name" name="name" ?>
+                        <input type="text" id="name" name="name">
                     </div>
                 </div>
                 <div class="event-item">
-                    <label for="first_name">Prénom</label>
+                    <label for="first_name">Prénom *</label>
                     <div>
                         <input type="text" id="first_name" name="first_name">
                     </div>
                 </div>
                 <div class="event-item">
-                    <label for="email">Email</label>
+                    <label for="email">Email *</label>
                     <div>
                         <input type="email" id="email" name="email">
                     </div>
                 </div>
                 <div class="event-item">
-                    <label for="phone">Téléphone</label>
+                    <label for="password">Mot de passe *</label>
+                    <div>
+                        <input type="text" id="password" name="password">
+                    </div>
+                </div>
+                <div class="event-item">
+                    <label for="phone">Téléphone *</label>
                     <div>
                         <input type="text" id="phone" name="phone">
                     </div>
@@ -92,25 +98,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="event-item">
                     <label for="birthday">Anniversaire</label>
                     <div>
-                        <input type="date" id="birthday" name="birthday">
+                        <input type="date" id="birthday" name="birthday" value="2000-01-01">
                     </div>
                 </div>
                 <div class="event-item">
                     <label for="adress">Adresse</label>
                     <div>
-                        <input type="text" id="adress" name="adress">
+                        <input type="text" id="adress" name="adress" value="Adresse à modifier">
                     </div>
                 </div>
                 <div class="event-item">
                     <label for="postal">Code Postal</label>
                     <div>
-                        <input type="text" id="postal" name="postal">
+                        <input type="text" id="postal" name="postal" value="11111">
                     </div>
                 </div>
                 <div class="event-item">
                     <label for="city">Ville</label>
                     <div>
-                        <input type="text" id="city" name="city">
+                        <input type="text" id="city" name="city" value="Ville">
                     </div>
                 </div>
                 <div class="event-item">
@@ -121,16 +127,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <option value="administrateur">Administrateur</option>
                             <option value="service">Service</option>
                             <option value="abonne">Abonné</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="event-item">
-                    <label for="is_actif">Actif</label>
-                    <div>
-                        <select name="is_actif" id="is_actif">
-                            <option value="">Choisir</option>
-                            <option value="1">Actif</option>
-                            <option value="0">Inactif</option>
                         </select>
                     </div>
                 </div>

@@ -13,10 +13,10 @@ $pdo = require_once('../includes/bdd.php');
 $error = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = htmlspecialchars(trim(strtolower($_POST['name']))) ?? '';
-    $first_name = htmlspecialchars(trim(strtolower($_POST['first_name']))) ?? '';
-    $email = htmlspecialchars(trim($_POST['email'])) ?? '';
-    $phone = htmlspecialchars(trim($_POST['phone'])) ?? '';
+    $name = trim(mb_strtolower($_POST['name'] ?? ''));
+    $first_name = trim(mb_strtolower($_POST['first_name'] ?? ''));
+    $email = trim(mb_strtolower($_POST['email'] ?? ''));
+    $phone = trim($_POST['phone'] ?? '');
 
     if ($_POST['password'] !== $_POST['password-confirm']) {
         $error = "Les mots de passe ne correspondent pas";
@@ -26,11 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (empty($error)) {
             try {
                 $query = $pdo->prepare("INSERT INTO users (name, first_name, email, password, phone, birthday, adress, postal, city) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                $query->execute([$name, $first_name, $email, $password, $phone, '2000-01-01', 'Adresse à modifier', '57000', 'Ville']);
+                $query->execute([$name, $first_name, $email, $password, $phone, '2000-01-01', 'Adresse à modifier', '11111', 'Ville']);
                 header('Location: login.php');
                 exit;
             } catch (PDOException $e) {
-                die("Erreur : " . $e->getMessage());
+                die("Erreur lors de l'inscription");
             }
         }
     }
