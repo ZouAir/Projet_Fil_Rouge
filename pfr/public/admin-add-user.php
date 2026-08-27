@@ -4,18 +4,12 @@ session_start();
 // Inclusion de bdd.php
 // Structure if/else sur REQUEST_METHOD
 // Si POST : INSERT INTO events + redirection
-// Si GET : afficher formulaire + récupérer catégories
-// Vérifications de session
-// Inclusion de bdd.php
-// Structure if/else sur REQUEST_METHOD
-// À l'intérieur du else : la requête SELECT pour récupérer les catégories
-
 if (!isset($_SESSION['id'])) {
     header('Location: login.php');
     exit;
 }
 
-if ($_SESSION['profil'] === 'abonne') {
+if ($_SESSION['profil'] !== 'administrateur') {
     header('Location: index.php');
     exit;
 }
@@ -24,30 +18,25 @@ $pdo = require_once('../includes/bdd.php');
 $error = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    try {
-        $name = $_POST['name'];
-        $date = $_POST['date'];
-        $price = (int)$_POST['price'];
-        $description = $_POST['description'];
-        $capacity = (int)$_POST['capacity'];
-        $scene = $_POST['scene'];
-        $image = $_POST['image'];
-        $status = $_POST['status'];
-        $categories = $_POST['categories'];
+    $name = trim(strtolower($_POST['name']));
+    $first_name = trim(strtolower($_POST['first_name']));
+    $email = trim(strtolower($_POST['email']));
+    $phone = (int)trim(strtolower($_POST['phone']));
+    $birthday = $_POST['birthday'];
+    $adress = trim(strtolower($_POST['adress']));
+    $postal = trim(strtolower($_POST['postal']));
+    $city = trim(strtolower($_POST['city']));
+    $profil = $_POST['profil'];
+    $is_actif = $_POST['is_actif'];
 
-        $query = $pdo->prepare("INSERT INTO events (name, date, price, description, capacity, scene, image, status, categories_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $query->execute([$name, $date, $price, $description, $capacity, $scene, $image, $status, $categories]);
-        header('Location: dash-admin-evenements.php');
+    try {
+        $query = $pdo->prepare("INSERT INTO users (name, first_name, email, phone, birthday, adress, postal, city, profil) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $query->execute([$name, $first_name, $email, $phone, $birthday, $adress, $postal, $city, $profil]);
+        header('Location: dash-admin-abonnes.php');
         exit;
     } catch (PDOException $e) {
         $error = "Erreur : " . $e->getMessage();
     }
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $query = $pdo->prepare("SELECT * FROM categories");
-    $query->execute();
-    $categories = $query->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
 
@@ -64,92 +53,89 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     <!-- <link href="../assets/css/login.css" rel="stylesheet"> -->
     <!-- <link href="../assets/css/dashboard.css" rel="stylesheet"> -->
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
-    <title>MNS Football Club - Évènement</title>
+    <title>MNS Football Club - Abonnés</title>
 </head>
 
 <body>
     <?php require_once('../includes/header.php') ?>
     <main class="event-wrap">
         <div class="event">
-            <h3>Créer un évènement</h3>
+            <h3>Ajouter un abonné</h3>
             <p> * = champs obligatoires</p>
-            <form action="admin-ajouter-event.php" method="post"
+            <form action="admin-add-user.php" method="post"
                 id="id-form" class="form">
+                <input type="hidden" name="id">
                 <div class="event-item">
-                    <label for="name">Name *</label>
+                    <label for="name">Nom</label>
                     <div>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="name" name="name" ?>
                     </div>
                 </div>
                 <div class="event-item">
-                    <label for="date">Date * <sup>*</sup></label>
+                    <label for="first_name">Prénom</label>
                     <div>
-                        <input type="date" id="date" name="date" required>
+                        <input type="text" id="first_name" name="first_name">
                     </div>
                 </div>
                 <div class="event-item">
-                    <label for="price">Tarif *</label>
+                    <label for="email">Email</label>
                     <div>
-                        <input type="number" id="price" name="price" required>
+                        <input type="email" id="email" name="email">
                     </div>
                 </div>
                 <div class="event-item">
-                    <label for="description">Description *</label>
+                    <label for="phone">Téléphone</label>
                     <div>
-                        <input type="text" id="description" name="description" required>
+                        <input type="text" id="phone" name="phone">
                     </div>
                 </div>
                 <div class="event-item">
-                    <label for="capacity">capacité *</label>
+                    <label for="birthday">Anniversaire</label>
                     <div>
-                        <input type="number" id="capacity" name="capacity" required>
+                        <input type="date" id="birthday" name="birthday">
                     </div>
                 </div>
                 <div class="event-item">
-                    <label for="image">Image</label>
+                    <label for="adress">Adresse</label>
                     <div>
-                        <input type="text" id="image" name="image">
+                        <input type="text" id="adress" name="adress">
                     </div>
                 </div>
                 <div class="event-item">
-                    <label for="scene">Scène</label>
+                    <label for="postal">Code Postal</label>
                     <div>
-                        <select name="scene" id="scene">
+                        <input type="text" id="postal" name="postal">
+                    </div>
+                </div>
+                <div class="event-item">
+                    <label for="city">Ville</label>
+                    <div>
+                        <input type="text" id="city" name="city">
+                    </div>
+                </div>
+                <div class="event-item">
+                    <label for="profil">Profil</label>
+                    <div>
+                        <select name="profil" id="profil">
                             <option value="">Choisir</option>
-                            <option value="Tribune Nord">Tribune Nord</option>
-                            <option value="Tribune Sud">Tribune Sud</option>
-                            <option value="Tribune Est">Tribune Est</option>
-                            <option value="Tribune Ouest">Tribune Ouest</option>
-                            <option value="Club House">Club House</option>
+                            <option value="administrateur">Administrateur</option>
+                            <option value="service">Service</option>
+                            <option value="abonne">Abonné</option>
                         </select>
                     </div>
                 </div>
                 <div class="event-item">
-                    <label for="status">Statut</label>
+                    <label for="is_actif">Actif</label>
                     <div>
-                        <select name="status" id="status">
+                        <select name="is_actif" id="is_actif">
                             <option value="">Choisir</option>
-                            <option value="À venir">À venir</option>
-                            <option value="Confirmé">Confirmé</option>
-                            <option value="Reporté">Reporté</option>
-                            <option value="Annulé">Annulé</option>
+                            <option value="1">Actif</option>
+                            <option value="0">Inactif</option>
                         </select>
                     </div>
                 </div>
                 <div class="event-item">
-                    <label for="categories">Catégorie</label>
-                    <div>
-                        <select name="categories" id="categories">
-                            <option value="">Choisir</option>
-                            <?php foreach ($categories as $category) { ?>
-                                <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
-                                <!-- On stock dans value $category['id'] et pas ['name'] => C'est une clé étrangère (int) dans la table qu'on insert pas une string. -->
-                            <?php } ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="event-item">
-                    <button type="submit" id="sub-btn">Créer l'événement</button>
+                    <button type="submit" id="sub-btn">Valider</button>
                 </div>
             </form>
             <?php if ($error): ?>

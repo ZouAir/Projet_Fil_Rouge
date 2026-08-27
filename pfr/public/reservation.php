@@ -55,8 +55,19 @@ if (!isset($_SESSION['id'])) {
             if ($seats) {
                 $query = $pdo->prepare("INSERT INTO orders (date, status, seats, events_id, users_id) VALUES (?, ?, ?, ?, ?)");
                 $query->execute([date('Y-m-d'), 'En attente', $seats, $id, $_SESSION['id']]);
-                header('Location: ../public/index.php');
-                exit;
+                if ($_SESSION['profil'] === 'administrateur') {
+                    header("Location: dash-admin-reservations.php");
+                    exit;
+                } elseif ($_SESSION['profil'] === 'service') {
+                    header("Location: dash-service-reservations.php");
+                    exit;
+                } elseif ($_SESSION['profil'] === 'abonne') {
+                    header("Location: dash-user-reservations.php");
+                    exit;
+                } else {
+                    header("Location: index.php");
+                    exit;
+                }
             }
         } catch (PDOException $e) {
             $error = "Erreur : " . $e->getMessage();
