@@ -1,11 +1,24 @@
+/* COMPONENT */
+/********/
 body {
     font-family: var(--font-heading);
     text-align: justify;
     box-sizing: border-box;
 }
 
+.error {
+    color: var(--color-light);
+    background-color: var(--color-red);
+    border-radius: var(--border-radius-m);
+    text-align: center;
+    font-weight: bold;
+    width: 70%;
+    padding: var(--padding-m);
+    margin: var(--margin-m) auto 0;
+}
+
+/* ***** */
 /* MAIN */
-/* **** */
 main .container {
     background-color: var(--color-gray);
     display: flex;
@@ -248,8 +261,8 @@ main .container .dashboard .dash-content .card div:last-child div:last-child {
     padding: var(--padding-s) 0;
 }
 
+/* ******** */
 /* ABONNES */
-/* ******* */
 main .container .dashboard .dash-content .user {
     display: flex;
     flex-direction: row;
@@ -306,8 +319,8 @@ main .container .dashboard .dash-content .user .user-delete {
     flex: 1;
 }
 
+/* ************************** */
 /* EVENEMENTS & RESERVATIONS */
-/* ************************ */
 main .container .dashboard .dash-content .event {
     display: flex;
     justify-content: center;
@@ -433,9 +446,8 @@ main .container .dashboard .dash-content .cta .cta-delete:hover {
     border: 2px solid var(--color-red);
 }
 
+/* ********** */
 /* PRESENCES */
-/* ********* */
-
 main .container .dashboard .dash-content .event-form {
     display: flex;
     justify-content: center;
@@ -504,8 +516,8 @@ main .container .dashboard .dash-content .modal-qr input {
     display: none;
 }
 
+/* ******* */
 /* COMPTE */
-/* ****** */
 main .container .dashboard .dash-content form .form-item {
     display: flex;
     width: 90%;
@@ -580,9 +592,8 @@ main .container .dashboard .dash-content .user .user-book {
     border-radius: 0 0 var(--border-radius-m) 0;
 }
 
+/* ****************** */
 /* USER RESERVATIONS */
-/* **************** */
-
 main .container .dashboard .dash-content .user .user-status {
     display: flex;
     flex-direction: column;
@@ -596,8 +607,8 @@ main .container .dashboard .dash-content .user .user-status {
     padding: var(--border-radius-m);
 }
 
+/* ********** */
 /* USER-AMIS */
-/* ******** */
 main .container .dashboard .dash-content .friend {
     color: var(--color-light);
     background-color: var(--color-primary);
@@ -660,8 +671,8 @@ main .container .dashboard .dash-content .friend form div {
     /* display: none; */
 }
 
+/* ********* */
 /* USER-MVP */
-/* ******** */
 main .container .dashboard .dash-content .match .star {
     display: flex;
     flex-wrap: nowrap;
@@ -777,8 +788,4 @@ main .container .dashboard .dash-content .match .star span {
 
 /* ********** */
 /* Format TV */
-@media screen and (min-width: 1200px) {
-    /* main .container .dashboard .dash-content .dash-head div:first-child span:last-child {
-        font-size: 0.8rem;
-    } */
-}
+@media screen and (min-width: 1200px) {}

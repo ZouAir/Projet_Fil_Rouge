@@ -30,13 +30,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $city = trim(mb_strtolower($_POST['city'] ?? 'Ville'));
     $profil = $_POST['profil'] ?? 'abonne';
 
+    if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = "Veuillez saisir une adresse e-mail valide.";
+    }
+
     try {
         $query = $pdo->prepare("INSERT INTO users (name, first_name, email, password, phone, birthday, adress, postal, city, profil) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $query->execute([$name, $first_name, $email, $password, $phone, $birthday, $adress, $postal, $city, $profil]);
         header('Location: dash-admin-users.php');
         exit;
     } catch (PDOException $e) {
-        $error = "Erreur lors de l'inscription ";
+        $error = "Erreur lors de l'inscription";
     }
 }
 ?>
@@ -135,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </form>
             <?php if ($error): ?>
-                <p style="color:red"><?= $error ?></p>
+                <p class="error"><?= $error ?></p>
             <?php endif; ?>
         </div>
     </main>

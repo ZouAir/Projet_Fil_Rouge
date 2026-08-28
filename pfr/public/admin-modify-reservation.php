@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: dash-admin-reservations.php');
         exit;
     } catch (PDOException $e) {
-        $error = "Erreur : L'enregistrement n'a pas pu être réalisé";
+        $error = "Erreur lors de la mise à jour des données, veuillez réessayer svp.";
     }
 }
 $date = new DateTime($event['date']);

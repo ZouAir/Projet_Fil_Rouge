@@ -19,7 +19,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($error)) {
         try {
             $query = $pdo->prepare("UPDATE users 
-            SET name = :name, first_name = :first_name , email = :email, phone = :phone, birthday = :birthday, adress = :adress, postal = :postal, city = :city, status = :status
+            SET name = :name, 
+            first_name = :first_name, 
+            email = :email, 
+            phone = :phone, 
+            birthday = :birthday, 
+            adress = :adress, 
+            postal = :postal, 
+            city = :city, 
+            status = :status
             WHERE id = :id");
             $query->execute([
                 ':id' => $id,
@@ -33,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ':city' => $city,
                 ':status' => $status
             ]);
-            header('Location: dash-user-account.php');
+            header('Location: account.php');
             exit;
         } catch (PDOException $e) {
             die("Erreur : ");
@@ -81,12 +89,7 @@ $user = $query->fetch(PDO::FETCH_ASSOC);
                     <a href="logout.php">Déconnexion</a>
                 </div>
                 <div class="dash-content">
-                    <div class="dash-head">
-                        <div>
-                            <span>ZR</span>
-                            <span>Zouhair REGHAI</span>
-                        </div>
-                    </div>
+                    <h3 class="title">Modifier mon compte</h3>
                     <div>
                         <form action="dash-user-account.php" method="POST">
                             <div class="form-item">

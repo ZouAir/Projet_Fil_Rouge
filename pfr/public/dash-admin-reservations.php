@@ -80,10 +80,10 @@ $abonnes = $query->fetchColumn();
                         <li><a href="dash-admin-users.php">Utilisateurs</a></li>
                         <li><a href="dash-admin-events.php">Évènements</a></li>
                         <li><a href="dash-admin-reservations.php">Réservations</a></li>
-                        <li><a href="dash-admin-presences.php">Présences</a></li>
+                        <li><a href="#">Présences</a></li>
                     </ul>
                     <div>Compte</div>
-                    <a href="dash-admin-account.php">Mon compte</a>
+                    <a href="account.php">Mon compte</a>
                     <a href="logout.php">Déconnexion</a>
                 </div>
                 <div class="dash-content">

@@ -18,6 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim(mb_strtolower($_POST['email'] ?? ''));
     $phone = trim($_POST['phone'] ?? '');
 
+    if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = "Veuillez saisir une adresse e-mail valide.";
+    }
+
     if ($_POST['password'] !== $_POST['password-confirm']) {
         $error = "Les mots de passe ne correspondent pas";
     } else {

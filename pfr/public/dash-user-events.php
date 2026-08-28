@@ -57,7 +57,7 @@ $events = $query->fetchAll();
                         <li><a href="#">Mon mvp</a></li>
                     </ul>
                     <div>Compte</div>
-                    <a href="dash-user-account.php">Mon compte</a>
+                    <a href="account.php">Mon compte</a>
                     <a href="logout.php">Déconnexion</a>
                 </div>
                 <div class="dash-content">
