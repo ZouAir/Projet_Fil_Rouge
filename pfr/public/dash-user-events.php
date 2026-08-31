@@ -21,7 +21,10 @@ AND e.date > NOW()");
 $query->execute([$id]);
 $nextOrders = $query->fetchColumn();
 
-$query = $pdo->prepare("SELECT * FROM events WHERE date > NOW() LIMIT 10");
+$query = $pdo->prepare("SELECT * FROM events 
+WHERE date > NOW() 
+ORDER BY date ASC
+LIMIT 10");
 $query->execute();
 $events = $query->fetchAll();
 ?>
@@ -87,12 +90,25 @@ $events = $query->fetchAll();
                     </div>
                     <?php
                     foreach ($events as $event) {
+                        $date = new DateTime($event['date']);
+                        $query = $pdo->prepare("SELECT SUM(seats) 
+                            FROM orders
+                            WHERE events_id = ?
+                            AND status NOT IN ('Annulé')
+                        ");
+                        $query->execute([$event['id']]);
+                        $seats = $query->fetchColumn();
+
+                        if ($seats === null) {
+                            $seats = 0;
+                        }
+                        $seats_free = $event['capacity'] - $seats;
                     ?>
                         <div class="user">
                             <div class="user-data">
                                 <span><?= htmlspecialchars($event['name']); ?></span>
-                                <span><?= htmlspecialchars($event['date']); ?></span>
-                                <span><?= htmlspecialchars($event['scene']) . " - " . htmlspecialchars($event['capacity']); ?> places</span>
+                                <span><?= htmlspecialchars($date->format('d-m-Y')); ?></span>
+                                <span><?= htmlspecialchars($event['scene']) . " - " . htmlspecialchars($seats_free); ?> places</span>
                             </div>
                             <div class="user-modify">
                                 <div class="user-change">

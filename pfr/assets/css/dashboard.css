@@ -588,7 +588,7 @@ main .container .dashboard .dash-content .user .user-book {
     display: flex;
     text-align: center;
     background-color: var(--color-secondary);
-    /* flex: 1; */
+    height: 50%;
     border-radius: 0 0 var(--border-radius-m) 0;
 }
 

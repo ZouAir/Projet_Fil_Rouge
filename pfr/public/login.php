@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="error"><?= htmlspecialchars($error) ?></div>
                     <?php endif; ?>
                     <div class="login-pwd">
-                        <a id="pwd-forgot" href="forgot-password.php" target="_blank">Mot de passe oublié ?</a>
+                        <a id="pwd-forgot" href="password.php" target="_blank">Mot de passe oublié ?</a>
                     </div>
                     <div class="login-link">
                         <a id="subscribe" href="inscription.php" target="_blank">inscription</a>

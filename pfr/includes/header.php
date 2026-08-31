@@ -1,6 +1,7 @@
 <header>
     <div class="top">
-        <img src="../assets/images/logo.png" alt="logo">
+        <a href="index.php">
+            <img src="../assets/images/logo.png" alt="logo"></a>
         <div class="title">
             <h1>MNS Football Club</h1>
         </div>

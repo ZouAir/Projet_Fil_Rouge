@@ -33,7 +33,7 @@ if (!isset($_SESSION['id'])) {
     $query->execute([$id]);
     $event = $query->fetch(PDO::FETCH_ASSOC);
     if (!$event) {
-        die("Erreur : Évènement introuvable");
+        $error = "Erreur : Évènement introuvable";
     }
 
     $query = $pdo->prepare("SELECT SUM(seats) 
@@ -71,7 +71,6 @@ if (!isset($_SESSION['id'])) {
             }
         } catch (PDOException $e) {
             $error = "Erreur : " . $e->getMessage();
-            die("Erreur : " . $e->getMessage());
         }
     }
 }
