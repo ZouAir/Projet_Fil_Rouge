@@ -9,7 +9,7 @@
     <div class="bottom">
         <nav>
             <ul>
-                <li><a href="#">Évènements</a></li>
+                <li><a href="../public/events.php">Évènements</a></li>
                 <li><a href="#">Partenaires</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>

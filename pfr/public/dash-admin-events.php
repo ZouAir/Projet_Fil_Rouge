@@ -2,6 +2,11 @@
 session_start();
 $pdo = require_once('../includes/bdd.php');
 
+if (!isset($_SESSION['id']) || !in_array($_SESSION['profil'], ['administrateur', 'service'])) {
+    header('Location: login.php');
+    exit;
+}
+
 $id = $_SESSION['id'];
 $name = $_SESSION['name'];
 $first_name = $_SESSION['first_name'];
@@ -30,14 +35,15 @@ $query = $pdo->prepare("SELECT SUM(seats)
 $query->execute([$event['id']]);
 $seats = $query->fetchColumn();
 
-$query = $pdo->prepare("SELECT count(*) FROM users");
-$query->execute([]);
-$abonnes = $query->fetchColumn();
-
 if ($seats === null) {
     $seats = 0;
 }
 $seats_free = $event['capacity'] - $seats;
+
+$query = $pdo->prepare("SELECT count(*) FROM users");
+$query->execute([]);
+$abonnes = $query->fetchColumn();
+
 $date = new DateTime($event['date']);
 ?>
 
@@ -66,7 +72,9 @@ $date = new DateTime($event['date']);
                     <div>Navigation</div>
                     <ul>
                         <li><a href="index.php">Accueil</a></li>
-                        <li><a href="dash-admin-users.php">Utilisateurs</a></li>
+                        <?php if ($profil === 'administrateur'): ?>
+                            <li><a href="dash-admin-users.php">Utilisateurs</a></li>
+                        <?php endif; ?>
                         <li><a href="dash-admin-events.php">Évènements</a></li>
                         <li><a href="dash-admin-reservations.php">Réservations</a></li>
                         <li><a href="#">Présences</a></li>
@@ -81,7 +89,7 @@ $date = new DateTime($event['date']);
                             <span><?= htmlspecialchars($initials) ?></span>
                             <span><?= ucfirst($first_name) . " " . strtoupper($name) ?></span>
                         </div>
-                        <div>Tableau de bord : <?= htmlspecialchars($profil) ?></div>
+                        <div>Tableau de bord : <?= ucfirst(htmlspecialchars($profil)) ?></div>
                     </div>
                     <div class="kpi">
                         <div>
@@ -123,7 +131,7 @@ $date = new DateTime($event['date']);
                             </div>
                             <div class="event-data">
                                 <span><?= htmlspecialchars($row['name']) ?></span>
-                                <span><?= $row['date'] ?></span>
+                                <span><?= htmlspecialchars($row['date']) ?></span>
                                 <span><?= htmlspecialchars($row['scene']) . " - Places libres : " . htmlspecialchars($free_seats) . " place";
                                         if ((int)($free_seats) > 1) {
                                             echo "s";

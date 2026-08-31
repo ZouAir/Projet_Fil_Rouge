@@ -1,12 +1,13 @@
 /* COMPONENT */
 /********/
-button {
+button,
+.link {
     color: var(--color-light);
     background-color: var(--color-secondary);
     border: 0;
     border-radius: var(--border-radius-xl);
     font-weight: bold;
-    width: 90%;
+    width: 70%;
     height: 40px;
     margin: 20px auto 0;
 }
@@ -15,6 +16,31 @@ button:hover {
     color: var(--color-secondary);
     background-color: var(--color-light);
     border: 2px solid var(--color-secondary);
+}
+
+.link {
+    background-color: var(--color-grey);
+    border: 2px solid var(--color-grey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    width: 60%;
+}
+
+.link:hover {
+    background-color: var(--color-light);
+    border: 2px solid var(--color-grey);
+}
+
+.link a {
+    color: var(--color-light);
+    text-decoration: none;
+}
+
+.link a:hover {
+    color: var(--color-grey);
+    text-decoration: none;
 }
 
 .error {
@@ -58,6 +84,7 @@ main .container .hero img {
 
 main .container .hero p {
     padding: 0 var(--padding-m);
+    margin: var(--margin-l) auto;
 }
 
 main .container .hero2 {
@@ -78,7 +105,7 @@ main .event h3 {
     font-size: 0.8rem;
     width: 70%;
     padding: var(--padding-m);
-    margin: var(--margin-m) auto;
+    margin: var(--margin-l) auto;
 }
 
 main .container .hero2 ul {
@@ -99,7 +126,7 @@ main .container .hero2 ul li .card {
     background-color: var(--color-primary);
     border-radius: var(--border-radius-m);
     text-align: center;
-    padding-bottom: var(--padding-l);
+    padding-bottom: var(--padding-m);
 }
 
 main .container .hero2 ul li .card img {
@@ -247,6 +274,15 @@ main .event form button:hover {
 
     main .container .hero2 ul {
         grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    button,
+    .link {
+        width: 60%;
+    }
+
+    .link {
+        width: 50%;
     }
 }
 

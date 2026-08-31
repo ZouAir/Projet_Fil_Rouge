@@ -1,26 +1,12 @@
 <?php
 session_start();
-// Vérifications session + profil admin
-// Inclusion de bdd.php
-// Structure if/else sur REQUEST_METHOD
-// Si POST : INSERT INTO events + redirection
-// Si GET : afficher formulaire + récupérer catégories
-// Vérifications de session
-// Inclusion de bdd.php
-// Structure if/else sur REQUEST_METHOD
-// À l'intérieur du else : la requête SELECT pour récupérer les catégories
+$pdo = require_once('../includes/bdd.php');
 
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['id']) || !in_array($_SESSION['profil'], ['administrateur', 'service'])) {
     header('Location: login.php');
     exit;
 }
 
-if ($_SESSION['profil'] === 'abonne') {
-    header('Location: index.php');
-    exit;
-}
-
-$pdo = require_once('../includes/bdd.php');
 $error = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

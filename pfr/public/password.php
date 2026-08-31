@@ -1,80 +1,61 @@
 <?php
 session_start();
 $pdo = require_once('../includes/bdd.php');
-$error = null;
-// Vérifications session
-// Inclusion de bdd.php
-// Récupérer l'ID de l'event via $_GET['id']
-// Vérifier que l'ID existe en BDD (sinon rediriger)
-// Si GET : afficher formulaire pré-rempli avec les données actuelles
-// Si POST : UPDATE l'event en BDD + redirection vers admin-events.php
-// Récupérer les catégories pour le select (comme dans ajouter)
-// Gestion des erreurs avec $error
-
 
 if (!isset($_SESSION['id'])) {
     header('Location: login.php');
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === "GET") {
-    $id = $_GET['id'] ? (int)$_GET['id'] : null;
-} else {
-    $id = $_POST['id'] ? (int)$_POST['id'] : null;
-}
+$id = $_SESSION['id'];
+$profil = $_SESSION['profil'];
+$error = null;
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if (!isset($_GET['id'])) {
-        header('Location: index.php');
-        exit;
-    }
-    $query = $pdo->prepare("SELECT * FROM users WHERE id = ?");
-    $query->execute([$id]);
-    $currentUser = $query->fetch(PDO::FETCH_ASSOC);
+if ($profil === 'administrateur') {
+    $header = 'Location: dash-admin-events.php';
+} elseif ($profil === 'service') {
+    $header = 'Location: dash-service-events.php';
+} else {
+    $header = 'Location: dash-user-events.php';
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = trim(mb_strtolower($_POST['name']));
-    $date = $_POST['date'];
-    $price = (int)trim($_POST['price']);
-    $description = trim(mb_strtolower($_POST['description']));
-    $capacity = (int)trim($_POST['capacity']);
-    $scene = $_POST['scene'];
-    $image = trim(mb_strtolower($_POST['image']));
-    $status = $_POST['status'];
-    $categories = $_POST['categories_id'];
+    $old_password = $_POST['old_password'];
+    $new_password = $_POST['new_password'];
+    $confirm_password = $_POST['confirm_password'];
 
-    try {
-        $query = $pdo->prepare(
-            "UPDATE events SET 
-                name = :name, 
-                date = :date,  
-                price = :price, 
-                description = :description, 
-                capacity = :capacity, 
-                scene = :scene,
-                image = :image,
-                status = :status, 
-                categories_id = :categories_id
+    $query = $pdo->prepare("SELECT password FROM users WHERE id = ?");
+    $query->execute([$id]);
+    $currentHash = $query->fetchColumn();
+
+    if (!password_verify($old_password, $currentHash)) {
+        $error = "Ancien mot de passe incorrect, veuillez saisir le bon mot de passe svp";
+    } else {
+        if ($new_password !== $confirm_password) {
+            $error = "Erreur : Les nouveaux mots de passe ne sont pas identiques";
+        } else {
+            $newHash = password_hash($new_password, PASSWORD_DEFAULT);
+            $currentHash = $newHash;
+        }
+    }
+
+    if (empty($error)) {
+        try {
+            $query = $pdo->prepare(
+                "UPDATE users SET 
+                password = :password 
                 WHERE id = :id"
-        );
-        $query->execute([
-            ':name' => $name,
-            ':date' => $date,
-            ':price' => $price,
-            ':description' => $description,
-            ':capacity' => $capacity,
-            ':scene' => $scene,
-            ':image' => $image,
-            ':status' => $status,
-            ':categories_id' => $categories,
-            ':id' => $id
-        ]);
+            );
+            $query->execute([
+                ':password' => $currentHash,
+                ':id' => $id
+            ]);
 
-        header('Location: dash-admin-events.php');
-        exit;
-    } catch (PDOException $e) {
-        $error = "Erreur : " . $e->getMessage();
+            header($header);
+            exit;
+        } catch (PDOException $e) {
+            $error = "Erreur : Le changement de passe n'a pas pu aboutir, veuillez recommencer svp !";
+        }
     }
 }
 ?>
@@ -109,23 +90,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </ul>
             <form action="password.php" method="post"
                 id="id-form" class="form">
-                <input type="hidden" name="id" value="<?= $currentUser['id'] ?>">
                 <div class="event-item">
-                    <label for="password">Ancien mot de passe *</label>
+                    <label for="old_password">Ancien mot de passe *</label>
                     <div>
-                        <input type="password" id="password" name="password">
+                        <input type="password" id="old_password" name="old_password">
                     </div>
                 </div>
                 <div class="event-item">
-                    <label for="password">Nouveau mot de passe *</label>
+                    <label for="new_password">Nouveau mot de passe *</label>
                     <div>
-                        <input type="password" id="password" name="password">
+                        <input type="password" id="new_password" name="new_password">
                     </div>
                 </div>
                 <div class="event-item">
-                    <label for="password">Confirmation nouveau mot de passe *</label>
+                    <label for="confirm_password">Confirmation nouveau mot de passe *</label>
                     <div>
-                        <input type="password" id="pwd" name="price">
+                        <input type="password" id="confirm_password" name="confirm_password">
                     </div>
                 </div>
                 <div class="event-item">

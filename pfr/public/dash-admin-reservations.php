@@ -1,14 +1,11 @@
 <?php
 session_start();
 $pdo = require_once('../includes/bdd.php');
-//// Démarrer la session
-//// Inclure bdd.php
-//// Récupérer $id, $name, $first_name depuis $_SESSION
-// Écrire la requête : JOIN orders + events, WHERE users_id = user connecté AND date future
-// Exécuter avec paramètre :id
-// Structure de base HTML (déjà en place)
-// Boucle foreach sur les résultats → dupliquer la div "event" pour chaque réservation
-// Adapter les champs affichés (statut, nom event, date, tribune/scene, nombre de places, actions modifier/supprimer)
+
+if (!isset($_SESSION['id']) || !in_array($_SESSION['profil'], ['administrateur', 'service'])) {
+    header('Location: login.php');
+    exit;
+}
 
 $id = $_SESSION['id'];
 $name = $_SESSION['name'];
@@ -77,7 +74,9 @@ $abonnes = $query->fetchColumn();
                     <div>Navigation</div>
                     <ul>
                         <li><a href="index.php">Accueil</a></li>
-                        <li><a href="dash-admin-users.php">Utilisateurs</a></li>
+                        <?php if ($profil === 'administrateur'): ?>
+                            <li><a href="dash-admin-users.php">Utilisateurs</a></li>
+                        <?php endif; ?>
                         <li><a href="dash-admin-events.php">Évènements</a></li>
                         <li><a href="dash-admin-reservations.php">Réservations</a></li>
                         <li><a href="#">Présences</a></li>

@@ -1,21 +1,12 @@
 <?php
 session_start();
-// Vérifications session + profil
-// Récupérer l'ID via $_GET['id']
-// DELETE FROM events WHERE id = ?
-// Rediriger vers dash-admin-evenements.php
+$pdo = require_once('../includes/bdd.php');
 
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['id']) || !in_array($_SESSION['profil'], ['administrateur', 'service'])) {
     header('Location: login.php');
     exit;
 }
 
-if ($_SESSION['profil'] == 'abonne') {
-    header('Location: index.php');
-    exit;
-}
-
-$pdo = require_once('../includes/bdd.php');
 $error = null;
 
 if ($_SESSION['profil'] === 'administrateur') {

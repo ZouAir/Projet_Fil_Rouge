@@ -727,12 +727,15 @@ main .container .dashboard .dash-content .match .star span {
 
     main .container .dashboard .dash-content .kpi {
         display: flex;
-        justify-content: space-around;
         flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
     }
 
     main .container .dashboard .dash-content .kpi div {
-        width: 20%;
+        min-width: 25%;
+        min-height: 80px;
         padding: var(--padding-s) var(--padding-m);
         margin: var(--border-radius-m);
     }
@@ -741,8 +744,7 @@ main .container .dashboard .dash-content .match .star span {
         display: flex;
         width: 30%;
         padding: var(--padding-m);
-        margin-left: var(--margin-xl);
-        margin-bottom: var(--margin-l);
+        margin: 0 auto var(--margin-l);
     }
 
     main .container .dashboard .dash-content .card {
@@ -761,7 +763,6 @@ main .container .dashboard .dash-content .match .star span {
     main .container .dashboard .dash-content .cta {
         width: 300px;
     }
-
 }
 
 /* *************** */

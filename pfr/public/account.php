@@ -167,6 +167,9 @@ $user = $query->fetch(PDO::FETCH_ASSOC);
             <?php if ($error): ?>
                 <p class="error"><?= $error ?></p>
             <?php endif; ?>
+            <div class="link">
+                <a href="password.php?id=<?= $user['id'] ?>">Modifier mon mot de passe</a>
+            </div>
         </div>
     </main>
     <?php require_once('../includes/footer.php') ?>

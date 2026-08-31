@@ -74,7 +74,9 @@ $date = new DateTime($event['date']);
                     <div>Navigation</div>
                     <ul>
                         <li><a href="index.php">Accueil</a></li>
-                        <li><a href="dash-admin-users.php">Utilisateurs</a></li>
+                        <?php if ($profil === 'administrateur'): ?>
+                            <li><a href="dash-admin-users.php">Utilisateurs</a></li>
+                        <?php endif; ?>
                         <li><a href="dash-admin-events.php">Évènements</a></li>
                         <li><a href="dash-admin-reservations.php">Réservations</a></li>
                         <li><a href="#">Présences</a></li>

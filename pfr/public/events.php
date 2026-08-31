@@ -1,27 +1,16 @@
 <?php
 session_start();
 $pdo = require_once('../includes/bdd.php');
-// Démarrer la session
-// Inclure bdd.php
-// Récupérer les réservations du user connecté depuis la table orders
-// Récupérer les events à venir depuis la table events
-// Structure de base HTML
-// Require Header avec nav + bouton déconnexion
-// Section "Events à venir" → boucle foreach sur les events
-// Require Footer
-// Vérifier si connecté
+
 $name = isset($_SESSION['name']) ? $_SESSION['name'] : '';
 $first_name = isset($_SESSION['first_name']) ? $_SESSION['first_name'] : 'Invité';
 
 $query = $pdo->prepare("SELECT e.id AS id, e.date, e.name AS evenement, e.description, e.image, e.capacity, e.price, e.status, c.name AS categorie 
 FROM events e  
-INNER JOIN categories c ON e.categories_id = c.id   
-WHERE date >= now()   
+INNER JOIN categories c ON e.categories_id = c.id      
 ORDER BY date ASC");
 $query->execute();
 $events = $query->fetchALL(PDO::FETCH_ASSOC);
-// $seats_taken = /*Logique métier : requette SQL total places reservées*/ ;
-// $category = /*Logique métier : requette SQL nom de catégorie de event*/;
 ?>
 
 <!DOCTYPE html>
@@ -45,28 +34,11 @@ $events = $query->fetchALL(PDO::FETCH_ASSOC);
     <main>
         <div class="container">
             <section class="hero">
-                <img src="../assets/images/stade.jpg" alt="">
                 <p>Bienvenue <strong><?= strtoupper(substr($first_name, 0, 1)) . substr($first_name, 1,) . " " . strtoupper($name) ?></strong> au MNS Football Club <br>
-                    Réservez vos places en quelques clics pour les évènements sportifs et sociaux de votre club.
-                </p>
-                <?php
-                if (!isset($_SESSION['email'])) { ?>
-                    <a href="inscription.php">Nous rejoindre</a>
-                    <?php } else {
-                    if ($_SESSION['profil'] === 'administrateur' || $_SESSION['profil'] === 'service') { ?>
-                        <a href="dash-admin-events.php">mon dashboard</a>
-                    <?php } elseif ($_SESSION['profil'] === 'abonne') { ?>
-                        <a href="dash-user-events.php">mon dashboard</a>
-                    <?php } else {
-                        header("Location: login.php");
-                        exit;
-                    }
-                    ?>
-                <?php } ?>
+                    Réservez vos places avant qu'il n'y en ait plus.</p>
             </section>
             <section class="hero2">
-                <h3 class="title">Évènements à venir</h3>
-                <span>Réservez vos places avant qu'il n'y en ait plus.</span>
+                <h3 class="title">Tous les évènements de l'année</h3>
                 <ul>
                     <?php
                     foreach ($events as $event) {
