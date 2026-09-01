@@ -2,23 +2,14 @@
 session_start();
 $pdo = require_once('../includes/bdd.php');
 $error = null;
-////  Vérifications session + profil admin
-////  Inclusion de bdd.php
-////  Récupérer l'ID de l'event via $_GET['id']
-////  Vérifier que l'ID existe en BDD (sinon rediriger)
-////  Si GET : afficher formulaire pré-rempli avec les données actuelles
-////  Si POST : UPDATE l'event en BDD + redirection vers admin-events.php
-////  Récupérer les catégories pour le select (comme dans ajouter)
-//  Gestion des erreurs avec $error
-
 
 if (!isset($_SESSION['id'])) {
     header('Location: login.php');
     exit;
 }
 
-if ($_SESSION['profil'] !== 'administrateur') {
-    header('Location: index.php');
+if (!in_array($_SESSION['profil'], ['administrateur', 'service'])) {
+    header('Location: login.php');
     exit;
 } else {
     if ($_SERVER['REQUEST_METHOD'] === "GET") {
@@ -30,7 +21,7 @@ if ($_SESSION['profil'] !== 'administrateur') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (!isset($_GET['id'])) {
-        header('Location: admin-events.php');
+        header('Location: dash-staff-events.php');
         exit;
     }
     $query = $pdo->prepare("SELECT * FROM events WHERE id = ?");
@@ -80,10 +71,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':id' => $id
         ]);
 
-        header('Location: dash-admin-events.php');
+        header('Location: dash-staff-events.php');
         exit;
     } catch (PDOException $e) {
-        $error = "Erreur : " . $e->getMessage();
+        $error = "Erreur : La modification de l'évènement n'a pas pu aboutir";
     }
 }
 ?>

@@ -11,12 +11,10 @@ $id = $_SESSION['id'];
 $profil = $_SESSION['profil'];
 $error = null;
 
-if ($profil === 'administrateur') {
-    $header = 'Location: dash-admin-events.php';
-} elseif ($profil === 'service') {
-    $header = 'Location: dash-service-events.php';
+if ($profil === 'administrateur' || $profil === 'service') {
+    $header = 'Location: staff-events.php';
 } else {
-    $header = 'Location: dash-user-events.php';
+    $header = 'Location: user-events.php';
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

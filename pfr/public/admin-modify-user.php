@@ -2,14 +2,6 @@
 session_start();
 $pdo = require_once('../includes/bdd.php');
 $error = null;
-// Vérifications session + profil admin
-// Inclusion de bdd.php
-// Récupérer l'ID de l'event via $_GET['id']
-// Vérifier que l'ID existe en BDD (sinon rediriger)
-// Si GET : afficher formulaire pré-rempli avec les données actuelles
-// Si POST : UPDATE l'event en BDD + redirection vers admin-events.php
-// Récupérer les catégories pour le select (comme dans ajouter)
-//  Gestion des erreurs avec $error
 
 if (!isset($_SESSION['id'])) {
     header('Location: login.php');
@@ -29,7 +21,7 @@ if ($_SESSION['profil'] !== 'administrateur') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (!isset($_GET['id'])) {
-        header('Location: dash-admin-users.php');
+        header('Location: admin-users.php');
         exit;
     }
     $query = $pdo->prepare("SELECT * FROM users WHERE id = ?");
@@ -77,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':is_actif' => $is_actif,
             ':id' => $id
         ]);
-        header('Location: dash-admin-users.php');
+        header('Location: admin-users.php');
         exit;
     } catch (PDOException $e) {
         $error = "Erreur : " . $e->getMessage();

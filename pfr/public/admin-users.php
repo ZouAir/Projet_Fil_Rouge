@@ -75,10 +75,10 @@ $date = new DateTime($event['date']);
                     <ul>
                         <li><a href="index.php">Accueil</a></li>
                         <?php if ($profil === 'administrateur'): ?>
-                            <li><a href="dash-admin-users.php">Utilisateurs</a></li>
+                            <li><a href="admin-users.php">Utilisateurs</a></li>
                         <?php endif; ?>
-                        <li><a href="dash-admin-events.php">Évènements</a></li>
-                        <li><a href="dash-admin-reservations.php">Réservations</a></li>
+                        <li><a href="staff-events.php">Évènements</a></li>
+                        <li><a href="staff-reservations.php">Réservations</a></li>
                         <li><a href="#">Présences</a></li>
                     </ul>
                     <div>Compte</div>

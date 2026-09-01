@@ -34,10 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (password_verify($password, $passwordHash)) {
             // Redirection selon profil
             if ($count['profil'] === 'administrateur' || $count['profil'] === 'service') {
-                header("Location: dash-admin-events.php");
+                header("Location: staff-events.php");
                 //vérifier le header vers le bon fichier
             } elseif ($count['profil'] === 'abonne') {
-                header("Location: dash-user-events.php");
+                header("Location: user-events.php");
                 //vérifier le header vers le bon fichier
             } else {
                 header("Location: index.php");

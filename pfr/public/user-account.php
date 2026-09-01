@@ -1,7 +1,6 @@
 <?php
 session_start();
 $pdo = require_once('../includes/bdd.php');
-
 $error = null;
 $id = $_SESSION['id'];
 

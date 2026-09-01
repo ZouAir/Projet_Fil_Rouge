@@ -1,17 +1,8 @@
 <?php
-// Vérifications session + profil
-// Inclusion de bdd.php
-// Récupérer l'ID de la resa via $_GET['id']
-// Vérifier que l'ID existe en BDD (sinon rediriger)
-// Calculer des places disponibles sans la résa en cours
-// Si GET : afficher formulaire pré-rempli avec les données actuelles
-// Si POST : UPDATE la resa en BDD + redirection vers dash-admin-reservations.php
-// Gestion des erreurs avec $error
-
 session_start();
 $pdo = require_once('../includes/bdd.php');
 
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['id']) || !in_array($_SESSION['profil'], ['administrateur', 'service'])) {
     header('Location: login.php');
     exit;
 } else {
@@ -20,11 +11,6 @@ if (!isset($_SESSION['id'])) {
     } else {
         $id = $_POST['id'] ? (int)$_POST['id'] : null;
     }
-}
-
-if ($_SESSION['profil'] === 'abonne') {
-    header('Location: index.php');
-    exit;
 }
 
 $error = null;
@@ -83,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':id' => $id,
         ]);
 
-        header('Location: dash-admin-reservations.php');
+        header('Location: dash-staff-reservations.php');
         exit;
     } catch (PDOException $e) {
         $error = "Erreur lors de la mise à jour des données, veuillez réessayer svp.";
@@ -135,7 +121,7 @@ $date = new DateTime($event['date']);
             <?php
             if ($seats_free >= 1) {
             ?>
-                <form action="admin-modify-reservation.php" method="POST">
+                <form action="staff-modify-reservation.php" method="POST">
                     <div class="event-item">
                         <label for="status">Statut</label>
                         <div>

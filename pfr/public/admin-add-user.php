@@ -1,9 +1,8 @@
 <?php
 session_start();
-// Vérifications session + profil admin
-// Inclusion de bdd.php
-// Structure if/else sur REQUEST_METHOD
-// Si POST : INSERT INTO events + redirection
+$pdo = require_once('../includes/bdd.php');
+$error = null;
+
 if (!isset($_SESSION['id'])) {
     header('Location: login.php');
     exit;
@@ -13,9 +12,6 @@ if ($_SESSION['profil'] !== 'administrateur') {
     header('Location: index.php');
     exit;
 }
-
-$pdo = require_once('../includes/bdd.php');
-$error = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim(mb_strtolower($_POST['name'] ?? ''));
@@ -37,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $query = $pdo->prepare("INSERT INTO users (name, first_name, email, password, phone, birthday, adress, postal, city, profil) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $query->execute([$name, $first_name, $email, $password, $phone, $birthday, $adress, $postal, $city, $profil]);
-        header('Location: dash-admin-users.php');
+        header('Location: admin-users.php');
         exit;
     } catch (PDOException $e) {
         $error = "Erreur lors de l'inscription";

@@ -25,7 +25,8 @@ header .top img {
 header .top .title {
     display: flex;
     text-align: center;
-    width: 60%;
+    justify-content: center;
+    width: 80%;
     margin: auto;
 }
 

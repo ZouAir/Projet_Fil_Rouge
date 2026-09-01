@@ -1,15 +1,7 @@
 <?php
 session_start();
 $pdo = require_once('../includes/bdd.php');
-// Démarrer la session
-// Inclure bdd.php
-// Récupérer les réservations du user connecté depuis la table orders
-// Récupérer les events à venir depuis la table events
-// Structure de base HTML
-// Require Header avec nav + bouton déconnexion
-// Section "Events à venir" → boucle foreach sur les events
-// Require Footer
-// Vérifier si connecté
+
 $name = isset($_SESSION['name']) ? $_SESSION['name'] : '';
 $first_name = isset($_SESSION['first_name']) ? $_SESSION['first_name'] : 'Invité';
 
@@ -20,8 +12,6 @@ WHERE date >= now()
 ORDER BY date ASC");
 $query->execute();
 $events = $query->fetchALL(PDO::FETCH_ASSOC);
-// $seats_taken = /*Logique métier : requette SQL total places reservées*/ ;
-// $category = /*Logique métier : requette SQL nom de catégorie de event*/;
 ?>
 
 <!DOCTYPE html>
@@ -54,9 +44,9 @@ $events = $query->fetchALL(PDO::FETCH_ASSOC);
                     <a href="inscription.php">Nous rejoindre</a>
                     <?php } else {
                     if ($_SESSION['profil'] === 'administrateur' || $_SESSION['profil'] === 'service') { ?>
-                        <a href="dash-admin-events.php">mon dashboard</a>
+                        <a href="staff-events.php">mon dashboard</a>
                     <?php } elseif ($_SESSION['profil'] === 'abonne') { ?>
-                        <a href="dash-user-events.php">mon dashboard</a>
+                        <a href="user-events.php">mon dashboard</a>
                     <?php } else {
                         header("Location: login.php");
                         exit;
@@ -77,10 +67,11 @@ $events = $query->fetchALL(PDO::FETCH_ASSOC);
                             $seats_taken = 0;
                         }
                         $seats_free = $event['capacity'] - $seats_taken;
+                        $date = new DateTime($event['date']);
                     ?>
                         <li>
                             <div class="card">
-                                <p><?= $event['date'] . " - " . $event['categorie'] ?></p>
+                                <p><?= $date->format('d-m-Y') . " - " . $event['categorie'] ?></p>
                                 <img src="<?= $event['image'] ?>" alt="">
                                 <p><?= htmlspecialchars($event['evenement']) ?></p>
                                 <p><?= htmlspecialchars(substr($event['description'], 0, 50) . "...") ?></p>

@@ -150,7 +150,7 @@ $date = new DateTime($event['date']);
                     }
                     ?>
                     <div class="cta">
-                        <a href="admin-ajouter-event.php">Ajouter un évènement</a>
+                        <a href="staff-add-event.php">Ajouter un évènement</a>
                     </div>
                 </div>
             </div>

@@ -1,9 +1,7 @@
 <?php
 session_start();
-// Vérifications session + profil
-// Récupérer l'ID via $_GET['id']
-// DELETE FROM users WHERE id = ?
-// Rediriger vers dash-admin-abonnes.php
+$pdo = require_once('../includes/bdd.php');
+$error = null;
 
 if (!isset($_SESSION['id'])) {
     header('Location: login.php');
@@ -15,19 +13,16 @@ if ($_SESSION['profil'] !== 'administrateur') {
     exit;
 }
 
-$pdo = require_once('../includes/bdd.php');
-$error = null;
-
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $id = isset($_GET['id']) ? (int)$_GET['id'] : null;
     if ($id === null) {
         $_SESSION['error'] = "Erreur : Abonné introuvable";
-        header('Location: dash-admin-users.php');
+        header('Location: admin-users.php');
         exit;
     } else {
         $query = $pdo->prepare("DELETE FROM users WHERE id = ?");
         $query->execute([$id]);
-        header('Location: dash-admin-users.php');
+        header('Location: admin-users.php');
         exit;
     }
 }

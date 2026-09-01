@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $query = $pdo->prepare("INSERT INTO events (name, date, price, description, capacity, scene, image, status, categories_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $query->execute([$name, $date, $price, $description, $capacity, $scene, $image, $status, $categories]);
-        header('Location: dash-admin-events.php');
+        header('Location: staff-events.php');
         exit;
     } catch (PDOException $e) {
         $error = "Erreur : " . $e->getMessage();
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         <div class="event">
             <h3>Créer un évènement</h3>
             <p> * = champs obligatoires</p>
-            <form action="admin-add-event.php" method="post"
+            <form action="staff-add-event.php" method="post"
                 id="id-form" class="form">
                 <div class="event-item">
                     <label for="name">Name *</label>
