@@ -49,10 +49,11 @@ $events = $query->fetchALL(PDO::FETCH_ASSOC);
                             $seats_taken = 0;
                         }
                         $seats_free = $event['capacity'] - $seats_taken;
+                        $date = new DateTime($event['date']);
                     ?>
                         <li>
                             <div class="card">
-                                <p><?= $event['date'] . " - " . $event['categorie'] ?></p>
+                                <p><?= $date->format('d-m-Y') . " - " . $event['categorie'] ?></p>
                                 <img src="<?= $event['image'] ?>" alt="">
                                 <p><?= htmlspecialchars($event['evenement']) ?></p>
                                 <p><?= htmlspecialchars(substr($event['description'], 0, 50) . "...") ?></p>
