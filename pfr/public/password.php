@@ -20,9 +20,9 @@ if ($profil === 'administrateur') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $old_password = $_POST['old_password'];
-    $new_password = $_POST['new_password'];
-    $confirm_password = $_POST['confirm_password'];
+    $old_password = $_POST['old_password'] ?? '';
+    $new_password = $_POST['new_password'] ?? '';
+    $confirm_password = $_POST['confirm_password'] ?? '';
 
     $query = $pdo->prepare("SELECT password FROM users WHERE id = ?");
     $query->execute([$id]);
@@ -50,7 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ':password' => $currentHash,
                 ':id' => $id
             ]);
-
             header($header);
             exit;
         } catch (PDOException $e) {

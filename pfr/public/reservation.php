@@ -26,9 +26,10 @@ if (!isset($_SESSION['id'])) {
     $query = $pdo->prepare("SELECT SUM(seats) 
     FROM orders
     WHERE events_id = ?
+    AND users_id = ?
     AND status NOT IN ('Annulé')
     ");
-    $query->execute([$id]);
+    $query->execute([$id, $_SESSION['id']]);
     $seats_taken = $query->fetchColumn();
 
     if ($seats_taken === null) {
@@ -37,27 +38,31 @@ if (!isset($_SESSION['id'])) {
     $seats_free = $event['capacity'] - $seats_taken;
 
     if ($_SERVER['REQUEST_METHOD'] === "POST") {
+        $seats = $_POST['seats'] ?? '';
         try {
-            $seats = $_POST['seats'] ?? '';
             if ($seats) {
-                $query = $pdo->prepare("INSERT INTO orders (date, status, seats, events_id, users_id) VALUES (?, ?, ?, ?, ?)");
-                $query->execute([date('Y-m-d'), 'En attente', $seats, $id, $_SESSION['id']]);
-                if ($_SESSION['profil'] === 'administrateur') {
-                    header("Location: dash-admin-reservations.php");
-                    exit;
-                } elseif ($_SESSION['profil'] === 'service') {
-                    header("Location: dash-service-reservations.php");
-                    exit;
-                } elseif ($_SESSION['profil'] === 'abonne') {
-                    header("Location: dash-user-reservations.php");
-                    exit;
-                } else {
-                    header("Location: index.php");
-                    exit;
+                if ($seats_taken + $_POST['seats'] > 2) {
+                    $error = "Erreur : Vous avez atteint le nombre maximum de réservations possible";
+                }
+
+                if (empty($error)) {
+                    $query = $pdo->prepare("INSERT INTO orders (date, status, seats, events_id, users_id) VALUES (?, ?, ?, ?, ?)");
+                    $query->execute([date('Y-m-d'), 'En attente', $seats, $id, $_SESSION['id']]);
+
+                    if ($_SESSION['profil'] === 'administrateur' || $_SESSION['profil'] === 'service') {
+                        header("Location: staff-reservations.php");
+                        exit;
+                    } elseif ($_SESSION['profil'] === 'abonne') {
+                        header("Location: user-reservations.php");
+                        exit;
+                    } else {
+                        header("Location: index.php");
+                        exit;
+                    }
                 }
             }
         } catch (PDOException $e) {
-            $error = "Erreur : " . $e->getMessage();
+            $error = "Erreur lors de la réservation, veuillez contacter le service réservation";
         }
     }
 }
