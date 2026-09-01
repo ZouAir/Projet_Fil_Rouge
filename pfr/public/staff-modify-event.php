@@ -21,7 +21,7 @@ if (!in_array($_SESSION['profil'], ['administrateur', 'service'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (!isset($_GET['id'])) {
-        header('Location: dash-staff-events.php');
+        header('Location: staff-events.php');
         exit;
     }
     $query = $pdo->prepare("SELECT * FROM events WHERE id = ?");
@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':id' => $id
         ]);
 
-        header('Location: dash-staff-events.php');
+        header('Location: staff-events.php');
         exit;
     } catch (PDOException $e) {
         $error = "Erreur : La modification de l'évènement n'a pas pu aboutir";
@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="event">
             <h3>Modifier un évènement</h3>
             <p>Veuillez modifier les informations de l'évènement</p>
-            <form action="admin-modify-event.php" method="post"
+            <form action="staff-modify-event.php" method="post"
                 id="id-form" class="form">
                 <input type="hidden" name="id" value="<?= $currentEvent['id'] ?>">
                 <div class="event-item">

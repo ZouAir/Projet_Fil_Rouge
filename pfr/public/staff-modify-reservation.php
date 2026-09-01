@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':id' => $id,
         ]);
 
-        header('Location: dash-staff-reservations.php');
+        header('Location: staff-reservations.php');
         exit;
     } catch (PDOException $e) {
         $error = "Erreur lors de la mise à jour des données, veuillez réessayer svp.";

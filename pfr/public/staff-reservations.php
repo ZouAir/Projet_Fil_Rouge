@@ -75,10 +75,10 @@ $abonnes = $query->fetchColumn();
                     <ul>
                         <li><a href="index.php">Accueil</a></li>
                         <?php if ($profil === 'administrateur'): ?>
-                            <li><a href="dash-admin-users.php">Utilisateurs</a></li>
+                            <li><a href="admin-users.php">Utilisateurs</a></li>
                         <?php endif; ?>
-                        <li><a href="dash-admin-events.php">Évènements</a></li>
-                        <li><a href="dash-admin-reservations.php">Réservations</a></li>
+                        <li><a href="staff-events.php">Évènements</a></li>
+                        <li><a href="staff-reservations.php">Réservations</a></li>
                         <li><a href="#">Présences</a></li>
                     </ul>
                     <div>Compte</div>
@@ -91,7 +91,7 @@ $abonnes = $query->fetchColumn();
                             <span><?= htmlspecialchars($initials) ?></span>
                             <span><?= ucfirst($first_name) . " " . strtoupper($name) ?></span>
                         </div>
-                        <div>Tableau de bord : <?= htmlspecialchars($profil) ?></div>
+                        <div>Tableau de bord : <?= ucfirst(htmlspecialchars($profil)) ?></div>
                     </div>
                     <div class="kpi">
                         <div>
@@ -131,10 +131,10 @@ $abonnes = $query->fetchColumn();
                             </div>
                             <div class="event-modify">
                                 <div class="event-change">
-                                    <a href="admin-modify-reservation.php?id=<?= $order['id'] ?>">Modifier</a>
+                                    <a href="staff-modify-reservation.php?id=<?= $order['id'] ?>">Modifier</a>
                                 </div>
                                 <div class=" event-delete">
-                                    <a href="admin-delete-reservation.php?id=<?= $order['id'] ?>">Supprimer</a>
+                                    <a href="staff-delete-reservation.php?id=<?= $order['id'] ?>">Supprimer</a>
                                 </div>
                             </div>
                         </div>

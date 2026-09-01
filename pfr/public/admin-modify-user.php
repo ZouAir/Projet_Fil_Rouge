@@ -176,7 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </form>
             <?php if ($error): ?>
-                <p style="color:red"><?= $error ?></p>
+                <p class="error"><?= $error ?></p>
             <?php endif; ?>
         </div>
     </main>
