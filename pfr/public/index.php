@@ -73,9 +73,20 @@ $events = $query->fetchALL(PDO::FETCH_ASSOC);
                             <div class="card">
                                 <p><?= $date->format('d-m-Y') . " - " . $event['categorie'] ?></p>
                                 <img src="<?= $event['image'] ?>" alt="">
-                                <p><?= htmlspecialchars($event['evenement']) ?></p>
-                                <p><?= htmlspecialchars(substr($event['description'], 0, 50) . "...") ?></p>
-                                <p><?= $seats_free ?> places disponibles - <?= $event['price'] ?> euros</p>
+                                <p><?= ucfirst(htmlspecialchars($event['evenement'])) ?></p>
+                                <p><?= ucfirst(htmlspecialchars(substr($event['description'], 0, 50) . "...")) ?></p>
+                                <p><?= $seats_free . " place";
+                                    if ((int)$seats_free > 1) {
+                                        echo "s";
+                                    } ?>
+                                    <?= "disponible";
+                                    if ((int)$seats_free > 1) {
+                                        echo "s";
+                                    } ?>
+                                    <?= " - " . $event['price'] . " euro";
+                                    if ((int)$event['price'] > 1) {
+                                        echo "s";
+                                    } ?></p>
                                 <a href="reservation.php?id=<?= $event['id'] ?>">Réserver</a>
                                 <p><?= $event['status'] ?></p>
                             </div>

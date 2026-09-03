@@ -133,7 +133,7 @@ $date = new DateTime($event['date']);
                                 <span><?= htmlspecialchars($row['name']) ?></span>
                                 <span><?= htmlspecialchars($row['date']) ?></span>
                                 <span><?= htmlspecialchars($row['scene']) . " - Places libres : " . htmlspecialchars($free_seats) . " place";
-                                        if ((int)($free_seats) > 1) {
+                                        if ((int)$free_seats > 1) {
                                             echo "s";
                                         } ?></span>
                             </div>

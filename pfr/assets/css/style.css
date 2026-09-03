@@ -110,7 +110,6 @@ main .event h3 {
 
 main .container .hero2 ul {
     display: grid;
-    /* grid-template-columns: 1fr 1fr; */
     list-style: none;
     padding-left: 0;
     gap: 20px;
@@ -126,7 +125,7 @@ main .container .hero2 ul li .card {
     background-color: var(--color-primary);
     border-radius: var(--border-radius-m);
     text-align: center;
-    padding-bottom: var(--padding-m);
+    /* padding: 0 var(--padding-s); */
 }
 
 main .container .hero2 ul li .card img {
@@ -250,6 +249,10 @@ main .event form {
     width: 100%;
 }
 
+main .event ul li {
+    font-weight: bold;
+}
+
 main .event form button {
     color: var(--color-light);
 }
@@ -261,10 +264,11 @@ main .event form button:hover {
 
 /* Format mini-tablette */
 /* ************** */
-@media screen and (min-width: 500px) and (max-width: 767px) {
+@media screen and (min-width: 549px) and (max-width: 767px) {
 
     main .container .hero2 ul {
         grid-template-columns: 1fr 1fr;
+        gap: 10px
     }
 }
 
@@ -274,6 +278,7 @@ main .event form button:hover {
 
     main .container .hero2 ul {
         grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px
     }
 
     button,
@@ -306,6 +311,7 @@ main .event form button:hover {
 
     main .container .hero2 ul {
         grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 10px
     }
 
     main .card img {
