@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="../assets/css/login.css" rel="stylesheet">
     <!-- <link href="../assets/css/dashboard.css" rel="stylesheet"> -->
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
-    <script src="assets/js/script.js" defer></script>
+    <script src="../assets/js/script.js" defer></script>
     <title>Login</title>
 </head>
 
