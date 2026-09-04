@@ -82,13 +82,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <input type="password" name="password-confirm" id="pwd-confirm"
                             placeholder="Confirmation mot de passe *">
+                        <?php if ($error): ?>
+                            <p class="error"><?= htmlspecialchars($error) ?></p>
+                        <?php endif; ?>
                         <button type="submit" id="sub-btn">Valider</button>
                     </form>
                 </div>
             </div>
-            <?php if ($error): ?>
-                <p class="error"><?= htmlspecialchars($error) ?></p>
-            <?php endif; ?>
         </div>
     </main>
     <?php include_once('../includes/footer.php') ?>

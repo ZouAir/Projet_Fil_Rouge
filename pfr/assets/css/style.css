@@ -19,8 +19,8 @@ button:hover {
 }
 
 .link {
-    background-color: var(--color-grey);
-    border: 2px solid var(--color-grey);
+    background-color: var(--color-gray);
+    border: 2px solid var(--color-gray);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,7 +30,7 @@ button:hover {
 
 .link:hover {
     background-color: var(--color-light);
-    border: 2px solid var(--color-grey);
+    border: 2px solid var(--color-gray);
 }
 
 .link a {
@@ -39,7 +39,7 @@ button:hover {
 }
 
 .link a:hover {
-    color: var(--color-grey);
+    color: var(--color-gray);
     text-decoration: none;
 }
 
