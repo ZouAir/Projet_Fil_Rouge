@@ -67,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="../assets/css/login.css" rel="stylesheet">
     <!-- <link href="../assets/css/dashboard.css" rel="stylesheet"> -->
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/images/mon_logo.png">
     <script src="../assets/js/script.js" defer></script>
     <title>Login</title>
 </head>
@@ -83,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <p>connexion</p>
                 </div>
                 <div class="login">
-                    <form action="login.php" method="POST">
+                    <form action="login.php" method="POST" novalidate>
                         <input type="email" name="email" id="email" placeholder="Email">
                         <input type="password" name="password" id="pwd" placeholder="Mot de passe">
                         <button type="submit">se connecter</button>
