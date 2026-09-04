@@ -2,6 +2,10 @@ body {
     font-family: var(--font-heading);
     text-align: justify;
     box-sizing: border-box;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 /* MAIN */
@@ -9,7 +13,8 @@ body {
 
 main {
     background-color: var(--color-light);
-    padding: var(--padding-m);
+    padding: var(--padding-xxl) var(--padding-m);
+    flex: 1;
 }
 
 main .container {
@@ -18,9 +23,9 @@ main .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 55%;
     padding: var(--padding-s);
     gap: 20px;
+    padding-bottom: var(--padding-xxl);
 }
 
 main .container .login-left {
@@ -52,7 +57,6 @@ main .container .login {
     width: 100%;
     padding: var(--padding-l) 0;
     margin: var(--margin-l) auto;
-
 }
 
 main .container .login-right .login form,
@@ -110,14 +114,14 @@ main .container .login .login-link a:hover {
 
 main .container .login .login-pwd a {
     color: var(--color-light);
-    background-color: var(--color-grey);
+    background-color: var(--color-gray);
     margin-top: var(--margin-xl);
 }
 
 main .container .login .login-pwd a:hover {
-    color: var(--color-grey);
+    color: var(--color-gray);
     background-color: var(--color-light);
-    border: 2px solid var(--color-grey);
+    border: 2px solid var(--color-gray);
 }
 
 main .container .login .login-link a {
@@ -127,7 +131,7 @@ main .container .login .login-link a {
 main .container .login .info,
 main .container .login form .rules div {
     color: var(--color-light);
-    background-color: var(--color-grey);
+    background-color: var(--color-gray);
     border-radius: var(--border-radius-s);
     text-align: center;
     font-size: 0.8rem;
@@ -163,30 +167,19 @@ main .container .login form .rules ul {
     margin: var(--margin-m) auto 0;
 }
 
-/* .error {
-    color: var(--color-light);
-    background-color: var(--color-red);
-    border-radius: var(--border-radius-m);
-    text-align: center;
-    width: 70%;
-    padding: var(--padding-m);
-    margin: var(--margin-xl) auto 0;
-} */
-
 /* Format tablette */
 @media screen and (min-width: 768px) {
 
     main .container .login-left {
         display: none;
     }
-
 }
 
 /* Format desktop */
 @media screen and (min-width: 992px) {
 
     body {
-        width: 90vw;
+        width: 100%;
         margin: auto;
     }
 
@@ -196,6 +189,7 @@ main .container .login form .rules ul {
         align-items: center;
         justify-content: space-between;
         width: 90%;
+        max-width: 1400px;
         gap: 40px;
         padding: 0 var(--padding-xl);
         margin: auto;
@@ -224,6 +218,10 @@ main .container .login form .rules ul {
     main .container .login form .rules {
         width: 100%;
     }
+
+    main .container .login form .rules div {
+        width: 60%;
+    }
 }
 
 /* Format TV */
@@ -233,7 +231,3 @@ main .container .login form .rules ul {
         display: block;
     }
 }
-
-/***************/
-/* A CORRIGER */
-/*************/

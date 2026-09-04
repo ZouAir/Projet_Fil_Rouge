@@ -1,15 +1,6 @@
 <?php
 session_start();
 $pdo = require_once('../includes/bdd.php');
-// // Démarre la session 
-// // Inclut bdd.php
-// // Vérifie si le formulaire est soumis en POST
-// // Récupère les variables depuis $_POST
-// // Vérifie que les 2 mots de passe correspondent
-// // Hashe le mot de passe
-// // Insère l'utilisateur en BDD
-// // Redirige vers login.php
-
 $error = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -34,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header('Location: login.php');
                 exit;
             } catch (PDOException $e) {
-                die("Erreur lors de l'inscription");
+                $error = "Erreur lors de l'inscription";
             }
         }
     }
@@ -54,7 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="../assets/css/login.css" rel="stylesheet">
     <!-- <link href="../assets/css/dashboard.css" rel="stylesheet"> -->
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
-    <script src="assets/js/script.js" defer></script>
+    <link rel="icon" type="image/png" href="../assets/images/mon_logo.png">
+    <script src="../assets/js/inscription.js" defer></script>
     <title>Inscription</title>
 </head>
 
@@ -72,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <p>inscription</p>
                 </div>
                 <div class="login">
-                    <form action="inscription.php" method="POST">
+                    <form action="inscription.php" method="POST" novalidate>
                         <div class="info">* champs obligatoires</div>
                         <input type="text" id="name" name="name" placeholder="Nom *">
                         <input type="text" id="firstname" name="first_name" placeholder="Prénom *">

@@ -1,5 +1,5 @@
 /* COMPONENT */
-/********/
+/************/
 button,
 .link {
     color: var(--color-light);
@@ -55,7 +55,7 @@ button:hover {
 }
 
 /* MAIN */
-/********/
+/*******/
 body {
     font-family: var(--font-heading);
     text-align: justify;
@@ -125,7 +125,6 @@ main .container .hero2 ul li .card {
     background-color: var(--color-primary);
     border-radius: var(--border-radius-m);
     text-align: center;
-    /* padding: 0 var(--padding-s); */
 }
 
 main .container .hero2 ul li .card img {
@@ -189,8 +188,8 @@ main .hero3 .spon-right span {
     margin: 0 var(--margin-s);
 }
 
+/* EVENT-WRAP */
 /* ********* */
-
 .event-wrap {
     background-color: var(--color-gray);
 }
@@ -262,8 +261,8 @@ main .event form button:hover {
     background-color: var(--color-light);
 }
 
+/* ********************* */
 /* Format mini-tablette */
-/* ************** */
 @media screen and (min-width: 549px) and (max-width: 767px) {
 
     main .container .hero2 ul {
@@ -272,8 +271,8 @@ main .event form button:hover {
     }
 }
 
+/* **************** */
 /* Format tablette */
-/* ************** */
 @media screen and (min-width: 768px) {
 
     main .container .hero2 ul {
@@ -291,9 +290,8 @@ main .event form button:hover {
     }
 }
 
-
+/* *************** */
 /* Format desktop */
-/* ************* */
 @media screen and (min-width: 992px) {
 
     body {
@@ -329,11 +327,6 @@ main .event form button:hover {
     }
 }
 
+/* ********** */
 /* Format TV */
-/* ******** */
 @media screen and (min-width: 1200px) {}
-
-
-/* *********** */
-/* A vérifier */
-/* ********* */

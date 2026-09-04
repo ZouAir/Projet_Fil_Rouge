@@ -26,6 +26,7 @@ $events = $query->fetchALL(PDO::FETCH_ASSOC);
     <!-- <link href="../assets/css/login.css" rel="stylesheet"> -->
     <!-- <link href="../assets/css/dashboard.css" rel="stylesheet"> -->
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/images/mon_logo.png">
     <title>MNS Football Club</title>
 </head>
 
@@ -50,16 +51,25 @@ $events = $query->fetchALL(PDO::FETCH_ASSOC);
                         }
                         $seats_free = $event['capacity'] - $seats_taken;
                         $date = new DateTime($event['date']);
+                        $today = new DateTime();
                     ?>
                         <li>
                             <div class="card">
                                 <p><?= $date->format('d-m-Y') . " - " . $event['categorie'] ?></p>
                                 <img src="<?= $event['image'] ?>" alt="">
-                                <p><?= htmlspecialchars($event['evenement']) ?></p>
-                                <p><?= htmlspecialchars(substr($event['description'], 0, 50) . "...") ?></p>
+                                <p><?= ucfirst(htmlspecialchars($event['evenement'])) ?></p>
+                                <p><?= ucfirst(htmlspecialchars(substr($event['description'], 0, 50) . "...")) ?></p>
                                 <p><?= $seats_free ?> places disponibles - <?= $event['price'] ?> euros</p>
-                                <a href="reservation.php?id=<?= $event['id'] ?>">Réserver</a>
-                                <p><?= $event['status'] ?></p>
+                                <?php if ($today < $date) { ?>
+                                    <a href="reservation.php?id=<?= $event['id'] ?>">Réserver</a>
+                                <?php } else { ?>
+                                    <a href="">X</a>
+                                <?php } ?>
+                                <?php if ($today < $date) { ?>
+                                    <p><?= $event['status'] ?></p>
+                                <?php } else { ?>
+                                    <p><?= "Évènement passé" ?></p>
+                                <?php } ?>
                             </div>
                         </li>
                     <?php } ?>
