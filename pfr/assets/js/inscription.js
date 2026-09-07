@@ -3,9 +3,12 @@ const name = document.getElementById('name');
 const firstName = document.getElementById('firstname');
 const email = document.getElementById('email');
 const phone = document.getElementById('phone');
-const regEx = /[0-9]+/;
+const regEx = /^[0-9]{10}$/;
 const pwd = document.getElementById('pwd');
 const pwdConfirm = document.getElementById('pwd-confirm');
+
+// Vérification des champs required et des formats.
+///////////////////////////////////////////////////
 
 submit.addEventListener('submit', (event) => {
     let hasError = false;
@@ -145,5 +148,43 @@ pwdConfirm.addEventListener('input', (event) => {
     }
 })
 
+//Vérification du mot de passe
+//////////////////////////////
+const pwdLength = document.getElementById('pwd-criteria-length');
+const pwdSpecial = document.getElementById('pwd-criteria-special');
+const pwdUppercase = document.getElementById('pwd-criteria-uppercase');
+const pwdNumeric = document.getElementById('pwd-criteria-numeric');
+
+pwd.addEventListener('keyup', () => {
+    // 8 caractères minimum :
+    if (pwd.value.length >= 8) {
+        pwdLength.classList.add('success');
+    } else {
+        pwdLength.classList.remove('success');
+    }
+
+    // caractère spécial minimum :
+    let regExSpecial = /[#@!?$%&]/;
+    if (regExSpecial.test(pwd.value)) {
+        pwdSpecial.classList.add('success');
+    } else {
+        pwdSpecial.classList.remove('success');
+    }
+    // caractère majuscule minimum :
+    let regExUpper = /[A-Z]/;
+    if (regExUpper.test(pwd.value)) {
+        pwdUppercase.classList.add('success');
+    } else {
+        pwdUppercase.classList.remove('success');
+    }
+
+    // caractère numérique minimum :
+    let regExNumeric = /[0-9]/;
+    if (regExNumeric.test(pwd.value)) {
+        pwdNumeric.classList.add('success');
+    } else {
+        pwdNumeric.classList.remove('success');
+    }
+})
 
 

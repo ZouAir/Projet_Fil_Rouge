@@ -66,11 +66,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="login">
                     <form action="inscription.php" method="POST" novalidate>
                         <div class="info">* champs obligatoires</div>
-                        <input type="text" id="name" name="name" placeholder="Nom *">
+                        <input type="text" id="name" name="name" placeholder="Nom *" autocomplete="username">
                         <input type="text" id="firstname" name="first_name" placeholder="Prénom *">
                         <input type="email" id="email" name="email" placeholder="Email *">
                         <input type="text" id="phone" name="phone" placeholder="Téléphone *">
-                        <input type="password" name="password" id="pwd" placeholder="Mot de passe *">
+                        <input type="password" name="password" id="pwd" placeholder="Mot de passe *" autocomplete="new-password">
                         <div class="rules">
                             <div>Le mot de passe doit respecter les règles suivantes :</div>
                             <ul>

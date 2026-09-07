@@ -54,6 +54,16 @@ button:hover {
     margin: var(--margin-m) auto 0;
 }
 
+.wrong {
+    color: var(--color-red);
+    font-weight: bold;
+}
+
+.success {
+    color: var(--color-green);
+    font-weight: bold;
+}
+
 /* MAIN */
 /*******/
 body {
