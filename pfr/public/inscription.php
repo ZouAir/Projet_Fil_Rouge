@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (empty($error)) {
             try {
                 $query = $pdo->prepare("INSERT INTO users (name, first_name, email, password, phone, birthday, adress, postal, city) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                $query->execute([$name, $first_name, $email, $password, $phone, '2000-01-01', 'Adresse à modifier', '11111', 'Ville']);
+                $query->execute([$name, $first_name, $email, $password, $phone, '2000-01-01', 'adresse à modifier', '00000', 'ville']);
                 header('Location: login.php');
                 exit;
             } catch (PDOException $e) {
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="../assets/images/mon_logo.png">
     <script src="../assets/js/inscription.js" defer></script>
-    <title>Inscription</title>
+    <title>MNS FC - Inscription</title>
 </head>
 
 <!-- Ceci est un commentaire -->

@@ -8,6 +8,7 @@ button,
     border-radius: var(--border-radius-xl);
     font-weight: bold;
     width: 70%;
+    max-width: 400px;
     height: 40px;
     margin: 20px auto 0;
 }

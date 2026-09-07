@@ -36,6 +36,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $birthday = null;
     }
 
+    if ($adress === '') {
+        $adress = "adresse à compléter";
+    }
+
+    if ($postal === '') {
+        $postal = "00000";
+    }
+
+    if ($city === '') {
+        $city = "ville";
+    }
+
     if (empty($error)) {
         try {
             $query = $pdo->prepare("UPDATE users 
@@ -89,7 +101,9 @@ $user = $query->fetch(PDO::FETCH_ASSOC);
     <!-- <link href="../assets/css/login.css" rel="stylesheet"> -->
     <!-- <link href="../assets/css/dashboard.css" rel="stylesheet"> -->
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
-    <title>MNS Football Club - évènement</title>
+    <link rel="icon" type="image/png" href="../assets/images/mon_logo.png">
+    <script src="../assets/js/account.js" defer></script>
+    <title>MNS FC - Compte</title>
 </head>
 
 <body>
@@ -99,7 +113,7 @@ $user = $query->fetch(PDO::FETCH_ASSOC);
             <h3>Modifier mon compte</h3>
             <p>-- Veuillez modifier les informations de votre compte --</p>
             <form action="account.php" method="post"
-                id="id-form" class="form">
+                id="form" class="form" novalidate>
                 <div class="event-item">
                     <label for="name">Nom</label>
                     <div>
@@ -109,7 +123,7 @@ $user = $query->fetch(PDO::FETCH_ASSOC);
                 <div class="event-item">
                     <label for="first_name">Prénom</label>
                     <div>
-                        <input type="text" id="first_name" name="first_name" value="<?= htmlspecialchars(ucfirst($user['first_name'])) ?>">
+                        <input type="text" id="firstname" name="first_name" value="<?= htmlspecialchars(ucfirst($user['first_name'])) ?>">
                     </div>
                 </div>
                 <div class="event-item">
@@ -166,7 +180,7 @@ $user = $query->fetch(PDO::FETCH_ASSOC);
                 <p class="error"><?= $error ?></p>
             <?php endif; ?>
             <div class="link">
-                <a href="password.php?id=<?= $user['id'] ?>">Modifier mon mot de passe</a>
+                <a href="password.php">Modifier mon mot de passe</a>
             </div>
         </div>
     </main>
