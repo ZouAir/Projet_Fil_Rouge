@@ -11,18 +11,16 @@ $id = $_SESSION['id'];
 $profil = $_SESSION['profil'];
 $error = null;
 
-if ($profil === 'administrateur') {
-    $header = 'Location: dash-admin-events.php';
-} elseif ($profil === 'service') {
-    $header = 'Location: dash-service-events.php';
+if ($profil === 'administrateur' || $profil === 'service') {
+    $header = 'Location: staff-events.php';
 } else {
-    $header = 'Location: dash-user-events.php';
+    $header = 'Location: user-events.php';
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $old_password = $_POST['old_password'] ?? '';
     $new_password = $_POST['new_password'] ?? '';
-    $confirm_password = $_POST['confirm_password'] ?? '';
+    $pwd_confirm = $_POST['pwd_confirm'] ?? '';
 
     $query = $pdo->prepare("SELECT password FROM users WHERE id = ?");
     $query->execute([$id]);
@@ -31,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!password_verify($old_password, $currentHash)) {
         $error = "Ancien mot de passe incorrect, veuillez saisir le bon mot de passe svp";
     } else {
-        if ($new_password !== $confirm_password) {
+        if ($new_password !== $pwd_confirm) {
             $error = "Erreur : Les nouveaux mots de passe ne sont pas identiques";
         } else {
             $newHash = password_hash($new_password, PASSWORD_DEFAULT);
@@ -72,8 +70,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- <link href="../assets/css/login.css" rel="stylesheet"> -->
     <!-- <link href="../assets/css/dashboard.css" rel="stylesheet"> -->
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
-    <script src="../assets/js/script.js" defer></script>
-    <title>MNS Football Club - évènement</title>
+    <link rel="icon" type="image/png" href="../assets/images/mon_logo.png">
+    <script src="../assets/js/password.js" defer></script>
+    <title>MNS FC - Mot de passe</title>
 </head>
 
 <body>
@@ -83,29 +82,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h3>Modifier mon mot de passe</h3>
             <p>-- Veuillez modifier votre mot de passe en respectant les règles suivantes --</p>
             <ul>
-                <li>8 caractères minimum</li>
-                <li>1 caractère spécial minimum [#@!?$%&]</li>
-                <li>1 majuscule minimum</li>
-                <li>1 numérique minimum</li>
+                <li id="pwd-criteria-length">8 caractères minimum</li>
+                <li id="pwd-criteria-special">1 caractère spécial minimum [#@!?$%&]</li>
+                <li id="pwd-criteria-uppercase">1 majuscule minimum</li>
+                <li id="pwd-criteria-numeric">1 numérique minimum</li>
             </ul>
             <form action="password.php" method="post"
-                id="id-form" class="form">
+                id="id-form" class="form" novalidate>
                 <div class="event-item">
                     <label for="old_password">Ancien mot de passe *</label>
                     <div>
-                        <input type="password" id="old_password" name="old_password">
+                        <input type="password" id="old-pwd" name="old_password">
                     </div>
                 </div>
                 <div class="event-item">
                     <label for="new_password">Nouveau mot de passe *</label>
                     <div>
-                        <input type="password" id="new_password" name="new_password">
+                        <input type="password" id="new-pwd" name="new_password">
                     </div>
                 </div>
                 <div class="event-item">
-                    <label for="confirm_password">Confirmation nouveau mot de passe *</label>
+                    <label for="pwd_confirm">Confirmation nouveau mot de passe *</label>
                     <div>
-                        <input type="password" id="confirm_password" name="confirm_password">
+                        <input type="password" id="pwd-confirm" name="pwd_confirm">
                     </div>
                 </div>
                 <div class="event-item">

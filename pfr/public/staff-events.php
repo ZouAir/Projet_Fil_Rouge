@@ -124,6 +124,7 @@ $date = new DateTime($event['date']);
                             $seats = 0;
                         }
                         $free_seats = $row['capacity'] - $seats;
+                        $date_row = $row['date'];
                     ?>
                         <div class="event">
                             <div class="event-status">
@@ -131,7 +132,7 @@ $date = new DateTime($event['date']);
                             </div>
                             <div class="event-data">
                                 <span><?= htmlspecialchars($row['name']) ?></span>
-                                <span><?= htmlspecialchars($row['date']) ?></span>
+                                <span><?= htmlspecialchars($date->format('d-m-Y')); ?></span>
                                 <span><?= htmlspecialchars($row['scene']) . " - Places libres : " . htmlspecialchars($free_seats) . " place";
                                         if ((int)$free_seats > 1) {
                                             echo "s";

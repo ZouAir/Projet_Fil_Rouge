@@ -104,7 +104,7 @@ submit.addEventListener('submit', (event) => {
 
 name.addEventListener('change', (event) => {
     const nameError = document.getElementById('nameError');
-    if (name.value.trim().length !== 0 && nameError !== null) {
+    if (name.value.length !== 0 && nameError !== null) {
         nameError.remove()
     }
 })
@@ -132,7 +132,7 @@ phone.addEventListener('change', (event) => {
 
 pwd.addEventListener('input', (event) => {
     const pwdError = document.getElementById('pwdError');
-    if (pwd.value.trim().length !== 0 && pwdError !== null) {
+    if (pwd.value.length !== 0 && pwdError !== null) {
         pwdError.remove()
     }
 })
@@ -140,7 +140,7 @@ pwd.addEventListener('input', (event) => {
 pwdConfirm.addEventListener('input', (event) => {
     const pwdConfirmError = document.getElementById('pwdConfirmError');
     const pwdMatch = document.getElementById('pwdMatch');
-    if (pwdConfirm.value.trim().length !== 0 && pwdConfirmError !== null) {
+    if (pwdConfirm.value.length !== 0 && pwdConfirmError !== null) {
         pwdConfirmError.remove()
     }
     if (pwd.value === pwdConfirm.value && pwdMatch !== null) {
