@@ -182,9 +182,12 @@ main .container .login form .rules ul {
     body {
         width: 100%;
         margin: auto;
+        background-color: var(--color-gray);
     }
 
     main {
+        width: 90%;
+        margin: auto;
         display: flex;
         align-items: center;
     }

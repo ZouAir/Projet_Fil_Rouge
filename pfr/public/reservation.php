@@ -26,14 +26,22 @@ if (!isset($_SESSION['id'])) {
     $query = $pdo->prepare("SELECT SUM(seats) 
     FROM orders
     WHERE events_id = ?
+    AND status NOT IN ('Annulé')
+    ");
+    $query->execute([$id]);
+    $seats_taken = $query->fetchColumn();
+
+    $query = $pdo->prepare("SELECT SUM(seats) 
+    FROM orders
+    WHERE events_id = ?
     AND users_id = ?
     AND status NOT IN ('Annulé')
     ");
     $query->execute([$id, $_SESSION['id']]);
-    $seats_taken = $query->fetchColumn();
+    $seats_booked = $query->fetchColumn();
 
-    if ($seats_taken === null) {
-        $seats_taken = 0;
+    if ($seats_booked === null) {
+        $seats_booked = 0;
     }
     $seats_free = $event['capacity'] - $seats_taken;
 
@@ -41,7 +49,7 @@ if (!isset($_SESSION['id'])) {
         $seats = $_POST['seats'] ?? '';
         try {
             if ($seats) {
-                if ($seats_taken + $_POST['seats'] > 2) {
+                if ($seats_booked + $_POST['seats'] > 2) {
                     $error = "Erreur : Vous avez atteint le nombre maximum de réservations possible";
                 }
 

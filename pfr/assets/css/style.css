@@ -75,7 +75,7 @@ main .hero .card-body button {
 }
 
 main .container .hero {
-    background-color: var(--color-light);
+    background-color: var(--color-beige);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -131,6 +131,8 @@ main .container .hero2 ul li .card {
     border-radius: var(--border-radius-m);
     text-align: center;
     width: 100%;
+    max-width: 400px;
+    margin: var(--margin-s) 0;
 }
 
 main .container .hero2 ul li .card img {
@@ -163,7 +165,7 @@ main .container a:hover {
 }
 
 main .hero3 {
-    background-color: var(--color-light);
+    background-color: var(--color-beige);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -192,6 +194,10 @@ main .hero3 .spon-right span {
     font-size: 0.8rem;
     padding: var(--padding-m);
     margin: 0 var(--margin-s);
+}
+
+main .hero3 .spon-right span:last-child {
+    display: none;
 }
 
 /* EVENT-WRAP */
@@ -294,6 +300,10 @@ main .event form button:hover {
     .link {
         width: 50%;
     }
+
+    main .hero3 .spon-right span:last-child {
+        display: block;
+    }
 }
 
 /* *************** */
@@ -301,8 +311,14 @@ main .event form button:hover {
 @media screen and (min-width: 992px) {
 
     body {
-        width: 80vw;
-        margin: 0 auto;
+        width: 100%;
+        margin: auto;
+        background-color: var(--color-light);
+    }
+
+    main {
+        width: 90%;
+        margin: auto;
     }
 
     main .container .hero2 .title,
@@ -314,7 +330,7 @@ main .event form button:hover {
     }
 
     main .container .hero2 ul {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
         gap: 10px
     }
 
@@ -335,4 +351,9 @@ main .event form button:hover {
 
 /* ********** */
 /* Format TV */
-@media screen and (min-width: 1200px) {}
+@media screen and (min-width: 1200px) {
+    main .container .hero2 ul {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 10px
+    }
+}

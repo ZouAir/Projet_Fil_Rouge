@@ -104,6 +104,7 @@ $events = $query->fetchALL(PDO::FETCH_ASSOC);
                 <span>sponsor A</span>
                 <span>sponsor B</span>
                 <span>sponsor C</span>
+                <span>sponsor D</span>
             </div>
         </section>
     </main>
