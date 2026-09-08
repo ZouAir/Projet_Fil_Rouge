@@ -52,7 +52,7 @@ main .container .login-right .login-title {
 }
 
 main .container .login {
-    background-color: var(--color-light);
+    background-color: var(--color-beige);
     border-radius: var(--border-radius-m);
     width: 100%;
     padding: var(--padding-l) 0;
@@ -101,6 +101,7 @@ main .container .login .login-link a {
     font-weight: bold;
     box-sizing: border-box;
     width: 90%;
+    max-width: 400px;
     height: 40px;
     margin-top: var(--margin-xxl);
 }
@@ -115,7 +116,7 @@ main .container .login .login-link a:hover {
 main .container .login .login-pwd a {
     color: var(--color-light);
     background-color: var(--color-gray);
-    margin-top: var(--margin-xl);
+    margin-top: var(--margin-l);
 }
 
 main .container .login .login-pwd a:hover {

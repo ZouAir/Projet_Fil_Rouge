@@ -108,7 +108,10 @@ $events = $query->fetchAll();
                             <div class="user-data">
                                 <span><?= htmlspecialchars($event['name']); ?></span>
                                 <span><?= htmlspecialchars($date->format('d-m-Y')); ?></span>
-                                <span><?= htmlspecialchars($event['scene']) . " - " . htmlspecialchars($seats_free); ?> places</span>
+                                <span><?= htmlspecialchars($event['scene']) . " - " . htmlspecialchars($seats_free) . " place";
+                                        if ((int)$seats_free > 1) {
+                                            echo "s";
+                                        }  ?></span>
                             </div>
                             <div class="user-modify">
                                 <div class="user-change">

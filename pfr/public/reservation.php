@@ -81,7 +81,8 @@ $date = new DateTime($event['date']);
     <!-- <link href="../assets/css/login.css" rel="stylesheet">
     <link href="../assets/css/dashboard.css" rel="stylesheet"> -->
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
-    <title>MNS Football Club</title>
+    <link rel="icon" type="image/png" href="../assets/images/mon_logo.png">
+    <title>MNS FC Réservation</title>
 </head>
 <!-- Ceci est un commentaire -->
 
@@ -90,22 +91,25 @@ $date = new DateTime($event['date']);
     <main class="event-wrap">
         <div class="event">
             <h3> Réservation évènement</h3>
-            <p>Veuillez choisir le nombre de places que vous souhaitez réserver</p>
+            <p>-- Veuillez choisir le nombre de places que vous souhaitez réserver --</p>
             <div class="event-item">
                 <p>Catégorie :<?php //requete SQL avec jointure pour avoir la catégorie de l'event.
                                 ?>.</p>
             </div>
             <div class="event-item">
-                <p>Évènement : <?= htmlspecialchars($event['name']) ?>.</p>
+                <p>Évènement : <?= ucfirst(htmlspecialchars($event['name'])) ?>.</p>
             </div>
             <div class="event-item">
-                <p>Description : <?= htmlspecialchars(substr($event['description'], 0, 100)) ?></p>
+                <p>Description : <?= ucfirst(htmlspecialchars($event['description'])) ?>.</p>
             </div>
             <div class="event-item">
                 <p>Date : <?= $date->format('d-m-Y') ?>.</p>
             </div>
             <div class="event-item">
-                <p>Tarif : <?= htmlspecialchars($event['price']) ?> euros.</p>
+                <p>Tarif : <?= htmlspecialchars($event['price']) . " euro";
+                            if ((int)$event['price'] > 1) {
+                                echo "s";
+                            } ?>.</p>
             </div>
             <div class="event-item">
                 <p>Statut : <?= htmlspecialchars($event['status']) ?>.</p>
@@ -118,7 +122,7 @@ $date = new DateTime($event['date']);
             ?>
                 <form action="./reservation.php" method="POST">
                     <div class="event-item">
-                        <label for="seats">Nombre de places :</label>
+                        <label for="seats">Nombre de places </label>
                         <div>
                             <select name="seats" id="seats">
                                 <option value="">-</option>
