@@ -27,13 +27,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $currentHash = $query->fetchColumn();
 
     if (!password_verify($old_password, $currentHash)) {
-        $error = "Ancien mot de passe incorrect, veuillez saisir le bon mot de passe svp";
+        $error = "Ancien mot de passe incorrect, veuillez saisir le bon svp";
     } else {
-        if ($new_password !== $pwd_confirm) {
-            $error = "Erreur : Les nouveaux mots de passe ne sont pas identiques";
+        if (strlen($new_password) < 8 || !preg_match('/[#@!?\$%&]/', $new_password) || !preg_match('/[0-9]/', $new_password) || !preg_match('/[A-Z]/', $new_password)) {
+            $error = "Nouveau mot de passe ne respecte pas les règles ci-dessus ";
         } else {
-            $newHash = password_hash($new_password, PASSWORD_DEFAULT);
-            $currentHash = $newHash;
+            if ($new_password !== $pwd_confirm) {
+                $error = "Les nouveaux mots de passe ne sont pas identiques";
+            } else {
+                $newHash = password_hash($new_password, PASSWORD_DEFAULT);
+                $currentHash = $newHash;
+            }
         }
     }
 
