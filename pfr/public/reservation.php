@@ -20,7 +20,8 @@ if (!isset($_SESSION['id'])) {
     $query->execute([$id]);
     $event = $query->fetch(PDO::FETCH_ASSOC);
     if (!$event) {
-        $error = "Erreur : Évènement introuvable";
+        header('Location: user-events.php');
+        exit;
     }
 
     $query = $pdo->prepare("SELECT SUM(seats) 
@@ -49,8 +50,8 @@ if (!isset($_SESSION['id'])) {
         $seats = $_POST['seats'] ?? '';
         try {
             if ($seats) {
-                if ($seats_booked + $_POST['seats'] > 2) {
-                    $error = "Erreur : Vous avez atteint le nombre maximum de réservations possible";
+                if ((int)$seats_booked + $_POST['seats'] > 2) {
+                    $error = "Vous avez atteint le nombre maximum de réservations possible";
                 }
 
                 if (empty($error)) {
@@ -126,7 +127,7 @@ $date = new DateTime($event['date']);
                 <p>Places disponibles : <?= $seats_free ?>.</p>
             </div>
             <?php
-            if ($seats_free >= 1) {
+            if ($seats_free >= 1 && $seats_booked <= 1) {
             ?>
                 <form action="./reservation.php" method="POST">
                     <div class="event-item">
@@ -136,7 +137,7 @@ $date = new DateTime($event['date']);
                                 <option value="">-</option>
                                 <option value="1">1</option>
                                 <?php
-                                if ($seats_free >= 2) {
+                                if ($seats_free >= 2 && $seats_booked === 0) {
                                 ?>
                                     <option value="2">2</option>
                                 <?php
