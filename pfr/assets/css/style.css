@@ -118,7 +118,6 @@ main .container .hero2 ul {
     display: grid;
     list-style: none;
     padding-left: 0;
-    gap: 20px;
 }
 
 main .container .hero2 ul li {
@@ -131,11 +130,12 @@ main .container .hero2 ul li .card {
     background-color: var(--color-primary);
     border-radius: var(--border-radius-m);
     text-align: center;
+    width: 100%;
 }
 
 main .container .hero2 ul li .card img {
     width: 100%;
-    max-height: 400px;
+    height: 50%;
 }
 
 main .container .hero2 ul li .card p,

@@ -59,8 +59,9 @@ $date = new DateTime($event['date']);
     <!-- <link href="../assets/css/style.css" rel="stylesheet"> -->
     <link href="../assets/css/dashboard.css" rel="stylesheet">
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/images/mon_logo.png">
     <script src="../assets/js/script.js" defer></script>
-    <title>MNS Football Club - Dashboard</title>
+    <title>MNS FC - Dashboard</title>
 </head>
 
 <body>
@@ -124,15 +125,15 @@ $date = new DateTime($event['date']);
                             $seats = 0;
                         }
                         $free_seats = $row['capacity'] - $seats;
-                        $date_row = $row['date'];
+                        $row_date = new DateTime($row['date']);
                     ?>
                         <div class="event">
                             <div class="event-status">
                                 <span><?= htmlspecialchars($row['status']) ?></span>
                             </div>
                             <div class="event-data">
-                                <span><?= htmlspecialchars($row['name']) ?></span>
-                                <span><?= htmlspecialchars($date->format('d-m-Y')); ?></span>
+                                <span><?= ucfirst(htmlspecialchars($row['name'])) ?></span>
+                                <span><?= $row_date->format('d-m-Y') ?></span>
                                 <span><?= htmlspecialchars($row['scene']) . " - Places libres : " . htmlspecialchars($free_seats) . " place";
                                         if ((int)$free_seats > 1) {
                                             echo "s";
