@@ -3,14 +3,17 @@
 
 ## 📋 Description
 
-Application web de réservation d'événements sportifs pour le Club ACA.
+Application web de réservation d'événements sportifs et de loisir pour le MNS Football Club.
 
 ## 🛠️ Stack
 
+- Figma
+- HTML5 / CSS3
+- JavaScript
 - PHP 8.2 (procédural)
 - MySQL 8.0
-- HTML5 / CSS3 / JavaScript
 - Docker (développement local)
+- Git
 
 ## 📁 Architecture
 
@@ -40,7 +43,7 @@ docker-compose down -v
 docker-compose up
 ```
 
-Accès : http://localhost:8000
+Accès : http://localhost:8000/
 
 ### PhpMyAdmin
 
