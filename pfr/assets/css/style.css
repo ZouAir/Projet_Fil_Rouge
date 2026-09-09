@@ -66,6 +66,12 @@ body {
     font-family: var(--font-heading);
     text-align: justify;
     box-sizing: border-box;
+    min-height: 100vh;
+}
+
+main {
+    padding: var(--padding-xl) 0;
+    flex: 1;
 }
 
 main .hero .card-body button {

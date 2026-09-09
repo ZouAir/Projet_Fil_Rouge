@@ -50,6 +50,10 @@ header .bottom nav {
     display: none;
 }
 
+header .bottom nav.nav-open {
+    display: block;
+}
+
 header .bottom nav ul {
     display: flex;
 }
