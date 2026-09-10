@@ -103,6 +103,7 @@ $user = $query->fetch(PDO::FETCH_ASSOC);
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="../assets/images/mon_logo.png">
     <script src="../assets/js/account.js" defer></script>
+    <script src="../assets/js/header.js" defer></script>
     <title>MNS FC - Compte</title>
 </head>
 

@@ -33,7 +33,7 @@ header .top .title {
 header h1 {
     color: var(--color-secondary);
     text-transform: uppercase;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-weight: bold;
 }
 
@@ -70,6 +70,7 @@ header .bottom .btn .cta a {
     border-radius: var(--border-radius-m);
     text-decoration: none;
     font-weight: bold;
+    white-space: nowrap;
     padding: var(--padding-m) var(--padding-s);
 }
 
@@ -122,14 +123,8 @@ header .bottom .btn .cta a:hover {
 
 /* Format tablette */
 @media screen and (min-width: 768px) {
-    header h1 {
-        text-transform: uppercase;
-        font-size: 2rem;
-    }
-
     header .bottom {
-        width: 50%;
-        justify-content: start;
+        justify-content: center;
     }
 
     header .bottom nav {
@@ -154,20 +149,50 @@ header .bottom .btn .cta a:hover {
     }
 
     header .top {
-        width: 50%;
+        width: 40%;
     }
 
     header .top .title h1 {
-        font-size: 1.8rem;
+        font-size: 1.1rem;
     }
 
     header .bottom {
         flex: 1;
         display: flex;
         justify-content: center;
+        padding: 0;
     }
 
     header .bottom nav {
         padding: 0;
+    }
+
+    header .bottom nav ul li a,
+    header .bottom nav ul li a:visited,
+    header .bottom .btn .cta a {
+        font-size: 0.8rem;
+        padding: var(--padding-m) var(--padding-s);
+    }
+}
+
+/* ********** */
+/* Format TV */
+@media screen and (min-width: 1400px) {
+    header .top {
+        width: 50%;
+    }
+
+    header .top .title h1 {
+        font-size: 2rem;
+    }
+
+    header .bottom nav {
+        /* padding: 0; */
+    }
+
+    header .bottom nav ul li a,
+    header .bottom nav ul li a:visited,
+    header .bottom .btn .cta a {
+        font-size: 1rem;
     }
 }

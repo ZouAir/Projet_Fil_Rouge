@@ -70,7 +70,6 @@ body {
 }
 
 main {
-    padding: var(--padding-xl) 0;
     flex: 1;
 }
 

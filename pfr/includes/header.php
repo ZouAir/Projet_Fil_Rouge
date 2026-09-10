@@ -1,3 +1,7 @@
+<?php
+$profil = $_SESSION['profil'] ?? null;
+?>
+
 <header>
     <div class="top">
         <a href="index.php">
@@ -9,6 +13,16 @@
     <div class="bottom">
         <nav>
             <ul>
+                <li>
+                    <?php
+                    if ($profil === 'administrateur' || $profil === 'service') { ?>
+                        <a href="staff-events.php">Dashboard</a>
+                    <?php } elseif ($profil === 'abonne') { ?>
+                        <a href="user-events.php">Mon Espace</a>
+                    <?php } else { ?>
+                        <a href="index.php">Accueil</a>
+                    <?php } ?>
+                </li>
                 <li><a href="../public/events.php">Évènements</a></li>
                 <li><a href="#">Partenaires</a></li>
                 <li><a href="#">Contact</a></li>

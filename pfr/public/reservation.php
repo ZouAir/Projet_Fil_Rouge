@@ -154,7 +154,7 @@ $date = new DateTime($event['date']);
             <?php
             } else {
             ?>
-                <p class="error">Désolé, plus aucune place disponible !</p>
+                <p class="error">Désolé, vous avez atteint le nombre maximum de réservations possible</p>
             <?php
             }
             ?>

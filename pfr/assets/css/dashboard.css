@@ -4,6 +4,8 @@ body {
     font-family: var(--font-heading);
     text-align: justify;
     box-sizing: border-box;
+    min-height: 100vh;
+    margin: 0;
 }
 
 .error {
@@ -91,7 +93,7 @@ main .container .dashboard .dash-sidebar a:last-child:hover {
 }
 
 main .container .dashboard .dash-content {
-    background-color: var(--color-gray);
+    background-color: var(--color-beige);
     border-radius: 0 var(--border-radius-m) var(--border-radius-m) 0;
     flex: 1;
     font-size: 0.8rem;
@@ -769,11 +771,6 @@ main .container .dashboard .dash-content .match .star span {
 /* Format desktop */
 @media screen and (min-width: 992px) {
 
-    body {
-        width: 80vw;
-        margin: 0 auto;
-    }
-
     main .container {
         width: 100%;
     }
@@ -789,4 +786,13 @@ main .container .dashboard .dash-content .match .star span {
 
 /* ********** */
 /* Format TV */
-@media screen and (min-width: 1200px) {}
+@media screen and (min-width: 1400px) {
+    body {
+        background-color: var(--color-gray);
+    }
+
+    main {
+        width: 90%;
+        margin: auto;
+    }
+}
