@@ -29,19 +29,18 @@ button:hover {
     width: 60%;
 }
 
-.link:hover {
-    background-color: var(--color-light);
-    border: 2px solid var(--color-gray);
-}
-
 .link a {
     color: var(--color-light);
+    border-radius: var(--border-radius-xl);
+    display: block;
     text-decoration: none;
+    padding: var(--padding-m) var(--padding-xl);
 }
 
 .link a:hover {
     color: var(--color-gray);
-    text-decoration: none;
+    background-color: var(--color-light);
+    border: 2px solid transparent;
 }
 
 .error {
@@ -286,6 +285,11 @@ main .event form button:hover {
         grid-template-columns: 1fr 1fr;
         gap: 10px
     }
+
+    .link a {
+        padding: var(--padding-m) 45px;
+        background-color: brown;
+    }
 }
 
 /* **************** */
@@ -297,8 +301,7 @@ main .event form button:hover {
         gap: 10px
     }
 
-    button,
-    .link {
+    button {
         width: 60%;
     }
 
@@ -309,11 +312,21 @@ main .event form button:hover {
     main .hero3 .spon-right span:last-child {
         display: block;
     }
+
+    .link a {
+        padding: 10px 70px;
+        background-color: aqua;
+    }
 }
 
 /* *************** */
 /* Format desktop */
 @media screen and (min-width: 992px) {
+
+    .link a {
+        padding: 10px 105px;
+        background-color: violet;
+    }
 
     body {
         width: 100%;

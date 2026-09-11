@@ -47,15 +47,28 @@ header .bottom {
 }
 
 header .bottom nav {
-    display: none;
+    display: block;
+    position: absolute;
+    top: 55px;
+    left: -450px;
+    transition: left 0.3s;
+    background-color: var(--color-secondary);
+    border-radius: 0 0 var(--border-radius-s) 0;
+    z-index: 10;
 }
 
 header .bottom nav.nav-open {
-    display: block;
+    left: 8px;
+}
+
+header .bottom nav.nav-open ul {
+    flex-direction: column;
+    padding-left: 0;
 }
 
 header .bottom nav ul {
     display: flex;
+    flex-direction: column;
 }
 
 header .bottom nav ul li {
@@ -80,6 +93,19 @@ header .bottom .btn .cta a:hover {
     color: var(--color-light);
     background-color: var(--color-secondary);
     border: 1px solid transparent;
+}
+
+header .bottom nav.nav-open ul li a {
+    color: var(--color-primary);
+    display: block;
+    padding: var(--padding-m);
+}
+
+header .bottom nav.nav-open ul li a:hover {
+    color: var(--color-secondary);
+    background-color: var(--color-primary);
+    border: 1px solid transparent;
+    border-radius: 0;
 }
 
 header .bottom .btn {
