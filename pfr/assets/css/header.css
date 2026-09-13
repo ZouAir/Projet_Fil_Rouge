@@ -225,10 +225,6 @@ header .bottom .btn .cta a:hover {
         font-size: 2rem;
     }
 
-    header .bottom nav {
-        /* padding: 0; */
-    }
-
     header .bottom nav ul li a,
     header .bottom nav ul li a:visited,
     header .bottom .btn .cta a {
