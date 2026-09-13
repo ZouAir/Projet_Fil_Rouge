@@ -1,3 +1,16 @@
+// Tratement burger button.
+const burger = document.getElementById('burger-btn');
+const nav = document.querySelector('nav');
+const i = burger.querySelector('i');
+
+
+burger.addEventListener('click', () => {
+    nav.classList.toggle('nav-open');
+    i.classList.toggle('bx-menu');
+    i.classList.toggle('bx-x');
+})
+
+// Vérification des champs required et des formats.
 const submit = document.querySelector('form');
 const name = document.getElementById('name');
 const firstName = document.getElementById('firstname');
@@ -6,9 +19,6 @@ const phone = document.getElementById('phone');
 const regEx = /^[0-9]{10}$/;
 const pwd = document.getElementById('pwd');
 const pwdConfirm = document.getElementById('pwd-confirm');
-
-// Vérification des champs required et des formats.
-///////////////////////////////////////////////////
 
 submit.addEventListener('submit', (event) => {
     let hasError = false;
@@ -149,7 +159,6 @@ pwdConfirm.addEventListener('input', (event) => {
 })
 
 //Vérification du mot de passe
-//////////////////////////////
 const pwdLength = document.getElementById('pwd-criteria-length');
 const pwdSpecial = document.getElementById('pwd-criteria-special');
 const pwdUppercase = document.getElementById('pwd-criteria-uppercase');

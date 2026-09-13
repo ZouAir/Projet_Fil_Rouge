@@ -1,8 +1,5 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
 session_start();
-
 $pdo = require_once('../includes/bdd.php');
 
 $error = "";
@@ -68,8 +65,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- <link href="../assets/css/dashboard.css" rel="stylesheet"> -->
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="../assets/images/mon_logo.png">
-    <script src="../assets/js/script.js" defer></script>
-    <title>Login</title>
+    <script src="../assets/js/login.js" defer></script>
+    <title>MNS FC - Login</title>
 </head>
 
 <body>
@@ -80,6 +77,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <img src="../assets/images/stade.jpg" alt="">
             </div>
             <div class="login-right">
+                <div class=success>
+                    <?php
+                    if (isset($_SESSION['success'])) {
+                        $modal = $_SESSION['success'];
+                    ?>
+                        <script>
+                            const modal = '<?= htmlspecialchars($modal) ?>';
+                        </script>
+                    <?php
+                        unset($_SESSION['success']);
+                    }
+                    ?>
+                </div>
                 <div class="login-title">
                     <p>connexion</p>
                 </div>

@@ -1,3 +1,16 @@
+// Traitement burger button
+const burger = document.getElementById('burger-btn');
+const nav = document.querySelector('nav');
+const i = burger.querySelector('i');
+
+
+burger.addEventListener('click', () => {
+    nav.classList.toggle('nav-open');
+    i.classList.toggle('bx-menu');
+    i.classList.toggle('bx-x');
+})
+
+// Traitement formulaire
 const submit = document.querySelector('form');
 const email = document.getElementById('email');
 const pwd = document.getElementById('pwd');
@@ -52,15 +65,4 @@ pwd.addEventListener('input', (event) => {
             pwdError.remove()
         }
     }
-})
-
-const burger = document.getElementById('burger-btn');
-const nav = document.querySelector('nav');
-const i = burger.querySelector('i');
-
-
-burger.addEventListener('click', () => {
-    nav.classList.toggle('nav-open');
-    i.classList.toggle('bx-menu');
-    i.classList.toggle('bx-x');
 })

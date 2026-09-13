@@ -1,5 +1,4 @@
-// Header.
-///////////////////////////////////////////////////
+// Traitement bouton burger
 const burger = document.getElementById('burger-btn');
 const nav = document.querySelector('nav');
 const i = burger.querySelector('i');
@@ -12,8 +11,7 @@ burger.addEventListener('click', () => {
 })
 
 
-// Vérification des champs required et des formats.
-///////////////////////////////////////////////////
+// Vérification des champs required et des formats
 const submit = document.querySelector('form');
 const oldPwd = document.getElementById('old-pwd');
 const newPwd = document.getElementById('new-pwd');
@@ -101,7 +99,6 @@ pwdConfirm.addEventListener('change', (event) => {
 })
 
 //Vérification du mot de passe
-//////////////////////////////
 const pwdLength = document.getElementById('pwd-criteria-length');
 const pwdSpecial = document.getElementById('pwd-criteria-special');
 const pwdUppercase = document.getElementById('pwd-criteria-uppercase');
@@ -122,6 +119,7 @@ newPwd.addEventListener('keyup', () => {
     } else {
         pwdSpecial.classList.remove('success');
     }
+
     // caractère majuscule minimum :
     let regExUpper = /[A-Z]/;
     if (regExUpper.test(newPwd.value)) {

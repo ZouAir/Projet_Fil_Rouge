@@ -7,9 +7,7 @@ const phoneRegEx = /^[0-9]{10}$/;
 const postal = document.getElementById('postal')
 const postalRegEx = /^\d{5}$/;
 
-// Vérification des champs required et des formats.
-///////////////////////////////////////////////////
-
+// Vérification des champs required et des formats
 submit.addEventListener('submit', (event) => {
     let hasError = false;
 
