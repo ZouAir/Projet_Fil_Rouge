@@ -47,23 +47,7 @@ header .bottom {
 }
 
 header .bottom nav {
-    display: block;
-    position: absolute;
-    top: 55px;
-    left: -450px;
-    transition: left 0.3s;
-    background-color: var(--color-secondary);
-    border-radius: 0 0 var(--border-radius-s) 0;
-    z-index: 10;
-}
-
-header .bottom nav.nav-open {
-    left: 8px;
-}
-
-header .bottom nav.nav-open ul {
-    flex-direction: column;
-    padding-left: 0;
+    display: none;
 }
 
 header .bottom nav ul {
@@ -95,10 +79,19 @@ header .bottom .btn .cta a:hover {
     border: 1px solid transparent;
 }
 
+header .bottom nav.nav-open {
+    background-color: var(--color-secondary);
+    border-radius: 0 0 var(--border-radius-m) 0;
+}
+
+header .bottom nav.nav-open ul {
+    padding-left: 0;
+}
+
 header .bottom nav.nav-open ul li a {
     color: var(--color-primary);
     display: block;
-    padding: var(--padding-m);
+    padding: var(--padding-m) var(--padding-l);
 }
 
 header .bottom nav.nav-open ul li a:hover {
@@ -147,6 +140,22 @@ header .bottom .btn .cta a:hover {
     background-color: var(--color-light);
 }
 
+/* Format mobile */
+@media screen and (max-width: 767px) {
+    header .bottom nav {
+        display: block;
+        position: absolute;
+        top: 55px;
+        left: -450px;
+        transition: left 0.3s;
+        z-index: 10;
+    }
+
+    header .bottom nav.nav-open {
+        left: -5px;
+    }
+}
+
 /* Format tablette */
 @media screen and (min-width: 768px) {
     header .bottom {
@@ -156,6 +165,10 @@ header .bottom .btn .cta a:hover {
     header .bottom nav {
         display: block;
         margin: 0 5px 5px 0;
+    }
+
+    header .bottom nav ul {
+        flex-direction: row;
     }
 
     header .bottom a {

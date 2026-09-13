@@ -1,12 +1,4 @@
 <?php
-// Vérifications session + profil
-// Inclusion de bdd.php
-// Récupérer l'ID de la resa via $_GET['id']
-// Vérifier que l'ID existe en BDD (sinon rediriger)
-// Calculer des places disponibles sans la résa en cours
-// Si GET : afficher formulaire pré-rempli avec les données actuelles
-// Si POST : UPDATE la resa en BDD + redirection vers dash-user-reservations.php
-// Gestion des erreurs avec $error
 
 session_start();
 $pdo = require_once('../includes/bdd.php');
@@ -102,7 +94,8 @@ $date = new DateTime($currentOrder['date']);
     <!-- <link href="../assets/css/login.css" rel="stylesheet">
     <link href="../assets/css/dashboard.css" rel="stylesheet"> -->
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
-    <title>MNS Football Club - Réservation</title>
+    <script src="../assets/js/password.js" defer></script>
+    <title>MNS FC - Réservation</title>
 </head>
 
 <body>

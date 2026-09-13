@@ -1,3 +1,11 @@
+body {
+    font-family: var(--font-heading);
+    text-align: justify;
+    box-sizing: border-box;
+    min-height: 100vh;
+    margin: 0;
+}
+
 /* COMPONENT */
 /************/
 button,
@@ -61,13 +69,6 @@ button:hover {
 
 /* MAIN */
 /*******/
-body {
-    font-family: var(--font-heading);
-    text-align: justify;
-    box-sizing: border-box;
-    min-height: 100vh;
-}
-
 main {
     flex: 1;
 }
@@ -142,6 +143,7 @@ main .container .hero2 ul li .card {
 main .container .hero2 ul li .card img {
     width: 100%;
     height: 50%;
+    object-fit: cover;
 }
 
 main .container .hero2 ul li .card p,

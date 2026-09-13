@@ -91,6 +91,7 @@ $date = new DateTime($event['date']);
     <link href="../assets/css/dashboard.css" rel="stylesheet"> -->
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="../assets/images/mon_logo.png">
+    <script src="../assets/js/password.js" defer></script>
     <title>MNS FC Réservation</title>
 </head>
 <!-- Ceci est un commentaire -->

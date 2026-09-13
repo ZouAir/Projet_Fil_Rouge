@@ -1,10 +1,23 @@
+// Header.
+///////////////////////////////////////////////////
+const burger = document.getElementById('burger-btn');
+const nav = document.querySelector('nav');
+const i = burger.querySelector('i');
+
+
+burger.addEventListener('click', () => {
+    nav.classList.toggle('nav-open');
+    i.classList.toggle('bx-menu');
+    i.classList.toggle('bx-x');
+})
+
+
+// Vérification des champs required et des formats.
+///////////////////////////////////////////////////
 const submit = document.querySelector('form');
 const oldPwd = document.getElementById('old-pwd');
 const newPwd = document.getElementById('new-pwd');
 const pwdConfirm = document.getElementById('pwd-confirm');
-
-// Vérification des champs required et des formats.
-///////////////////////////////////////////////////
 
 submit.addEventListener('submit', (event) => {
     let hasError = false;

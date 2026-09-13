@@ -11,7 +11,8 @@
     <!-- <link href="../assets/css/login.css" rel="stylesheet"> -->
     <!-- <link href="../assets/css/dashboard.css" rel="stylesheet"> -->
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
-    <title>MNS Football Club - Abonnés</title>
+    <script src="../assets/js/header.js" defer></script>
+    <title>MNS FC - Mentions Légales</title>
 </head>
 
 <body>

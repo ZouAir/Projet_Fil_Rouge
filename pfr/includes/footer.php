@@ -5,7 +5,7 @@
     </div>
     <div class="mentions">
         <p>© 2026. MNS Football Club - Tous droits réservés - <a target="_blank"
-                href="../public/mentions-legales.php">Mentions légales</a></p>
+                href="../public/mentions.php">Mentions légales</a></p>
     </div>
     <div class="reseaux">
         <a target="_blank" href="https://www.facebook.com/" rel="noopener">
