@@ -77,18 +77,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <img src="../assets/images/stade.jpg" alt="">
             </div>
             <div class="login-right">
-                <div class=success>
+                <div>
                     <?php
-                    if (isset($_SESSION['success'])) {
+                    if (!isset($_SESSION['success'])) {
+                        $modal = '';
+                    } else {
                         $modal = $_SESSION['success'];
-                    ?>
-                        <script>
-                            const modal = '<?= htmlspecialchars($modal) ?>';
-                        </script>
-                    <?php
-                        unset($_SESSION['success']);
                     }
+                    unset($_SESSION['success']);
                     ?>
+                    <script>
+                        const modal = '<?= htmlspecialchars($modal) ?>';
+                    </script>
                 </div>
                 <div class="login-title">
                     <p>connexion</p>

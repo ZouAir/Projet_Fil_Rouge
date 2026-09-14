@@ -10,6 +10,9 @@ burger.addEventListener('click', () => {
     i.classList.toggle('bx-x');
 })
 
+// Traitement modale succès
+
+
 // Traitement formulaire
 const submit = document.querySelector('form');
 const email = document.getElementById('email');
