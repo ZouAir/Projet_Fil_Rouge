@@ -25,7 +25,7 @@ FROM orders o
 INNER JOIN events e ON e.id = o.events_id
 INNER JOIN users u ON u.id = o.users_id 
 WHERE e.date > NOW()
-ORDER BY e.date ASC
+ORDER BY e.date ASC, u.name, u.first_name
 ");
 $query->execute();
 $orders = $query->fetchAll(PDO::FETCH_ASSOC);

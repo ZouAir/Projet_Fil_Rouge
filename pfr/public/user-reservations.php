@@ -25,7 +25,8 @@ $query = $pdo->prepare("SELECT o.id, o.status, o.seats, o.users_id, o.events_id,
 FROM orders o
 INNER JOIN events e ON e.id = o.events_id
 WHERE e.date > NOW() 
-AND o.users_id = ?");
+AND o.users_id = ?
+ORDER BY date");
 $query->execute([$id]);
 $orders = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -92,14 +93,15 @@ $orders = $query->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                     <?php
                     foreach ($orders as $order) {
+                        $date = new DateTime($order['date']);
                     ?>
                         <div class="event">
                             <div class="event-status">
                                 <span><?= htmlspecialchars($order['status']) ?></span>
                             </div>
                             <div class="event-data">
-                                <span><?= htmlspecialchars($order['name']) ?></span>
-                                <span><?= htmlspecialchars($order['date']) ?></span>
+                                <span><?= ucfirst(htmlspecialchars($order['name'])) ?></span>
+                                <span><?= htmlspecialchars($date->format('d-m-Y')) ?></span>
                                 <span><?= htmlspecialchars($order['scene']) . " - " . htmlspecialchars($order['seats']) . " place";
                                         if ((int)($order['seats']) > 1) {
                                             echo "s";

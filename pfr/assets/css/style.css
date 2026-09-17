@@ -1,4 +1,5 @@
 body {
+    background-color: var(--color-primary);
     font-family: var(--font-heading);
     text-align: justify;
     box-sizing: border-box;
@@ -8,14 +9,13 @@ body {
 
 /* COMPONENT */
 /************/
-button,
-.link {
+button {
     color: var(--color-light);
     background-color: var(--color-secondary);
     border: 0;
     border-radius: var(--border-radius-xl);
     font-weight: bold;
-    width: 70%;
+    width: 80%;
     max-width: 400px;
     height: 40px;
     margin: 20px auto 0;
@@ -25,30 +25,6 @@ button:hover {
     color: var(--color-secondary);
     background-color: var(--color-light);
     border: 2px solid var(--color-secondary);
-}
-
-.link {
-    background-color: var(--color-gray);
-    border: 2px solid var(--color-gray);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.9rem;
-    width: 60%;
-}
-
-.link a {
-    color: var(--color-light);
-    border-radius: var(--border-radius-xl);
-    display: block;
-    text-decoration: none;
-    padding: var(--padding-m) var(--padding-xl);
-}
-
-.link a:hover {
-    color: var(--color-gray);
-    background-color: var(--color-light);
-    border: 2px solid transparent;
 }
 
 .error {
@@ -222,7 +198,10 @@ main .event {
     margin: auto;
 }
 
-main .event .event-item {
+main .event .event-item,
+main .event .account-item {
+    background-color: var(--color-beige);
+    border-radius: var(--border-radius-s);
     display: flex;
     width: 90%;
     padding: var(--padding-s);
@@ -230,32 +209,68 @@ main .event .event-item {
     gap: 30px;
 }
 
-main .event .event-item p {
+main .event .event-item p,
+main .event .account-item p {
     padding: 0;
     margin: 0;
 }
 
-main .event .event-item label {
+main .event .event-item label,
+main .event .account-item label {
     width: 30%;
 }
 
-main .event .event-item div {
+main .event .event-item div,
+main .event .account-item div {
     width: 60%;
 }
 
+main .event .event-item:last-child,
+main .event .account-item:last-child {
+    background-color: var(--color-light);
+}
+
 main .event .event-item div input,
-main .event .event-item div select {
+main .event .event-item div select,
+main .event .account-item div input,
+main .event .account-item div select {
     width: 100%;
     height: 25px;
 }
 
-main .event .event-item div select {
-    height: 28px;
+main .event .event-item div select,
+main .event .account-item div select {
+    height: 30px;
 }
 
-main .event .event-item:last-child {
+main .event .link {
     display: flex;
     justify-content: center;
+    align-items: center;
+    width: 70%;
+    max-width: 400px;
+}
+
+main .event .link a {
+    color: var(--color-light);
+    background-color: var(--color-gray);
+    border-radius: var(--border-radius-xl);
+    border: 2px solid var(--color-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-decoration: none;
+    width: 100%;
+    height: 30px;
+    padding: var(--padding-s) var(--padding-xl);
+}
+
+main .event .link a:hover {
+    color: var(--color-gray);
+    background-color: var(--color-light);
+    border: 2px solid var(--color-gray);
 }
 
 main .event form {
@@ -270,15 +285,6 @@ main .event ul li {
     font-weight: bold;
 }
 
-main .event form button {
-    color: var(--color-light);
-}
-
-main .event form button:hover {
-    color: var(--color-secondary);
-    background-color: var(--color-light);
-}
-
 /* ********************* */
 /* Format mini-tablette */
 @media screen and (min-width: 549px) and (max-width: 767px) {
@@ -286,11 +292,6 @@ main .event form button:hover {
     main .container .hero2 ul {
         grid-template-columns: 1fr 1fr;
         gap: 10px
-    }
-
-    .link a {
-        padding: var(--padding-m) 45px;
-        background-color: brown;
     }
 }
 
@@ -307,28 +308,18 @@ main .event form button:hover {
         width: 60%;
     }
 
-    .link {
+    /* .link {
         width: 50%;
-    }
+    } */
 
     main .hero3 .spon-right span:last-child {
         display: block;
-    }
-
-    .link a {
-        padding: 10px 70px;
-        background-color: aqua;
     }
 }
 
 /* *************** */
 /* Format desktop */
 @media screen and (min-width: 992px) {
-
-    .link a {
-        padding: 10px 105px;
-        background-color: violet;
-    }
 
     body {
         width: 100%;

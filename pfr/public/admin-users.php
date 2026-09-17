@@ -32,13 +32,13 @@ $query = $pdo->prepare("SELECT SUM(seats)
 $query->execute([$event['id']]);
 $seats = $query->fetchColumn();
 
-$query = $pdo->prepare("SELECT * FROM users");
-$query->execute([]);
+$query = $pdo->prepare("SELECT * FROM users ORDER BY name ASC, first_name ASC");
+$query->execute();
 $abonnes = $query->fetchAll();
 
 
 $query = $pdo->prepare("SELECT count(*) FROM users");
-$query->execute([]);
+$query->execute();
 $nbre_abonnes = $query->fetchColumn();
 
 if ($seats === null) {
@@ -80,6 +80,7 @@ $date = new DateTime($event['date']);
                         <li><a href="staff-events.php">Évènements</a></li>
                         <li><a href="staff-reservations.php">Réservations</a></li>
                         <li><a href="#">Présences</a></li>
+                        <li><a href="#">Messages</a></li>
                     </ul>
                     <div>Compte</div>
                     <a href="account.php">Mon compte</a>

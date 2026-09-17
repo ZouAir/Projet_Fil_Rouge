@@ -103,8 +103,8 @@ $date = new DateTime($event['date']);
             <h3> Réservation évènement</h3>
             <p>-- Veuillez choisir le nombre de places que vous souhaitez réserver --</p>
             <div class="event-item">
-                <p>Catégorie :<?php //requete SQL avec jointure pour avoir la catégorie de l'event.
-                                ?>.</p>
+                <p>Catégorie : Match<?php //requete SQL avec jointure pour avoir la catégorie de l'event.
+                                    ?>.</p>
             </div>
             <div class="event-item">
                 <p>Évènement : <?= ucfirst(htmlspecialchars($event['name'])) ?>.</p>

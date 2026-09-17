@@ -1,4 +1,5 @@
 body {
+    background-color: var(--color-primary);
     font-family: var(--font-heading);
     text-align: justify;
     box-sizing: border-box;
@@ -88,10 +89,6 @@ main .container .dashboard .dash-sidebar a:active {
     background-color: var(--color-secondary);
 }
 
-main .container .dashboard .dash-sidebar a:last-child:hover {
-    border-radius: 0 0 0 var(--border-radius-m);
-}
-
 main .container .dashboard .dash-content {
     background-color: var(--color-beige);
     border-radius: 0 var(--border-radius-m) var(--border-radius-m) 0;
@@ -132,7 +129,7 @@ main .container .dashboard .dash-content .dash-head div:first-child span:first-c
 
 main .container .dashboard .dash-content .dash-head div:first-child span:last-child {
     flex: 1;
-    background-color: var(--color-primary);
+    background-color: var(--color-gray);
     border-radius: 0 var(--border-radius-m) var(--border-radius-m) 0;
     display: flex;
     justify-content: center;
@@ -152,8 +149,9 @@ main .container .dashboard .dash-content .dash-head div:last-child {
     border-radius: var(--border-radius-m);
     font-size: 0.8rem;
     width: 70%;
-    padding: var(--padding-m);
-    margin: var(--margin-m) auto;
+    height: 30px;
+    padding: var(--padding-s);
+    margin: var(--margin-m) auto 0;
 }
 
 main .container .dashboard .dash-content .kpi,
@@ -168,7 +166,6 @@ main .container .dashboard .dash-content .match {
     font-size: 0.8rem;
     width: 80%;
     min-height: 50px;
-    padding: var(--padding-m);
     margin: var(--margin-m) auto 0;
 }
 
@@ -242,7 +239,7 @@ main .container .dashboard .dash-content .card div:last-child {
 main .container .dashboard .dash-content .card div:last-child div:first-child {
     display: flex;
     justify-content: center;
-    background-color: var(--color-dark);
+    background-color: var(--color-gray);
     border-radius: 0 var(--border-radius-m) 0 0;
     font-size: 0.8rem;
     width: 100%;
@@ -307,7 +304,7 @@ main .container .dashboard .dash-content .user .user-change {
     display: flex;
     align-items: center;
     text-align: center;
-    background-color: var(--color-dark);
+    background-color: var(--color-gray);
     border-radius: 0 var(--border-radius-m) 0 0;
     height: 50%;
 }
@@ -333,7 +330,7 @@ main .container .dashboard .dash-content .event {
 }
 
 main .container .dashboard .dash-content .event .event-status {
-    background-color: var(--color-green);
+    background-color: var(--color-gray);
     border-radius: var(--border-radius-l) var(--border-radius-l) 0 0;
 }
 

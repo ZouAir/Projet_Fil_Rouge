@@ -115,55 +115,55 @@ $user = $query->fetch(PDO::FETCH_ASSOC);
             <p>-- Veuillez modifier les informations de votre compte --</p>
             <form action="account.php" method="post"
                 id="form" class="form" novalidate>
-                <div class="event-item">
+                <div class="account-item">
                     <label for="name">Nom</label>
                     <div>
                         <input type="text" id="name" name="name" value="<?= htmlspecialchars(strtoupper($user['name'])) ?>">
                     </div>
                 </div>
-                <div class="event-item">
+                <div class="account-item">
                     <label for="first_name">Prénom</label>
                     <div>
                         <input type="text" id="firstname" name="first_name" value="<?= htmlspecialchars(ucfirst($user['first_name'])) ?>">
                     </div>
                 </div>
-                <div class="event-item">
+                <div class="account-item">
                     <label for="email">Email</label>
                     <div>
                         <input type="email" id="email" name="email" value="<?= htmlspecialchars($user['email']) ?>">
                     </div>
                 </div>
-                <div class="event-item">
+                <div class="account-item">
                     <label for="phone">Téléphone</label>
                     <div>
                         <input type="text" id="phone" name="phone" value="<?= htmlspecialchars($user['phone']) ?>">
                     </div>
                 </div>
-                <div class="event-item">
+                <div class="account-item">
                     <label for="birthday">Date naissance</label>
                     <div>
                         <input type="date" id="birthday" name="birthday" value="<?= htmlspecialchars($user['birthday']) ?>">
                     </div>
                 </div>
-                <div class="event-item">
+                <div class="account-item">
                     <label for="adress">Adresse</label>
                     <div>
                         <input type="text" id="adress" name="adress" value="<?= htmlspecialchars($user['adress']) ?>">
                     </div>
                 </div>
-                <div class="event-item">
+                <div class="account-item">
                     <label for="postal">Code postal</label>
                     <div>
                         <input type="text" id="postal" name="postal" value="<?= htmlspecialchars($user['postal']) ?>">
                     </div>
                 </div>
-                <div class="event-item">
+                <div class="account-item">
                     <label for="city">Ville</label>
                     <div>
                         <input type="text" id="city" name="city" value="<?= htmlspecialchars(ucfirst($user['city'])) ?>">
                     </div>
                 </div>
-                <div class="event-item">
+                <div class="account-item">
                     <label for="status">Statut</label>
                     <div class="form-item">
                         <select name="status" id="status" aria-label="Statut du compte">
@@ -173,7 +173,7 @@ $user = $query->fetch(PDO::FETCH_ASSOC);
                         </select>
                     </div>
                 </div>
-                <div class="event-item">
+                <div class="account-item">
                     <button type="submit" id="sub-btn">Valider</button>
                 </div>
             </form>

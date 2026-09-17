@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':users_id' => $users_id
         ]);
 
-        header('Location: dash-user-reservations.php');
+        header('Location: user-reservations.php');
         exit;
     } catch (PDOException $e) {
         $error = "Erreur : " . $e->getMessage();
