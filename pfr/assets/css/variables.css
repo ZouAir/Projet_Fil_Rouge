@@ -4,11 +4,10 @@
     --color-secondary: #ff6b35;
     --color-light: #ebebeb;
     --color-beige: #d8d3d3;
-    --color-red: #c80000;
-    --color-green: #609f08;
     --color-gray: #6b7280;
     --color-dark: #373737;
-    --color-marine: #2d2d44;
+    --color-red: #c80000;
+    --color-green: #609f08;
 
     /* Les textes */
     --font-heading: 'Montserrat', sans-serif;
@@ -33,5 +32,4 @@
     --margin-l: 20px;
     --margin-xl: 30px;
     --margin-xxl: 50px;
-
 }

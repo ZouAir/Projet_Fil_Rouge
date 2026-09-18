@@ -8,15 +8,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $first_name = trim(mb_strtolower($_POST['first_name'] ?? ''));
     $email = trim(mb_strtolower($_POST['email'] ?? ''));
     $phone = trim($_POST['phone'] ?? '');
+    $pwd = $_POST['password'] ?? '';
+    $pwd_confirm = $_POST['password-confirm'] ??'';
 
     if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = "Veuillez saisir une adresse e-mail valide.";
     }
 
-    if ($_POST['password'] !== $_POST['password-confirm']) {
+    if (
+        strlen($pwd) < 8
+        || !preg_match('/[#@!?\$%&]/', $pwd)
+        || !preg_match('/[0-9]/', $pwd)
+        || !preg_match('/[A-Z]/', $pwd)
+    ) {
+        $error = "Ce mot de passe ne respecte pas les règles ci-dessous";
+    } elseif ($pwd !== $pwd_confirm) {
         $error = "Les mots de passe ne correspondent pas";
     } else {
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $password = password_hash($pwd, PASSWORD_DEFAULT);
 
         if (empty($error)) {
             try {

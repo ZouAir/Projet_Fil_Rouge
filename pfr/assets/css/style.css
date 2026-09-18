@@ -1,4 +1,6 @@
 body {
+    display: flex;
+    flex-direction: column;
     background-color: var(--color-primary);
     font-family: var(--font-heading);
     text-align: justify;
@@ -47,12 +49,9 @@ button:hover {
 /*******/
 main {
     flex: 1;
-}
-
-main .hero .card-body button {
-    border-radius: var(--border-radius-two);
-    width: 80%;
-    height: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 main .container .hero {
@@ -144,6 +143,12 @@ main .container a:hover {
     color: var(--color-secondary);
     background-color: var(--color-light);
     border: 2px solid var(--color-secondary);
+}
+
+main .hero .card-body button {
+    border-radius: var(--border-radius-two);
+    width: 80%;
+    height: 30px;
 }
 
 main .hero3 {

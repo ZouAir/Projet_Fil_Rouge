@@ -23,24 +23,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$count) {
         $error = "Identifiant ou mot de passe incorrect";
     } else {
-        $_SESSION['id'] = $count['id'];
-        $_SESSION['name'] = $count['name'];
-        $_SESSION['first_name'] = $count['first_name'];
-        $_SESSION['email'] = $count['email'];
-        $_SESSION['profil'] = $count['profil'];
         $passwordHash = $count['password'];
-
         if (password_verify($password, $passwordHash)) {
+            $_SESSION['id'] = $count['id'];
+            $_SESSION['name'] = $count['name'];
+            $_SESSION['first_name'] = $count['first_name'];
+            $_SESSION['email'] = $count['email'];
+            $_SESSION['profil'] = $count['profil'];
+
             // Redirection selon profil
             if ($count['profil'] === 'administrateur' || $count['profil'] === 'service') {
                 header("Location: staff-events.php");
-                //vérifier le header vers le bon fichier
             } elseif ($count['profil'] === 'abonne') {
                 header("Location: user-events.php");
-                //vérifier le header vers le bon fichier
             } else {
                 header("Location: index.php");
-                //vérifier le header vers le bon fichier
             }
             exit;
         } else {
@@ -48,7 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
-
 ?>
 
 <!DOCTYPE html>
