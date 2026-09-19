@@ -313,10 +313,6 @@ main .event ul li {
         width: 60%;
     }
 
-    /* .link {
-        width: 50%;
-    } */
-
     main .hero3 .spon-right span:last-child {
         display: block;
     }
@@ -329,12 +325,13 @@ main .event ul li {
     body {
         width: 100%;
         margin: auto;
-        background-color: var(--color-light);
+        background-color: var(--color-gray);
     }
 
     main {
         width: 90%;
         margin: auto;
+        background-color: var(--color-light);
     }
 
     main .container .hero2 .title,

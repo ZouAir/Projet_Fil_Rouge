@@ -22,8 +22,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         header($header);
         exit;
     } else {
-        $query = $pdo->prepare("DELETE FROM events WHERE id = ?");
-        $query->execute([$id]);
+        try {
+            $query = $pdo->prepare("DELETE FROM events WHERE id = ?");
+            $query->execute([$id]);
+        } catch (PDOException $e) {
+            $_SESSION['error'] = "Erreur : Impossible de supprimer cet évènement, veuillez réessayer svp";
+        }
         header($header);
         exit;
     }
