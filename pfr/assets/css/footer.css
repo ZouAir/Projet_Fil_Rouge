@@ -3,7 +3,6 @@ footer {
     color: var(--color-gray);
     background-color: var(--color-primary);
     border-top: 5px solid var(--color-secondary);
-    border-radius: 0 0 var(--border-radius-l) var(--border-radius-l);
     display: flex;
     justify-content: space-between;
     align-items: center;

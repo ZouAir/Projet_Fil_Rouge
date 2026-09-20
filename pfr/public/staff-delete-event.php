@@ -15,8 +15,8 @@ if ($_SESSION['profil'] === 'administrateur' || $_SESSION['profil'] === 'service
     $header = 'Location: index.php';
 };
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $id = isset($_GET['id']) ? (int)$_GET['id'] : null;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = isset($_POST['id']) ? (int)$_POST['id'] : null;
     if ($id === null) {
         $_SESSION['error'] = "Erreur : Évènement introuvable";
         header($header);
@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         try {
             $query = $pdo->prepare("DELETE FROM events WHERE id = ?");
             $query->execute([$id]);
+            $_SESSION['success'] = "Opération réussie ! L'évènement vient d'être supprimé";
         } catch (PDOException $e) {
             $_SESSION['error'] = "Erreur : Impossible de supprimer cet évènement, veuillez réessayer svp";
         }

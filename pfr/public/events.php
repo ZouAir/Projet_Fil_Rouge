@@ -87,17 +87,18 @@ $events = $query->fetchALL(PDO::FETCH_ASSOC);
                     <?php } ?>
                 </ul>
             </section>
+            <section class="hero3">
+                <div class="spon-left">
+                    <h4>nos partenaires</h4>
+                </div>
+                <div class="spon-right">
+                    <span>sponsor A</span>
+                    <span>sponsor B</span>
+                    <span>sponsor C</span>
+                    <span>sponsor D</span>
+                </div>
+            </section>
         </div>
-        <section class="hero3">
-            <div class="spon-left">
-                <h4>nos partenaires</h4>
-            </div>
-            <div class="spon-right">
-                <span>sponsor A</span>
-                <span>sponsor B</span>
-                <span>sponsor C</span>
-            </div>
-        </section>
     </main>
     <?php include_once('../includes/footer.php') ?>
 

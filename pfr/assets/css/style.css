@@ -1,7 +1,7 @@
 body {
     display: flex;
     flex-direction: column;
-    background-color: var(--color-primary);
+    background-color: var(--color-light);
     font-family: var(--font-heading);
     text-align: justify;
     box-sizing: border-box;
@@ -325,7 +325,6 @@ main .event ul li {
     body {
         width: 100%;
         margin: auto;
-        background-color: var(--color-gray);
     }
 
     main {

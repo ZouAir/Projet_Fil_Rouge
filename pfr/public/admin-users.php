@@ -2,7 +2,20 @@
 session_start();
 $pdo = require_once('../includes/bdd.php');
 
-if ($_SESSION['profil'] !== 'administrateur') {
+if (isset($_SESSION['success'])) {
+    $modal_message = $_SESSION['success'] ?? '';
+    unset($_SESSION['success']);
+    $modal_icon = "<i class='bx bxs-party'></i>";
+} elseif (isset($_SESSION['error'])) {
+    $modal_message = $_SESSION['error'] ?? '';
+    unset($_SESSION['error']);
+    $modal_icon = "<i class='bx bxs-x-circle'></i>";
+} else {
+    $modal_message = null;
+    $modal_icon = null;
+}
+
+if (!isset($_SESSION['id']) || $_SESSION['profil'] !== 'administrateur') {
     header('Location: index.php');
     exit;
 }
@@ -58,10 +71,13 @@ $date = new DateTime($event['date']);
     <link href="../assets/css/variables.css" rel="stylesheet">
     <link href="../assets/css/header.css" rel="stylesheet">
     <link href="../assets/css/footer.css" rel="stylesheet">
+    <link href="../assets/css/modal.css" rel="stylesheet">
     <!-- <link href="../assets/css/style.css" rel="stylesheet"> -->
     <link href="../assets/css/dashboard.css" rel="stylesheet">
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+    <link href="../assets/images/mon_logo.png" rel="icon" type="image/png">
     <script src="../assets/js/script.js" defer></script>
+    <script src="../assets/js/modal.js" defer></script>
     <title>MNS FC - Abonnés</title>
 </head>
 
@@ -134,7 +150,10 @@ $date = new DateTime($event['date']);
                                     <a href="admin-modify-user.php?id=<?= $abonne['id'] ?>">Modifier</a>
                                 </div>
                                 <div class="user-delete">
-                                    <a href="admin-delete-user.php?id=<?= $abonne['id'] ?>">Supprimer</a>
+                                    <form action="admin-delete-user.php" method="POST" class="form-delete" novalidate>
+                                        <input type="hidden" name="id" value="<?= $abonne['id'] ?>">
+                                        <button>Supprimer</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -149,6 +168,11 @@ $date = new DateTime($event['date']);
         </div>
     </main>
     <?php include_once('../includes/footer.php') ?>
+    <?php include_once('../includes/modal.php') ?>
+    <script>
+        let modalMessage = <?= json_encode($modal_message) ?>;
+        let modalIcon = <?= json_encode($modal_icon) ?>;
+    </script>
 </body>
 
 </html>

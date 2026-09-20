@@ -2,6 +2,19 @@
 session_start();
 $pdo = require_once('../includes/bdd.php');
 
+if (isset($_SESSION['success'])) {
+    $modal_message = $_SESSION['success'] ?? '';
+    unset($_SESSION['success']);
+    $modal_icon = "<i class='bx bxs-party'></i>";
+} elseif (isset($_SESSION['error'])) {
+    $modal_message = $_SESSION['error'] ?? '';
+    unset($_SESSION['error']);
+    $modal_icon = "<i class='bx bxs-x-circle'></i>";
+} else {
+    $modal_message = null;
+    $modal_icon = null;
+}
+
 if (!isset($_SESSION['id']) || !in_array($_SESSION['profil'], ['administrateur', 'service'])) {
     header('Location: login.php');
     exit;
@@ -56,13 +69,15 @@ $date = new DateTime($event['date']);
     <link href="../assets/css/variables.css" rel="stylesheet">
     <link href="../assets/css/header.css" rel="stylesheet">
     <link href="../assets/css/footer.css" rel="stylesheet">
+    <link href="../assets/css/modal.css" rel="stylesheet">
     <!-- <link href="../assets/css/style.css" rel="stylesheet"> -->
     <link href="../assets/css/dashboard.css" rel="stylesheet">
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="../assets/images/mon_logo.png">
-    <script src="../assets/js/header.js" defer></script>
+    <link href="../assets/images/mon_logo.png" rel="icon" type="image/png">
     <script src="../assets/js/script.js" defer></script>
-    <title>MNS FC - Dashboard</title>
+    <script src="../assets/js/header.js" defer></script>
+    <script src="../assets/js/modal.js" defer></script>
+    <title>MNS FC - Évènements</title>
 </head>
 
 <body>
@@ -97,7 +112,7 @@ $date = new DateTime($event['date']);
                         <div>
                             <span>Prochain évènement</span>
                             <span><?= $date->format('d-m-Y') ?></span>
-                            <span><?= htmlspecialchars($event['name']) ?></span>
+                            <span><?= ucwords(htmlspecialchars($event['name'])) ?></span>
                         </div>
                         <div>
                             <span>Réservations</span>
@@ -133,7 +148,7 @@ $date = new DateTime($event['date']);
                                 <span><?= htmlspecialchars($row['status']) ?></span>
                             </div>
                             <div class="event-data">
-                                <span><?= ucfirst(htmlspecialchars($row['name'])) ?></span>
+                                <span><?= ucwords(htmlspecialchars($row['name'])) ?></span>
                                 <span><?= $row_date->format('d-m-Y') ?></span>
                                 <span><?= htmlspecialchars($row['scene']) . " - Places libres : " . htmlspecialchars($free_seats) . " place";
                                         if ((int)$free_seats > 1) {
@@ -145,7 +160,10 @@ $date = new DateTime($event['date']);
                                     <a href="staff-modify-event.php?id=<?= $row['id'] ?>">Modifier</a>
                                 </div>
                                 <div class="event-delete">
-                                    <a href="staff-delete-event.php?id=<?= $row['id'] ?>">Supprimer</a>
+                                    <form action="staff-delete-event.php" method="POST" class="form-delete" novalidate>
+                                        <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                                        <button>Supprimer</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -160,7 +178,11 @@ $date = new DateTime($event['date']);
         </div>
     </main>
     <?php include_once('../includes/footer.php') ?>
-
+    <?php include_once('../includes/modal.php') ?>
+    <script>
+        let modalMessage = <?= json_encode($modal_message) ?>;
+        let modalIcon = <?= json_encode($modal_icon) ?>;
+    </script>
 </body>
 
 </html>

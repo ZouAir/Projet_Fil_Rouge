@@ -2,6 +2,19 @@
 session_start();
 $pdo = require_once('../includes/bdd.php');
 
+if (isset($_SESSION['success'])) {
+    $modal_message = $_SESSION['success'] ?? '';
+    unset($_SESSION['success']);
+    $modal_icon = "<i class='bx bxs-party'></i>";
+} elseif (isset($_SESSION['error'])) {
+    $modal_message = $_SESSION['error'] ?? '';
+    unset($_SESSION['error']);
+    $modal_icon = "<i class='bx bxs-x-circle'></i>";
+} else {
+    $modal_message = null;
+    $modal_icon = null;
+}
+
 if (!isset($_SESSION['id']) || !in_array($_SESSION['profil'], ['administrateur', 'service'])) {
     header('Location: login.php');
     exit;
@@ -58,12 +71,15 @@ $abonnes = $query->fetchColumn();
     <link href="../assets/css/variables.css" rel="stylesheet">
     <link href="../assets/css/header.css" rel="stylesheet">
     <link href="../assets/css/footer.css" rel="stylesheet">
+    <link href="../assets/css/modal.css" rel="stylesheet">
     <!-- <link href="../assets/css/style.css" rel="stylesheet"> -->
     <link href="../assets/css/dashboard.css" rel="stylesheet">
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
-    <script src="../assets/js/password.js" defer></script>
+    <link href="../assets/images/mon_logo.png" rel="icon" type="image/png">
     <script src="../assets/js/script.js" defer></script>
-    <title>MNS Football Club - Dashboard</title>
+    <script src="../assets/js/password.js" defer></script>
+    <script src="../assets/js/modal.js" defer></script>
+    <title>MNS Football Club - Réservations</title>
 </head>
 
 <body>
@@ -125,7 +141,7 @@ $abonnes = $query->fetchColumn();
                             <div class="event-data">
                                 <span><?= ucfirst(htmlspecialchars($order['first_name'])) . " " . strtoupper(htmlspecialchars($order['user_name'])) ?></span>
                                 <span><?= $date2->format('d-m-Y') ?></span>
-                                <span><?= htmlspecialchars($order['event_name']) . " - " . htmlspecialchars($order['seats']) . " place";
+                                <span><?= ucwords(htmlspecialchars($order['event_name'])) . " - " . htmlspecialchars($order['seats']) . " place";
                                         if ((int)($order['seats']) > 1) {
                                             echo "s";
                                         } ?></span>
@@ -134,8 +150,11 @@ $abonnes = $query->fetchColumn();
                                 <div class="event-change">
                                     <a href="staff-modify-reservation.php?id=<?= $order['id'] ?>">Modifier</a>
                                 </div>
-                                <div class=" event-delete">
-                                    <a href="staff-delete-reservation.php?id=<?= $order['id'] ?>">Supprimer</a>
+                                <div class="event-delete">
+                                    <form action="staff-delete-reservation.php" method="POST" class="form-delete" novalidate>
+                                        <input type="hidden" name="id" value="<?= $order['id'] ?>">
+                                        <button>Supprimer</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -147,6 +166,11 @@ $abonnes = $query->fetchColumn();
         </div>
     </main>
     <?php include_once('../includes/footer.php') ?>
+    <?php include_once('../includes/modal.php') ?>
+    <script>
+        let modalMessage = <?= json_encode($modal_message) ?>;
+        let modalIcon = <?= json_encode($modal_icon) ?>;
+    </script>
 </body>
 
 </html>
