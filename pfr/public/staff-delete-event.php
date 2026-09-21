@@ -10,7 +10,7 @@ if (!isset($_SESSION['id']) || !in_array($_SESSION['profil'], ['administrateur',
 $error = null;
 
 if ($_SESSION['profil'] === 'administrateur' || $_SESSION['profil'] === 'service') {
-    $header = 'Location: dash-staff-events.php';
+    $header = 'Location: staff-events.php';
 } else {
     $header = 'Location: index.php';
 };
@@ -27,7 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $query->execute([$id]);
             $_SESSION['success'] = "Opération réussie ! L'évènement vient d'être supprimé";
         } catch (PDOException $e) {
-            $_SESSION['error'] = "Erreur : Impossible de supprimer cet évènement, veuillez réessayer svp";
+            // $_SESSION['error'] = "DEBUG : " . $e->getMessage();
+            $_SESSION['error'] = "Erreur : Impossible de supprimer cet évènement, des réservations y sont liées";
         }
         header($header);
         exit;

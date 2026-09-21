@@ -14,6 +14,7 @@ if (isset($_SESSION['success'])) {
     $modal_message = null;
     $modal_icon = null;
 }
+$alert_message = "Vous êtes sur le point de supprimer cet élément, confirmez-vous ?";
 
 if (!isset($_SESSION['id']) || $_SESSION['profil'] !== 'administrateur') {
     header('Location: index.php');

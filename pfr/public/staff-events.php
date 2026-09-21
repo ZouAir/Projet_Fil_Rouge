@@ -14,6 +14,7 @@ if (isset($_SESSION['success'])) {
     $modal_message = null;
     $modal_icon = null;
 }
+$alert_message = "Vous êtes sur le point de supprimer cet élément, confirmez-vous ?";
 
 if (!isset($_SESSION['id']) || !in_array($_SESSION['profil'], ['administrateur', 'service'])) {
     header('Location: login.php');
@@ -162,7 +163,7 @@ $date = new DateTime($event['date']);
                                 <div class="event-delete">
                                     <form action="staff-delete-event.php" method="POST" class="form-delete" novalidate>
                                         <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                                        <button>Supprimer</button>
+                                        <button type="submit">Supprimer</button>
                                     </form>
                                 </div>
                             </div>
