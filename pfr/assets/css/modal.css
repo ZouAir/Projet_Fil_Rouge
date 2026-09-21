@@ -1,0 +1,81 @@
+.modal-confirm,
+.modal-alert {
+    background-color: rgba(0, 0, 0, .7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    height: 100vh;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+}
+
+.modal-confirm.is-open,
+.modal-alert.is-open {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-box {
+    color: var(--color-primary);
+    background-color: var(--color-light);
+    border-radius: var(--border-radius-m);
+    font-weight: bold;
+    width: 80%;
+    max-width: 300px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 0 var(--padding-l) 0;
+}
+
+.modal-title {
+    box-sizing: border-box;
+    color: var(--color-light);
+    background-color: var(--color-primary);
+    border-radius: var(--border-radius-m) var(--border-radius-m) 0 0;
+    font-size: 0.9rem;
+    padding: var(--padding-m);
+}
+
+.modal-icon i {
+    font-size: 3rem;
+    color: var(--color-primary);
+    padding: 20px;
+}
+
+.modal-box button {
+    color: var(--color-light);
+    background-color: var(--color-secondary);
+    border: 2px solid transparent;
+    border-radius: var(--border-radius-m);
+    font-weight: bold;
+    width: 90%;
+    min-width: 100px;
+    height: 40px;
+    margin: 10px auto 0;
+}
+
+.modal-box button:hover {
+    color: var(--color-secondary);
+    background-color: var(--color-light);
+    border: 2px solid var(--color-secondary);
+}
+
+.modal-box .modal-cta #cancel {
+    color: var(--color-light);
+    background-color: var(--color-dark);
+}
+
+.modal-box .modal-cta #cancel:hover {
+    color: var(--color-dark);
+    background-color: var(--color-light);
+    border: 2px solid var(--color-dark);
+}

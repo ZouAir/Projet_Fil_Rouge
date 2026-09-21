@@ -7,11 +7,11 @@ const button = document.querySelector('.modal-confirm button');
 if (modalMessage !== null) {
     p.innerText = modalMessage;
     Icon.innerHTML = modalIcon;
-    modalConfirm.hidden = false;
+    modalConfirm.classList.add('is-open');
 }
 
 button.addEventListener('click', (e) => {
-    modalConfirm.hidden = true;
+    modalConfirm.classList.remove('is-open');
 })
 
 
@@ -25,16 +25,16 @@ let currentForm = null;
 forms.forEach((form) => {
     form.addEventListener('submit', (event) => {
         event.preventDefault();
-        modalAlert.hidden = false;
+        modalAlert.classList.add('is-open');
         currentForm = form;
     })
 })
 
 confirmButton.addEventListener('click', () => {
     currentForm.submit();
-    modalAlert.hidden = true;
+    modalAlert.classList.remove('is-open');
 })
 
 cancelButton.addEventListener('click', () => {
-    modalAlert.hidden = true;
+    modalAlert.classList.remove('is-open');
 })

@@ -5,11 +5,11 @@ $pdo = require_once('../includes/bdd.php');
 if (isset($_SESSION['success'])) {
     $modal_message = $_SESSION['success'] ?? '';
     unset($_SESSION['success']);
-    $modal_icon = "<i class='bx bxs-party'></i>";
+    $modal_icon = "<i class='bx bx-happy'></i>";
 } elseif (isset($_SESSION['error'])) {
     $modal_message = $_SESSION['error'] ?? '';
     unset($_SESSION['error']);
-    $modal_icon = "<i class='bx bxs-x-circle'></i>";
+    $modal_icon = "<i class='bx bx-x-circle'></i>";
 } else {
     $modal_message = null;
     $modal_icon = null;
@@ -76,8 +76,9 @@ $date = new DateTime($event['date']);
     <!-- <link href="../assets/css/style.css" rel="stylesheet"> -->
     <link href="../assets/css/dashboard.css" rel="stylesheet">
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.boxicons.com/3.0.8/fonts/boxicons.min.css" rel="stylesheet"> -->
     <link href="../assets/images/mon_logo.png" rel="icon" type="image/png">
-    <script src="../assets/js/script.js" defer></script>
+    <script src="../assets/js/header.js" defer></script>
     <script src="../assets/js/modal.js" defer></script>
     <title>MNS FC - Abonnés</title>
 </head>
