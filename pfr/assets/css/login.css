@@ -13,8 +13,10 @@ body {
 
 main {
     background-color: var(--color-light);
-    padding: var(--padding-xxl) var(--padding-m);
     flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 main .container {
@@ -23,9 +25,9 @@ main .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: var(--padding-s);
+    width: 80%;
     gap: 20px;
-    padding-bottom: var(--padding-xxl);
+    padding: var(--padding-m);
 }
 
 main .container .login-left {
@@ -197,7 +199,7 @@ main .container .login form .rules ul {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        width: 90%;
+        width: 80%;
         max-width: 1400px;
         gap: 40px;
         padding: 0 var(--padding-xl);

@@ -174,7 +174,6 @@ main .container .dashboard .dash-content .kpi div {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: var(--color-light);
     background-color: var(--color-primary);
     border-radius: var(--border-radius-m);
     font-size: 0.8rem;
@@ -203,9 +202,9 @@ main .container .dashboard .dash-content .title {
     display: flex;
     justify-content: center;
     color: var(--color-light);
-    font-size: 0.8rem;
     background-color: var(--color-gray);
     border-radius: var(--border-radius-m);
+    font-size: 0.8rem;
     width: 70%;
     padding: var(--padding-m);
     margin: var(--margin-l) auto;
@@ -312,10 +311,22 @@ main .container .dashboard .dash-content .user .user-change {
 main .container .dashboard .dash-content .user .user-delete {
     display: flex;
     align-items: center;
-    text-align: center;
+    flex: 1;
+}
+
+main .container .dashboard .dash-content .user .user-delete form {
+    width: 100%;
+    height: 100%;
+}
+
+main .container .dashboard .dash-content .user .user-delete form button {
+    color: var(--color-light);
     background-color: var(--color-red);
     border-radius: 0 0 var(--border-radius-m) 0;
-    flex: 1;
+    border: 0;
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
 }
 
 /* ************************** */
@@ -382,7 +393,24 @@ main .container .dashboard .dash-content .event .event-delete {
     width: 50%;
     border-radius: 0 0 var(--border-radius-l) 0;
     display: flex;
-    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+main .container .dashboard .dash-content .event .event-delete form {
+    width: 100%;
+    height: 100%;
+}
+
+main .container .dashboard .dash-content .event .event-delete button {
+    color: var(--color-light);
+    background-color: var(--color-red);
+    border-radius: 0 0 var(--border-radius-l) 0;
+    border: 0;
+    font-size: 0.7rem;
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
 }
 
 main .container .dashboard .dash-content .cta,
@@ -736,14 +764,11 @@ main .container .dashboard .dash-content .match .star span {
         min-width: 25%;
         min-height: 80px;
         padding: var(--padding-s) var(--padding-m);
-        margin: var(--border-radius-m);
+        margin: var(--border-radius-s) var(--border-radius-m) 0;
     }
 
     main .container .dashboard .dash-content .title {
-        display: flex;
-        width: 30%;
-        padding: var(--padding-m);
-        margin: 0 auto var(--margin-l);
+        width: 50%;
     }
 
     main .container .dashboard .dash-content .card {
@@ -778,6 +803,10 @@ main .container .dashboard .dash-content .match .star span {
 
     main .container .dashboard .dash-content .dash-head div:last-child {
         margin-left: 0;
+    }
+
+    main .container .dashboard .dash-content .title {
+        width: 30%;
     }
 }
 
