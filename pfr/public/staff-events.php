@@ -71,7 +71,6 @@ $date = new DateTime($event['date']);
     <link href="../assets/css/header.css" rel="stylesheet">
     <link href="../assets/css/footer.css" rel="stylesheet">
     <link href="../assets/css/modal.css" rel="stylesheet">
-    <!-- <link href="../assets/css/style.css" rel="stylesheet"> -->
     <link href="../assets/css/dashboard.css" rel="stylesheet">
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
     <link href="../assets/images/mon_logo.png" rel="icon" type="image/png">

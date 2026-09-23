@@ -1,45 +1,5 @@
 <?php
-session_start();
-$pdo = require_once('../includes/bdd.php');
-$error = null;
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = trim(mb_strtolower($_POST['name'] ?? ''));
-    $first_name = trim(mb_strtolower($_POST['first_name'] ?? ''));
-    $email = trim(mb_strtolower($_POST['email'] ?? ''));
-    $phone = trim($_POST['phone'] ?? '');
-    $pwd = $_POST['password'] ?? '';
-    $pwd_confirm = $_POST['password-confirm'] ?? '';
-
-    if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error = "Veuillez saisir une adresse e-mail valide.";
-    }
-
-    if (
-        strlen($pwd) < 8
-        || !preg_match('/[#@!?\$%&]/', $pwd)
-        || !preg_match('/[0-9]/', $pwd)
-        || !preg_match('/[A-Z]/', $pwd)
-    ) {
-        $error = "Ce mot de passe ne respecte pas les règles ci-dessous";
-    } elseif ($pwd !== $pwd_confirm) {
-        $error = "Les mots de passe ne correspondent pas";
-    } else {
-        $password = password_hash($pwd, PASSWORD_DEFAULT);
-
-        if (empty($error)) {
-            try {
-                $query = $pdo->prepare("INSERT INTO users (name, first_name, email, password, phone, birthday, adress, postal, city) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                $query->execute([$name, $first_name, $email, $password, $phone, '2000-01-01', 'adresse à modifier', '00000', 'ville']);
-                $_SESSION['success'] = "Compte créé ! Vous pouvez vous connecter.";
-                header('Location: login.php');
-                exit;
-            } catch (PDOException $e) {
-                $error = "Erreur lors de l'inscription";
-            }
-        }
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -51,12 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="../assets/css/header.css" rel="stylesheet">
     <link href="../assets/css/footer.css" rel="stylesheet">
     <link href="../assets/css/variables.css" rel="stylesheet">
-    <link href="../assets/css/style.css" rel="stylesheet">
     <link href="../assets/css/login.css" rel="stylesheet">
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
     <link href="../assets/images/mon_logo.png" rel="icon" type="image/png">
     <script src="../assets/js/inscription.js" defer></script>
-    <title>MNS FC - Inscription</title>
+    <title>MNS FC - Contact</title>
 </head>
 
 <body>

@@ -89,11 +89,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="../assets/css/footer.css" rel="stylesheet">
     <link href="../assets/css/variables.css" rel="stylesheet">
     <link href="../assets/css/style.css" rel="stylesheet">
-    <!-- <link href="../assets/css/login.css" rel="stylesheet"> -->
-    <!-- <link href="../assets/css/dashboard.css" rel="stylesheet"> -->
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+    <link href="../assets/images/mon_logo.png" rel="icon" type="image/png">
     <script src="../assets/js/password.js" defer></script>
-    <title>MNS Football Club - évènement</title>
+    <title>MNS Football Club - Évènements</title>
 </head>
 
 <body>

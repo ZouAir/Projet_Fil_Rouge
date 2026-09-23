@@ -1,8 +1,4 @@
 <?php
-////  Vérifications session + profil
-////  Récupérer l'ID via $_GET['id']
-////  DELETE FROM orders WHERE id = ?
-////  Rediriger vers dash-user-reservations.php
 session_start();
 
 if (!isset($_SESSION['id'])) {

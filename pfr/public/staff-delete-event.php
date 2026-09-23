@@ -27,7 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $query->execute([$id]);
             $_SESSION['success'] = "Opération réussie ! L'évènement vient d'être supprimé";
         } catch (PDOException $e) {
-            // $_SESSION['error'] = "DEBUG : " . $e->getMessage();
             $_SESSION['error'] = "Erreur : Impossible de supprimer cet évènement, des réservations y sont liées";
         }
         header($header);
