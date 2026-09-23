@@ -98,8 +98,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php require_once('../includes/header.php') ?>
     <main class="event-wrap">
         <div class="event">
-            <h3>Modifier un abonné</h3>
-            <p>Veuillez modifier les informations de l'abonné</p>
+            <h3>Modifier un adhérent</h3>
+            <p>Veuillez modifier les informations de l'adhérent</p>
             <form action="admin-modify-user.php" method="post"
                 id="id-form" class="form">
                 <input type="hidden" name="id" value="<?= $currentUser['id'] ?>">

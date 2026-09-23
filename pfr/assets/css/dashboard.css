@@ -388,6 +388,7 @@ main .container .dashboard .dash-content .event .event-change {
     text-align: center;
 }
 
+/* Garder align-items & justify-content & text-align, concernent plsr items */
 main .container .dashboard .dash-content .event .event-delete {
     background-color: var(--color-red);
     width: 50%;
@@ -395,6 +396,7 @@ main .container .dashboard .dash-content .event .event-delete {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 main .container .dashboard .dash-content .event .event-delete form {
