@@ -29,13 +29,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (empty($error)) {
             try {
-                $query = $pdo->prepare("INSERT INTO users (name, first_name, email, password, phone, birthday, adress, postal, city) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $query = $pdo->prepare("
+                INSERT INTO users (name, first_name, email, password, phone, birthday, adress, postal, city) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
                 $query->execute([$name, $first_name, $email, $password, $phone, '2000-01-01', 'adresse à modifier', '00000', 'ville']);
                 $_SESSION['success'] = "Compte créé ! Vous pouvez vous connecter.";
                 header('Location: login.php');
                 exit;
             } catch (PDOException $e) {
-                $error = "Erreur lors de l'inscription";
+                $error = "Erreur lors de l'inscription, veuillez recommencer svp !";
             }
         }
     }

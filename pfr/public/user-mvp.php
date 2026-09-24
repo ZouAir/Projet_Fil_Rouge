@@ -37,18 +37,29 @@ if (!$event) {
     $notation = $query->fetch(PDO::FETCH_ASSOC);
 }
 
-// Recherche listes athlètes pour le form
+// Recherche liste athlètes pour le form
 $team = $event['team'];
 $query = $pdo->prepare("SELECT * FROM athlets WHERE team = ?");
 $query->execute([$team]);
 $athlets = $query->fetchAll(PDO::FETCH_ASSOC);
 
-// Traitement vote
+// Traitement vote & note
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $mvp_name = $_POST['name'];
-    $mvp_first_name = $_POST['first_name'];
-}
+    $note = trim($_POST['note'] ?? '');
+    $vote = trim($_POST['vote'] ?? '');
+    $event_id = trim($event['id'] ?? '');
+    $user_id = $_SESSION['id'];
 
+    try {
+        $query = $pdo->prepare("
+        INSERT INTO `notation` (mvp_player, event_rating, events_id, users_id)
+        VALUES (?, ?, ?, ?)
+        ");
+        $query->execute([$vote, $note, $event_id, $user_id]);
+    } catch (PDOException $e) {
+        $error = "Erreur : vote impossible";
+    }
+}
 
 ?>
 
@@ -101,17 +112,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="vote">
                         <form action="user-mvp.php" method="post">
                             <div>
-                                <label for="note">Note du match</label>
-                                <select name="note" id="note">
-                                    <option value="">-</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                            </div>
-                            <div>
                                 <label for="vote">Vote MVP</label>
                                 <select name="vote" id="vote">
                                     <?php
@@ -121,6 +121,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <?php
                                     }
                                     ?>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="note">Note du match</label>
+                                <select name="note" id="note">
+                                    <option value="">-</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
                                 </select>
                             </div>
                             <div>
