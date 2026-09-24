@@ -11,7 +11,7 @@ INNER JOIN categories c ON e.categories_id = c.id
 WHERE date >= now()   
 ORDER BY date ASC");
 $query->execute();
-$events = $query->fetchALL(PDO::FETCH_ASSOC);
+$events = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
