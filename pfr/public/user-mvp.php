@@ -35,32 +35,37 @@ if (!$event) {
     $query = $pdo->prepare("SELECT * FROM notation WHERE events_id = ? AND users_id = ?");
     $query->execute([$event['id'], $id]);
     $notation = $query->fetch(PDO::FETCH_ASSOC);
-}
 
-// Recherche liste athlètes pour le form
-$team = $event['team'];
-$query = $pdo->prepare("SELECT * FROM athlets WHERE team = ?");
-$query->execute([$team]);
-$athlets = $query->fetchAll(PDO::FETCH_ASSOC);
+    // Recherche liste athlètes pour le form
+    $team = $event['team'];
+    $date = new DateTime($event['event_date']);
 
-// Traitement vote & note
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $note = trim($_POST['note'] ?? '');
-    $vote = trim($_POST['vote'] ?? '');
-    $event_id = trim($event['id'] ?? '');
-    $user_id = $_SESSION['id'];
+    $query = $pdo->prepare("SELECT * FROM athlets WHERE team = ?");
+    $query->execute([$team]);
+    $athlets = $query->fetchAll(PDO::FETCH_ASSOC);
 
-    try {
-        $query = $pdo->prepare("
-        INSERT INTO `notation` (mvp_player, event_rating, events_id, users_id)
-        VALUES (?, ?, ?, ?)
-        ");
-        $query->execute([$vote, $note, $event_id, $user_id]);
-    } catch (PDOException $e) {
-        $error = "Erreur : vote impossible";
+    // Traitement vote & note
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $note = trim($_POST['note'] ?? '');
+        $vote = trim($_POST['vote'] ?? '');
+        $event_id = trim($event['id'] ?? '');
+        $user_id = $_SESSION['id'];
+
+        if ($notation) {
+            $error = "Erreur : Vous avez déjà voté pour cet évènement.";
+        } else {
+            try {
+                $query = $pdo->prepare("
+            INSERT INTO `notation` (mvp_player, event_rating, events_id, users_id)
+            VALUES (?, ?, ?, ?)
+            ");
+                $query->execute([$vote, $note, $event_id, $user_id]);
+            } catch (PDOException $e) {
+                $error = "Erreur : Désolé vote impossible";
+            }
+        }
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -91,8 +96,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <li><a href="index.php">Accueil</a></li>
                         <li><a href="user-events.php">Évènements</a></li>
                         <li><a href="user-reservations.php">Réservations</a></li>
-                        <li><a href="#">Mes amis</a></li>
-                        <li><a href="user-mvp.php">Mon mvp</a></li>
+                        <li><a href="#">Amis</a></li>
+                        <li><a href="user-mvp.php">MVP</a></li>
                     </ul>
                     <div>Compte</div>
                     <a href="account.php">Mon compte</a>
@@ -109,52 +114,65 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="title">
                         Vote MVP & Note du match
                     </div>
-                    <div class="vote">
-                        <form action="user-mvp.php" method="post">
-                            <div>
-                                <label for="vote">Vote MVP</label>
-                                <select name="vote" id="vote">
-                                    <?php
-                                    foreach ($athlets as $athlet) {
-                                    ?>
-                                        <option value="<?= $athlet['id'] ?>"><?= $athlet['name'] . ' ' . $athlet['first_name'] ?></option>
-                                    <?php
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="note">Note du match</label>
-                                <select name="note" id="note">
-                                    <option value="">-</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                            </div>
-                            <div>
-                                <button type="submit" id="mvp-btn">Valider</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="title">
-                        Résultats des votes
-                    </div>
-                    <div class="kpi">
-                        <div>
-                            <span>Résultats des votes</span>
-                            <span><?= $event['name'] . ' ' . $event['event_date'] ?></span>
+                    <?php
+                    if ($event) {
+                    ?>
+                        <div class="vote">
+                            <form action="user-mvp.php" method="post">
+                                <div>
+                                    <label for="vote">Mon MVP</label>
+                                    <select name="vote" id="vote">
+                                        <?php
+                                        foreach ($athlets as $athlet) {
+                                        ?>
+                                            <option value="<?= $athlet['id'] ?>"><?= ucfirst(htmlspecialchars($athlet['first_name'])) . ' ' . strtoupper(htmlspecialchars($athlet['name'])) ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="note">Note du match</label>
+                                    <select name="note" id="note">
+                                        <option value="">-</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <button type="submit" id="mvp-btn">Valider</button>
+                                </div>
+                            </form>
                         </div>
-                    </div>
+                        <div class="title">
+                            Résultats des votes
+                        </div>
+                        <div class="vote">
+                            <span>MVP du match :</span>
+                            <span class="mvp">Ali REGHAI</span>
+                            <span>Note du match :</span>
+                            <span class="star">
+                                <i class="bxf bx-star"></i>
+                                <i class="bxf bx-star"></i>
+                                <i class="bxf bx-star"></i>
+                                <i class="bxf bx-star"></i>
+                                <i class="bx bx-star"></i>
+                            </span>
+                        </div>
+                    <?php
+                    }
+                    if ($error):
+                    ?>
+                        <p class="error"><?= $error ?></p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
     </main>
-
     <?php include_once('../includes/footer.php') ?>
-
 </body>
 
 </html>

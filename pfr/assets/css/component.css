@@ -4,7 +4,8 @@ button {
     border: 0;
     border-radius: var(--border-radius-xl);
     font-weight: bold;
-    width: 90%;
+    width: 80%;
+    max-width: 400px;
     height: 40px;
     margin: 20px auto 0;
 }
@@ -42,4 +43,20 @@ a:hover {
     width: 70%;
     padding: var(--padding-m);
     margin: var(--margin-l) auto;
+}
+
+.error {
+    color: var(--color-light);
+    background-color: var(--color-red);
+    border-radius: var(--border-radius-m);
+    text-align: center;
+    font-weight: bold;
+    width: 70%;
+    padding: var(--padding-m);
+    margin: var(--margin-m) auto 0;
+}
+
+.success {
+    color: var(--color-green);
+    font-weight: bold;
 }

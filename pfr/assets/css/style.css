@@ -1,14 +1,3 @@
-body {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--color-light);
-    font-family: var(--font-heading);
-    text-align: justify;
-    box-sizing: border-box;
-    min-height: 100vh;
-    margin: 0;
-}
-
 /* COMPONENT */
 /************/
 button {
@@ -45,8 +34,17 @@ button:hover {
     font-weight: bold;
 }
 
-/* MAIN */
-/*******/
+body {
+    background-color: var(--color-light);
+    font-family: var(--font-heading);
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    box-sizing: border-box;
+    min-height: 100vh;
+    margin: 0;
+}
+
 main {
     flex: 1;
     display: flex;
@@ -303,7 +301,6 @@ main .event ul li {
 /* **************** */
 /* Format tablette */
 @media screen and (min-width: 768px) {
-
     main .container .hero2 ul {
         grid-template-columns: 1fr 1fr 1fr;
         gap: 10px

@@ -59,8 +59,8 @@ $orders = $query->fetchAll(PDO::FETCH_ASSOC);
                         <li><a href="index.php">Accueil</a></li>
                         <li><a href="user-events.php">Évènements</a></li>
                         <li><a href="user-reservations.php">Réservations</a></li>
-                        <li><a href="#">Mes amis</a></li>
-                        <li><a href="user-mvp.php">Mon mvp</a></li>
+                        <li><a href="#">Amis</a></li>
+                        <li><a href="user-mvp.php">MVP</a></li>
                     </ul>
                     <div>Compte</div>
                     <a href="account.php">Mon compte</a>

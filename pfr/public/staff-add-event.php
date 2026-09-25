@@ -15,18 +15,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $date = $_POST['date'];
         $price = (int)trim($_POST['price']);
         $description = trim(mb_strtolower($_POST['description']));
+        $team = $_POST['team'];
         $capacity = (int)trim($_POST['capacity']);
         $scene = $_POST['scene'];
         $image = trim(mb_strtolower($_POST['image']));
         $status = $_POST['status'];
         $categories = $_POST['categories'];
 
-        $query = $pdo->prepare("INSERT INTO events (name, date, price, description, capacity, scene, image, status, categories_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $query->execute([$name, $date, $price, $description, $capacity, $scene, $image, $status, $categories]);
+        $query = $pdo->prepare("INSERT INTO events (name, date, price, description, team, capacity, scene, image, status, categories_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $query->execute([$name, $date, $price, $description, $team, $capacity, $scene, $image, $status, $categories]);
         header('Location: staff-events.php');
         exit;
     } catch (PDOException $e) {
-        $error = "Erreur : " . $e->getMessage();
+        $error = "Erreur : Veuillez renseigner toutes les informations de l'évènement";
     }
 }
 
@@ -57,6 +58,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     <?php require_once('../includes/header.php') ?>
     <main class="event-wrap">
         <div class="event">
+            <?php if ($error): ?>
+                <p class="error"><?= $error ?></p>
+            <?php endif; ?>
             <h3>Créer un évènement</h3>
             <p> * = champs obligatoires</p>
             <form action="staff-add-event.php" method="post"
@@ -68,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                     </div>
                 </div>
                 <div class="event-item">
-                    <label for="date">Date * <sup>*</sup></label>
+                    <label for="date">Date *</label>
                     <div>
                         <input type="date" id="date" name="date" required>
                     </div>
@@ -95,6 +99,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                     <label for="image">Image</label>
                     <div>
                         <input type="text" id="image" name="image">
+                    </div>
+                </div>
+                <div class="event-item">
+                    <label for="team">Équipe</label>
+                    <div>
+                        <select name="team" id="team">
+                            <option value="">Choisir</option>
+                            <option value="U7">U7</option>
+                            <option value="U9">U9</option>
+                            <option value="U11">U11</option>
+                            <option value="U13">U13</option>
+                            <option value="U15">U15</option>
+                            <option value="U17">U17</option>
+                            <option value="U19">U19</option>
+                            <option value="Seniors">Seniors</option>
+                            <option value="Vétérans">Vétérans</option>
+                            <option value="Féminines">Féminines</option>
+                        </select>
                     </div>
                 </div>
                 <div class="event-item">
@@ -137,9 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                     <button type="submit" id="sub-btn">Créer l'événement</button>
                 </div>
             </form>
-            <?php if ($error): ?>
-                <p style="color:red"><?= $error ?></p>
-            <?php endif; ?>
+
         </div>
     </main>
     <?php require_once('../includes/footer.php') ?>
