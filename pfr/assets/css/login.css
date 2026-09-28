@@ -3,9 +3,9 @@ body {
     text-align: justify;
     box-sizing: border-box;
     min-height: 100vh;
-    margin: 0;
     display: flex;
     flex-direction: column;
+    margin: 0;
 }
 
 /* MAIN */
