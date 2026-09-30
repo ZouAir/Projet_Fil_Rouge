@@ -107,7 +107,7 @@ $events = $query->fetchAll();
                     ?>
                         <div class="user">
                             <div class="user-data">
-                                <span><?= htmlspecialchars($event['name']); ?></span>
+                                <span><?= ucwords(htmlspecialchars($event['name'])); ?></span>
                                 <span><?= htmlspecialchars($date->format('d-m-Y')); ?></span>
                                 <span><?= htmlspecialchars($event['scene']) . " - " . htmlspecialchars($seats_free) . " place";
                                         if ((int)$seats_free > 1) {

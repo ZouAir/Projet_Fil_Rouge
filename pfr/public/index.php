@@ -73,7 +73,7 @@ $events = $query->fetchAll(PDO::FETCH_ASSOC);
                             <div class="card">
                                 <p><?= $date->format('d-m-Y') . " - " . $event['categorie'] ?></p>
                                 <img src="<?= $event['image'] ?>" alt="">
-                                <p><?= ucfirst(htmlspecialchars($event['evenement'])) ?></p>
+                                <p><?= ucwords(htmlspecialchars($event['evenement'])) ?></p>
                                 <p><?= ucfirst(htmlspecialchars(substr($event['description'], 0, 50) . "...")) ?></p>
                                 <p><?= $seats_free . " place";
                                     if ((int)$seats_free > 1) {

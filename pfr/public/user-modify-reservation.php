@@ -107,13 +107,13 @@ $date = new DateTime($currentOrder['date']);
                 <p>Évènement : <?= htmlspecialchars($event['name']) ?>.</p>
             </div>
             <div class="event-item">
-                <p>Date : <?= $date->format('d-m-Y') ?>.</p>
+                <p>Date : <?= $date->format('d-m-Y') ?></p>
             </div>
             <div class="event-item">
                 <p>Statut : <?= htmlspecialchars($currentOrder['status']) ?></p>
             </div>
             <div class="event-item">
-                <p>Places disponibles : <?= $seats_free ?>.</p>
+                <p>Places disponibles : <?= $seats_free ?></p>
             </div>
             <?php
             if ($seats_free >= 1) {

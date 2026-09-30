@@ -27,14 +27,18 @@ $first_name = $_SESSION['first_name'];
 $initials = strtoupper(substr($first_name, 0, 1) . '.' . substr($name, 0, 1));
 $profil = $_SESSION['profil'];
 
-$query = $pdo->prepare("SELECT * FROM events WHERE date > NOW() LIMIT 10");
+$query = $pdo->prepare("SELECT * FROM events 
+    WHERE date > NOW() 
+    LIMIT 10
+    ");
 $query->execute();
 $events = $query->fetchAll();
 
 $query = $pdo->prepare("SELECT * FROM events 
-WHERE date > NOW() 
-ORDER BY date ASC 
-LIMIT 1");
+    WHERE date > NOW() 
+    ORDER BY date ASC 
+    LIMIT 1
+    ");
 $query->execute();
 $event = $query->fetch(PDO::FETCH_ASSOC);
 
@@ -46,7 +50,10 @@ $query = $pdo->prepare("SELECT SUM(seats)
 $query->execute([$event['id']]);
 $seats = $query->fetchColumn();
 
-$query = $pdo->prepare("SELECT * FROM users ORDER BY name ASC, first_name ASC");
+$query = $pdo->prepare("SELECT * FROM users 
+    WHERE profil != 'administrateur' 
+    ORDER BY name ASC, first_name ASC
+    ");
 $query->execute();
 $abonnes = $query->fetchAll();
 

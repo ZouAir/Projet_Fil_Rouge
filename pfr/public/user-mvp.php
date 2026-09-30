@@ -121,6 +121,8 @@ if (!$event) {
                             <form action="user-mvp.php" method="post">
                                 <div>
                                     <label for="vote">Mon MVP</label>
+                                </div>
+                                <div>
                                     <select name="vote" id="vote">
                                         <?php
                                         foreach ($athlets as $athlet) {
@@ -133,6 +135,8 @@ if (!$event) {
                                 </div>
                                 <div>
                                     <label for="note">Note du match</label>
+                                </div>
+                                <div>
                                     <select name="note" id="note">
                                         <option value="">-</option>
                                         <option value="1">1</option>
