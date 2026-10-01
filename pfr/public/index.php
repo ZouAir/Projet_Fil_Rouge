@@ -73,22 +73,26 @@ $events = $query->fetchAll(PDO::FETCH_ASSOC);
                             <div class="card">
                                 <p><?= $date->format('d-m-Y') . " - " . $event['categorie'] ?></p>
                                 <img src="<?= $event['image'] ?>" alt="">
-                                <p><?= ucwords(htmlspecialchars($event['evenement'])) ?></p>
-                                <p><?= ucfirst(htmlspecialchars(substr($event['description'], 0, 50) . "...")) ?></p>
-                                <p><?= $seats_free . " place";
-                                    if ((int)$seats_free > 1) {
-                                        echo "s";
-                                    } ?>
-                                    <?= "disponible";
-                                    if ((int)$seats_free > 1) {
-                                        echo "s";
-                                    } ?>
-                                    <?= " - " . $event['price'] . " euro";
-                                    if ((int)$event['price'] > 1) {
-                                        echo "s";
-                                    } ?></p>
-                                <a href="reservation.php?id=<?= $event['id'] ?>">Réserver</a>
-                                <p><?= $event['status'] ?></p>
+                                <div class="card-mid">
+                                    <p><?= ucwords(htmlspecialchars($event['evenement'])) ?></p>
+                                    <p><?= ucfirst(htmlspecialchars(substr($event['description'], 0, 50) . "...")) ?></p>
+                                    <p><?= $seats_free . " place";
+                                        if ((int)$seats_free > 1) {
+                                            echo "s";
+                                        } ?>
+                                        <?= "disponible";
+                                        if ((int)$seats_free > 1) {
+                                            echo "s";
+                                        } ?>
+                                        <?= " - " . $event['price'] . " euro";
+                                        if ((int)$event['price'] > 1) {
+                                            echo "s";
+                                        } ?></p>
+                                </div>
+                                <div class="card-bottom">
+                                    <a href="reservation.php?id=<?= $event['id'] ?>">Réserver</a>
+                                    <p><?= $event['status'] ?></p>
+                                </div>
                             </div>
                         </li>
                     <?php } ?>
