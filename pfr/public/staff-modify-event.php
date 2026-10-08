@@ -8,7 +8,7 @@ if (!isset($_SESSION['id'])) {
     exit;
 }
 
-if (!in_array($_SESSION['profil'], ['administrateur', 'service'])) {
+if (!in_array($_SESSION['profile'], ['administrateur', 'service'])) {
     header('Location: login.php');
     exit;
 } else {

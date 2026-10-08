@@ -6,7 +6,7 @@ if (!isset($_SESSION['id'])) {
     exit;
 }
 
-if ($_SESSION['profil'] !== 'abonne') {
+if ($_SESSION['profile'] !== 'abonne') {
     header('Location: index.php');
     exit;
 }

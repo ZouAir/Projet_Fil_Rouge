@@ -2,7 +2,7 @@
 session_start();
 $pdo = require_once('../includes/bdd.php');
 
-if (!isset($_SESSION['id']) || !in_array($_SESSION['profil'], ['administrateur', 'service'])) {
+if (!isset($_SESSION['id']) || !in_array($_SESSION['profile'], ['administrateur', 'service'])) {
     header('Location: login.php');
     exit;
 }

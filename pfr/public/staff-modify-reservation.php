@@ -2,7 +2,7 @@
 session_start();
 $pdo = require_once('../includes/bdd.php');
 
-if (!isset($_SESSION['id']) || !in_array($_SESSION['profil'], ['administrateur', 'service'])) {
+if (!isset($_SESSION['id']) || !in_array($_SESSION['profile'], ['administrateur', 'service'])) {
     header('Location: login.php');
     exit;
 } else {
@@ -34,7 +34,7 @@ $query = $pdo->prepare("SELECT SUM(seats)
     FROM orders
     WHERE orders.id != ?
     AND events_id = ?
-    AND status NOT IN ('Annulé')
+    AND status NOT IN ('Annulée')
     ");
 $query->execute([$currentOrder['id'], $currentOrder['events_id']]);
 $seats_taken = $query->fetchColumn();

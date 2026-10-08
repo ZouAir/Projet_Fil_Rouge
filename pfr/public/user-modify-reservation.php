@@ -14,7 +14,7 @@ if (!isset($_SESSION['id'])) {
     }
 }
 
-if ($_SESSION['profil'] !== 'abonne') {
+if ($_SESSION['profile'] !== 'abonne') {
     header('Location: index.php');
     exit;
 }
@@ -36,7 +36,7 @@ $query = $pdo->prepare("SELECT SUM(seats)
     FROM orders
     WHERE orders.id != ?
     AND events_id = ?
-    AND status NOT IN ('Annulé')
+    AND status NOT IN ('Annulée')
     ");
 $query->execute([$currentOrder['id'], $currentOrder['events_id']]);
 $seats_taken = $query->fetchColumn();

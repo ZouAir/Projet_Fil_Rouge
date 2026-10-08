@@ -16,7 +16,7 @@ if (isset($_SESSION['success'])) {
 }
 $alert_message = "Vous êtes sur le point de supprimer cet élément, confirmez-vous ?";
 
-if (!isset($_SESSION['id']) || $_SESSION['profil'] !== 'administrateur') {
+if (!isset($_SESSION['id']) || $_SESSION['profile'] !== 'administrateur') {
     header('Location: index.php');
     exit;
 }
@@ -25,7 +25,7 @@ $id = $_SESSION['id'];
 $name = $_SESSION['name'];
 $first_name = $_SESSION['first_name'];
 $initials = strtoupper(substr($first_name, 0, 1) . '.' . substr($name, 0, 1));
-$profil = $_SESSION['profil'];
+$profile = $_SESSION['profile'];
 
 $query = $pdo->prepare("SELECT * FROM events 
     WHERE date > NOW() 
@@ -45,13 +45,13 @@ $event = $query->fetch(PDO::FETCH_ASSOC);
 $query = $pdo->prepare("SELECT SUM(seats) 
     FROM orders
     WHERE events_id = ?
-    AND status NOT IN ('Annulé')
+    AND status NOT IN ('Annulée')
     ");
 $query->execute([$event['id']]);
 $seats = $query->fetchColumn();
 
 $query = $pdo->prepare("SELECT * FROM users 
-    WHERE profil != 'administrateur' 
+    WHERE profile != 'administrateur' 
     ORDER BY name ASC, first_name ASC
     ");
 $query->execute();
@@ -97,7 +97,7 @@ $date = new DateTime($event['date']);
                     <div>Navigation</div>
                     <ul>
                         <li><a href="index.php">Accueil</a></li>
-                        <?php if ($profil === 'administrateur'): ?>
+                        <?php if ($profile === 'administrateur'): ?>
                             <li><a href="admin-users.php">Adhérents</a></li>
                         <?php endif; ?>
                         <li><a href="staff-events.php">Évènements</a></li>
@@ -115,7 +115,7 @@ $date = new DateTime($event['date']);
                             <span><?= htmlspecialchars($initials) ?></span>
                             <span><?= ucfirst($first_name) . " " . strtoupper($name) ?></span>
                         </div>
-                        <div>Tableau de bord : <?= htmlspecialchars($profil) ?></div>
+                        <div>Tableau de bord : <?= htmlspecialchars($profile) ?></div>
                     </div>
                     <div class="kpi">
                         <div>
@@ -140,7 +140,7 @@ $date = new DateTime($event['date']);
                     <?php
                     foreach ($abonnes as $abonne) {
                         $birthday = new DateTime($abonne['birthday']);
-                        if ($abonne['is_actif'] == 1) {
+                        if ($abonne['is_active'] == 1) {
                             $actif = "Actif";
                         } else {
                             $actif = "Inactif";
@@ -150,7 +150,7 @@ $date = new DateTime($event['date']);
                             <div class="user-data">
                                 <span><?= ucfirst(htmlspecialchars($abonne['first_name'])) . " " . strtoupper(htmlspecialchars($abonne['name'])) ?></span>
                                 <span><?= htmlspecialchars($abonne['email']) . " - " . htmlspecialchars($abonne['phone']) ?></span>
-                                <span><?= $birthday->format('d-m-Y') . " - " . htmlspecialchars($abonne['profil']) . " - " . htmlspecialchars($actif) ?></span>
+                                <span><?= $birthday->format('d-m-Y') . " - " . htmlspecialchars($abonne['profile']) . " - " . htmlspecialchars($actif) ?></span>
                             </div>
                             <div class="user-modify">
                                 <div class="user-change">

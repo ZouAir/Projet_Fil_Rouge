@@ -8,7 +8,7 @@ if (!isset($_SESSION['id'])) {
     exit;
 }
 
-if ($_SESSION['profil'] !== 'administrateur') {
+if ($_SESSION['profile'] !== 'administrateur') {
     header('Location: index.php');
     exit;
 }

@@ -8,7 +8,7 @@ if (!isset($_SESSION['id'])) {
     exit;
 }
 
-if ($_SESSION['profil'] !== 'administrateur') {
+if ($_SESSION['profile'] !== 'administrateur') {
     header('Location: index.php');
     exit;
 }
@@ -21,18 +21,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = password_hash($raw_password, PASSWORD_DEFAULT);
     $phone = trim($_POST['phone'] ?? '');
     $birthday = $_POST['birthday'] ?? '2000-01-01';
-    $adress = trim(mb_strtolower($_POST['adress'] ?? 'Adresse à compléter'));
+    $address = trim(mb_strtolower($_POST['address'] ?? 'Adresse à compléter'));
     $postal = trim($_POST['postal'] ?? '11111');
     $city = trim(mb_strtolower($_POST['city'] ?? 'Ville'));
-    $profil = $_POST['profil'] ?? 'abonne';
+    $profile = $_POST['profile'] ?? 'abonne';
 
     if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = "Veuillez saisir une adresse e-mail valide.";
     }
 
     try {
-        $query = $pdo->prepare("INSERT INTO users (name, first_name, email, password, phone, birthday, adress, postal, city, profil) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $query->execute([$name, $first_name, $email, $password, $phone, $birthday, $adress, $postal, $city, $profil]);
+        $query = $pdo->prepare("INSERT INTO users (name, first_name, email, password, phone, birthday, address, postal, city, profile) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $query->execute([$name, $first_name, $email, $password, $phone, $birthday, $address, $postal, $city, $profile]);
         header('Location: admin-users.php');
         exit;
     } catch (PDOException $e) {
@@ -102,9 +102,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                 </div>
                 <div class="event-item">
-                    <label for="adress">Adresse</label>
+                    <label for="address">Adresse</label>
                     <div>
-                        <input type="text" id="adress" name="adress" value="Adresse à modifier">
+                        <input type="text" id="address" name="address" value="Adresse à modifier">
                     </div>
                 </div>
                 <div class="event-item">
@@ -120,9 +120,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                 </div>
                 <div class="event-item">
-                    <label for="profil">Profil</label>
+                    <label for="profile">Profil</label>
                     <div>
-                        <select name="profil" id="profil">
+                        <select name="profile" id="profile">
                             <option value="">Choisir</option>
                             <option value="administrateur">Administrateur</option>
                             <option value="service">Service</option>

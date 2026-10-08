@@ -95,7 +95,7 @@ $events = $query->fetchAll();
                         $query = $pdo->prepare("SELECT SUM(seats) 
                             FROM orders
                             WHERE events_id = ?
-                            AND status NOT IN ('Annulé')
+                            AND status NOT IN ('Annulée')
                         ");
                         $query->execute([$event['id']]);
                         $seats = $query->fetchColumn();

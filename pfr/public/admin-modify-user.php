@@ -8,7 +8,7 @@ if (!isset($_SESSION['id'])) {
     exit;
 }
 
-if ($_SESSION['profil'] !== 'administrateur') {
+if ($_SESSION['profile'] !== 'administrateur') {
     header('Location: index.php');
     exit;
 } else {
@@ -35,11 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim(mb_strtolower($_POST['email']));
     $phone = trim($_POST['phone']);
     $birthday = $_POST['birthday'];
-    $adress = trim(mb_strtolower($_POST['adress']));
+    $address = trim(mb_strtolower($_POST['address']));
     $postal = trim($_POST['postal']);
     $city = trim(mb_strtolower($_POST['city']));
-    $profil = $_POST['profil'];
-    $is_actif = $_POST['is_actif'];
+    $profile = $_POST['profile'];
+    $is_active = $_POST['is_active'];
 
     try {
         $query = $pdo->prepare(
@@ -49,11 +49,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 email = :email, 
                 phone = :phone, 
                 birthday = :birthday, 
-                adress = :adress,
+                address = :address,
                 postal = :postal,
                 city = :city, 
-                profil = :profil,
-                is_actif = :is_actif
+                profile = :profile,
+                is_active = :is_active
                 WHERE id = :id"
         );
         $query->execute([
@@ -62,11 +62,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':email' => $email,
             ':phone' => $phone,
             ':birthday' => $birthday,
-            ':adress' => $adress,
+            ':address' => $address,
             ':postal' => $postal,
             ':city' => $city,
-            ':profil' => $profil,
-            ':is_actif' => $is_actif,
+            ':profile' => $profile,
+            ':is_active' => $is_active,
             ':id' => $id
         ]);
         header('Location: admin-users.php');
@@ -133,9 +133,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                 </div>
                 <div class="event-item">
-                    <label for="adress">Adresse</label>
+                    <label for="address">Adresse</label>
                     <div>
-                        <input type="text" id="adress" name="adress" value="<?= htmlspecialchars($currentUser['adress']) ?>">
+                        <input type="text" id="address" name="address" value="<?= htmlspecialchars($currentUser['address']) ?>">
                     </div>
                 </div>
                 <div class="event-item">
@@ -151,23 +151,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                 </div>
                 <div class="event-item">
-                    <label for="profil">Profil</label>
+                    <label for="profile">Profil</label>
                     <div>
-                        <select name="profil" id="profil">
+                        <select name="profile" id="profile">
                             <option value="">Choisir</option>
-                            <option value="administrateur" <?= ($currentUser['profil']) === 'administrateur' ? 'selected' : '' ?>>Administrateur</option>
-                            <option value="service" <?= htmlspecialchars($currentUser['profil']) === 'service' ? 'selected' : '' ?>>Service</option>
-                            <option value="abonne" <?= htmlspecialchars($currentUser['profil']) === 'abonne' ? 'selected' : '' ?>>Abonné</option>
+                            <option value="administrateur" <?= ($currentUser['profile']) === 'administrateur' ? 'selected' : '' ?>>Administrateur</option>
+                            <option value="service" <?= htmlspecialchars($currentUser['profile']) === 'service' ? 'selected' : '' ?>>Service</option>
+                            <option value="abonne" <?= htmlspecialchars($currentUser['profile']) === 'abonne' ? 'selected' : '' ?>>Abonné</option>
                         </select>
                     </div>
                 </div>
                 <div class="event-item">
-                    <label for="is_actif">Actif</label>
+                    <label for="is_active">Actif</label>
                     <div>
-                        <select name="is_actif" id="is_actif">
+                        <select name="is_active" id="is_active">
                             <option value="">Choisir</option>
-                            <option value="1" <?= $currentUser['is_actif'] == '1' ? 'selected' : '' ?>>Actif</option>
-                            <option value="0" <?= $currentUser['is_actif'] == '0' ? 'selected' : '' ?>>Inactif</option>
+                            <option value="1" <?= $currentUser['is_active'] == '1' ? 'selected' : '' ?>>Actif</option>
+                            <option value="0" <?= $currentUser['is_active'] == '0' ? 'selected' : '' ?>>Inactif</option>
                         </select>
                     </div>
                 </div>

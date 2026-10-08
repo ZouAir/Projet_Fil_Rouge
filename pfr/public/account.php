@@ -8,10 +8,10 @@ if (!isset($_SESSION['id'])) {
 }
 
 $id = $_SESSION['id'];
-$profil = $_SESSION['profil'];
+$profile = $_SESSION['profile'];
 $error = null;
 
-if ($profil === 'administrateur' || $profil === 'service') {
+if ($profile === 'administrateur' || $profile === 'service') {
     $header = 'Location: staff-events.php';
 } else {
     $header = 'Location: user-events.php';
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email      = trim(mb_strtolower($_POST['email'] ?? ''));
     $phone      = trim($_POST['phone'] ?? '');
     $birthday   = $_POST['birthday'] ?? '';
-    $adress     = trim(mb_strtolower($_POST['adress'] ?? ''));
+    $address     = trim(mb_strtolower($_POST['address'] ?? ''));
     $postal     = trim($_POST['postal'] ?? '');
     $city       = trim(mb_strtolower($_POST['city'] ?? ''));
     $status     = $_POST['status'] ?? '';
@@ -36,8 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $birthday = null;
     }
 
-    if ($adress === '') {
-        $adress = "adresse à compléter";
+    if ($address === '') {
+        $address = "adresse à compléter";
     }
 
     if ($postal === '') {
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             email       = :email, 
             phone       = :phone, 
             birthday    = :birthday, 
-            adress      = :adress, 
+            address      = :address, 
             postal      = :postal, 
             city        = :city, 
             status      = :status
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ':email'    => $email,
                 ':phone'    => $phone,
                 ':birthday' => $birthday,
-                ':adress'   => $adress,
+                ':address'   => $address,
                 ':postal'   => $postal,
                 ':city'     => $city,
                 ':status'   => $status
@@ -144,9 +144,9 @@ $user = $query->fetch(PDO::FETCH_ASSOC);
                     </div>
                 </div>
                 <div class="account-item">
-                    <label for="adress">Adresse</label>
+                    <label for="address">Adresse</label>
                     <div>
-                        <input type="text" id="adress" name="adress" value="<?= htmlspecialchars($user['adress']) ?>">
+                        <input type="text" id="address" name="address" value="<?= htmlspecialchars($user['address']) ?>">
                     </div>
                 </div>
                 <div class="account-item">

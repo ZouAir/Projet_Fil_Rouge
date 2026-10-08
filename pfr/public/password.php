@@ -8,10 +8,10 @@ if (!isset($_SESSION['id'])) {
 }
 
 $id = $_SESSION['id'];
-$profil = $_SESSION['profil'];
+$profile = $_SESSION['profile'];
 $error = null;
 
-if ($profil === 'administrateur' || $profil === 'service') {
+if ($profile === 'administrateur' || $profile === 'service') {
     $header = 'Location: staff-events.php';
 } else {
     $header = 'Location: user-events.php';

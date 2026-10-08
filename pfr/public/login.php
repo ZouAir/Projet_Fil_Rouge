@@ -29,12 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['name'] = $count['name'];
             $_SESSION['first_name'] = $count['first_name'];
             $_SESSION['email'] = $count['email'];
-            $_SESSION['profil'] = $count['profil'];
+            $_SESSION['profile'] = $count['profile'];
 
             // Redirection selon profil
-            if ($count['profil'] === 'administrateur' || $count['profil'] === 'service') {
+            if ($count['profile'] === 'administrateur' || $count['profile'] === 'service') {
                 header("Location: staff-events.php");
-            } elseif ($count['profil'] === 'abonne') {
+            } elseif ($count['profile'] === 'abonne') {
                 header("Location: user-events.php");
             } else {
                 header("Location: index.php");

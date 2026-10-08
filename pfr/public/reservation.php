@@ -27,7 +27,7 @@ if (!isset($_SESSION['id'])) {
     $query = $pdo->prepare("SELECT SUM(seats) 
     FROM orders
     WHERE events_id = ?
-    AND status NOT IN ('Annulé')
+    AND status NOT IN ('Annulée')
     ");
     $query->execute([$id]);
     $seats_taken = $query->fetchColumn();
@@ -36,7 +36,7 @@ if (!isset($_SESSION['id'])) {
     FROM orders
     WHERE events_id = ?
     AND users_id = ?
-    AND status NOT IN ('Annulé')
+    AND status NOT IN ('Annulée')
     ");
     $query->execute([$id, $_SESSION['id']]);
     $seats_booked = $query->fetchColumn();
@@ -51,7 +51,7 @@ if (!isset($_SESSION['id'])) {
             $seats = $_POST['seats'] ?? '';
             try {
                 if ($seats) {
-                    if ((int)$seats_booked + $_POST['seats'] > 2) {
+                    if ((int)$seats_booked + $seats > 2) {
                         $error = "Vous avez atteint le nombre maximum de réservations possible";
                     }
 
@@ -63,10 +63,10 @@ if (!isset($_SESSION['id'])) {
                         $query = $pdo->prepare("INSERT INTO orders (date, status, seats, events_id, users_id) VALUES (?, ?, ?, ?, ?)");
                         $query->execute([date('Y-m-d'), 'En attente', $seats, $id, $_SESSION['id']]);
 
-                        if ($_SESSION['profil'] === 'administrateur' || $_SESSION['profil'] === 'service') {
+                        if ($_SESSION['profile'] === 'administrateur' || $_SESSION['profile'] === 'service') {
                             header("Location: staff-reservations.php");
                             exit;
-                        } elseif ($_SESSION['profil'] === 'abonne') {
+                        } elseif ($_SESSION['profile'] === 'abonne') {
                             header("Location: user-reservations.php");
                             exit;
                         } else {

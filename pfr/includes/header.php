@@ -1,5 +1,5 @@
 <?php
-$profil = $_SESSION['profil'] ?? null;
+$profile = $_SESSION['profile'] ?? null;
 ?>
 
 <header>
@@ -15,9 +15,9 @@ $profil = $_SESSION['profil'] ?? null;
             <ul>
                 <li>
                     <?php
-                    if ($profil === 'administrateur' || $profil === 'service') { ?>
+                    if ($profile === 'administrateur' || $profile === 'service') { ?>
                         <a href="staff-events.php">Dashboard</a>
-                    <?php } elseif ($profil === 'abonne') { ?>
+                    <?php } elseif ($profile === 'abonne') { ?>
                         <a href="user-events.php">Mon Espace</a>
                     <?php } else { ?>
                         <a href="index.php">Accueil</a>

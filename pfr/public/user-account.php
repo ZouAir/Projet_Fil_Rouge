@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim(mb_strtolower($_POST['email'] ?? ''));
     $phone = trim($_POST['phone'] ?? '');
     $birthday = trim($_POST['birthday'] ?? '');
-    $adress = trim(mb_strtolower($_POST['adress'] ?? ''));
+    $address = trim(mb_strtolower($_POST['address'] ?? ''));
     $postal = trim($_POST['postal'] ?? '');
     $city = trim(mb_strtolower($_POST['city'] ?? ''));
     $status = $_POST['status'] ?? '';
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             email = :email, 
             phone = :phone, 
             birthday = :birthday, 
-            adress = :adress, 
+            address = :address, 
             postal = :postal, 
             city = :city, 
             status = :status
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ':email' => $email,
                 ':phone' => $phone,
                 ':birthday' => $birthday,
-                ':adress' => $adress,
+                ':address' => $address,
                 ':postal' => $postal,
                 ':city' => $city,
                 ':status' => $status
@@ -107,7 +107,7 @@ $user = $query->fetch(PDO::FETCH_ASSOC);
                                 <input type="date" id="birthday" name="birthday" value="<?= htmlspecialchars($user['birthday']) ?>" required>
                             </div>
                             <div class="form-item">
-                                <input type="text" id="adress" name="adress" value="<?= htmlspecialchars($user['adress']) ?>" required>
+                                <input type="text" id="address" name="address" value="<?= htmlspecialchars($user['address']) ?>" required>
                             </div>
                             <div class="form-item city">
                                 <input type="text" id="postal" name="postal" value="<?= htmlspecialchars($user['postal']) ?>" required>
