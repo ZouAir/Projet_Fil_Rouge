@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $address = trim(mb_strtolower($_POST['address'] ?? 'Adresse à compléter'));
     $postal = trim($_POST['postal'] ?? '11111');
     $city = trim(mb_strtolower($_POST['city'] ?? 'Ville'));
-    $profile = $_POST['profile'] ?? 'abonne';
+    $profile = $_POST['profile'] ?? 'abonné';
 
     if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = "Veuillez saisir une adresse e-mail valide.";
@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <option value="">Choisir</option>
                             <option value="administrateur">Administrateur</option>
                             <option value="service">Service</option>
-                            <option value="abonne">Abonné</option>
+                            <option value="abonné">Abonné</option>
                         </select>
                     </div>
                 </div>

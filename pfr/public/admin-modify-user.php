@@ -157,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <option value="">Choisir</option>
                             <option value="administrateur" <?= ($currentUser['profile']) === 'administrateur' ? 'selected' : '' ?>>Administrateur</option>
                             <option value="service" <?= htmlspecialchars($currentUser['profile']) === 'service' ? 'selected' : '' ?>>Service</option>
-                            <option value="abonne" <?= htmlspecialchars($currentUser['profile']) === 'abonne' ? 'selected' : '' ?>>Abonné</option>
+                            <option value="abonné" <?= htmlspecialchars($currentUser['profile']) === 'abonné' ? 'selected' : '' ?>>Abonné</option>
                         </select>
                     </div>
                 </div>

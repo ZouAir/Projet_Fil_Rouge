@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Redirection selon profil
             if ($count['profile'] === 'administrateur' || $count['profile'] === 'service') {
                 header("Location: staff-events.php");
-            } elseif ($count['profile'] === 'abonne') {
+            } elseif ($count['profile'] === 'abonné') {
                 header("Location: user-events.php");
             } else {
                 header("Location: index.php");

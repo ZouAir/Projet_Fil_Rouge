@@ -17,7 +17,7 @@ $profile = $_SESSION['profile'] ?? null;
                     <?php
                     if ($profile === 'administrateur' || $profile === 'service') { ?>
                         <a href="staff-events.php">Dashboard</a>
-                    <?php } elseif ($profile === 'abonne') { ?>
+                    <?php } elseif ($profile === 'abonné') { ?>
                         <a href="user-events.php">Mon Espace</a>
                     <?php } else { ?>
                         <a href="index.php">Accueil</a>

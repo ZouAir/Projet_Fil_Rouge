@@ -14,7 +14,7 @@ if (!isset($_SESSION['id'])) {
     }
 }
 
-if ($_SESSION['profile'] !== 'abonne') {
+if ($_SESSION['profile'] !== 'abonné') {
     header('Location: index.php');
     exit;
 }

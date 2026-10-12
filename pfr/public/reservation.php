@@ -66,7 +66,7 @@ if (!isset($_SESSION['id'])) {
                         if ($_SESSION['profile'] === 'administrateur' || $_SESSION['profile'] === 'service') {
                             header("Location: staff-reservations.php");
                             exit;
-                        } elseif ($_SESSION['profile'] === 'abonne') {
+                        } elseif ($_SESSION['profile'] === 'abonné') {
                             header("Location: user-reservations.php");
                             exit;
                         } else {
